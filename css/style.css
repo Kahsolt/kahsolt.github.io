@@ -589,8 +589,8 @@ a:hover {
 
 /* Backgroud image */
 #bg {
-  background-image: url("images/body.jpg");
-  background-color: #050a10;
+  background-image: url("/img/background.jpg");
+  background-color: lavender;
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-position: center;
@@ -628,7 +628,7 @@ a:hover {
 	border-radius: 3px;
 	clip: auto !important;
 	color: #000;
-	display: block;
+	display: inline-block;
 	font-size: 12px;
 	padding: 12px;
 	position: absolute;
@@ -712,7 +712,8 @@ a:hover {
 }
 .main-navigation ul.nav-menu,
 .main-navigation div.nav-menu > ul {
-	display: none;
+	display: block; /* MODIFIED: none */
+	opacity: 0.75;
 }
 .main-navigation ul.nav-menu.toggled-on,
 .menu-toggle {

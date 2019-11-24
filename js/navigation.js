@@ -3,16 +3,13 @@
  * accessibility for submenu items.
  */
 (function() {
-	var nav = document.getElementById('site-navigation'),
-		button, menu;
+	let nav = document.getElementById('site-navigation'), button, menu;
 	if (!nav) {
 		return;
 	}
-	button = nav.getElementsByTagName('button')[0];
+	button = nav.getElementsByTagName('div')[0];
 	menu = nav.getElementsByTagName('ul')[0];
-	if (!button) {
-		return;
-	}
+	if (!button) { return; }
 	// Hide button if menu is missing or empty.
 	if (!menu || !menu.childNodes.length) {
 		button.style.display = 'none';
@@ -37,8 +34,9 @@
 		$(this).parents('.menu-item, .page_item').toggleClass('focus');
 	});
 	if ('ontouchstart' in window) {
-		$('body').on('touchstart.twentytwelve', '.menu-item-has-children > a, .page_item_has_children > a', function(e) {
-			var el = $(this).parent('li');
+		$('body').on('touchstart.twentytwelve', 
+		             '.menu-item-has-children > a, .page_item_has_children > a', function(e) {
+			let el = $(this).parent('li');
 			if (!el.hasClass('focus')) {
 				e.preventDefault();
 				el.toggleClass('focus');

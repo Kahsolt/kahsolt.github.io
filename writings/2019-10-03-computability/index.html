@@ -2,47 +2,47 @@
 <html>
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   
-  <meta name="description" content="我们都忘了真理的名字……">
+    <meta name="description" content="我们都忘了真理的名字……">
   
 
   
-  <meta name="keywords" content="blog,ACG,技术博客,二次元">
+    <meta name="keywords" content="blog,ACG,技术博客,计算机,二次元">
   
   
   
   
   
   
-  <title> 计算理论 - 可计算性 |  空想美術館</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="从函数起步 早在小学时代我们就学会了加法，会在演草纸上化简形如114 + 514 = ?的算式以求得答案。 却要等到很久以后的某一天，才会恍然大悟——“原来加法运算就是个二元函数啊”——于是刷刷刷地写下一些相互等价的表述：   1. f(x, y) = x + y  2. Definition f (x, y : Nat) -&amp;gt; Nat := x + y.  3. add/2  数学老师教会我们如">
+  <title> 可计算性 |  虚仮威し全てを。</title>
+  
+  <meta name="description" content="从函数起步 早在小学时代我们就学会了加法，会在演草纸上化简形如114 + 514 = ?的算式以求得答案。 却要等到很久以后的某一天，才会恍然大悟——“原来加法运算就是个二元函数啊”——于是刷刷刷地写下一些相互等价的表述：   1. f(x, y) = x + y  2. Definition f (x, y : Nat) -&amp;gt; Nat := x + y.  3. add/2  数学老师教会">
 <meta name="keywords" content="计算理论,可计算性">
 <meta property="og:type" content="article">
-<meta property="og:title" content="计算理论 - 可计算性">
-<meta property="og:url" content="https://kahsolt.github.io/computability/index.html">
-<meta property="og:site_name" content="空想美術館">
-<meta property="og:description" content="从函数起步 早在小学时代我们就学会了加法，会在演草纸上化简形如114 + 514 = ?的算式以求得答案。 却要等到很久以后的某一天，才会恍然大悟——“原来加法运算就是个二元函数啊”——于是刷刷刷地写下一些相互等价的表述：   1. f(x, y) = x + y  2. Definition f (x, y : Nat) -&amp;gt; Nat := x + y.  3. add/2  数学老师教会我们如">
+<meta property="og:title" content="可计算性">
+<meta property="og:url" content="https://kahsolt.github.io/writings/2019-10-03-computability/index.html">
+<meta property="og:site_name" content="虚仮威し全てを。">
+<meta property="og:description" content="从函数起步 早在小学时代我们就学会了加法，会在演草纸上化简形如114 + 514 = ?的算式以求得答案。 却要等到很久以后的某一天，才会恍然大悟——“原来加法运算就是个二元函数啊”——于是刷刷刷地写下一些相互等价的表述：   1. f(x, y) = x + y  2. Definition f (x, y : Nat) -&amp;gt; Nat := x + y.  3. add/2  数学老师教会">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-03T15:46:57.024Z">
+<meta property="og:updated_time" content="2019-10-11T15:08:11.287Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="计算理论 - 可计算性">
-<meta name="twitter:description" content="从函数起步 早在小学时代我们就学会了加法，会在演草纸上化简形如114 + 514 = ?的算式以求得答案。 却要等到很久以后的某一天，才会恍然大悟——“原来加法运算就是个二元函数啊”——于是刷刷刷地写下一些相互等价的表述：   1. f(x, y) = x + y  2. Definition f (x, y : Nat) -&amp;gt; Nat := x + y.  3. add/2  数学老师教会我们如">
+<meta name="twitter:title" content="可计算性">
+<meta name="twitter:description" content="从函数起步 早在小学时代我们就学会了加法，会在演草纸上化简形如114 + 514 = ?的算式以求得答案。 却要等到很久以后的某一天，才会恍然大悟——“原来加法运算就是个二元函数啊”——于是刷刷刷地写下一些相互等价的表述：   1. f(x, y) = x + y  2. Definition f (x, y : Nat) -&amp;gt; Nat := x + y.  3. add/2  数学老师教会">
   
-    
-      <link rel="icon" href="/assets/img/favicon.ico">
-      
-    <link rel="stylesheet" href="/css/style.css">
-    
-
+  
+    <link rel="icon" href="/assets/img/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
 </head></html>
 <body class="home blog custom-background custom-font-enabled single-author">
+  <div id="bg"></div>
   <div id="page" class="hfeed site">
-      <header id="masthead" class="site-header" role="banner">
+    <header id="masthead" class="site-header" role="banner">
   <hgroup>
     <h1 class="site-title">
-      <a href="/" title="空想美術館" rel="home">空想美術館</a>
+      <a href="/" title="虚仮威し全てを。" rel="home">虚仮威し全てを。</a>
     </h1>
     
       <h2 class="site-description">
@@ -52,14 +52,23 @@
   </hgroup>
 
   <nav id="site-navigation" class="main-navigation" role="navigation">
-    <button class="menu-toggle">菜单</button>
-    <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a>
-    <!--TODO-->
     <div class="menu-main-container">
       <ul id="menu-main" class="nav-menu">
       
         <li class="menu-item menu-item-type-post_type menu-item-object-page">
           <a href="/">例えば、</a>
+        </li>
+      
+        <li class="menu-item menu-item-type-post_type menu-item-object-page">
+          <a href="/kokoro">愛を叫けたら</a>
+        </li>
+      
+        <li class="menu-item menu-item-type-post_type menu-item-object-page">
+          <a href="/vhaktyr">隠り世界論</a>
+        </li>
+      
+        <li class="menu-item menu-item-type-post_type menu-item-object-page">
+          <a href="/kotoba">道断</a>
         </li>
       
         <li class="menu-item menu-item-type-post_type menu-item-object-page">
@@ -75,25 +84,26 @@
   </nav>
 </header>
 
-      <div id="main" class="wrapper">
-        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-computability" class="post-computability post type-post status-publish format-standard hentry">
+    <div id="main" class="wrapper">
+      <div id="primary" class="site-content">
+        <div id="content" role="main">
+          <article id="post-2019-10-03-computability" class="post-2019-10-03-computability post type-post status-publish format-standard hentry">
     <!---->
 
     <header class="entry-header">
       
         
   
-    <h1 class="entry-title article-title">
-      计算理论 - 可计算性
-    </h1>
+    <h1 class="entry-title article-title">可计算性</h1>
   
+
 
       
     </header><!-- .entry-header -->
 
     <div class="entry-content">
       
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css"><div class=".article-gallery" <p><br><p></p>
+        <div class=".article-gallery" <p=""><br><p></p>
 <h1 id="从函数起步"><a href="#从函数起步" class="headerlink" title="从函数起步"></a>从函数起步</h1><p>早在小学时代我们就学会了加法，会在演草纸上化简形如<code>114 + 514 = ?</code>的算式以求得答案。<br>却要等到很久以后的某一天，才会恍然大悟——“原来加法运算就是个二元函数啊”——于是刷刷刷地写下一些相互等价的表述：</p>
 <ol>
 <li><code>f(x, y) = x + y</code></li>
@@ -115,7 +125,7 @@
 <p>——这个直觉式的信念被总结为这样一句话：<strong>函数<code>add/2</code>是可计算的。</strong><br>（需要稍加注意的是，“可计算性”这个词根本上仅仅是用来描述<strong>函数</strong>的，它是函数的一个属性。）</p>
 <p>难道还有不可计算的函数吗？<br>——很遗憾，有，大量的递归函数都是不可计算的，随手就是举一把栗子：</p>
 <ul>
-<li>f(x) = f(2 * x) + 1</li>
+<li>f(x) = f(2 * x)</li>
 <li>g(x) = if x == 1 then 1 else if x % 2 == 0 then 1 + g(x / 2) else 1 + g(3 * x - 1)</li>
 <li>h(x) = if x == 1 then 1 else if x % 2 == 0 then 1 + h(x / 2) else 1 + h(3 * x + 1)</li>
 </ul>
@@ -229,7 +239,7 @@
 <li>是否存在一个接受一个函数和一个数为输入的可计算的高阶函数JUDGE(f : Function, x : Nat) -&gt; Nat，定义为对于给定参数，如果<code>f(x) = 1</code>则返回1，否则返回0。（这种值域只有两个元素的函数叫做也谓词，对应的自然语言所描述的问题称为判定性问题。）</li>
 <li>是否存在一个图灵机TM，输入某个函数f和输入值x的字符串编码，如果<code>f(x) = 1</code>则打印1并停机，否则打印0并停机。（这种对于任意输入必定停机、且打印结果只有两种可能选项的图灵机也称为判定器/接受器，使得其打印1并停机的所有字符串组成一个语言，称该图灵机判定了该语言。）</li>
 </ul>
-<p>我们从第一种即函数表述入手，假设存在这样的JUDGE，现在来构造另一个函数<br>  <code>REBEL(x) = 1 - JUDGE(F_x, x)</code><br>注意到这里的<code>F_x</code>就是上面表格中编号为<code>x</code>的那个可计算函数。<br>简单地来说<code>REBEL</code>就是在<code>JUDGE</code>某个可计算函数<code>F_x</code>作用于自己的编号<code>x</code>之后的结果上再进行一次布尔取反；并且我们知道，既然<code>JUDGE</code>可计算，那么<code>REBEL</code>自然也是可计算的。那好，让我们尝试用REBEL计算自己的编号：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">JUDGE(f, x) = if f(x) = 1 then 1 else 0 ; 根据定义</span><br><span class="line">REBEL(x) = 1 - JUDGE(F_x, x)            ; 根据定义</span><br><span class="line"></span><br><span class="line">(代入 x = _REBEL_，因为REBEL可计算的某个F_i，记其编号i为_REBEL_)</span><br><span class="line">REBEL(_REBEL_) = 1 - JUDGE(REBEL, _REBEL_)    ; F_[_REBEL_]就是REBEL函数自己</span><br><span class="line">               = 1 - (if REBEL(_REBEL_) = 1 then 1 else 0)</span><br><span class="line">               = if REBEL(_REBEL_) = 1 then 0 else 1</span><br><span class="line"></span><br><span class="line">因此，如果条件式中 REBEL(_REBEL_) = 1， 就会使得等式左右两边化简为 REBEL(_REBEL_) = 0</span><br><span class="line">反之同理，矛盾。</span><br></pre></td></tr></table></figure></p>
+<p>我们从第一种即函数表述入手，假设存在这样的JUDGE，现在来构造另一个函数<br>  <code>REBEL(x) = 1 - JUDGE(F_x, x)</code><br>注意到这里的<code>F_x</code>就是上面表格中编号为<code>x</code>的那个可计算函数。<br>简单地来说<code>REBEL</code>就是在<code>JUDGE</code>某个可计算函数<code>F_x</code>作用于自己的编号<code>x</code>之后的结果上再进行一次布尔取反；并且我们知道，既然<code>JUDGE</code>可计算，那么<code>REBEL</code>自然也是可计算的。那好，让我们尝试用REBEL计算自己的编号：<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">JUDGE(f, x) = if f(x) = 1 then 1 else 0 ; 根据定义</span><br><span class="line">REBEL(x) = 1 - JUDGE(F_x, x)            ; 根据定义</span><br><span class="line"></span><br><span class="line">(代入 x = _REBEL_，因为REBEL可计算的某个F_i，记其编号i为_REBEL_)</span><br><span class="line">REBEL(_REBEL_) = 1 - JUDGE(REBEL, _REBEL_)    ; F_[_REBEL_]就是REBEL函数自己</span><br><span class="line">               = 1 - (if REBEL(_REBEL_) = 1 then 1 else 0)</span><br><span class="line">               = if REBEL(_REBEL_) = 1 then 0 else 1</span><br><span class="line"></span><br><span class="line">因此，如果条件式中 REBEL(_REBEL_) = 1， 就会使得等式左右两边化简为 REBEL(_REBEL_) = 0</span><br><span class="line">反之同理，矛盾。</span><br></pre></td></tr></tbody></table></figure><p></p>
 <p>因此<code>REBEL</code>不可计算，<code>REBEL</code>的子函数<code>JUDGE</code>也不可计算。<br>就是是说，并不存在理想中能判定任意给定函数在某定义域上某处是否可计算的可计算函数<code>JUDGE</code>，就更别说判定任意给定函数在其定义域上各处都可计算的可计算函数了。</p>
 <h1 id="不必过敏"><a href="#不必过敏" class="headerlink" title="不必过敏"></a>不必过敏</h1><p>……那么，圆周率<code>π</code>可计算吗？<br>——可以！不要谨慎过头了w</p>
 <p>由于我们只对函数使用可计算这个词，因此需要稍作变通，一个常数π可计算指的是这样一个特定函数<code>PI(n : Nat) -&gt; Digit</code>可计算，即打印无理数<code>PI</code>在某进制表示下的第<code>n</code>位有效数字。</p>
@@ -245,27 +255,45 @@
             selector: '.gallery-item'
         };
         lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>
+        }</script><script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
       
     </div><!-- .entry-content -->
     
     <aside class="comments-link" style="float: right">
-      <a href="javascript:void(0);" data-url="https://kahsolt.github.io/computability/" data-id="ck1av3wa10002ywoxhzqluxay" 
+      <a href="javascript:void(0);" data-url="https://kahsolt.github.io/writings/2019-10-03-computability/" data-id="ck3d6wto70002d0oxy9tkn92t" 
          class="leave-reply bdsharebuttonbox" data-cmd="more">[分享]
       </a>
       
     </aside><!-- .comments-link -->
 
     <footer class="entry-meta">
-      <a href="/computability/">
-    <time datetime="2019-10-03T01:24:56.000Z" class="entry-date">
-        2019-10-03
-    </time>
+      <a href="/writings/2019-10-03-computability/">
+  <time datetime="2019-10-03T01:24:56.000Z" class="entry-date">
+    2019-10-03
+  </time>
 </a>
       
   <span class="article-delim">&#8226;</span>
   <div class="article-category">
-  <a class="article-category-link" href="/categories/砂时计/">砂时计</a>
+    <a class="article-category-link" href="/categories/砂时计/">砂时计</a>
   </div>
 
       
@@ -277,13 +305,18 @@
 
 
   
-<nav class="nav-single">
+  <nav class="nav-single">
     <h3 class="assistive-text">文章导航</h3>
     
-        <span class="nav-previous"><a href="/computation-theory/" rel="prev"><span class="meta-nav">←</span> 计算理论 - 目录</a></span>
+      <span class="nav-previous">
+        <a href="/writings/2019-10-03-computation-theory/" rel="prev">
+          <span class="meta-nav">←</span>
+          计算理论-目录
+        </a>
+      </span>
     
     
-</nav><!-- .nav-single -->
+  </nav><!-- .nav-single -->
 
 
 
@@ -291,27 +324,30 @@
 
 
 
-</div></div>
-        <div id="secondary" class="widget-area" role="complementary">
+        </div>
+      </div>
+      <div id="secondary" class="widget-area" role="complementary">
   
     <aside id="search" class="widget widget_search">
+  <h3 class="widget-title">探しのみ</h3>
+  <div class="widget-content">
     <form role="search" method="get" accept-charset="utf-8" target="_blank"
           id="searchform" class="searchform" action="//www.baidu.com/s">
         <div>
             <input type="text" value="" name="wd" id="wd" />
-            <input type="submit" id="searchsubmit" value="搜索" />
+            <input type="submit" id="searchsubmit" value="検索" />
         </div>
     </form>
+  </div>
 </aside>
   
     
   <aside class="widget">
-    <h3 class="widget-title">Music</h3>
-    <p>孤独ノ隠レンボ(鏡音レン/150P)</p>
+    <h3 class="widget-title">風音</h3>
+    <p style="text-align: center">孤独ノ隠レンボ (鏡音レン/150P)</p>
     <div class="widget-content">
-      <audio src="https://link.hhtjim.com/163/512489312.mp3" controls="controls"
-             style="width:100%">
-        您的浏览器不支持 audio 标签。
+      <audio src="https://link.hhtjim.com/163/512489312.mp3" controls="controls">
+        都9102年了您的浏览器还不支持audio标签??!
       </audio>
     </div>
   </aside>
@@ -319,16 +355,28 @@
   
     
   <aside class="widget">
-    <h3 class="widget-title">Recents</h3>
+    <h3 class="widget-title">瞬時記憶</h3>
     <div class="widget-content">
       <ul>
         
           <li>
-            <a href="/computation-theory/">计算理论 - 目录</a>
+            <a href="/writings/quantum-computing-examples/">量子计算-示例代码</a>
           </li>
         
           <li>
-            <a href="/computability/">计算理论 - 可计算性</a>
+            <a href="/writings/quantum-computing/">量子计算-笔记</a>
+          </li>
+        
+          <li>
+            <a href="/writings/minimal-generator-set-problem/">最小生成集问题</a>
+          </li>
+        
+          <li>
+            <a href="/writings/2019-10-03-computation-theory/">计算理论-目录</a>
+          </li>
+        
+          <li>
+            <a href="/writings/2019-10-03-computability/">可计算性</a>
           </li>
         
       </ul>
@@ -338,40 +386,42 @@
   
     
   <aside class="widget">
-    <h3 class="widget-title">Categories</h3>
+    <h3 class="widget-title">猫論</h3>
     <div class="widget-content">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/砂时计/">砂时计</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/砂时计/">砂时计</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解命题/">解命题</a><span class="category-list-count">1</span></li></ul>
     </div>
   </aside>
 
   
     
   <aside class="widget">
-    <h3 class="widget-title">Tags</h3>
+    <h3 class="widget-title">格価値</h3>
     <div class="widget-content">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/可计算性/">可计算性</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算理论/">计算理论</a><span class="tag-list-count">2</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/代数结构/">代数结构</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/可计算性/">可计算性</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算模型/">计算模型</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算理论/">计算理论</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/量子计算/">量子计算</a><span class="tag-list-count">2</span></li></ul>
     </div>
   </aside>
 
   
     
   <aside class="widget">
-    <h3 class="widget-title">Tag Cloud</h3>
+    <h3 class="widget-title">格価クラウド</h3>
     <div class="widget-content tagcloud">
-      <a href="/tags/可计算性/" style="font-size: 10px;">可计算性</a> <a href="/tags/计算理论/" style="font-size: 20px;">计算理论</a>
+      <a href="/tags/代数结构/" style="font-size: 10px;">代数结构</a> <a href="/tags/可计算性/" style="font-size: 10px;">可计算性</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/计算模型/" style="font-size: 20px;">计算模型</a> <a href="/tags/计算理论/" style="font-size: 20px;">计算理论</a> <a href="/tags/量子计算/" style="font-size: 20px;">量子计算</a>
     </div>
   </aside>
 
   
 </div>
-      </div>
-      <footer id="colophon" role="contentinfo">
-    <p>&copy; 2019 Armit
+    </div>
+    <footer id="colophon" role="contentinfo">
+    <p>&copy; 2019 アルミット
         All rights reserved.</p>
     <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
 </footer>
     <!-- baidu webmaster push -->
 <script src='//push.zhanzhang.baidu.com/push.js'></script>
+
+
 
 <script>
   window._bd_share_config = {
@@ -386,14 +436,13 @@
 <!-- JQuery -->
 <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
 
-<!-- FancyBox -->
+<!-- FancyBox : JQuery -->
 
   <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
   <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
 <script src="/js/script.js"></script>
-
 <script src="/js/navigation.js"></script>
 
 <!-- 浏览器搞笑标题 -->
@@ -402,11 +451,9 @@
 <script src="/js/click_show_text.js"></script>
 <!-- 背景移动线条 -->
 <script src="https://cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
-<!-- 看板娘 -->
+<!-- 看板娘 : JQuery -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css">
 <script src='/assets/live2d-widget/autoload.js'></script>
-
-<div id="bg"></div>
 
   </div>
 </body>

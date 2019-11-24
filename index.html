@@ -2,46 +2,46 @@
 <html>
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   
-  <meta name="description" content="我们都忘了真理的名字……">
+    <meta name="description" content="我们都忘了真理的名字……">
   
 
   
-  <meta name="keywords" content="blog,ACG,技术博客,二次元">
+    <meta name="keywords" content="blog,ACG,技术博客,计算机,二次元">
   
   
   
   
   
   
-  <title> 空想美術館</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title> 虚仮威し全てを。</title>
+  
   <meta name="description" content="我们都忘了真理的名字……">
-<meta name="keywords" content="blog,ACG,技术博客,二次元">
+<meta name="keywords" content="blog,ACG,技术博客,计算机,二次元">
 <meta property="og:type" content="website">
-<meta property="og:title" content="空想美術館">
+<meta property="og:title" content="虚仮威し全てを。">
 <meta property="og:url" content="https://kahsolt.github.io/index.html">
-<meta property="og:site_name" content="空想美術館">
+<meta property="og:site_name" content="虚仮威し全てを。">
 <meta property="og:description" content="我们都忘了真理的名字……">
 <meta property="og:locale" content="zh-CN">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="空想美術館">
+<meta name="twitter:title" content="虚仮威し全てを。">
 <meta name="twitter:description" content="我们都忘了真理的名字……">
   
-    
-      <link rel="icon" href="/assets/img/favicon.ico">
-      
-    <link rel="stylesheet" href="/css/style.css">
-    
-
+  
+    <link rel="icon" href="/assets/img/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
 </head></html>
 <body class="home blog custom-background custom-font-enabled single-author">
+  <div id="bg"></div>
   <div id="page" class="hfeed site">
-      <header id="masthead" class="site-header" role="banner">
+    <header id="masthead" class="site-header" role="banner">
   <hgroup>
     <h1 class="site-title">
-      <a href="/" title="空想美術館" rel="home">空想美術館</a>
+      <a href="/" title="虚仮威し全てを。" rel="home">虚仮威し全てを。</a>
     </h1>
     
       <h2 class="site-description">
@@ -51,14 +51,23 @@
   </hgroup>
 
   <nav id="site-navigation" class="main-navigation" role="navigation">
-    <button class="menu-toggle">菜单</button>
-    <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a>
-    <!--TODO-->
     <div class="menu-main-container">
       <ul id="menu-main" class="nav-menu">
       
         <li class="menu-item menu-item-type-post_type menu-item-object-page">
           <a href="/">例えば、</a>
+        </li>
+      
+        <li class="menu-item menu-item-type-post_type menu-item-object-page">
+          <a href="/kokoro">愛を叫けたら</a>
+        </li>
+      
+        <li class="menu-item menu-item-type-post_type menu-item-object-page">
+          <a href="/vhaktyr">隠り世界論</a>
+        </li>
+      
+        <li class="menu-item menu-item-type-post_type menu-item-object-page">
+          <a href="/kotoba">道断</a>
         </li>
       
         <li class="menu-item menu-item-type-post_type menu-item-object-page">
@@ -74,10 +83,12 @@
   </nav>
 </header>
 
-      <div id="main" class="wrapper">
-        <div id="primary" class="site-content"><div id="content" role="main">
+    <div id="main" class="wrapper">
+      <div id="primary" class="site-content">
+        <div id="content" role="main">
+          
   
-    <article id="post-computation-theory" class="post-computation-theory post type-post status-publish format-standard hentry">
+    <article id="post-quantum-computing-examples" class="post-quantum-computing-examples post type-post status-publish format-standard hentry">
     <!---->
 
     <header class="entry-header">
@@ -85,9 +96,269 @@
         
   
     <h1 class="entry-title">
-      <a class="article-title" href="/computation-theory/">计算理论 - 目录</a>
+      <a class="article-title" href="/writings/quantum-computing-examples/">量子计算-示例代码</a>
     </h1>
   
+
+
+      
+    </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        这是几个使用projectq写的最最最基础的量子算法例子，用来帮助理解
+
+随机硬币
+coin.pyview raw1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+
+
+#!/usr/bin/env python3
+# Author: Armit
+# Create Time: 2019/11/24 
+
+from projectq import MainEngine
+from projectq.ops import H, Measure
+
+def randb(engine):
+  q = engine.allocate_qubit()
+  H | q
+  Measure | q
+  engine.flush()
+  retur
+        
+          <p class="article-more-link">
+            <a href="/writings/quantum-computing-examples/#more" class="more-link">更多 <span class="meta-nav">→</span></a>
+          </p>
+        
+      
+    </div><!-- .entry-content -->
+    
+    <aside class="comments-link" style="float: right">
+      <a href="javascript:void(0);" data-url="https://kahsolt.github.io/writings/quantum-computing-examples/" data-id="ck3d6wtoi0009d0oxkc9v4jn2" 
+         class="leave-reply bdsharebuttonbox" data-cmd="more">[分享]
+      </a>
+      
+    </aside><!-- .comments-link -->
+
+    <footer class="entry-meta">
+      <a href="/writings/quantum-computing-examples/">
+  <time datetime="2019-11-24T15:20:47.000Z" class="entry-date">
+    2019-11-24
+  </time>
+</a>
+      
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/砂时计/">砂时计</a>
+  </div>
+
+      
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算模型/">计算模型</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/量子计算/">量子计算</a></li></ul>
+
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-quantum-computing" class="post-quantum-computing post type-post status-publish format-standard hentry">
+    <!---->
+
+    <header class="entry-header">
+      
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/writings/quantum-computing/">量子计算-笔记</a>
+    </h1>
+  
+
+
+      
+    </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        前言
+这是量子计算的课程笔记，教材是：
+
+ * Ronald de Wolf. Quantum Computing: Lecture Notes
+ * Michael A. Nielsen, Isaac L. Chuang. Quantum Computation and Quantum Information
+
+推荐入门和实践向的书有：
+
+ * 付鹏, 向宏, 向涛. 量子算法与编程入门. 重庆大学出版社
+ * 李承祖等. 量子通信和量子计算. 国防科技大学出版社
+ * 赵生妹, 郑宝玉. 量子信息处理技术. 北京邮电大学出版社
+ * 陈汉武. 量子信息与量子计算简明教程. 东南大学出版社
+ * 张镇九, 张昭理, 李爱民. 量子计算与通信加密. 华东师范大学出版社
+
+以下大概是把那个Le
+        
+          <p class="article-more-link">
+            <a href="/writings/quantum-computing/#more" class="more-link">更多 <span class="meta-nav">→</span></a>
+          </p>
+        
+      
+    </div><!-- .entry-content -->
+    
+    <aside class="comments-link" style="float: right">
+      <a href="javascript:void(0);" data-url="https://kahsolt.github.io/writings/quantum-computing/" data-id="ck3d6wtob0006d0ox7hlvuesw" 
+         class="leave-reply bdsharebuttonbox" data-cmd="more">[分享]
+      </a>
+      
+    </aside><!-- .comments-link -->
+
+    <footer class="entry-meta">
+      <a href="/writings/quantum-computing/">
+  <time datetime="2019-10-17T12:45:35.000Z" class="entry-date">
+    2019-10-17
+  </time>
+</a>
+      
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/砂时计/">砂时计</a>
+  </div>
+
+      
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算模型/">计算模型</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/量子计算/">量子计算</a></li></ul>
+
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-minimal-generator-set-problem" class="post-minimal-generator-set-problem post type-post status-publish format-standard hentry">
+    <!---->
+
+    <header class="entry-header">
+      
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/writings/minimal-generator-set-problem/">最小生成集问题</a>
+    </h1>
+  
+
+
+      
+    </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        起源
+七段数码管是这样的东西：
+
+
+当我们想要显示一位数字的时候，实际就是去点亮七段LED中的某几段，比如数字1就是bc，2就是abged，以此类推……
+
+为了方便写单片机程序，我们需要做个编码(补上一个不使用的比特h)：
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+
+
+DIG | a b c d e f g h | HEX
+----|-----------------|------
+'0' | 1 1 1 1 1 1 0 0 | 0xFC
+'1' | 0 1 1 0 0 0 0 0 | 0x60
+'2' | 1 1 0 1 1 0 1 0 | 0xDA
+'3' | 1 1 1 1 0 0 1 0 | 0xF2
+'4' | 0 1 1 0 0 1 1 0 | 0x66
+'5' | 
+        
+          <p class="article-more-link">
+            <a href="/writings/minimal-generator-set-problem/#more" class="more-link">更多 <span class="meta-nav">→</span></a>
+          </p>
+        
+      
+    </div><!-- .entry-content -->
+    
+    <aside class="comments-link" style="float: right">
+      <a href="javascript:void(0);" data-url="https://kahsolt.github.io/writings/minimal-generator-set-problem/" data-id="ck3d6wtoh0008d0ox4zybmnex" 
+         class="leave-reply bdsharebuttonbox" data-cmd="more">[分享]
+      </a>
+      
+    </aside><!-- .comments-link -->
+
+    <footer class="entry-meta">
+      <a href="/writings/minimal-generator-set-problem/">
+  <time datetime="2019-10-05T02:04:29.000Z" class="entry-date">
+    2019-10-05
+  </time>
+</a>
+      
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/解命题/">解命题</a>
+  </div>
+
+      
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/代数结构/">代数结构</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
+
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-2019-10-03-computation-theory" class="post-2019-10-03-computation-theory post type-post status-publish format-standard hentry">
+    <!---->
+
+    <header class="entry-header">
+      
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/writings/2019-10-03-computation-theory/">计算理论-目录</a>
+    </h1>
+  
+
 
       
     </header><!-- .entry-header -->
@@ -100,7 +371,7 @@
  * 编程语言的形式语义
  * 计算复杂性
 
-计算理论的入门领域如下：
+计算理论的大众领域如下：
 
  * 计算模型 * 代数系统
     * 自动机
@@ -118,33 +389,33 @@
 由于内容很多，我们暂且只对标记了星号的部分作展开讨论；详见各子链接。
 
 参考书目
- * Peter Linz. An Introduction to Formal Languages and Automata.
- * Michael Sisper. Introduction to the Theory of Computatio
+ * 入门（推荐读物） * Peter Linz. An Introduction to Formal Languages and Automata.
+    * Michael Sisper. Introduction to the Theory
         
           <p class="article-more-link">
-            <a href="/computation-theory/#more" class="more-link">更多 <span class="meta-nav">→</span></a>
+            <a href="/writings/2019-10-03-computation-theory/#more" class="more-link">更多 <span class="meta-nav">→</span></a>
           </p>
         
       
     </div><!-- .entry-content -->
     
     <aside class="comments-link" style="float: right">
-      <a href="javascript:void(0);" data-url="https://kahsolt.github.io/computation-theory/" data-id="ck1av3w9x0000ywoxmkmd72r0" 
+      <a href="javascript:void(0);" data-url="https://kahsolt.github.io/writings/2019-10-03-computation-theory/" data-id="ck3d6wto30000d0oxf6tmvk9c" 
          class="leave-reply bdsharebuttonbox" data-cmd="more">[分享]
       </a>
       
     </aside><!-- .comments-link -->
 
     <footer class="entry-meta">
-      <a href="/computation-theory/">
-    <time datetime="2019-10-03T06:32:01.000Z" class="entry-date">
-        2019-10-03
-    </time>
+      <a href="/writings/2019-10-03-computation-theory/">
+  <time datetime="2019-10-03T06:32:01.000Z" class="entry-date">
+    2019-10-03
+  </time>
 </a>
       
   <span class="article-delim">&#8226;</span>
   <div class="article-category">
-  <a class="article-category-link" href="/categories/砂时计/">砂时计</a>
+    <a class="article-category-link" href="/categories/砂时计/">砂时计</a>
   </div>
 
       
@@ -160,7 +431,7 @@
 
 
   
-    <article id="post-computability" class="post-computability post type-post status-publish format-standard hentry">
+    <article id="post-2019-10-03-computability" class="post-2019-10-03-computability post type-post status-publish format-standard hentry">
     <!---->
 
     <header class="entry-header">
@@ -168,9 +439,10 @@
         
   
     <h1 class="entry-title">
-      <a class="article-title" href="/computability/">计算理论 - 可计算性</a>
+      <a class="article-title" href="/writings/2019-10-03-computability/">可计算性</a>
     </h1>
   
+
 
       
     </header><!-- .entry-header -->
@@ -182,7 +454,7 @@
 却要等到很久以后的某一天，才会恍然大悟——“原来加法运算就是个二元函数啊”——于是刷刷刷地写下一些相互等价的表述：
 
  1. f(x, y) = x + y
- 2. Definition f (x, y : Nat) -> Nat := x + y.
+ 2. Definition f (x, y : Nat) -&gt; Nat := x + y.
  3. add/2
 
 数学老师教会我们如何用第一种写法高效处理成堆的模拟卷；
@@ -190,29 +462,29 @@
 第三种写法是最抽象而危险的，它仅仅告诉我们这个函数的名字叫add、它接受两个参数，我们只能根据这两条岌岌可危的信息去揣
         
           <p class="article-more-link">
-            <a href="/computability/#more" class="more-link">更多 <span class="meta-nav">→</span></a>
+            <a href="/writings/2019-10-03-computability/#more" class="more-link">更多 <span class="meta-nav">→</span></a>
           </p>
         
       
     </div><!-- .entry-content -->
     
     <aside class="comments-link" style="float: right">
-      <a href="javascript:void(0);" data-url="https://kahsolt.github.io/computability/" data-id="ck1av3wa10002ywoxhzqluxay" 
+      <a href="javascript:void(0);" data-url="https://kahsolt.github.io/writings/2019-10-03-computability/" data-id="ck3d6wto70002d0oxy9tkn92t" 
          class="leave-reply bdsharebuttonbox" data-cmd="more">[分享]
       </a>
       
     </aside><!-- .comments-link -->
 
     <footer class="entry-meta">
-      <a href="/computability/">
-    <time datetime="2019-10-03T01:24:56.000Z" class="entry-date">
-        2019-10-03
-    </time>
+      <a href="/writings/2019-10-03-computability/">
+  <time datetime="2019-10-03T01:24:56.000Z" class="entry-date">
+    2019-10-03
+  </time>
 </a>
       
   <span class="article-delim">&#8226;</span>
   <div class="article-category">
-  <a class="article-category-link" href="/categories/砂时计/">砂时计</a>
+    <a class="article-category-link" href="/categories/砂时计/">砂时计</a>
   </div>
 
       
@@ -230,27 +502,31 @@
   
   
 
-</div></div>
-        <div id="secondary" class="widget-area" role="complementary">
+
+        </div>
+      </div>
+      <div id="secondary" class="widget-area" role="complementary">
   
     <aside id="search" class="widget widget_search">
+  <h3 class="widget-title">探しのみ</h3>
+  <div class="widget-content">
     <form role="search" method="get" accept-charset="utf-8" target="_blank"
           id="searchform" class="searchform" action="//www.baidu.com/s">
         <div>
             <input type="text" value="" name="wd" id="wd" />
-            <input type="submit" id="searchsubmit" value="搜索" />
+            <input type="submit" id="searchsubmit" value="検索" />
         </div>
     </form>
+  </div>
 </aside>
   
     
   <aside class="widget">
-    <h3 class="widget-title">Music</h3>
-    <p>孤独ノ隠レンボ(鏡音レン/150P)</p>
+    <h3 class="widget-title">風音</h3>
+    <p style="text-align: center">孤独ノ隠レンボ (鏡音レン/150P)</p>
     <div class="widget-content">
-      <audio src="https://link.hhtjim.com/163/512489312.mp3" controls="controls"
-             style="width:100%">
-        您的浏览器不支持 audio 标签。
+      <audio src="https://link.hhtjim.com/163/512489312.mp3" controls="controls">
+        都9102年了您的浏览器还不支持audio标签??!
       </audio>
     </div>
   </aside>
@@ -258,16 +534,28 @@
   
     
   <aside class="widget">
-    <h3 class="widget-title">Recents</h3>
+    <h3 class="widget-title">瞬時記憶</h3>
     <div class="widget-content">
       <ul>
         
           <li>
-            <a href="/computation-theory/">计算理论 - 目录</a>
+            <a href="/writings/quantum-computing-examples/">量子计算-示例代码</a>
           </li>
         
           <li>
-            <a href="/computability/">计算理论 - 可计算性</a>
+            <a href="/writings/quantum-computing/">量子计算-笔记</a>
+          </li>
+        
+          <li>
+            <a href="/writings/minimal-generator-set-problem/">最小生成集问题</a>
+          </li>
+        
+          <li>
+            <a href="/writings/2019-10-03-computation-theory/">计算理论-目录</a>
+          </li>
+        
+          <li>
+            <a href="/writings/2019-10-03-computability/">可计算性</a>
           </li>
         
       </ul>
@@ -277,40 +565,42 @@
   
     
   <aside class="widget">
-    <h3 class="widget-title">Categories</h3>
+    <h3 class="widget-title">猫論</h3>
     <div class="widget-content">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/砂时计/">砂时计</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/砂时计/">砂时计</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解命题/">解命题</a><span class="category-list-count">1</span></li></ul>
     </div>
   </aside>
 
   
     
   <aside class="widget">
-    <h3 class="widget-title">Tags</h3>
+    <h3 class="widget-title">格価値</h3>
     <div class="widget-content">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/可计算性/">可计算性</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算理论/">计算理论</a><span class="tag-list-count">2</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/代数结构/">代数结构</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/可计算性/">可计算性</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算模型/">计算模型</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算理论/">计算理论</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/量子计算/">量子计算</a><span class="tag-list-count">2</span></li></ul>
     </div>
   </aside>
 
   
     
   <aside class="widget">
-    <h3 class="widget-title">Tag Cloud</h3>
+    <h3 class="widget-title">格価クラウド</h3>
     <div class="widget-content tagcloud">
-      <a href="/tags/可计算性/" style="font-size: 10px;">可计算性</a> <a href="/tags/计算理论/" style="font-size: 20px;">计算理论</a>
+      <a href="/tags/代数结构/" style="font-size: 10px;">代数结构</a> <a href="/tags/可计算性/" style="font-size: 10px;">可计算性</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/计算模型/" style="font-size: 20px;">计算模型</a> <a href="/tags/计算理论/" style="font-size: 20px;">计算理论</a> <a href="/tags/量子计算/" style="font-size: 20px;">量子计算</a>
     </div>
   </aside>
 
   
 </div>
-      </div>
-      <footer id="colophon" role="contentinfo">
-    <p>&copy; 2019 Armit
+    </div>
+    <footer id="colophon" role="contentinfo">
+    <p>&copy; 2019 アルミット
         All rights reserved.</p>
     <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
 </footer>
     <!-- baidu webmaster push -->
 <script src='//push.zhanzhang.baidu.com/push.js'></script>
+
+
 
 <script>
   window._bd_share_config = {
@@ -325,14 +615,13 @@
 <!-- JQuery -->
 <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
 
-<!-- FancyBox -->
+<!-- FancyBox : JQuery -->
 
   <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
   <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
 <script src="/js/script.js"></script>
-
 <script src="/js/navigation.js"></script>
 
 <!-- 浏览器搞笑标题 -->
@@ -341,11 +630,9 @@
 <script src="/js/click_show_text.js"></script>
 <!-- 背景移动线条 -->
 <script src="https://cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
-<!-- 看板娘 -->
+<!-- 看板娘 : JQuery -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css">
 <script src='/assets/live2d-widget/autoload.js'></script>
-
-<div id="bg"></div>
 
   </div>
 </body>
