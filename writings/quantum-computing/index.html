@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   
-    <meta name="description" content="我们都忘了真理的名字……">
+    <meta name="description" content="我々は皆真理の名前を忘れだから……">
   
 
   
@@ -18,18 +18,18 @@
   
   <title> 量子计算-笔记 |  虚仮威し全てを。</title>
   
-  <meta name="description" content="前言 这是量子计算的课程笔记，教材是：   * Ronald de Wolf. Quantum Computing: Lecture Notes  * Michael A. Nielsen, Isaac L. Chuang. Quantum Computation and Quantum Information  推荐入门和实践向的书有：   * 付鹏, 向宏, 向涛. 量子算法与编程入门. 重庆">
+  <meta name="description" content="前言 这是量子计算的课程笔记，教材是:    * Ronald de Wolf. Quantum Computing: Lecture Notes  * Michael A. Nielsen, Isaac L. Chuang. Quantum Computation and Quantum Information  推荐入门和实践向的书有:    * 付鹏, 向宏, 向涛. 量子算法与编程入门.">
 <meta name="keywords" content="量子计算,计算模型">
 <meta property="og:type" content="article">
 <meta property="og:title" content="量子计算-笔记">
 <meta property="og:url" content="https://kahsolt.github.io/writings/quantum-computing/index.html">
 <meta property="og:site_name" content="虚仮威し全てを。">
-<meta property="og:description" content="前言 这是量子计算的课程笔记，教材是：   * Ronald de Wolf. Quantum Computing: Lecture Notes  * Michael A. Nielsen, Isaac L. Chuang. Quantum Computation and Quantum Information  推荐入门和实践向的书有：   * 付鹏, 向宏, 向涛. 量子算法与编程入门. 重庆">
+<meta property="og:description" content="前言 这是量子计算的课程笔记，教材是:    * Ronald de Wolf. Quantum Computing: Lecture Notes  * Michael A. Nielsen, Isaac L. Chuang. Quantum Computation and Quantum Information  推荐入门和实践向的书有:    * 付鹏, 向宏, 向涛. 量子算法与编程入门.">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-11-19T02:46:07.590Z">
+<meta property="og:updated_time" content="2019-11-16T16:00:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="量子计算-笔记">
-<meta name="twitter:description" content="前言 这是量子计算的课程笔记，教材是：   * Ronald de Wolf. Quantum Computing: Lecture Notes  * Michael A. Nielsen, Isaac L. Chuang. Quantum Computation and Quantum Information  推荐入门和实践向的书有：   * 付鹏, 向宏, 向涛. 量子算法与编程入门. 重庆">
+<meta name="twitter:description" content="前言 这是量子计算的课程笔记，教材是:    * Ronald de Wolf. Quantum Computing: Lecture Notes  * Michael A. Nielsen, Isaac L. Chuang. Quantum Computation and Quantum Information  推荐入门和实践向的书有:    * 付鹏, 向宏, 向涛. 量子算法与编程入门.">
   
   
     <link rel="icon" href="/assets/img/favicon.ico">
@@ -104,12 +104,12 @@
     <div class="entry-content">
       
         <div class=".article-gallery" <p=""><br><p></p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这是量子计算的课程笔记，教材是：</p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这是<strong>量子计算</strong>的课程笔记，教材是: </p>
 <ul>
 <li><a href="/downloads/pdf/Quantum%20Computing%20-%20Lecture%20Notes.pdf">Ronald de Wolf. Quantum Computing: Lecture Notes</a></li>
 <li>Michael A. Nielsen, Isaac L. Chuang. Quantum Computation and Quantum Information</li>
 </ul>
-<p>推荐入门和实践向的书有：</p>
+<p>推荐入门和实践向的书有: </p>
 <ul>
 <li>付鹏, 向宏, 向涛. 量子算法与编程入门. 重庆大学出版社</li>
 <li>李承祖等. 量子通信和量子计算. 国防科技大学出版社</li>
@@ -118,94 +118,94 @@
 <li>张镇九, 张昭理, 李爱民. 量子计算与通信加密. 华东师范大学出版社</li>
 </ul>
 <p>以下大概是把那个Lecture Note的重要部分加以汉译、补充和注解。</p>
-<h1 id="量子计算"><a href="#量子计算" class="headerlink" title="量子计算"></a>量子计算</h1><p><strong>元哲学</strong>：忽略量子力学的物理意义和哲学争端，只是去嫁接半透明的已知事实，并用以做出我们想要的<strong>高速计算机器</strong><br><strong>计算材料</strong>：不是我们所熟悉的从若干沙砾或绳结中抽象出来的边界清晰的<strong>自然数</strong>，而是从一堆微观粒子的状态中抽象出来的<strong>可观测表象</strong>(这使得它最初可能看上去有点<em>反数学</em>)<br><strong>计算方法</strong>：不是从复杂的约束条件组出发一步步循序构造等价规约而得到一个简化式作为答案，而是用疑似答案的猜想作为筛子在一个<strong>完备的解空间</strong>中筛查以验明是否存在此分量——像是个<strong>滤波过程</strong></p>
-<h2 id="数学基础：内积空间与Dirac记号"><a href="#数学基础：内积空间与Dirac记号" class="headerlink" title="数学基础：内积空间与Dirac记号"></a>数学基础：内积空间与Dirac记号</h2><p>这一套记号用来代替实空间线性代数里的那些符号，没有什么新东西，但它很好用，主要是在表记共轭和对偶元素上体现出了简洁的美感w</p>
-<h3 id="矢量"><a href="#矢量" class="headerlink" title="矢量"></a>矢量</h3><p>论域：带内积的有限维复空间，其实就是希尔伯特空间的某些离散子空间<br>元素：空间里的<strong>列向量</strong>，即(x1, x2, …, xn)<sup>T</sup>，其中xi∈C<br>右矢(ket)：就是个列向量，符号记作|ψ&gt;，比如|ψ&gt;=(2-3i, -1+5i)<sup>T</sup>；从右尖括号就可以看出是列向量，因此以后不再注明转置角标T<br>左矢(bra)：就是个行向量，符号记作&lt;ψ|，比如&lt;ψ|=(2+3i, -1-5i)<br>左右矢关系：不妨设左矢在空间V中，右矢在空间W中，对V中的任何一个左矢取其共轭转置就会出现在W中，即有关系<code>&lt;ψ| = |ψ&gt;†</code>，这个十字符号即先共轭再转置，读作dagger(匕首)——反之亦然；也就是说这两个空间是对偶的</p>
-<h3 id="算子-空间变换、内外积"><a href="#算子-空间变换、内外积" class="headerlink" title="算子/空间变换、内外积"></a>算子/空间变换、内外积</h3><p>线性算子：就是个矩阵A，表示了从空间V到空间W的某个变换<br>特征值/特征向量：若对线性算子A来说存在向量|v&gt;和数v，使得A|v&gt;=v|v&gt;，则称A对应于特征向量|v&gt;的特征值为v；注意这里|v&gt;和v不能混淆，也可以按线性代数的符号把v写作λ<br>厄米共轭：任何线性算子A都有其共轭转置版本记作A†，使得对任意|v&gt;, |w&gt;有<code>&lt;v|A|w&gt; = &lt;w|A†|v&gt;</code></p>
-<p>内积：一个函数f: (v: V, w: W) -&gt; C，定义为&lt;v|w&gt;，就是个左矢(行)乘以右矢(列)，内积是个复数<br>外积：一个函数f: (v: V, w: W) -&gt; C<sup>n</sup>，定义为|v&gt;&lt;w|，就是个右矢(列)乘以左矢(行)，外积是个复矩阵<br>正交：两个向量内积为0，即<code>&lt;v|w&gt;=0</code><br>模：||v||<sub>2</sub> = sqrt(&lt;v|v&gt;)<br>归一：一个向量模为1，即<code>&lt;v|v&gt;=1</code><br>完备关系：Σ<sub>i</sub>|i&gt;&lt;i| = I，其中{|i&gt;}是空间V中的一组标准正交基，I是单位阵<br>e.g. <code>A = IvAIw = Σ|vi&gt;&lt;vi|A|wj&gt;&lt;wj| = Σ&lt;vi|A|wj&gt;|vi&gt;&lt;wj|</code>，其中vi, wj分别是V, W中的正交基</p>
-<h3 id="几类常用算子"><a href="#几类常用算子" class="headerlink" title="几类常用算子"></a>几类常用算子</h3><p>正规算子：满足<code>A†A = AA†</code>的算子A，特性是<code>可作对角化/谱分解</code><br>酉算子：满足<code>A†A = AA† = I</code>的算子U，特性是<code>正规、保内积不变</code>；相当于实阵中的正交阵<br>厄米算子：满足<code>H = H†</code>的算子H，特性是<code>正规、主对角线全实数、主对角两侧翻折共轭、特征值全实数</code>；相当于实阵中的对称阵<br>投影算子：满足<code>P^2 = P</code>的<strong>厄米</strong>算子P，或可写作P = Σ[x, k]|i&gt;&lt;i|，其中|i&gt;是空间V中的一组标准正交基，特征是<code>只有主对角线上元素才可能非零</code></p>
-<h3 id="张量积、算子函数、对易-反对易"><a href="#张量积、算子函数、对易-反对易" class="headerlink" title="张量积、算子函数、对易/反对易"></a>张量积、算子函数、对易/反对易</h3><p>张量积：矩阵上的某二元运算，可以把维度为n和m的两个小矩阵变称维度为n*m的大矩阵，即有<code>An ⊗ Bm = Cnm</code>，具体算法例如下例：<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">A = [1 2   B = [-1 0 1]</span><br><span class="line">     3 4]</span><br><span class="line"></span><br><span class="line">A ⊗ B = [-1*A 0*A 1*A]</span><br><span class="line">      = [-1 -2 0 0 1 2</span><br><span class="line">         -3 -4 0 0 3 4]</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>向量间张量积的记号简写：<code>|v&gt;⊗|w&gt; = |v&gt;|w&gt; = |v,w&gt; = |vw&gt;</code><br>张量积和矩阵乘积的运算律：</p>
+<h1 id="量子计算"><a href="#量子计算" class="headerlink" title="量子计算"></a>量子计算</h1><p><strong>元哲学</strong>: 忽略量子力学的物理意义和哲学争端，只是去嫁接半透明的已知事实，并用以做出我们想要的<strong>高速计算机器</strong><br><strong>计算材料</strong>: 不是我们所熟悉的从若干沙砾或绳结中抽象出来的边界清晰的<strong>自然数</strong>，而是从一堆微观粒子的状态中抽象出来的<strong>可观测表象</strong>(这使得它最初可能看上去有点<em>反数学</em>)<br><strong>计算方法</strong>: 不是从复杂的约束条件组出发一步步循序构造等价规约而得到一个简化式作为答案，而是用疑似答案的猜想作为筛子在一个<strong>完备的解空间</strong>中筛查以验明是否存在此分量——像是个<strong>滤波过程</strong></p>
+<h2 id="数学基础-内积空间与Dirac记号"><a href="#数学基础-内积空间与Dirac记号" class="headerlink" title="数学基础: 内积空间与Dirac记号"></a>数学基础: 内积空间与Dirac记号</h2><p>这一套记号用来代替实空间线性代数里的那些符号，没有什么新东西，但它很好用，主要是在表记共轭和对偶元素上体现出了简洁的美感w</p>
+<h3 id="矢量"><a href="#矢量" class="headerlink" title="矢量"></a>矢量</h3><p>论域: 带内积的有限维复空间，其实就是希尔伯特空间的某些离散子空间<br>元素: 空间里的<strong>列向量</strong>，即(x1, x2, …, xn)<sup>T</sup>，其中xi∈C<br>右矢(ket): 就是个列向量，符号记作|ψ&gt;，比如|ψ&gt;=(2-3i, -1+5i)<sup>T</sup>；从右尖括号就可以看出是列向量，因此以后不再注明转置角标T<br>左矢(bra): 就是个行向量，符号记作&lt;ψ|，比如&lt;ψ|=(2+3i, -1-5i)<br>左右矢关系: 不妨设左矢在空间V中，右矢在空间W中，对V中的任何一个左矢取其共轭转置就会出现在W中，即有关系<code>&lt;ψ| = |ψ&gt;†</code>，这个十字符号即先共轭再转置，读作dagger(匕首)——反之亦然；也就是说这两个空间是对偶的</p>
+<h3 id="算子-空间变换、内外积"><a href="#算子-空间变换、内外积" class="headerlink" title="算子/空间变换、内外积"></a>算子/空间变换、内外积</h3><p>线性算子: 就是个矩阵A，表示了从空间V到空间W的某个变换<br>特征值/特征向量: 若对线性算子A来说存在向量|v&gt;和数v，使得A|v&gt;=v|v&gt;，则称A对应于特征向量|v&gt;的特征值为v；注意这里|v&gt;和v不能混淆，也可以按线性代数的符号把v写作λ<br>厄米共轭: 任何线性算子A都有其共轭转置版本记作A†，使得对任意|v&gt;, |w&gt;有<code>&lt;v|A|w&gt; = &lt;w|A†|v&gt;</code></p>
+<p>内积: 一个函数f: (v: V, w: W) -&gt; C，定义为&lt;v|w&gt;，就是个左矢(行)乘以右矢(列)，内积是个复数<br>外积: 一个函数f: (v: V, w: W) -&gt; C<sup>n</sup>，定义为|v&gt;&lt;w|，就是个右矢(列)乘以左矢(行)，外积是个复矩阵<br>正交: 两个向量内积为0，即<code>&lt;v|w&gt;=0</code><br>模: ||v||<sub>2</sub> = sqrt(&lt;v|v&gt;)<br>归一: 一个向量模为1，即<code>&lt;v|v&gt;=1</code><br>完备关系: Σ<sub>i</sub>|i&gt;&lt;i| = I，其中{|i&gt;}是空间V中的一组标准正交基，I是单位阵<br>e.g. <code>A = IvAIw = Σ|vi&gt;&lt;vi|A|wj&gt;&lt;wj| = Σ&lt;vi|A|wj&gt;|vi&gt;&lt;wj|</code>，其中vi, wj分别是V, W中的正交基</p>
+<h3 id="几类常用算子"><a href="#几类常用算子" class="headerlink" title="几类常用算子"></a>几类常用算子</h3><p>正规算子: 满足<code>A†A = AA†</code>的算子A，特性是<code>可作对角化/谱分解</code><br>酉算子: 满足<code>A†A = AA† = I</code>的算子U，特性是<code>正规、保内积不变</code>；相当于实阵中的正交阵<br>厄米算子: 满足<code>H = H†</code>的算子H，特性是<code>正规、主对角线全实数、主对角两侧翻折共轭、特征值全实数</code>；相当于实阵中的对称阵<br>投影算子: 满足<code>P^2 = P</code>的<strong>厄米</strong>算子P，或可写作P = Σ[x, k]|i&gt;&lt;i|，其中|i&gt;是空间V中的一组标准正交基，特征是<code>只有主对角线上元素才可能非零</code></p>
+<h3 id="张量积、算子函数、对易-反对易"><a href="#张量积、算子函数、对易-反对易" class="headerlink" title="张量积、算子函数、对易/反对易"></a>张量积、算子函数、对易/反对易</h3><p>张量积: 矩阵上的某二元运算，可以把维度为n和m的两个小矩阵变称维度为n*m的大矩阵，即有<code>An ⊗ Bm = Cnm</code>，具体算法例如下例:<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">A = [1 2   B = [-1 0 1]</span><br><span class="line">     3 4]</span><br><span class="line"></span><br><span class="line">A ⊗ B = [-1*A 0*A 1*A]</span><br><span class="line">      = [-1 -2 0 0 1 2</span><br><span class="line">         -3 -4 0 0 3 4]</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>向量间张量积的记号简写: <code>|v&gt;⊗|w&gt; = |v&gt;|w&gt; = |v,w&gt; = |vw&gt;</code><br>张量积和矩阵乘积的运算律: </p>
 <ul>
 <li><code>(A⊗B)(C⊗D) = (AC)⊗(BD)</code></li>
 <li><code>(A⊗B)|vw&gt; = (A⊗B)(|v&gt;⊗|w&gt;) = (A|v&gt;)⊗(B|w&gt;)</code></li>
 </ul>
-<p>算子函数：f: A -&gt; A，若A可作谱分解<code>A = Σa|a&gt;&lt;a|</code>，则定义<code>f(A) = Σf(a)a|a&gt;&lt;a|</code>即把f作用在特征值上<br>e.g. 迹：<code>tr(A) = ΣAii</code><br>两个有用的迹公式：<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">tr(A|ψ&gt;&lt;ψ|) = Σ&lt;i|A|ψ&gt;&lt;ψ|i&gt;     // 按基分解，对i求和</span><br><span class="line">            = Σ&lt;ψ|i&gt;&lt;i|A|ψ&gt;     // 标量的乘法交换律</span><br><span class="line">            = &lt;ψ(Σ|i&gt;&lt;i|A|ψ&gt;)   // Σ内无关求和变量i的成分外提</span><br><span class="line">            = &lt;ψ|A|ψ&gt;           // 基的完备性：Σ|i&gt;&lt;i| = I</span><br><span class="line"></span><br><span class="line">// 即：tr(算子*右矢*左矢) = 左矢*算子*右矢</span><br><span class="line"></span><br><span class="line">tr(|v&gt;&lt;w|) = &lt;v|w&gt;</span><br><span class="line">// 即，tr(外积) = 内积</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>对易式：<code>[A, B] = AB - BA</code>，其中A, B为算子，若该式为0则称A与B对易<br>反对易式：<code>{A, B} = AB + BA</code>，其中A, B为算子，若该式为0则称A与B反对易</p>
+<p>算子函数: f: A -&gt; A，若A可作谱分解<code>A = Σa|a&gt;&lt;a|</code>，则定义<code>f(A) = Σf(a)a|a&gt;&lt;a|</code>即把f作用在特征值上<br>e.g. 迹: <code>tr(A) = ΣAii</code><br>两个有用的迹公式:<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">tr(A|ψ&gt;&lt;ψ|) = Σ&lt;i|A|ψ&gt;&lt;ψ|i&gt;     // 按基分解，对i求和</span><br><span class="line">            = Σ&lt;ψ|i&gt;&lt;i|A|ψ&gt;     // 标量的乘法交换律</span><br><span class="line">            = &lt;ψ(Σ|i&gt;&lt;i|A|ψ&gt;)   // Σ内无关求和变量i的成分外提</span><br><span class="line">            = &lt;ψ|A|ψ&gt;           // 基的完备性: Σ|i&gt;&lt;i| = I</span><br><span class="line"></span><br><span class="line">// 即: tr(算子*右矢*左矢) = 左矢*算子*右矢</span><br><span class="line"></span><br><span class="line">tr(|v&gt;&lt;w|) = &lt;v|w&gt;</span><br><span class="line">// 即，tr(外积) = 内积</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>对易式: <code>[A, B] = AB - BA</code>，其中A, B为算子，若该式为0则称A与B对易<br>反对易式: <code>{A, B} = AB + BA</code>，其中A, B为算子，若该式为0则称A与B反对易</p>
 <h2 id="量子力学基础"><a href="#量子力学基础" class="headerlink" title="量子力学基础"></a>量子力学基础</h2><p>量子的叠加态矢，是一系列经典态矢的线性组合，系数因子为振幅(amplitude)<br>对它的操作可以是测量(measurement)，这是不可逆的；或者酉变换(unitary operation)，这是可逆的</p>
-<h3 id="叠加态"><a href="#叠加态" class="headerlink" title="叠加态"></a>叠加态</h3><p>经典态矢：对一个系统，如果我们测量它，就可能得到的各个结果状态，可写作|i&gt;，其中i为各个态的数字编号<br>叠加态矢：即这些经典态矢的线性组合，可写作|ψ&gt;=Σα<sub>i</sub>|i&gt;，其中系数α<sub>i</sub>即为态|i&gt;的振幅；也可简单写作振幅的向量即<code>|ψ&gt;=(α0, α1, ..., αn)</code></p>
+<h3 id="叠加态"><a href="#叠加态" class="headerlink" title="叠加态"></a>叠加态</h3><p>经典态矢: 对一个系统，如果我们测量它，就可能得到的各个结果状态，可写作|i&gt;，其中i为各个态的数字编号<br>叠加态矢: 即这些经典态矢的线性组合，可写作|ψ&gt;=Σα<sub>i</sub>|i&gt;，其中系数α<sub>i</sub>即为态|i&gt;的振幅；也可简单写作振幅的向量即<code>|ψ&gt;=(α0, α1, ..., αn)</code></p>
 <h3 id="测量"><a href="#测量" class="headerlink" title="测量"></a>测量</h3><p>我们无法直接去观察叠加态，只能观察到坍缩后所落在的某个经典态，我们也不会确切地知道是<em>哪个</em>经典态，这是随机的（可以相信这是真随机）<br>但我们知道坍缩后落在各个经典态的概率、即对应分量振幅的平方，也就是p(i) = α<sub>i</sub><sup>2</sup>，这就是波恩的<strong>几率解释</strong><br>如果我们去测量一个|ψ&gt;，它就会以概率p(i)的分布列给出结果i；这个结果i同时意味着这个量子会变成经典态|i&gt;；(这意味着之后对它反复测量，结果都是确定且一致的而不再具随机性?)</p>
-<p>测量的方式有很多，这几个常用：</p>
+<p>测量的方式有很多，这几个常用: </p>
 <ul>
-<li>投影测量：使用计算基/标准基，即|i&gt; = (0, …, 1, …, 0)，即第i个位置上为1其余为0，其实就是取单位矩阵的各个列向量</li>
-<li>Observable：使用密度算子</li>
-<li>POVM测量：使用一组完备的正定算子Ei</li>
+<li>投影测量: 使用计算基/标准基，即|i&gt; = (0, …, 1, …, 0)，即第i个位置上为1其余为0，其实就是取单位矩阵的各个列向量</li>
+<li>Observable: 使用密度算子</li>
+<li>POVM测量: 使用一组完备的正定算子Ei</li>
 </ul>
-<h3 id="演化"><a href="#演化" class="headerlink" title="演化"></a>演化</h3><p>封闭系统的演化可用一个酉矩阵描述，例即：<code>|b&gt; = U|a&gt;</code>，初态为叠加态|a&gt;，一段时间之后变成另一个叠加态|b&gt;，算子U只与时间相关(假设是系统定态的)、故U(t)简写作U</p>
-<h2 id="量子比特及存储器"><a href="#量子比特及存储器" class="headerlink" title="量子比特及存储器"></a>量子比特及存储器</h2><p>量子比特：可以表示为二维复空间里的矢量，假设空间的基是|0&gt;和|1&gt;，通常我们取计算基<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">|0&gt; = (1, 0)</span><br><span class="line">|1&gt; = (0, 1)</span><br></pre></td></tr></tbody></table></figure><p></p>
+<h3 id="演化"><a href="#演化" class="headerlink" title="演化"></a>演化</h3><p>封闭系统的演化可用一个酉矩阵描述，例即: <code>|b&gt; = U|a&gt;</code>，初态为叠加态|a&gt;，一段时间之后变成另一个叠加态|b&gt;，算子U只与时间相关(假设是系统定态的)、故U(t)简写作U</p>
+<h2 id="量子比特及存储器"><a href="#量子比特及存储器" class="headerlink" title="量子比特及存储器"></a>量子比特及存储器</h2><p>量子比特: 可以表示为二维复空间里的矢量，假设空间的基是|0&gt;和|1&gt;，通常我们取计算基<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">|0&gt; = (1, 0)</span><br><span class="line">|1&gt; = (0, 1)</span><br></pre></td></tr></tbody></table></figure><p></p>
 <p>即有<code>|ψ&gt; = α|0&gt; + β|1&gt;</code>，其中常数满足归一化<code>α^2 + β^2 = 1</code></p>
-<p>两个量子比特的复合系统状态空间就是两个单量子状态空间的张量积，因此有四个基向量、一般取：<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">|0&gt; = |0&gt;|0&gt; = |00&gt; = (1, 0, 0, 0)</span><br><span class="line">|1&gt; = |0&gt;|1&gt; = |01&gt; = (0, 1, 0, 0)</span><br><span class="line">|2&gt; = |1&gt;|0&gt; = |10&gt; = (0, 0, 1, 0)</span><br><span class="line">|3&gt; = |1&gt;|1&gt; = |11&gt; = (0, 0, 0, 1)</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>两个量子比特的复合系统状态空间就是两个单量子状态空间的张量积，因此有四个基向量、一般取:<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">|0&gt; = |0&gt;|0&gt; = |00&gt; = (1, 0, 0, 0)</span><br><span class="line">|1&gt; = |0&gt;|1&gt; = |01&gt; = (0, 1, 0, 0)</span><br><span class="line">|2&gt; = |1&gt;|0&gt; = |10&gt; = (0, 0, 1, 0)</span><br><span class="line">|3&gt; = |1&gt;|1&gt; = |11&gt; = (0, 0, 0, 1)</span><br></pre></td></tr></tbody></table></figure><p></p>
 <p>以后我们会广泛使用<code>|dec(i)&gt; = |bin(i)&gt; = (0, ..., 1(i-th), ..., 0)</code>这个符号简写</p>
-<p>存储器：有n个量子比特的存储器存储了一个(很大的)叠加态<code>|ψ&gt; = Σαi|i&gt;，其中Σ|αi|^2 = 1</code>，用计算基去测量这个存储器就会分别以<code>|αi|^2</code>的概率得到经典态<code>|i&gt;</code>；也可以做局部测量，只测量其中的几个比特</p>
-<p>纠缠：一个复合系统无法拆分为几个子系统的张量积，比如态<code>EPR = (|00&gt; + |11&gt;) / sqrt(2)</code></p>
-<p>存储器状态<strong>两个重要公式</strong>：</p>
-<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">全局相位外提公式：</span><br><span class="line"></span><br><span class="line">  |x&gt; - |1^x&gt; = |x&gt; - |~x&gt; = (-1)^x * (|0&gt; - |1&gt;)</span><br><span class="line"></span><br><span class="line">哈达玛打散公式：</span><br><span class="line"></span><br><span class="line">  H^⊗n|x&gt; = H^⊗n|x1,x2,x3,...,xn&gt;</span><br><span class="line">          = ⊗[1,n](H|xi&gt;)           // 连续张量积</span><br><span class="line">          = 1/sqrt(2^n) * Σ[y∈B^n](-1)^(xy)|y&gt;    // B^n即长度为0的01串</span><br><span class="line">  </span><br><span class="line">*该公式重要应用：取|x&gt;=|0^n&gt;时，为均匀打散</span><br><span class="line"></span><br><span class="line">  H^⊗n|0^n&gt; = 1/sqrt(2^n) * Σ[y∈B^n]|y&gt;</span><br><span class="line">            = (Σ[0,2^n]|x&gt;) / sqrt(2^n)</span><br><span class="line">            = (|0&gt; + |1&gt; + |2&gt; + ... + |2^n&gt;) / sqrt(2^n)</span><br></pre></td></tr></tbody></table></figure>
-<h2 id="基本量子门"><a href="#基本量子门" class="headerlink" title="基本量子门"></a>基本量子门</h2><p>量子门就是个<strong>酉阵</strong>，可以写作很多种形式：</p>
+<p>存储器: 有n个量子比特的存储器存储了一个(很大的)叠加态<code>|ψ&gt; = Σαi|i&gt;，其中Σ|αi|^2 = 1</code>，用计算基去测量这个存储器就会分别以<code>|αi|^2</code>的概率得到经典态<code>|i&gt;</code>；也可以做局部测量，只测量其中的几个比特</p>
+<p>纠缠: 一个复合系统无法拆分为几个子系统的张量积，比如态<code>EPR = (|00&gt; + |11&gt;) / sqrt(2)</code></p>
+<p>存储器状态<strong>两个重要公式</strong>: </p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">全局相位外提公式: </span><br><span class="line"></span><br><span class="line">  |x&gt; - |1^x&gt; = |x&gt; - |~x&gt; = (-1)^x * (|0&gt; - |1&gt;)</span><br><span class="line"></span><br><span class="line">哈达玛打散公式: </span><br><span class="line"></span><br><span class="line">  H^⊗n|x&gt; = H^⊗n|x1,x2,x3,...,xn&gt;</span><br><span class="line">          = ⊗[1,n](H|xi&gt;)           // 连续张量积</span><br><span class="line">          = 1/sqrt(2^n) * Σ[y∈B^n](-1)^(xy)|y&gt;    // B^n即长度为0的01串</span><br><span class="line">  </span><br><span class="line">*该公式重要应用: 取|x&gt;=|0^n&gt;时，为均匀打散</span><br><span class="line"></span><br><span class="line">  H^⊗n|0^n&gt; = 1/sqrt(2^n) * Σ[y∈B^n]|y&gt;</span><br><span class="line">            = (Σ[0,2^n]|x&gt;) / sqrt(2^n)</span><br><span class="line">            = (|0&gt; + |1&gt; + |2&gt; + ... + |2^n&gt;) / sqrt(2^n)</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="基本量子门"><a href="#基本量子门" class="headerlink" title="基本量子门"></a>基本量子门</h2><p>量子门就是个<strong>酉阵</strong>，可以写作很多种形式: </p>
 <ul>
 <li>矩阵名U，或其分解Σαi|i&gt;&lt;j|</li>
 <li>矩阵展开形式[Uij]，单比特通常这么写</li>
 <li>基态变换表U|i&gt; = |i’&gt;，多比特门通常这么写</li>
 <li>量子线路中的一个门框图 -|U|-</li>
 </ul>
-<h3 id="常用量子门"><a href="#常用量子门" class="headerlink" title="常用量子门"></a>常用量子门</h3><p>单比特门通常有：</p>
+<h3 id="常用量子门"><a href="#常用量子门" class="headerlink" title="常用量子门"></a>常用量子门</h3><p>单比特门通常有: </p>
 <figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">I = [1 0      // 单位门</span><br><span class="line">     0 1]</span><br><span class="line">  = |0&gt;&lt;0| + |1&gt;&lt;1|</span><br><span class="line">I|x&gt; = |x&gt;</span><br><span class="line"></span><br><span class="line">X = [0 1      // 非门，因为它的真值表是 X|i&gt; = |1-i&gt;</span><br><span class="line">     1 0]</span><br><span class="line">  = |0&gt;&lt;1| + |1&gt;&lt;0|</span><br><span class="line">X|x&gt; = |~x&gt;</span><br><span class="line">X|0&gt; = |1&gt;</span><br><span class="line">X|1&gt; = |0&gt;</span><br><span class="line"></span><br><span class="line">Y = [0 -i</span><br><span class="line">     i  0]</span><br><span class="line">  = i|0&gt;&lt;1| - i|1&gt;&lt;0|</span><br><span class="line">Y|x&gt; = (-1)^x*i|~x&gt;</span><br><span class="line">Y|0&gt; = i|1&gt;</span><br><span class="line">Y|1&gt; = -i|0&gt;</span><br><span class="line"></span><br><span class="line">Z = [1  0</span><br><span class="line">     0 -1]</span><br><span class="line">  = |0&gt;&lt;0| - |1&gt;&lt;1|</span><br><span class="line">Z|x&gt; = (-1)^x|x&gt;</span><br><span class="line">Z|0&gt; = |0&gt;</span><br><span class="line">Z|1&gt; = -|1&gt;</span><br><span class="line"></span><br><span class="line">(这四个称为Pauli门)</span><br><span class="line"></span><br><span class="line">H = [1  1        // Hadamard门，H = (X+Z)/sqrt(2)</span><br><span class="line">     1 -1] / sqrt(2)</span><br><span class="line">H|x&gt; = (|0&gt; + (-1)^x|1&gt;) / sqrt(2)</span><br><span class="line">H|0&gt; = |+&gt; = (|0&gt; + |1&gt;) /sqrt(2)</span><br><span class="line">H|1&gt; = |-&gt; = (|0&gt; - |1&gt;) /sqrt(2)</span><br><span class="line"></span><br><span class="line">Rθ = [1  0       // 相移门簇，θ为参数</span><br><span class="line">      0 e^iθ]</span><br><span class="line">Rθ|0&gt; = |0&gt;</span><br><span class="line">Rθ|1&gt; = e^iθ|1&gt;</span><br><span class="line"></span><br><span class="line">S = [1 0         // 相位门，S = R(π/2) = T^2</span><br><span class="line">     0 i]</span><br><span class="line">S|0&gt; = |0&gt;</span><br><span class="line">S|1&gt; = i|1&gt;</span><br><span class="line"></span><br><span class="line">T = [1     0     // π/8门，T = R(π/4)；因为除去一个全局相位exp(πi/8)后 = diag(exp(-πi/8), exp(πi/8))</span><br><span class="line">     0 e^(iπ/4)]</span><br><span class="line">T|0&gt; = |0&gt;</span><br><span class="line">T|1&gt; = e^(iπ/4)|1&gt;</span><br></pre></td></tr></tbody></table></figure>
-<p>多比特门通常有：</p>
-<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">SWAP = [1 0 0 0        // 交换门</span><br><span class="line">        0 0 1 0</span><br><span class="line">        0 1 0 0</span><br><span class="line">        0 0 0 1]</span><br><span class="line">SWAP|xy&gt; = |yx&gt;</span><br><span class="line"></span><br><span class="line">C-U = [1 0 0 0         // 单控U门，第一个比特才对第二比特作U变换</span><br><span class="line">       0 1 0 0         //          右下角即为任意给定的酉矩阵U</span><br><span class="line">       0 0 ? ?</span><br><span class="line">       0 0 ? ?]</span><br><span class="line">    = [I O</span><br><span class="line">       O U]</span><br><span class="line">C-U|xy&gt; = |x&gt;(U^x)|y&gt;</span><br><span class="line">C-U|0y&gt; = |0y&gt;</span><br><span class="line">C-U|1y&gt; = |1&gt;U|y&gt;</span><br><span class="line"></span><br><span class="line">CNOT = [1 0 0 0        // 控制非门，第一个比特为1时才对第二比特做非门</span><br><span class="line">        0 1 0 0</span><br><span class="line">        0 0 0 1</span><br><span class="line">        0 0 1 0]</span><br><span class="line">     = [I O</span><br><span class="line">        O X]</span><br><span class="line">CNOT|xy&gt; = |x,x^y&gt;</span><br><span class="line">CNOT|0y&gt; = |0y&gt;</span><br><span class="line">CNOT|1y&gt; = |1,~y&gt;</span><br><span class="line"></span><br><span class="line">Toffoli = [I O O O     // 托佛利门/CCNOT门/控控非门</span><br><span class="line">           O I O O</span><br><span class="line">           O O I O</span><br><span class="line">           O O O X]</span><br><span class="line">CCNOT|xyz&gt; = |x,y,x&amp;y^z&gt;</span><br><span class="line">CCNOT|0yz&gt; = |0yz&gt;</span><br><span class="line">CCNOT|x0z&gt; = |x0z&gt;</span><br><span class="line">CCNOT|11z&gt; = |11,~z&gt;</span><br></pre></td></tr></tbody></table></figure>
-<p>门的常用关系：<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">HXH = Z</span><br><span class="line">HZH = X</span><br><span class="line"></span><br><span class="line">XZ = -ZX</span><br><span class="line">XZX = -Z</span><br><span class="line">ZXZ = -X</span><br><span class="line"></span><br><span class="line">C-[e^(iθ)*I] = R(θ) ⊗ I</span><br><span class="line">C-Z = Z ⊗ I</span><br><span class="line">C-Z(c,t) = C-Z(t,c)   // c为控制位，t为目标位</span><br><span class="line"></span><br><span class="line">(X⊗I) * CNOT(c,t) * (X⊗I) = CNOT(~c,t)</span><br><span class="line">H^⊗2 * CNOT(c,t) * H^⊗2 = CNOT(t,c)</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>多比特门通常有: </p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">SWAP = [1 0 0 0        // 交换门</span><br><span class="line">        0 0 1 0</span><br><span class="line">        0 1 0 0</span><br><span class="line">        0 0 0 1]</span><br><span class="line">SWAP|xy&gt; = |yx&gt;</span><br><span class="line"></span><br><span class="line">C-U = [1 0 0 0         // 单控U门，第一个比特才对第二比特作U变换</span><br><span class="line">       0 1 0 0         //          右下角即为任意给定的酉矩阵U</span><br><span class="line">       0 0 ? ?</span><br><span class="line">       0 0 ? ?]</span><br><span class="line">    = [I O</span><br><span class="line">       O U]</span><br><span class="line">C-U|xy&gt; = |x&gt;(U^x)|y&gt;</span><br><span class="line">C-U|0y&gt; = |0y&gt;</span><br><span class="line">C-U|1y&gt; = |1&gt;U|y&gt;</span><br><span class="line"></span><br><span class="line">CNOT = [1 0 0 0        // 控制非门，第一个比特为1时才对第二比特做非门</span><br><span class="line">        0 1 0 0</span><br><span class="line">        0 0 0 1</span><br><span class="line">        0 0 1 0]</span><br><span class="line">     = [I O</span><br><span class="line">        O X]</span><br><span class="line">CNOT|xy&gt; = |x,x^y&gt;</span><br><span class="line">CNOT|0y&gt; = |0y&gt;</span><br><span class="line">CNOT|1y&gt; = |1,~y&gt;</span><br><span class="line"></span><br><span class="line">Toffoli = [I O O O     // 托佛利门/CCNOT门/控控非门</span><br><span class="line">           O I O O</span><br><span class="line">           O O I O</span><br><span class="line">           O O O X]</span><br><span class="line">CCNOT|xyz&gt; = |x,y,x&amp;y^z&gt;</span><br><span class="line">CCNOT|0yz&gt; = |0yz&gt;</span><br><span class="line">CCNOT|x0z&gt; = |x0z&gt;</span><br><span class="line">CCNOT|11z&gt; = |11,~z&gt;</span><br><span class="line"></span><br><span class="line">Fredkin = I ⊗ SWAP     // 受控交换门</span><br><span class="line">Fredkin|0yz&gt; = |0yz&gt;</span><br><span class="line">Fredkin|1yz&gt; = |1zy&gt;</span><br></pre></td></tr></tbody></table></figure>
+<p>门的常用关系:<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">H = (X + Z) / sqrt(2)</span><br><span class="line"></span><br><span class="line">HXH = Z</span><br><span class="line">HYH = -Y</span><br><span class="line">HZH = X</span><br><span class="line"></span><br><span class="line">XZ = -ZX</span><br><span class="line">XZX = -Z</span><br><span class="line">XYX = -Y</span><br><span class="line">ZXZ = -X</span><br><span class="line"></span><br><span class="line">C-[e^(iθ)*I] = R(θ) ⊗ I</span><br><span class="line">C-Z = Z ⊗ I</span><br><span class="line">C-Z(c,t) = C-Z(t,c)   // c为控制位，t为目标位</span><br><span class="line"></span><br><span class="line">(X⊗I) * CNOT(c,t) * (X⊗I) = CNOT(~c,t)</span><br><span class="line">H^⊗2 * CNOT(c,t) * H^⊗2 = CNOT(t,c)</span><br></pre></td></tr></tbody></table></figure><p></p>
 <h2 id="量子线路"><a href="#量子线路" class="headerlink" title="量子线路"></a>量子线路</h2><p>就是用量子门和量子导线搭建的线路，是一个巨大的酉变换</p>
-<p>基本连接方式：</p>
+<p>基本连接方式: </p>
 <ul>
-<li>串联：对应矩阵乘积，<code>H1(H2|ψ&gt;) = (H1H2)|ψ&gt;</code></li>
-<li>并联：对应哈达玛乘积，<code>(H1|ψ1&gt;)⊗(H2|ψ2&gt;) = (H1⊗H2)(|ψ1&gt;⊗|ψ2&gt;)</code></li>
+<li>串联: 对应矩阵乘积，<code>H1(H2|ψ&gt;) = (H1H2)|ψ&gt;</code></li>
+<li>并联: 对应哈达玛乘积，<code>(H1|ψ1&gt;)⊗(H2|ψ2&gt;) = (H1⊗H2)(|ψ1&gt;⊗|ψ2&gt;)</code></li>
 </ul>
 <h3 id="模拟经典门"><a href="#模拟经典门" class="headerlink" title="模拟经典门"></a>模拟经典门</h3><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NAND = CCNOT|xy1&gt; -&gt; |x,y,x&amp;y^1&gt; -&gt; |x,y,~(x&amp;y)</span><br><span class="line">扇出: CNOT|x0&gt; -&gt; |xx&gt; 或者 CCNOT|x10&gt; -&gt; |x1x&gt;</span><br></pre></td></tr></tbody></table></figure>
-<h3 id="完备性-通用性"><a href="#完备性-通用性" class="headerlink" title="完备性/通用性"></a>完备性/通用性</h3><p>精确的组合：</p>
+<h3 id="完备性-通用性"><a href="#完备性-通用性" class="headerlink" title="完备性/通用性"></a>完备性/通用性</h3><p>精确的组合: </p>
 <ul>
-<li>CNOT + U</li>
 <li>two-level U</li>
+<li>CNOT + U</li>
 <li>C^N-NOT + U + X</li>
 <li>Toffoli + C-U + U</li>
 </ul>
-<p>高效逼近任意给定酉算子的组合：</p>
+<p>高效逼近任意给定酉算子的组合: </p>
 <ul>
 <li>CNOT + H + T</li>
 <li>CNOT + H + T + S (S用于容错)</li>
 <li>Toffoli + H</li>
 </ul>
-<h2 id="应用：制作纠缠态"><a href="#应用：制作纠缠态" class="headerlink" title="应用：制作纠缠态"></a>应用：制作纠缠态</h2><p>这个线路可以把独立的<code>|00&gt;</code>变成纠缠的<code>(|00&gt;-|11&gt;)/sqrt(2)</code>：</p>
+<h2 id="应用-制作纠缠态"><a href="#应用-制作纠缠态" class="headerlink" title="应用: 制作纠缠态"></a>应用: 制作纠缠态</h2><p>这个线路可以把独立的<code>|00&gt;</code>变成纠缠的<code>(|00&gt;-|11&gt;)/sqrt(2)</code>: </p>
 <figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">|0&gt;--|H|--|    |-------&gt; (|0&gt;+|1&gt;)/sqrt(2)</span><br><span class="line">          |CNOT|</span><br><span class="line">|0&gt;-------|    |--|Z|--&gt; (|00&gt;-|11&gt;)/sqrt(2)</span><br></pre></td></tr></tbody></table></figure>
-<h2 id="应用：量子隐形传态"><a href="#应用：量子隐形传态" class="headerlink" title="应用：量子隐形传态"></a>应用：量子隐形传态</h2><p>设想<code>Alice</code>有一个未知态量子比特<code>|φ&gt;=α|0&gt;+β|1&gt;</code>，她想经由<strong>经典信道</strong>将其(量子态|φ&gt;)传送给<code>Bob</code>，这在没有更多资源的情况下是做不到的——但如果它们分有一对处于EPR态的量子对，例如<code>|xy&gt;=(|00&gt;+|11&gt;)/sqrt(2)</code>的话，就可以实现</p>
-<p>此时系统总状态可以描述为：<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">       = (α|0&gt;+β|1&gt;)(|00&gt;+|11&gt;)/sqrt(2)</span><br><span class="line">=   (1/2) * |00&gt; ⊗ (α|0&gt;+β|1&gt;)</span><br><span class="line">  + (1/2) * |01&gt; ⊗ (α|1&gt;+β|0&gt;)</span><br><span class="line">  + (1/2) * |10&gt; ⊗ (α|0&gt;-β|1&gt;)</span><br><span class="line">  + (1/2) * |11&gt; ⊗ (α|1&gt;-β|0&gt;)</span><br><span class="line">          (Alice)     (Bob)</span><br></pre></td></tr></tbody></table></figure><p></p>
+<h2 id="应用-量子隐形传态"><a href="#应用-量子隐形传态" class="headerlink" title="应用: 量子隐形传态"></a>应用: 量子隐形传态</h2><p>设想<code>Alice</code>有一个未知态量子比特<code>|φ&gt;=α|0&gt;+β|1&gt;</code>，她想经由<strong>经典信道</strong>将其(量子态|φ&gt;)传送给<code>Bob</code>，这在没有更多资源的情况下是做不到的——但如果它们分有一对处于EPR态的量子对，例如<code>|xy&gt;=(|00&gt;+|11&gt;)/sqrt(2)</code>的话，就可以实现</p>
+<p>此时系统总状态可以描述为:<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">       = (α|0&gt;+β|1&gt;)(|00&gt;+|11&gt;)/sqrt(2)</span><br><span class="line">=   (1/2) * |00&gt; ⊗ (α|0&gt;+β|1&gt;)</span><br><span class="line">  + (1/2) * |01&gt; ⊗ (α|1&gt;+β|0&gt;)</span><br><span class="line">  + (1/2) * |10&gt; ⊗ (α|0&gt;-β|1&gt;)</span><br><span class="line">  + (1/2) * |11&gt; ⊗ (α|1&gt;-β|0&gt;)</span><br><span class="line">          (Alice)     (Bob)</span><br></pre></td></tr></tbody></table></figure><p></p>
 <p>四种状态以<code>p=1/4</code>等概率出现</p>
-<p>现在，<code>Alice</code>只需要测量自己手上的<code>|φx&gt;</code>并将测量结果(2bit)通过<strong>经典信道</strong>发送给<code>Bob</code>，则<code>Bob</code>根据<code>Alice</code>的测量结果相应地对自己手上的<code>|y&gt;</code>做<strong>如下操作</strong>：</p>
+<p>现在，<code>Alice</code>只需要测量自己手上的<code>|φx&gt;</code>并将测量结果(2bit)通过<strong>经典信道</strong>发送给<code>Bob</code>，则<code>Bob</code>根据<code>Alice</code>的测量结果相应地对自己手上的<code>|y&gt;</code>做<strong>如下操作</strong>: </p>
 <ul>
 <li>若为00则作I变换: <code>I(α|0&gt;+β|1&gt;) = (α|0&gt;+β|1&gt;) = |φ&gt;</code></li>
 <li>若为01则作X变换: <code>X(α|1&gt;+β|0&gt;) = (α|0&gt;+β|1&gt;) = |φ&gt;</code>   // X门交换|0&gt;和|1&gt;</li>
 <li>若为10则作Z变换: <code>Z(α|0&gt;-β|1&gt;) = (α|0&gt;+β|1&gt;) = |φ&gt;</code>   // Z门把|1&gt;反号</li>
 <li>若为11则作ZX变换: <code>XZ(α|1&gt;-β|0&gt;) = (α|0&gt;+β|1&gt;) = |φ&gt;</code></li>
 </ul>
-<p>即可让<code>|y&gt;</code>变成<code>|φ&gt;</code>，总的线路图如下：</p>
+<p>即可让<code>|y&gt;</code>变成<code>|φ&gt;</code>，总的线路图如下: </p>
 <figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Alice |φ&gt;-|    |-|H|-|m1|========||</span><br><span class="line">          |CNOT|                 ||</span><br><span class="line">      |x&gt;-|    |-----|m2|=||     ||</span><br><span class="line">                          ||     ||</span><br><span class="line">Bob   |y&gt;---------------|X^m2|-|Z^m1|--&gt; |φ&gt;</span><br></pre></td></tr></tbody></table></figure>
 <p>随着<code>Alice</code>手中<code>|φ&gt;</code>的坍缩、量子态消失，信道中2bit经典信息的发送，<code>Bob</code>借助该经典信息和<code>|y&gt;</code>而获得/生成/重现了量子态<code>|φ&gt;</code>；最终认为，该实验实现了<strong>通过经典信道传输量子态</strong></p>
-<p>补：我们可以利用|x&gt;和|y&gt;的非定域性纠缠做一些仿似超距作用的事，但<strong>看似必须</strong>有经典信息的传输，才能最终确切产生有效的语义和理解、即信息的交换，因此<strong>信息</strong>传递仍然未能超过光速。</p>
-<h1 id="量子算法"><a href="#量子算法" class="headerlink" title="量子算法"></a>量子算法</h1><p>算法一般思路框架：(FIXME: 叙述有问题！)</p>
+<p>补: 我们可以利用|x&gt;和|y&gt;的非定域性纠缠做一些仿似超距作用的事，但<strong>看似必须</strong>有经典信息的传输，才能最终确切产生有效的语义和理解、即信息的交换，因此<strong>信息</strong>传递仍然未能超过光速。</p>
+<h1 id="量子算法"><a href="#量子算法" class="headerlink" title="量子算法"></a>量子算法</h1><p>算法一般思路框架: (FIXME: 叙述有问题！)</p>
 <ul>
 <li>把问题视作计算一个高阶函数f: f -&gt; B，问题的输入视作一个布尔函数f: B^n -&gt; B^m，即n个输入m个输出</li>
 <li>有两个寄存器Ra和Rb，Ra初始化全是|0&gt;作为初值，Rb全是|0&gt;或者|-&gt;作为终值</li>
 <li>一个巨复杂的酉变换Uf/Ox作用于Ra和Rb上，以Rb中的叠加态作为有效信息</li>
 <li>测量Rb，根据测量结果再作分析</li>
 </ul>
-<p>算法的一般步骤：</p>
+<p>算法的一般步骤: </p>
 <ul>
 <li>准备初态<code>|ψ&gt;=|0^n&gt;</code></li>
 <li>哈达玛打散</li>
@@ -215,67 +215,67 @@
 <li>测量全部或局部</li>
 </ul>
 <h2 id="布尔函数"><a href="#布尔函数" class="headerlink" title="布尔函数"></a>布尔函数</h2><p>所有计算问题都可以经过某种方式的编码、从而统一抽象为n元向量布尔函数<code>f: B^n -&gt; B^m</code>，又可进一步拆解为m个n元布尔函数<code>f: B^n -&gt; B</code>；给定某个具体的n，可知n元布尔函数一共有2^(2^n)个，Deutsch-Jozsa算法中考虑的均衡布尔函数，是n元布尔函数全集下的一个子集</p>
-<p>要实现对于向量布尔函数f/n-&gt;m的<strong>可逆计算</strong>，首先就要把输入输出数量对齐，一般套路是设计如下的新函数F：</p>
-<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">F: B^(n+m) -&gt; B^(m+n)</span><br><span class="line">∀(x,y) ∈ (B^n)×(B^m), st. F(x,y)=(x,y^f(x))  // y^f(x)中^为按位异或</span><br><span class="line"></span><br><span class="line">性质：F是对合函数，即有FF=id</span><br><span class="line">  F(F(x,y)) = F(x,y^f(x)) = (x,y^f(x)^f(x)) = (x,y)</span><br><span class="line"></span><br><span class="line">特别地，对于判定性问题来说m=1，即设计</span><br><span class="line">F: B^(n+1) -&gt; B^(1+n)</span><br><span class="line">∀(x,y) ∈ (B^n)×B, st. F(x,y)=(x,y^f(x))</span><br></pre></td></tr></tbody></table></figure>
-<p>将其迁移到量子线路上，为这个新函数F设计对应的量子线路，即定义出线性算子Uf：</p>
+<p>要实现对于向量布尔函数f/n-&gt;m的<strong>可逆计算</strong>，首先就要把输入输出数量对齐，一般套路是设计如下的新函数F: </p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">F: B^(n+m) -&gt; B^(m+n)</span><br><span class="line">∀(x,y) ∈ (B^n)×(B^m), st. F(x,y)=(x,y^f(x))  // y^f(x)中^为按位异或</span><br><span class="line"></span><br><span class="line">性质: F是对合函数，即有FF=id</span><br><span class="line">  F(F(x,y)) = F(x,y^f(x)) = (x,y^f(x)^f(x)) = (x,y)</span><br><span class="line"></span><br><span class="line">特别地，对于判定性问题来说m=1，即设计</span><br><span class="line">F: B^(n+1) -&gt; B^(1+n)</span><br><span class="line">∀(x,y) ∈ (B^n)×B, st. F(x,y)=(x,y^f(x))</span><br></pre></td></tr></tbody></table></figure>
+<p>将其迁移到量子线路上，为这个新函数F设计对应的量子线路，即定义出线性算子Uf: </p>
 <figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">|x&gt;和|y&gt;分别为n和m位量子寄存器</span><br><span class="line">Uf|xy&gt; = |x,y^f(x)&gt;</span><br><span class="line"></span><br><span class="line">同理可知，Uf是对合算子(UfUf=I)、酉算子(Uf†Uf=I)、自伴算子(Uf=Uf†)</span><br></pre></td></tr></tbody></table></figure>
 <p>下面不再区分<code>布尔函数f</code>和将其在量子线路上实现出来的<code>线性算子Uf</code></p>
 <h2 id="量子并行性"><a href="#量子并行性" class="headerlink" title="量子并行性"></a>量子并行性</h2><p>设想经典计算中的一个n元布尔函数f/n，我们需要2^n次计算f以求得真值表</p>
 <p>为该函数设计对应的量子线路，即一个巨大的酉变换Uf，令其输入|x&gt;为哈达玛打散的|0^n&gt;，即使用一次Uf即可得到完备解空间的叠加态，即<code>U(Σ[z]|z&gt;|0&gt;) = Σ[z]|z&gt;|f(z)&gt;</code>(此处省略了归一化因子)；这就是所谓的量子并行性</p>
 <p>当然，止步于此<strong>并不能</strong>超出经典得随机，因为对该叠加态的测量会退相干而只得到一个结果</p>
-<p>(<strong>正确的用法</strong>：获得完备解空间后，继续其他酉变换以实现”滤波”，直到把想要的答案结构过滤出来，然后测量以查看是否的确存在答案)</p>
-<h2 id="量子黑箱Black-Box-预言机Oracle-查询query"><a href="#量子黑箱Black-Box-预言机Oracle-查询query" class="headerlink" title="量子黑箱Black Box/预言机Oracle/查询query"></a>量子黑箱Black Box/预言机Oracle/查询query</h2><p>量子黑箱Uf封装了某个布尔函数f，设想n元布尔函数<code>f: B^n -&gt; B</code>，箱子是黑的、内部构造不明，故将其想象为一个可进行查询的随机访问存储器(RAM)：<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Ox: |i,0&gt; -&gt; |i,xi&gt;     // 默认初值|0&gt;</span><br><span class="line">Ox: |i,b&gt; -&gt; |i,b^xi&gt;   // 按位异或，如果目标比特已经有信息为|b&gt;</span><br><span class="line"></span><br><span class="line">前i个比特称为地址比特(串)，最后一个比特称为目标比特</span><br><span class="line">Ox称为该内存的查询机/函数的预言机</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>(<strong>正确的用法</strong>: 获得完备解空间后，继续其他酉变换以实现”滤波”，直到把想要的答案结构过滤出来，然后测量以查看是否的确存在答案)</p>
+<h2 id="量子黑箱Black-Box-预言机Oracle-查询query"><a href="#量子黑箱Black-Box-预言机Oracle-查询query" class="headerlink" title="量子黑箱Black Box/预言机Oracle/查询query"></a>量子黑箱Black Box/预言机Oracle/查询query</h2><p>量子黑箱Uf封装了某个布尔函数f，设想n元布尔函数<code>f: B^n -&gt; B</code>，箱子是黑的、内部构造不明，故将其想象为一个可进行查询的随机访问存储器(RAM):<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Ox: |i,0&gt; -&gt; |i,xi&gt;     // 默认初值|0&gt;</span><br><span class="line">Ox: |i,b&gt; -&gt; |i,b^xi&gt;   // 按位异或，如果目标比特已经有信息为|b&gt;</span><br><span class="line"></span><br><span class="line">前i个比特称为地址比特(串)，最后一个比特称为目标比特</span><br><span class="line">Ox称为该内存的查询机/函数的预言机</span><br></pre></td></tr></tbody></table></figure><p></p>
 <p>这种查询通常会改变<strong>目标比特的线性叠加分量系数</strong></p>
-<p>还有另一种查询方式，通常用于f输出是单个比特时，预先在目标比特中放置<code>|-&gt;</code>，则查询机变为：<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Ox,±: |i,−&gt; -&gt; |i&gt; ⊗ ((|0&gt; - |1&gt;)/sqrt(2) ^ xi)</span><br><span class="line">            -&gt; |i&gt; ⊗ (|xi&gt; - |~xi&gt;)/sqrt(2)    // 全局相位外提</span><br><span class="line">            -&gt; |i&gt; ⊗ (-1)^xi|-&gt;</span><br><span class="line">            -&gt; (-1)^xi * |i,−&gt;</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>这种查询只改变了<strong>目标比特的全局相位</strong>：<code>xi=0</code>不变，<code>xi=1</code>反号</p>
-<p>给定<code>经典布尔函数f</code>，将其用量子线路包装成<code>量子黑箱Uf</code>，典型的做法：<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">定义Uf: Uf|xy&gt; = |x,y^f(x)&gt;</span><br><span class="line"></span><br><span class="line">  |x&gt;的长度为f的输入长度</span><br><span class="line">  |y&gt;为单比特辅助位/预示位：当且仅当f(x)=1时将预示位|y&gt;取反，实现上Uf就是个n+1元的受控门(X + CC..CNOT)</span><br></pre></td></tr></tbody></table></figure><p></p>
-<h2 id="Deutsch算法"><a href="#Deutsch算法" class="headerlink" title="Deutsch算法"></a>Deutsch算法</h2><p>考虑最简单的布尔函数，即一元布尔函数<code>f: B -&gt; B</code>，一共只有4个：</p>
+<p>还有另一种查询方式，通常用于f输出是单个比特时，预先在目标比特中放置<code>|-&gt;</code>，则查询机变为:<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Ox,±: |i,−&gt; -&gt; |i&gt; ⊗ ((|0&gt; - |1&gt;)/sqrt(2) ^ xi)</span><br><span class="line">            -&gt; |i&gt; ⊗ (|xi&gt; - |~xi&gt;)/sqrt(2)    // 全局相位外提</span><br><span class="line">            -&gt; |i&gt; ⊗ (-1)^xi|-&gt;</span><br><span class="line">            -&gt; (-1)^xi * |i,−&gt;</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>这种查询只改变了<strong>目标比特的全局相位</strong>: <code>xi=0</code>不变，<code>xi=1</code>反号</p>
+<p>给定<code>经典布尔函数f</code>，将其用量子线路包装成<code>量子黑箱Uf</code>，典型的做法:<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">定义Uf: Uf|xy&gt; = |x,y^f(x)&gt;</span><br><span class="line"></span><br><span class="line">  |x&gt;的长度为f的输入长度</span><br><span class="line">  |y&gt;为单比特辅助位/预示位: 当且仅当f(x)=1时将预示位|y&gt;取反，实现上Uf就是个n+1元的受控门(X + CC..CNOT)</span><br></pre></td></tr></tbody></table></figure><p></p>
+<h2 id="Deutsch算法"><a href="#Deutsch算法" class="headerlink" title="Deutsch算法"></a>Deutsch算法</h2><p>考虑最简单的布尔函数，即一元布尔函数<code>f: B -&gt; B</code>，一共只有4个: </p>
 <ul>
 <li>f1(x) = 0</li>
 <li>f2(x) = x</li>
 <li>f3(x) = ~x</li>
 <li>f4(x) = 1</li>
 </ul>
-<p>其中f1和f4称为<strong>恒值的</strong>，f2和f3称为<strong>均衡的</strong>，则有Deutsch问题：</p>
+<p>其中f1和f4称为<strong>恒值的</strong>，f2和f3称为<strong>均衡的</strong>，则有Deutsch问题: </p>
 <ul>
-<li>输入：上述四个函数中任何一个f(x)</li>
-<li>输出：若f(x)恒值则0，均衡则1</li>
+<li>输入: 上述四个函数中任何一个f(x)</li>
+<li>输出: 若f(x)恒值则0，均衡则1</li>
 </ul>
-<p>则解决方案为，构建量子系统：</p>
+<p>则解决方案为，构建量子系统: </p>
 <ul>
 <li>使用两个量子比特的寄存器<code>|ψ&gt;=|xy&gt;</code>，选基为标准计算基<code>{|00&gt;, |01&gt;, |10&gt;, |11&gt;}</code></li>
-<li>算法的酉算子：哈达玛H</li>
-<li>问题的量子黑箱(<strong>这就是对输入的wrap!!</strong>)：设代表/包裹f(x)的酉算子为Uf，定义Uf|xy&gt;=|x,y^f(x)&gt;</li>
+<li>算法的酉算子: 哈达玛H</li>
+<li>问题的量子黑箱(<strong>这就是对输入的wrap!!</strong>): 设代表/包裹f(x)的酉算子为Uf，定义Uf|xy&gt;=|x,y^f(x)&gt;</li>
 </ul>
-<p>算法流程如下：</p>
+<p>算法流程如下: </p>
 <ul>
 <li>初始化寄存器，<code>|ψ&gt; = |01&gt;</code></li>
 <li>对寄存器进行哈达玛打散，<code>|ψ&gt; -&gt; H^(⊗2)|ψ&gt; = (|00&gt;-|01&gt;+|10&gt;-|11&gt;)/2</code></li>
 <li>调用量子黑箱Uf，<code>|ψ&gt; -&gt; Uf|ψ&gt; = (-1)^f(0) * ((|0&gt; + (-1)^(f(0)^f(1))|1&gt;) / sqrt(2)) ⊗ |-&gt;</code></li>
 <li>仅对第一个比特进行哈达玛(还原)，然后测量它</li>
-<li>由理论计算公式的：测量结果为<code>r</code>(即意味着最后的态为<code>|r&gt;</code>)，当且仅当<code>f(0)^f(1) = r</code>，即r=0意味着恒值</li>
+<li>由理论计算公式的: 测量结果为<code>r</code>(即意味着最后的态为<code>|r&gt;</code>)，当且仅当<code>f(0)^f(1) = r</code>，即r=0意味着恒值</li>
 </ul>
 <p>需注意，这是个<strong>确定性算法</strong></p>
-<p>算法分析/具体计算步骤：</p>
+<p>算法分析/具体计算步骤: </p>
 <figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">      |ψ&gt; = |01&gt;</span><br><span class="line">H^(⊗2)|ψ&gt; = (|00&gt; - |01&gt; + |10&gt; - |11&gt;) / 2     // 哈达玛打散</span><br><span class="line">    Uf|ψ&gt; = (|0&gt;(|f(0)&gt;-|~f(0)&gt;) - |1&gt;(|f(1)&gt;-|~f(1)&gt;))/2     // 全局相位外提</span><br><span class="line">          = (|0&gt;(-1)^(f(0))(|0&gt;-|1&gt;) - |1&gt;(-1)^(f(1))(|0&gt;-|1&gt;))/2</span><br><span class="line">          = (|0&gt;(-1)^f(0) - |1&gt;(-1)^f(1)) ⊗ (|0&gt;-|1&gt;) / 2</span><br><span class="line">          = (|0&gt;(-1)^f(0) - |1&gt;(-1)^(f(0)^f(0)^f(1))) ⊗ |-&gt; / sqrt(2)  // 异或，为了提出公因子</span><br><span class="line">              (此处符号有点混乱) 次方  异或 异或</span><br><span class="line">          = (-1)^(f(0)) * (|0&gt; - (-1)^(f(0)^f(1))|1&gt; ⊗ |-&gt; / sqrt(2)</span><br><span class="line">          = [(-1)^(f(0))] * [(|0&gt; - (-1)^(f(0)^f(1))|1&gt; / sqrt(2)] ⊗ [|-&gt;]</span><br><span class="line">             [全局相位]           [第一个比特]                     [第二比特]</span><br><span class="line">     |ψ1&gt; = (|0&gt; - (-1)^(f(0)^f(1))|1&gt; / sqrt(2)</span><br><span class="line">    H|ψ1&gt; = ((1 + (-1)^(f(0)^f(1))|0&gt; + (1 - (-1)^(f(0)^f(1))|1&gt;) / 2</span><br><span class="line">          = if f(0)^f(1) == 0    // 亦即 f(0) == f(1)</span><br><span class="line">            then |0&gt;</span><br><span class="line">            else |1&gt;</span><br></pre></td></tr></tbody></table></figure>
 <h2 id="Deutsch-Jozsa算法"><a href="#Deutsch-Jozsa算法" class="headerlink" title="Deutsch-Jozsa算法"></a>Deutsch-Jozsa算法</h2><p>将Deutsch算法扩展到n元布尔函数上，得到一个非确定的<strong>概率算法</strong></p>
 <p>线路和流程都和Deutsch算法类似，只是使用n+1量子比特的寄存器，测量时不管末位<br>测量结果代表了f(x)为恒值的概率，若为1则恒值(产生<code>|0^n&gt;</code>)，否则强制判定为均衡</p>
 <figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">H^(⊗n) * (Ox,±) * H^(⊗n)</span><br></pre></td></tr></tbody></table></figure>
-<h2 id="Bernstein-Vazirani算法"><a href="#Bernstein-Vazirani算法" class="headerlink" title="Bernstein-Vazirani算法"></a>Bernstein-Vazirani算法</h2><h2 id="Simon算法"><a href="#Simon算法" class="headerlink" title="Simon算法"></a>Simon算法</h2><h2 id="傅里叶变换"><a href="#傅里叶变换" class="headerlink" title="傅里叶变换"></a>傅里叶变换</h2><h2 id="Shor的因子分解算法"><a href="#Shor的因子分解算法" class="headerlink" title="Shor的因子分解算法"></a>Shor的因子分解算法</h2><h2 id="隐藏子群问题"><a href="#隐藏子群问题" class="headerlink" title="隐藏子群问题"></a>隐藏子群问题</h2><h2 id="Grover算法"><a href="#Grover算法" class="headerlink" title="Grover算法"></a>Grover算法</h2><p>情景来源：无辅助结构(排序/索引/哈希)的数据库搜索，数据库有N条记录，快速计算给定的某个匹配准则<code>f: Obj -&gt; B</code>(想象一张巨大的成绩表，每一行写着人名以及”合格/不合格”，现在需要快速查找所有不合格的人名)</p>
-<p>问题抽象：给定一个布尔函数<code>f(x)</code>，求所有使得<code>f(x)=1</code>的<code>x</code>；假设定义域大小为<code>N</code>，令f为1的x有<code>M</code>个</p>
-<p>效率对比声明：经典算法需要遍历表，Grover算法能在<code>O(sqrt(N/M))</code>次搜索后以任意大的概率找到<strong>一个</strong>匹配</p>
-<p>考虑最简单的Grover问题：</p>
+<h2 id="Grover算法"><a href="#Grover算法" class="headerlink" title="Grover算法"></a>Grover算法</h2><p>情景来源: 无辅助结构(排序/索引/哈希)的数据库搜索，数据库有N条记录，快速计算给定的某个匹配准则<code>f: Obj -&gt; B</code>(想象一张巨大的成绩表，每一行写着人名以及”合格/不合格”，现在需要快速查找所有不合格的人名)</p>
+<p>问题抽象: 给定一个布尔函数<code>f(x)</code>，求所有使得<code>f(x)=1</code>的<code>x</code>；假设定义域大小为<code>N</code>，令f为1的x有<code>M</code>个</p>
+<p>效率对比声明: 经典算法需要遍历表，Grover算法能在<code>O(sqrt(N/M))</code>次搜索后以任意大的概率找到<strong>一个</strong>匹配</p>
+<p>考虑最简单的Grover问题: </p>
 <ul>
-<li>输入：一个n元布尔函数f(x)、只在一个点上取1其余取0，并记<code>N=n^2</code></li>
-<li>输出：使得f(x)=1的x</li>
+<li>输入: 一个n元布尔函数f(x)、只在一个点上取1其余取0，并记<code>N=n^2</code></li>
+<li>输出: 使得f(x)=1的x</li>
 </ul>
-<p>则解决方案为，构建量子系统：</p>
+<p>则解决方案为，构建量子系统: </p>
 <ul>
 <li>使用n+1量子比特的寄存器<code>|ψ&gt;=|xy&gt;</code>，选基为标准计算基<code>{|xy&gt; | x∈B^n, y∈B}</code></li>
-<li>算法的酉算子(只针对前n位)：<code>Us = 2|s&gt;&lt;s| - I</code>，其中<code>|s&gt;</code>为基态<code>|0^n&gt;</code>的哈达玛均匀打散</li>
-<li>问题的量子黑箱：使用常规定义，<code>Uf|xy&gt; = |x,y^f(x)&gt;</code></li>
+<li>算法的酉算子(只针对前n位): <code>Us = 2|s&gt;&lt;s| - I</code>，其中<code>|s&gt;</code>为基态<code>|0^n&gt;</code>的哈达玛均匀打散</li>
+<li>问题的量子黑箱: 使用常规定义，<code>Uf|xy&gt; = |x,y^f(x)&gt;</code></li>
 </ul>
-<p>算法流程如下：</p>
+<p>算法流程如下: </p>
 <ul>
 <li>初始化寄存器，<code>|ψ&gt; = |0^n&gt;|1&gt;</code></li>
 <li>对寄存器进行哈达玛打散，<code>|ψ&gt; -&gt; H^(⊗(n+1))|ψ&gt; = H^(⊗n))|0^n&gt;H|1&gt; = |s&gt;|-&gt;</code></li>
@@ -317,7 +317,7 @@
     </div><!-- .entry-content -->
     
     <aside class="comments-link" style="float: right">
-      <a href="javascript:void(0);" data-url="https://kahsolt.github.io/writings/quantum-computing/" data-id="ck3d6wtob0006d0ox7hlvuesw" 
+      <a href="javascript:void(0);" data-url="https://kahsolt.github.io/writings/quantum-computing/" data-id="ck4lktc0x0008ywox6e8zijwr" 
          class="leave-reply bdsharebuttonbox" data-cmd="more">[分享]
       </a>
       
@@ -406,23 +406,23 @@
       <ul>
         
           <li>
-            <a href="/writings/quantum-computing-examples/">量子计算-示例代码</a>
+            <a href="/writings/natural-language-process/">自然语言处理-笔记</a>
           </li>
         
           <li>
-            <a href="/writings/quantum-computing/">量子计算-笔记</a>
+            <a href="/writings/hadoop-technology-stack/">Mapreduce大数据处理-笔记</a>
           </li>
         
           <li>
-            <a href="/writings/minimal-generator-set-problem/">最小生成集问题</a>
+            <a href="/writings/program-formal-semantics/">计算机程序形式语义-笔记</a>
           </li>
         
           <li>
-            <a href="/writings/2019-10-03-computation-theory/">计算理论-目录</a>
+            <a href="/writings/computational-complexity/">计算复杂性-笔记</a>
           </li>
         
           <li>
-            <a href="/writings/2019-10-03-computability/">可计算性</a>
+            <a href="/writings/automata/">自动机理论-笔记</a>
           </li>
         
       </ul>
@@ -434,7 +434,7 @@
   <aside class="widget">
     <h3 class="widget-title">猫論</h3>
     <div class="widget-content">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/砂时计/">砂时计</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解命题/">解命题</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/巴别塔/">巴别塔</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/砂时计/">砂时计</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/神谕机/">神谕机</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解命题/">解命题</a><span class="category-list-count">1</span></li></ul>
     </div>
   </aside>
 
@@ -443,7 +443,7 @@
   <aside class="widget">
     <h3 class="widget-title">格価値</h3>
     <div class="widget-content">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/代数结构/">代数结构</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/可计算性/">可计算性</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算模型/">计算模型</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算理论/">计算理论</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/量子计算/">量子计算</a><span class="tag-list-count">2</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/hadoop技术栈/">Hadoop技术栈</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nlp/">NLP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/代数结构/">代数结构</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/日语/">日语</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/示例代码/">示例代码</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算模型/">计算模型</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算理论/">计算理论</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/语法笔记/">语法笔记</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/量子计算/">量子计算</a><span class="tag-list-count">2</span></li></ul>
     </div>
   </aside>
 
@@ -452,7 +452,7 @@
   <aside class="widget">
     <h3 class="widget-title">格価クラウド</h3>
     <div class="widget-content tagcloud">
-      <a href="/tags/代数结构/" style="font-size: 10px;">代数结构</a> <a href="/tags/可计算性/" style="font-size: 10px;">可计算性</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/计算模型/" style="font-size: 20px;">计算模型</a> <a href="/tags/计算理论/" style="font-size: 20px;">计算理论</a> <a href="/tags/量子计算/" style="font-size: 20px;">量子计算</a>
+      <a href="/tags/hadoop技术栈/" style="font-size: 10px;">Hadoop技术栈</a> <a href="/tags/nlp/" style="font-size: 10px;">NLP</a> <a href="/tags/代数结构/" style="font-size: 10px;">代数结构</a> <a href="/tags/日语/" style="font-size: 10px;">日语</a> <a href="/tags/示例代码/" style="font-size: 10px;">示例代码</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/计算模型/" style="font-size: 20px;">计算模型</a> <a href="/tags/计算理论/" style="font-size: 15px;">计算理论</a> <a href="/tags/语法笔记/" style="font-size: 10px;">语法笔记</a> <a href="/tags/量子计算/" style="font-size: 15px;">量子计算</a>
     </div>
   </aside>
 

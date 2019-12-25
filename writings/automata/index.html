@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+    <meta name="description" content="我々は皆真理の名前を忘れだから……">
+  
+
+  
+    <meta name="keywords" content="blog,ACG,技术博客,计算机,二次元">
+  
+  
+  
+  
+  
+  
+  <title> 自动机理论-笔记 |  虚仮威し全てを。</title>
+  
+  <meta name="description" content="前言 这是形式语言与自动机的课程笔记，推荐读物是:    * Michael Sisper. Introduction to the Theory of Computation.  * Peter Linz. An Introduction to Formal Languages and Automata.  * Arindama Singh. Elements of Computation Th">
+<meta name="keywords" content="计算模型">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自动机理论-笔记">
+<meta property="og:url" content="https://kahsolt.github.io/writings/automata/index.html">
+<meta property="og:site_name" content="虚仮威し全てを。">
+<meta property="og:description" content="前言 这是形式语言与自动机的课程笔记，推荐读物是:    * Michael Sisper. Introduction to the Theory of Computation.  * Peter Linz. An Introduction to Formal Languages and Automata.  * Arindama Singh. Elements of Computation Th">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://kahsolt.github.io/downloads/img/auto_vender.jpg">
+<meta property="og:image" content="https://kahsolt.github.io/downloads/img/tcp_state_machine.jpg">
+<meta property="og:image" content="https://kahsolt.github.io/downloads/img/temporal_circuit.png">
+<meta property="og:image" content="https://kahsolt.github.io/downloads/img/CTL.png">
+<meta property="og:image" content="https://kahsolt.github.io/downloads/img/petri_net_H2O.png">
+<meta property="og:image" content="https://kahsolt.github.io/downloads/img/petri_net_train_slip_switch.png">
+<meta property="og:updated_time" content="2019-12-22T16:00:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="自动机理论-笔记">
+<meta name="twitter:description" content="前言 这是形式语言与自动机的课程笔记，推荐读物是:    * Michael Sisper. Introduction to the Theory of Computation.  * Peter Linz. An Introduction to Formal Languages and Automata.  * Arindama Singh. Elements of Computation Th">
+<meta name="twitter:image" content="https://kahsolt.github.io/downloads/img/auto_vender.jpg">
+  
+  
+    <link rel="icon" href="/assets/img/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head></html>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="bg"></div>
+  <div id="page" class="hfeed site">
+    <header id="masthead" class="site-header" role="banner">
+  <hgroup>
+    <h1 class="site-title">
+      <a href="/" title="虚仮威し全てを。" rel="home">虚仮威し全てを。</a>
+    </h1>
+    
+      <h2 class="site-description">
+        <a href="/" id="subtitle">——若し雨が降ったら</a>
+      </h2>
+    
+  </hgroup>
+
+  <nav id="site-navigation" class="main-navigation" role="navigation">
+    <div class="menu-main-container">
+      <ul id="menu-main" class="nav-menu">
+      
+        <li class="menu-item menu-item-type-post_type menu-item-object-page">
+          <a href="/">例えば、</a>
+        </li>
+      
+        <li class="menu-item menu-item-type-post_type menu-item-object-page">
+          <a href="/kokoro">愛を叫けたら</a>
+        </li>
+      
+        <li class="menu-item menu-item-type-post_type menu-item-object-page">
+          <a href="/vhaktyr">隠り世界論</a>
+        </li>
+      
+        <li class="menu-item menu-item-type-post_type menu-item-object-page">
+          <a href="/kotoba">道断</a>
+        </li>
+      
+        <li class="menu-item menu-item-type-post_type menu-item-object-page">
+          <a href="/archives">記憶の砂数</a>
+        </li>
+      
+        <li class="menu-item menu-item-type-post_type menu-item-object-page">
+          <a href="/whoami">アルミットは。</a>
+        </li>
+      
+      </ul>
+    </div>
+  </nav>
+</header>
+
+    <div id="main" class="wrapper">
+      <div id="primary" class="site-content">
+        <div id="content" role="main">
+          <article id="post-automata" class="post-automata post type-post status-publish format-standard hentry">
+    <!---->
+
+    <header class="entry-header">
+      
+        
+  
+    <h1 class="entry-title article-title">自动机理论-笔记</h1>
+  
+
+
+      
+    </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <div class=".article-gallery" <p=""><br><p></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这是<strong>形式语言与自动机</strong>的课程笔记，推荐读物是: </p>
+<ul>
+<li>Michael Sisper. Introduction to the Theory of Computation.</li>
+<li>Peter Linz. An Introduction to Formal Languages and Automata.</li>
+<li>Arindama Singh. Elements of Computation Theory.</li>
+</ul>
+<h1 id="有穷自动机FA-amp-正则语言REG"><a href="#有穷自动机FA-amp-正则语言REG" class="headerlink" title="有穷自动机FA &amp; 正则语言REG"></a>有穷自动机FA &amp; 正则语言REG</h1><h2 id="确定性有穷自动机PDA"><a href="#确定性有穷自动机PDA" class="headerlink" title="确定性有穷自动机PDA"></a>确定性有穷自动机PDA</h2><p>确定性有穷自动机<code>DFA</code>可以用五元组、状态转移框图、状态转移表等形式表示</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">DFA = (Q, Σ, δ, q0, F)，其中: </span><br><span class="line">    Q          状态集</span><br><span class="line">    Σ          输入字母表</span><br><span class="line">    δ          转移函数 δ = Q × Σ -&gt; Q, 可扩展为 δ* = Q × Σ* -&gt; Q</span><br><span class="line">    q0 ∈ Q    初始状态</span><br><span class="line">    F ⊆ Q     终止状态集</span><br><span class="line"></span><br><span class="line">一步转移: δ(q, a) = p</span><br></pre></td></tr></tbody></table></figure>
+<p><code>DFA A</code>所识别的语言为<code>L(A) = { w | δ*(q0, w)∈F, w∈Σ* }</code></p>
+<h2 id="正则语言REG"><a href="#正则语言REG" class="headerlink" title="正则语言REG"></a>正则语言REG</h2><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">正则语言是左线性或者右线性语言，其乔姆斯基范式的文法中，只有形如这两条的规则: </span><br><span class="line">  A -&gt; xB  或  A -&gt; Bx</span><br><span class="line">  A -&gt; x       A -&gt; x</span><br><span class="line">其中A和B是非终结符，x是终结符</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h3><p>泵引理: 对∀L∈RE，∃n(即对应的某DFA的状态数)，使得对于∀w∈L，若|w|&gt;=n，则可分解为<code>w=xyz</code>且满足</p>
+<ol>
+<li>|xy| &lt;= n</li>
+<li>|y| &gt; 0</li>
+<li>∀i &gt;= 0, w’ = x(y^i)z ∈ L</li>
+</ol>
+<p>可判定性: </p>
+<ul>
+<li>Areg: 成员资格，直接运行A(w)即可</li>
+<li>Ereg: 空语言，DFS标记所有可达状态、断言至少有一个在终态集中</li>
+<li>Ireg: 无穷语言，移除不可达状态和不可终止状态后、断言残余图有环</li>
+<li>EQreg: 相等语言，构造乘积自动机FA A’，设置其接受态为<strong>恰好</strong>被原FA的其中之一接受(对称差的意味)，断言A’为空</li>
+<li>Creg: 包含于关系()，构造乘积自动机FA A’，设置其接受态为第一个接受、第二个不接受，断言A’为空(即<code>L1-L2=∅</code>)</li>
+</ul>
+<p>封闭性: </p>
+<ul>
+<li>并: 修改文法为S’-&gt;S1|S2 或 修改正则式为S1|S2</li>
+<li>连接: 修改文法为S’-&gt;S1S2 或 修改正则式为S1S2</li>
+<li>克林闭包: 修改文法为S’-&gt;SS’|ε 或 修改正则式为S*</li>
+<li>交: 构造乘积自动机FA A’，设置其接受态为两个都接受</li>
+<li>差: 构造乘积自动机FA A’，设置其接受态为第一个接受、第二个不接受</li>
+<li>补: 由差的封闭性知Σ*-L亦是正则</li>
+<li>逆: 修改正则式为rev(R)，递归化简</li>
+<li>同态: 修改正则式为map(S, x -&gt; h(x))，把单个符号变成多个符号</li>
+<li>逆同态: 考虑自动机，在读入每个符号后、使用逆同态函数h’将其解码为多个符号，其余照旧</li>
+</ul>
+<h2 id="正则表达式Regex"><a href="#正则表达式Regex" class="headerlink" title="正则表达式Regex"></a>正则表达式Regex</h2><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">递归定义: </span><br><span class="line">  1. 若 a 在字母表中，则 a 是Regex</span><br><span class="line">  2. 若 r1 和 r2 是Regex，则 r1|r2 和 r1*r2 是Regex</span><br><span class="line">  3. 若 r 是Regex，则 r* 是Regex</span><br></pre></td></tr></tbody></table></figure>
+<p><code>Regex E</code>所定义的语言为<code>L(E)</code>，同样地，</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">递归定义: </span><br><span class="line">  1. L(∅) = ∅, L(ε) = {ε}</span><br><span class="line">  2. 若 a 在字母表中，则 L(a) = {a}</span><br><span class="line">  3. 若 l1 和 l2 是RE，则L(l1 + l2) = L(l1) ∪ L(l2)</span><br><span class="line">  4. 若 l1 和 l2 是RE，则L(l1 * l2) = L(l1) * L(l2)</span><br><span class="line">  5. 若 l 是RE，则L(l*) = (L(l))*</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="等价性与转换"><a href="#等价性与转换" class="headerlink" title="等价性与转换"></a>等价性与转换</h2><p>与DFA的计算能力/表达能力的模型: </p>
+<ul>
+<li><code>DFA -&gt; Regex</code>: k-path矩阵动规，每次消去第k个状态<code>Rij[k] = Rij[k-1] + Rik[k-1](Rkk[k-1])*Rkj[k-1]</code>，<code>Rij[k]</code>表示从i到j最多绕过前k个节点所成语言对应的Regex</li>
+<li><code>Regex -&gt; REG</code>: 观察法构造其REG文法</li>
+<li><code>REG -&gt; ε-NFA</code>: 依定义构造状态转移框图，注意盲目省略ε可能会出错</li>
+<li><code>ε-NFA -&gt; NFA</code>: 计算ε闭包，将ε折叠到下一个输入字符上去，<code>δn(q, a) = ∪[p∈εCL(q)]δe(p, a)</code></li>
+<li><code>NFA -&gt; DFA</code>: 子集构造法，将下一步可达状态集映射为DFA中的单个状态</li>
+</ul>
+<h2 id="DFA最小化"><a href="#DFA最小化" class="headerlink" title="DFA最小化"></a>DFA最小化</h2><p>不可区分状态消去法: 画出转移表，首先标记是任何一个终态和任何一个非终态是可区分的，然后根据转移函数逆向推理，对于任意输入字母a、它是否能分区两个态: <code>若A和B可区分，又有δ(C,a)=A, δ(D,a)=B，则C和D可区分</code>。反复标记直到收敛，将不可区分的状态合并为一，然后消除(可能会产生的)不可达状态；重复多次过程直到所有状态都可区分</p>
+<p>两次反向法: 将所有边反转得到NFA后将其化为DFA、该DFA将接受rev(L)，因此再重复上述操作一次即可</p>
+<h1 id="下推自动机PDA-amp-上下文无关语言CFL"><a href="#下推自动机PDA-amp-上下文无关语言CFL" class="headerlink" title="下推自动机PDA &amp; 上下文无关语言CFL"></a>下推自动机PDA &amp; 上下文无关语言CFL</h1><h2 id="确定性下推自动机DPDA"><a href="#确定性下推自动机DPDA" class="headerlink" title="确定性下推自动机DPDA"></a>确定性下推自动机DPDA</h2><p>确定性下推自动机<code>DPDA</code>可以用七元组、状态转移框图、迁移函数表等形式表示</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">DPDA = (Q, Σ, Γ, δ, q0, Z0, F)，其中: </span><br><span class="line">    Q          状态集</span><br><span class="line">    Σ          输入字母表</span><br><span class="line">    Γ          栈符号集</span><br><span class="line">    δ          转移函数 δ = Q × Σ × Γ -&gt; Q, 可扩展为 δ* = Q × Σ* × Γ -&gt; Q</span><br><span class="line">    q0 ∈ Q    初始状态</span><br><span class="line">    Z0 ∈ Γ    初始栈顶符号</span><br><span class="line">    F ⊆ Q     终止状态集</span><br><span class="line"></span><br><span class="line">一步转移: δ(q, a, Z) = (p, Y)  // 若为NPDA则形如 {(p, Y), (r, X), ..}</span><br><span class="line">快照记述法: (q, aw, Xα) |- (p, w, Yα)，即使用了转移 δ(q, a, X) = (p, Y)；亦可扩展为多步 |-*</span><br></pre></td></tr></tbody></table></figure>
+<p><code>DPDA P</code>所识别的语言有两种定义方式: </p>
+<ul>
+<li>终止态接受: <code>L(P) = { w | (q0, w, Z0) |-* (p, ε, Y), p∈F, Y∈Γ, w∈Σ* }</code></li>
+<li>空栈接受: <code>N(P) = { w | (q0, w, Z0) |-* (p, ε, ε), p∈Q, w∈Σ* }</code></li>
+</ul>
+<p>它们不一定相同，但可以构造另一个<code>DPDA P'</code>使得<code>L(P) = N(P')</code>，反之亦然，因此语言的表达能力相同: </p>
+<ul>
+<li><code>L(P) -&gt; N(P')</code>: <code>P'</code>使用新的初始栈顶符号<code>X0</code>、使用新状态<code>init</code>以开始、新状态<code>pop</code>以清栈，设置初始转移<code>δ(init, ε, X0) = (q0, Z0X0)</code>，然后修改<code>P</code>的转移函数，对所有<code>δ(f, ε, X), f∈F, X∈Q</code>设置转移目标为<code>(pop, ε)</code>，然后pop态不停地退栈<code>δ(pop, ε, X) = (pop, ε), X∈Q</code>。正确性直觉: 只有pop态才能清空栈底的<code>X0</code>！</li>
+<li><code>N(P) -&gt; L(P')</code>: <code>P'</code>使用新的初始栈顶符号<code>X0</code>、使用新状态<code>init</code>以开始、新状态<code>halt</code>以结束，设置初始转移<code>δ(init, ε, X0) = (q0, Z0X0)</code>，对所有<code>δ(q, ε, X0), q∈Q</code>设置转移目标为<code>(halt, ε)</code>。正确性直觉: 任何空栈态，就会被移入终态而接受(哨兵<code>X0</code>好像不必要？)</li>
+</ul>
+<h2 id="不确定性下推自动机NPDA"><a href="#不确定性下推自动机NPDA" class="headerlink" title="不确定性下推自动机NPDA"></a>不确定性下推自动机NPDA</h2><p>从表达能力上，我们有:<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">                  &gt; DPDA(N(P)) x</span><br><span class="line">NPDA &gt; DPDA(L(P))       &gt;        REG</span><br><span class="line"></span><br><span class="line">*即N(P)弱于L(P)，但N(P)与RE不可比较</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>NPDA确实比DPDA计算能力强: DPDA无法判定语言<code>L = { w\*rev(w) | w ∈ Σ* }</code>，但是NPDA可以”猜测/穷举”正确的折半点，即NPDA才能定义标准的CFL，如上例L的上下文无关文法为<code>S-&gt;0S0|1S1|ε</code></p>
+<h2 id="上下文无关语言CFL"><a href="#上下文无关语言CFL" class="headerlink" title="上下文无关语言CFL"></a>上下文无关语言CFL</h2><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">上下文无关语言的文法规则必须满足: </span><br><span class="line">  1. 左部总是一个非终结符</span><br><span class="line">  2. 右部是若干个终结符和非终结符</span><br><span class="line"></span><br><span class="line">例如: </span><br><span class="line">  A -&gt; BaCb|c</span><br><span class="line">  B -&gt; cA|CCa</span><br><span class="line">  C -&gt; B|b</span><br></pre></td></tr></tbody></table></figure>
+<p>文法推导: 从文法开始符号不断应用规则最终得到全部都是终止符的句子的过程序列；特别地，最左推导指总是替换最左边的非终止符</p>
+<h3 id="约简与范式化"><a href="#约简与范式化" class="headerlink" title="约简与范式化"></a>约简与范式化</h3><p>五个步骤: </p>
+<ol>
+<li>消除空产生式: 从形如<code>A-&gt;ε</code>的产生式逆推所有可空的非终止符、在所有地方展开它们，然后从语言中消去<code>S-&gt;ε</code></li>
+<li>消除单元产生式: 若<code>A -&gt;* B</code>且<code>B -&gt;* α</code>的每一步都不再是单元推导，则折叠<code>A -&gt;* B</code>为一步、并消去冗余符号<code>B</code></li>
+<li>消除无用变量: 从只含终止符的产生式逆推所有有用的变量，消除无用的符号</li>
+<li>消除不可达变量: 从开始符号S顺推所有可达的变量，消除不可达的符号</li>
+<li>乔姆斯基范式化: 将所有产生式拆解成<code>A-&gt;a</code>或<code>A-&gt;BC</code>的形式</li>
+</ol>
+<h3 id="性质-1"><a href="#性质-1" class="headerlink" title="性质"></a>性质</h3><p>泵引理: 对∀L∈CFL，∃n(即对应的某文法产生式个数数)，使得对于∀w∈L，若|w|&gt;=n，则可分解为<code>w=uvwxy</code>且满足</p>
+<ol>
+<li>|vwx| &lt;= n</li>
+<li>|vx| &gt; 0</li>
+<li>∀i &gt;= 0, w’ = u(v^i)w(x^i)y ∈ L</li>
+</ol>
+<p>可判定性: </p>
+<ul>
+<li>Acfl: 成员资格，如果有PDA、直接运行P(w)即可，如果有文法、则使用CYK算法</li>
+<li>Ecfl: 空语言，检查文法开始符号的有用性</li>
+<li>Icfl: 无穷语言，检查文法非终结符依赖关系成环</li>
+<li>*EQcfl、DISJOINTcfl等不可判定</li>
+</ul>
+<p>封闭性: </p>
+<ul>
+<li>并: 修改文法为S’-&gt;S1|S2</li>
+<li>连接: 修改文法为S’-&gt;S1S2</li>
+<li>克林闭包: 修改文法为S’-&gt;SS’|ε</li>
+<li>逆: 修改每个文法的右端为其逆</li>
+<li>同态: 修改每个文法的右端为map(right_part, x -&gt; h(x))，把单个符号变成多个符号</li>
+<li>逆同态: 考虑自动机，在读入每个符号后、使用逆同态函数h’将其解码为多个符号，其余照旧</li>
+<li>*交、差、补不封闭</li>
+<li>*CFL与RE的交是CFL: 自动机部分变成乘积自动机、栈还是单栈，组合起来还是PDA</li>
+</ul>
+<h2 id="等价性与转换-1"><a href="#等价性与转换-1" class="headerlink" title="等价性与转换"></a>等价性与转换</h2><ul>
+<li><code>DFA -&gt; CFL</code>: 画出状态转移框图，考虑将”从p到q的迁移会消去栈顶的X”记作非终止符<code>[pXq]</code>，则对<code>δ(p, a, X) = (q, ε)</code>产生<code>[pXq] -&gt; a</code>，对<code>δ(p, a, X) = (r, Y)</code>产生一组<code>[pXq] -&gt; a[rYq], q∈Q</code>，对<code>δ(p, a, X) = (r, YZ)</code>产生一组<code>[pXq] -&gt; a[rYs][sZq], s,q∈Q</code>，增加一组处理开始符号<code>S -&gt; [q0Z0q], q∈Q</code>，然后重命名、化简、消去不可达</li>
+<li><code>CFL -&gt; DFA</code>: 只需一个状态q、采用空栈接受，考虑文法的乔姆斯基范式，对<code>A-&gt;a</code>产生转移<code>δ(q, a, X) = (q, X), X∈Γ</code>，对<code>A-&gt;BC</code>产生转移<code>δ(q, ε, A) = (q, BC)</code>；若是左线性文法则更简单，直接看吃什么压什么即可</li>
+</ul>
+<h1 id="图灵机TM-amp-递归可枚举语言RE-amp-递归语言R"><a href="#图灵机TM-amp-递归可枚举语言RE-amp-递归语言R" class="headerlink" title="图灵机TM &amp; 递归可枚举语言RE &amp; 递归语言R"></a>图灵机TM &amp; 递归可枚举语言RE &amp; 递归语言R</h1><h2 id="确定性图灵机DTM"><a href="#确定性图灵机DTM" class="headerlink" title="确定性图灵机DTM"></a>确定性图灵机DTM</h2><p>确定性图灵机<code>DTM</code>可以用七元组、状态转移框图、迁移函数表等形式表示</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">DTM = (Q, Σ, Γ, δ, q0, B, F)，其中: </span><br><span class="line">    Q          状态集</span><br><span class="line">    Σ          输入字母表</span><br><span class="line">    Γ          纸带符号集</span><br><span class="line">    δ          转移函数 δ = Q × Γ -&gt; Γ × D × Q, 可扩展为 δ* = Q × Γ* -&gt; Γ × D × Q</span><br><span class="line">    q0 ∈ Q    初始状态</span><br><span class="line">    B ∈ Γ     空白符号</span><br><span class="line">    F ⊆ Q     终止状态集</span><br><span class="line"></span><br><span class="line">一步转移: δ(q, 1) = (p, 0, R)</span><br><span class="line">快照记述法: q11 |- 1q1 |- 11q |- 11p |- 1r0 |- r00 |- p100   (二进制加1)</span><br></pre></td></tr></tbody></table></figure>
+<p><code>DTM M</code>所识别的语言有两种定义方式: </p>
+<ul>
+<li>终止态接受: <code>L(M) = { w | q0w |-* p, p∈F, w∈Σ* }</code></li>
+<li>停机接受(转移函数未定义): <code>H(M) = { w | q0w |-* p, p∈Q且δ(p, ?)未定义, w∈Σ* }</code></li>
+</ul>
+<p>它们不一定相同，但可以构造另一个<code>DTM M'</code>使得<code>L(M) = H(M')</code>，反之亦然，因此语言的表达能力相同: </p>
+<ul>
+<li><code>L(M) -&gt; H(M')</code>: 若原转移函数是个偏函数，则补全所有未定义分支使其进入一个循环状态(例如一直往右跑、从而会不停机)，尔后对于M所有的终态、删除其所有转移</li>
+<li><code>H(M) -&gt; L(M')</code>: 引入一个终止态如<code>halt</code>，将M所有无转移的状态、在所有合法输入上一步转移到这个终态</li>
+</ul>
+<h2 id="定义的健壮性"><a href="#定义的健壮性" class="headerlink" title="定义的健壮性"></a>定义的健壮性</h2><ul>
+<li>多磁道可以被单带模拟: 状态空间编码为每个磁道状态空间的笛卡儿积，逐磁道处理</li>
+<li>双端无限纸带可以被单端无限纸带模拟: 对折一下就行了</li>
+<li>多带可以被单带模拟: 模拟双磁道，记录每个带子磁头位置，逐带处理</li>
+<li>NTM可以被DTM模拟: 模拟双带，以BFS的方式搜索解空间；效率下降一个多项式</li>
+</ul>
+<h2 id="递归可枚举语言RE-amp-递归语言R"><a href="#递归可枚举语言RE-amp-递归语言R" class="headerlink" title="递归可枚举语言RE &amp; 递归语言R"></a>递归可枚举语言RE &amp; 递归语言R</h2><p>进一步地我们可以定义两类语言: </p>
+<ul>
+<li>递归可枚举语言RE: 仅满足L(M)或H(M)其一的条件</li>
+<li>递归语言R/可判定语言/算法: 同时满足L(M)和H(M)的条件</li>
+</ul>
+<h3 id="性质-2"><a href="#性质-2" class="headerlink" title="性质"></a>性质</h3><p>可判定性: </p>
+<ul>
+<li>RE: 根据莱斯定理，都不可判定</li>
+<li>R: 可以判定算法</li>
+</ul>
+<p>封闭性: </p>
+<ul>
+<li>RE/R都具有<ul>
+<li>并: 并行运行两个TM，结果取or</li>
+<li>交: 并行运行两个TM，结果取and</li>
+<li>连接: 用NTM去猜测输入串的二分点，在前半段上模拟M1、后半段上模拟M2，断言都接受</li>
+<li>克林闭包: 用NTM去猜测所有可能的切分情况，逐个尝试、断言都接受</li>
+<li>逆: 先将输入取逆，然后断言接受</li>
+<li>逆同态: 使用逆同态函数h’将输入解码，然后断言接受</li>
+</ul>
+</li>
+<li>RE特有<ul>
+<li>同态: 用NTM取猜测解码方式</li>
+</ul>
+</li>
+<li>R特有<ul>
+<li>差: 并行运行，断言第一个接受、第二个拒绝</li>
+<li>补: 运行结果取反</li>
+</ul>
+</li>
+</ul>
+<h1 id="可判定性-amp-计算复杂性"><a href="#可判定性-amp-计算复杂性" class="headerlink" title="可判定性 &amp; 计算复杂性"></a>可判定性 &amp; 计算复杂性</h1><h2 id="全语言谱系"><a href="#全语言谱系" class="headerlink" title="全语言谱系"></a>全语言谱系</h2><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">REG &lt; CFL &lt; R &lt; RE &lt; Σ*</span><br><span class="line">               coRE</span><br></pre></td></tr></tbody></table></figure>
+<p>真包含的证据: </p>
+<ul>
+<li>Σ*真包含RE(存在不是RE的语言): RE语言即图灵可识别语言，因此RE语言的数量等于图灵机数量，TM是可数的(自然数编码)、而全体语言是不可数的(对角线方法、语言视作句子的特征向量)；考虑<code>coHALT∈coRE而∉RE</code><ul>
+<li>因有coHALT∈coRE、若再有coHALT∈RE则coHALT∈R即可计算，从而取反得HALT可计算</li>
+</ul>
+</li>
+<li>RE真包含R(存在不可判定的语言): 停机问题HALT、NC函数(对角线方法)</li>
+<li>R真包含CFL: 考虑PDA无法计数三个变量 <code>L = { (a^n)(b^n)(c^n) | n&gt;=0 }</code></li>
+<li>CFL真包含REG: 考虑FA无法计数 <code>L = { (a^n)(b^n) | n&gt;=0 }</code></li>
+</ul>
+<h2 id="可计算谱系-amp-复杂性"><a href="#可计算谱系-amp-复杂性" class="headerlink" title="可计算谱系 &amp; 复杂性"></a>可计算谱系 &amp; 复杂性</h2><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[REG] &lt; [CFL] &lt; L &lt; NL = coNL &lt; P &lt;= NP &lt; BPP &lt; PSPACE = NPSPACE = IP &lt; EXP &lt; [R = RE ∩ coRE]</span><br></pre></td></tr></tbody></table></figure>
+<p>类P: DTM多项式时间可计算</p>
+<p>P问题: PATH(Floyd算法)、RELPRIME(欧几里得算法)、Acfl(CYK算法)</p>
+<p>类NP: NTM多项式时间可计算，或者DTM多项式时间可验证</p>
+<p>NP问题: HAMPATH、CLIQUE、3SAT</p>
+<h3 id="卡普规约"><a href="#卡普规约" class="headerlink" title="卡普规约"></a>卡普规约</h3><p>若存在多项式时间可计算函数f使得任意<code>x∈Σ*</code>都有，若<code>x∈L</code>则<code>f(x)∈P</code>、若<code>x∉L</code>则<code>f(x)∉P</code>，则称<code>L</code>可多项式时间规约到<code>P</code>并记作<code>L &lt;=p P</code></p>
+<p>例子: <code>HALT &lt;=p Atm</code>、<code>Etm &lt;=p Atm</code> (Atm是图灵机接收串问题，Etm是图灵机上的空语言问题)</p>
+<p>NP完全性: L在NP中，NP中的任何语言都可以卡普规约到L</p>
+<p>NP完全问题: SAT、3SAT(Cook-Levin定理)</p>
+<h3 id="丘奇-图灵论题"><a href="#丘奇-图灵论题" class="headerlink" title="丘奇-图灵论题"></a>丘奇-图灵论题</h3><p>弱: 任何物理计算机能做的计算都能被图灵机计算</p>
+<p>强: 任何物理计算机在T(n)时间内能做的计算都能被图灵机在T(n)^O(1)时间内计算，即效率多项式下降</p>
+<h1 id="迁移系统TS"><a href="#迁移系统TS" class="headerlink" title="迁移系统TS"></a>迁移系统TS</h1><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">TS = (S, S0, T, α, β, λ)，其中: </span><br><span class="line">    S          状态集</span><br><span class="line">    S0 ⊆ S    初始状态集</span><br><span class="line">    T          转移规则集 t: s -&gt; d, 其中t∈T, s,d∈S</span><br><span class="line">    α          取源函数   α(t) = s</span><br><span class="line">    β          取目的函数 β(t) = d</span><br><span class="line">    λ          取动机函数 λ(t) = l</span><br><span class="line"></span><br><span class="line">T的规则可能有相同的源和目的(但动机不同)</span><br><span class="line">若S和T都是有穷集，则称该TS是有限的</span><br></pre></td></tr></tbody></table></figure>
+<p>路径: 对<code>t∈T, 亦即α(t)=s, β(t)=d</code>称<code>s-&gt;d</code>，将其递归扩展为<code>s-&gt;&gt;d</code>，则称<code>s</code>到<code>d</code>存在路劲</p>
+<ul>
+<li>T+: 所有有限长路径之集</li>
+<li>Tω: 所有无限长路径之集</li>
+</ul>
+<p>迹: 路径上的标志/动机的连成列表</p>
+<p>状态的属性: </p>
+<ul>
+<li>可达态: <code>s∈S, s0∈S0</code>且<code>s0-&gt;&gt;s</code>(经多步转移)</li>
+<li>终止态: <code>s</code>没有出边</li>
+<li>死锁态: <code>s</code>同时可达且终止</li>
+</ul>
+<p>与其对应的状态机可以视为扩展的、泛化的确定性有穷自动机，可用迁移图表示: 圆形节点代表状态、有向边表示迁移(边上的标记表示动机)，实例: </p>
+<a href="/downloads/img/auto_vender.jpg" class="gallery-item"><img src="/downloads/img/auto_vender.jpg" title="自动售货机的状态机"></a>
+<a href="/downloads/img/tcp_state_machine.jpg" class="gallery-item"><img src="/downloads/img/tcp_state_machine.jpg" title="TCP协议的状态机"></a>
+<p>TS等价的判定: </p>
+<ul>
+<li>强同态等价: 两个TS的所有状态、迁移都可由某个双射函数关联；直觉上即结构完全一致、只是命名不同</li>
+<li>弱同态等价: 两个TS从任意状态出发的<strong>可达</strong>状态集可由某个双射函数关联；直觉上即将强同态约束到所有可达状态上</li>
+<li>双向模拟等价: 两个TS从任意<strong>状态集</strong>出发的<strong>可达状态集</strong>可由某个双射函数关联；直觉上即前者的一个状态集等价于后者的另一个状态集、功能性地可相互实现</li>
+</ul>
+<h2 id="计算树逻辑CTL"><a href="#计算树逻辑CTL" class="headerlink" title="计算树逻辑CTL"></a>计算树逻辑CTL</h2><p>应用: 时序电路、并发互斥协议；例，一个单输入x、单变量r、单输出y电路: </p>
+<ul>
+<li><code>y = not (x xor r[k])</code></li>
+<li><code>r[k+1] = x or r[k]</code></li>
+</ul>
+<a href="/downloads/img/temporal_circuit.png" class="gallery-item"><img src="/downloads/img/temporal_circuit.png"></a>
+<p>计算树上用于节点描述的状态公式SF(state formula): 就是普通的谓词公式</p>
+<p>计算树上用于时间性描述的路径公式PF(path formula): </p>
+<ul>
+<li>量词算子: A(对于所有计算路径都有)、E(存在某个计算路径会使得)</li>
+<li>时间算子: X(下一步就会p)、F(最终会p)、G(总是会p)、U(直到q之前都是p)、R(p一旦出现就会持续q)</li>
+</ul>
+<a href="/downloads/img/CTL.png" class="gallery-item"><img src="/downloads/img/CTL.png"></a>
+<p>一些化简公式(<code>{EX, EG, EU}</code>是语义完备的): </p>
+<ul>
+<li>AX.f = !EX.!f</li>
+<li>EF.f = E[(True)Uf]</li>
+<li>AG.f = !EF.!f</li>
+<li>AF.f = !EG.!f</li>
+<li>A[fUg] = !E[!gU(!f^!g)]^!EG.!g</li>
+<li>A[fRg] = !E[!fU!g]</li>
+<li>E[fRg] = !A[!fU!g]</li>
+</ul>
+<p>例子(p,q是命题/陈述/事件): </p>
+<ul>
+<li>AG.p: 在任何情况下，p总是会一直发生</li>
+<li>EF.p: 在某种情况下p有可能发生，且也不保证之后会持续发生</li>
+<li>AF.EG.p: 在任何情况下最终都会如此，即在某种情况下p会发生且永久持续</li>
+<li>EG.AF.p: 在某种情况下总是会发生这样的事，即在任何情况下p最终都会发生</li>
+<li>A[pUq]: 总是如此，即p会持续发生、但直到q发生(就不再保证p还会发生了)</li>
+<li>E[(EX.p)U(AG.q)]: 可能如此，即某种情况下在下一步就会发生p、但直到在任何情况下总是发生q的时候(就不保证前者了)</li>
+</ul>
+<p>FP可以用来描述系统的性质: </p>
+<ul>
+<li>Safety: AG.p       // always satisfy some certain constraint p, bad things not happen</li>
+<li>Liveness: AF.p     // something good would finally happen</li>
+<li>Fairness: AG.AF.p  // something is successful infinitely often</li>
+</ul>
+<h1 id="Petri网PN"><a href="#Petri网PN" class="headerlink" title="Petri网PN"></a>Petri网PN</h1><p>PetriNet设计为<strong>离散并行系统</strong>的数学表示，是<strong>动态的、异步的、非确定性的</strong><br>受此启发的其他模型: 检查系统死锁的资源配置图、UML数据流图、UML活动图</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">C = (P, T, I, O)，其中: </span><br><span class="line">    P          场地(理解为状态、局域性的)，圆圈表示，可以放令牌(理解为资源)</span><br><span class="line">    T          转移(理解为动作/异步事件)，竖条表示</span><br><span class="line">    I          输入 I: T -&gt; P^|P|</span><br><span class="line">    O          输出 O: T -&gt; P^|P|</span><br><span class="line"></span><br><span class="line">*其状态图转移是个关于场地集与转移集的二分图，有向边只能在P和T之间连接</span><br><span class="line"> 若一个转移的所有前驱场地拥有足够的令牌，则称该转移是enabled，此时它可以fire从而发生资源转化</span><br></pre></td></tr></tbody></table></figure>
+<p>行为属性: </p>
+<ul>
+<li>可达性: 从M0出发可达Mn，若存在一系列的firings</li>
+<li>有界性: 任何从M0出发可达的场地在任何时候拥有的资源都是有限的</li>
+<li>安全性: 即<code>1-有界</code></li>
+<li>活性: 亦即无死锁，好事最终会发生</li>
+<li>可逆性: 若Mn到M0可达、且M0到Mn可达</li>
+<li>可持久化: 对任意两个enabled转移、fire其中一个不会使得另一个变得disabled(出现了资源抢夺: A+B-&gt;D,A+C-&gt;E)</li>
+<li>公平性: 有界公平性(允许其中一个转移fire而其他都不fire的次数是有界的)，无条件公平性(在总的fire序列中，统计上每个转移都可以发射无限次)</li>
+</ul>
+<a href="/downloads/img/petri_net_H2O.png" class="gallery-item"><img src="/downloads/img/petri_net_H2O.png" title="合成水方程式"></a>
+<a href="/downloads/img/petri_net_train_slip_switch.png" class="gallery-item"><img src="/downloads/img/petri_net_train_slip_switch.png" title="火车交分道岔"></a>
+<p>分析方法: 覆盖树(类似于计算树，从给定初始状态M0出发，建树以描述之后的系统演化谱系)</p>
+<p>常见扩展: 着色PN(token上可以标写值), 连续PN(token数量是连续值)，边抑制(Inhibitor Arcs, enable一个转移、若其前件场地没有令牌)、时间化TPN（参考下一节的TA，给每个转移的fire时机规定一个时间段约束[s,e])</p>
+<h1 id="时间自动机TA"><a href="#时间自动机TA" class="headerlink" title="时间自动机TA"></a>时间自动机TA</h1><p>设计思想: 给DFA加上若干个离散/连续的时钟，这些时钟可以用于约束状态的停留时间、限制两个状态间迁移的时间差</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">A = (L, X, I0, E)，其中: </span><br><span class="line">    L          位置集</span><br><span class="line">    X          时钟集，时钟是全局的</span><br><span class="line">    I0 ∈ L    初始位置</span><br><span class="line">    E          边集 e ∈ L × C(X) × 2^X × L</span><br><span class="line"></span><br><span class="line">时钟约束函数C(X)规定了约束条件的语法为 `C ::= x &lt;=k | x &lt; k | C and C | not C` 总之就是简单的二元比较，应用中为了方便可以简写 `== | !=` 等等</span><br><span class="line"></span><br><span class="line">边的完整四元组 e = (src_loc, clk_cond, clk_reset, dest_loc)</span><br><span class="line">TA的语义是一个`TS Sa = (S, s0, -&gt;)`</span><br></pre></td></tr></tbody></table></figure>
+<p>时钟操作(v是时钟集Y的估值函数<code>v: X -&gt; R+</code>): </p>
+<ul>
+<li>重置: <code>v[Y:=0](x) = if x ∈Y then 0 else x</code></li>
+<li>时间流逝: <code>(v + d)(x) = v(x) + d</code>，将时钟x拨动d个tick </li>
+<li>约束断言: <code>v |= c</code> 表示v集满足约束方程组c </li>
+</ul>
+<p>时钟约束的语义: </p>
+<ul>
+<li>迁移(边)上的时钟: <ul>
+<li><code>x &gt; 5</code>: 满足该条件才能跳转</li>
+<li><code>y := 0</code>: 把时钟<code>y</code>重置 </li>
+</ul>
+</li>
+<li>状态(点)上的时钟: <ul>
+<li><code>x &lt;= 6</code>: 不满足该条件时就必须立刻迁移</li>
+</ul>
+</li>
+</ul>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script><script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+      
+    </div><!-- .entry-content -->
+    
+    <aside class="comments-link" style="float: right">
+      <a href="javascript:void(0);" data-url="https://kahsolt.github.io/writings/automata/" data-id="ck4lktc14000hywox6i135njh" 
+         class="leave-reply bdsharebuttonbox" data-cmd="more">[分享]
+      </a>
+      
+    </aside><!-- .comments-link -->
+
+    <footer class="entry-meta">
+      <a href="/writings/automata/">
+  <time datetime="2019-12-20T11:55:34.000Z" class="entry-date">
+    2019-12-20
+  </time>
+</a>
+      
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/砂时计/">砂时计</a>
+  </div>
+
+      
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算模型/">计算模型</a></li></ul>
+
+    </footer>
+</article>
+
+
+  
+  <nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+      <span class="nav-previous">
+        <a href="/writings/computational-complexity/" rel="prev">
+          <span class="meta-nav">←</span>
+          计算复杂性-笔记
+        </a>
+      </span>
+    
+    
+      <span class="nav-next">
+        <a href="/writings/japanese-grammar-with-fun-1/" rel="next">
+          日本語文法ノート(一) 
+          <span class="meta-nav">→</span>
+        </a>
+      </span>
+    
+  </nav><!-- .nav-single -->
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search">
+  <h3 class="widget-title">探しのみ</h3>
+  <div class="widget-content">
+    <form role="search" method="get" accept-charset="utf-8" target="_blank"
+          id="searchform" class="searchform" action="//www.baidu.com/s">
+        <div>
+            <input type="text" value="" name="wd" id="wd" />
+            <input type="submit" id="searchsubmit" value="検索" />
+        </div>
+    </form>
+  </div>
+</aside>
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">風音</h3>
+    <p style="text-align: center">孤独ノ隠レンボ (鏡音レン/150P)</p>
+    <div class="widget-content">
+      <audio src="https://link.hhtjim.com/163/512489312.mp3" controls="controls">
+        都9102年了您的浏览器还不支持audio标签??!
+      </audio>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">瞬時記憶</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/writings/natural-language-process/">自然语言处理-笔记</a>
+          </li>
+        
+          <li>
+            <a href="/writings/hadoop-technology-stack/">Mapreduce大数据处理-笔记</a>
+          </li>
+        
+          <li>
+            <a href="/writings/program-formal-semantics/">计算机程序形式语义-笔记</a>
+          </li>
+        
+          <li>
+            <a href="/writings/computational-complexity/">计算复杂性-笔记</a>
+          </li>
+        
+          <li>
+            <a href="/writings/automata/">自动机理论-笔记</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">猫論</h3>
+    <div class="widget-content">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/巴别塔/">巴别塔</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/砂时计/">砂时计</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/神谕机/">神谕机</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解命题/">解命题</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">格価値</h3>
+    <div class="widget-content">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/hadoop技术栈/">Hadoop技术栈</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nlp/">NLP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/代数结构/">代数结构</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/日语/">日语</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/示例代码/">示例代码</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算模型/">计算模型</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算理论/">计算理论</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/语法笔记/">语法笔记</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/量子计算/">量子计算</a><span class="tag-list-count">2</span></li></ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">格価クラウド</h3>
+    <div class="widget-content tagcloud">
+      <a href="/tags/hadoop技术栈/" style="font-size: 10px;">Hadoop技术栈</a> <a href="/tags/nlp/" style="font-size: 10px;">NLP</a> <a href="/tags/代数结构/" style="font-size: 10px;">代数结构</a> <a href="/tags/日语/" style="font-size: 10px;">日语</a> <a href="/tags/示例代码/" style="font-size: 10px;">示例代码</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/计算模型/" style="font-size: 20px;">计算模型</a> <a href="/tags/计算理论/" style="font-size: 15px;">计算理论</a> <a href="/tags/语法笔记/" style="font-size: 10px;">语法笔记</a> <a href="/tags/量子计算/" style="font-size: 15px;">量子计算</a>
+    </div>
+  </aside>
+
+  
+</div>
+    </div>
+    <footer id="colophon" role="contentinfo">
+    <p>&copy; 2019 アルミット
+        All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <!-- baidu webmaster push -->
+<script src='//push.zhanzhang.baidu.com/push.js'></script>
+
+
+
+<script>
+  window._bd_share_config = {
+    "common" : {"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},
+    "share": {}
+  };
+  with (document) 0 [
+    (getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/js/share.js'
+  ];
+  </script>
+
+<!-- JQuery -->
+<script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+
+<!-- FancyBox : JQuery -->
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/navigation.js"></script>
+
+<!-- 浏览器搞笑标题 -->
+<script src="/js/FunnyTitle.js"></script>
+<!-- 单击显示文字 -->
+<script src="/js/click_show_text.js"></script>
+<!-- 背景移动线条 -->
+<script src="https://cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+<!-- 看板娘 : JQuery -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css">
+<script src='/assets/live2d-widget/autoload.js'></script>
+
+  </div>
+</body>
+</html>

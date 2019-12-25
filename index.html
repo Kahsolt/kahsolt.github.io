@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   
-    <meta name="description" content="我们都忘了真理的名字……">
+    <meta name="description" content="我々は皆真理の名前を忘れだから……">
   
 
   
@@ -18,17 +18,17 @@
   
   <title> 虚仮威し全てを。</title>
   
-  <meta name="description" content="我们都忘了真理的名字……">
+  <meta name="description" content="我々は皆真理の名前を忘れだから……">
 <meta name="keywords" content="blog,ACG,技术博客,计算机,二次元">
 <meta property="og:type" content="website">
 <meta property="og:title" content="虚仮威し全てを。">
 <meta property="og:url" content="https://kahsolt.github.io/index.html">
 <meta property="og:site_name" content="虚仮威し全てを。">
-<meta property="og:description" content="我们都忘了真理的名字……">
+<meta property="og:description" content="我々は皆真理の名前を忘れだから……">
 <meta property="og:locale" content="zh-CN">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="虚仮威し全てを。">
-<meta name="twitter:description" content="我们都忘了真理的名字……">
+<meta name="twitter:description" content="我々は皆真理の名前を忘れだから……">
   
   
     <link rel="icon" href="/assets/img/favicon.ico">
@@ -88,6 +88,432 @@
         <div id="content" role="main">
           
   
+    <article id="post-natural-language-process" class="post-natural-language-process post type-post status-publish format-standard hentry">
+    <!---->
+
+    <header class="entry-header">
+      
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/writings/natural-language-process/">自然语言处理-笔记</a>
+    </h1>
+  
+
+
+      
+    </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        前言
+这是自然语言处理的课程笔记，推荐读物是: 网课、其他外国大学的NLP讲义 (感觉我系NLP真的有些弱)
+
+自然语言处理的基本实现方法流派: 
+
+ * 理性方法 (基于规则/知识工程) * 基于字典和规则的形态还原、词性标注、分词
+    * 基于CFG/扩展CFG的语法分析
+    * 基于逻辑形式和格语法的语义分析
+    * 基于规则的机器翻译
+   
+   
+ * 统计方法 (基于统计/语料库) * 语言模型: n-gram
+    * 分词、词性标注: 序列化标注
+    * 语法分析: 概率上下文无关
+    * 文本分类: 朴素贝叶斯、最大熵
+    * 机器翻译: IBM模型
+    * …: 基于神经网络的深度学习方法
+   
+   
+
+自然语言处理NLP的临近领域: 
+        
+          <p class="article-more-link">
+            <a href="/writings/natural-language-process/#more" class="more-link">更多 <span class="meta-nav">→</span></a>
+          </p>
+        
+      
+    </div><!-- .entry-content -->
+    
+    <aside class="comments-link" style="float: right">
+      <a href="javascript:void(0);" data-url="https://kahsolt.github.io/writings/natural-language-process/" data-id="ck4lktc1e000rywoxn6pk0g3e" 
+         class="leave-reply bdsharebuttonbox" data-cmd="more">[分享]
+      </a>
+      
+    </aside><!-- .comments-link -->
+
+    <footer class="entry-meta">
+      <a href="/writings/natural-language-process/">
+  <time datetime="2019-12-25T00:59:46.000Z" class="entry-date">
+    2019-12-25
+  </time>
+</a>
+      
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/神谕机/">神谕机</a>
+  </div>
+
+      
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nlp/">NLP</a></li></ul>
+
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-hadoop-technology-stack" class="post-hadoop-technology-stack post type-post status-publish format-standard hentry">
+    <!---->
+
+    <header class="entry-header">
+      
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/writings/hadoop-technology-stack/">Mapreduce大数据处理-笔记</a>
+    </h1>
+  
+
+
+      
+    </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        前言
+这是Mapreduce大数据处理的课程笔记，推荐读物是: 文档、百度、CSDN
+
+大数据特点5V: Volume规模，Variety多样性，Velocity时效性，Veracity准确性，Value价值
+大数据研究基本途径: 算法优化、并行化、近似算法(采样、降低尺度)
+存储如何超越SQL: 从面向Data Size到Data Connectness，依次是Disk-based Key-value Store, Column Store, Document Store, Graph DB 
+
+经验主义: [Banko, Brill 2001] 某个NLP领域的对比实验，随着训练数据的增长，不同算法的分类精度趋于相同，甚至”愚蠢的算法”最终效果好于某些特定的复杂算法——数据比算法更要紧
+
+        
+          <p class="article-more-link">
+            <a href="/writings/hadoop-technology-stack/#more" class="more-link">更多 <span class="meta-nav">→</span></a>
+          </p>
+        
+      
+    </div><!-- .entry-content -->
+    
+    <aside class="comments-link" style="float: right">
+      <a href="javascript:void(0);" data-url="https://kahsolt.github.io/writings/hadoop-technology-stack/" data-id="ck4lktc17000nywoxenvwdh52" 
+         class="leave-reply bdsharebuttonbox" data-cmd="more">[分享]
+      </a>
+      
+    </aside><!-- .comments-link -->
+
+    <footer class="entry-meta">
+      <a href="/writings/hadoop-technology-stack/">
+  <time datetime="2019-12-24T08:24:25.000Z" class="entry-date">
+    2019-12-24
+  </time>
+</a>
+      
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/神谕机/">神谕机</a>
+  </div>
+
+      
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hadoop技术栈/">Hadoop技术栈</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算模型/">计算模型</a></li></ul>
+
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-program-formal-semantics" class="post-program-formal-semantics post type-post status-publish format-standard hentry">
+    <!---->
+
+    <header class="entry-header">
+      
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/writings/program-formal-semantics/">计算机程序形式语义-笔记</a>
+    </h1>
+  
+
+
+      
+    </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        前言
+这是计算机程序形式语义的课程笔记，推荐读物是: 
+
+ * John C. Reynolds. Theories of Programming Languages
+ * Lecture Notes on the Lambda Calculus - Peter Selinger
+ * Separation Logic - copenhagen08
+
+Lambda calculus
+Invented in 1930s, by Alonzo Church and Stephen Cole Kleene
+
+Alan Turing, 1937: Turing machines equal λ-calculus in expressiveness
+
+Pure LC
+Syntax
+Syntax for
+        
+          <p class="article-more-link">
+            <a href="/writings/program-formal-semantics/#more" class="more-link">更多 <span class="meta-nav">→</span></a>
+          </p>
+        
+      
+    </div><!-- .entry-content -->
+    
+    <aside class="comments-link" style="float: right">
+      <a href="javascript:void(0);" data-url="https://kahsolt.github.io/writings/program-formal-semantics/" data-id="ck4lktc16000mywoxvif9pl9b" 
+         class="leave-reply bdsharebuttonbox" data-cmd="more">[分享]
+      </a>
+      
+    </aside><!-- .comments-link -->
+
+    <footer class="entry-meta">
+      <a href="/writings/program-formal-semantics/">
+  <time datetime="2019-12-20T12:02:49.000Z" class="entry-date">
+    2019-12-20
+  </time>
+</a>
+      
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/砂时计/">砂时计</a>
+  </div>
+
+      
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算模型/">计算模型</a></li></ul>
+
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-computational-complexity" class="post-computational-complexity post type-post status-publish format-standard hentry">
+    <!---->
+
+    <header class="entry-header">
+      
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/writings/computational-complexity/">计算复杂性-笔记</a>
+    </h1>
+  
+
+
+      
+    </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        前言
+这是计算复杂性的课程笔记，推荐读物是: 
+
+ * Luca Trevisan. Lecture Notes on Computational Complexity
+ * Sanjeev Arora &amp; Boaz Barak. Computational Complexity: A Modern Approach.
+ * Chritos H. Papadimitriou. Computational Complexity.
+ * Elaine Rich. Automata, Computability and Complexity: Theory and Application.
+ * Oded GoldReich. Computational Complexity: A Concept
+        
+          <p class="article-more-link">
+            <a href="/writings/computational-complexity/#more" class="more-link">更多 <span class="meta-nav">→</span></a>
+          </p>
+        
+      
+    </div><!-- .entry-content -->
+    
+    <aside class="comments-link" style="float: right">
+      <a href="javascript:void(0);" data-url="https://kahsolt.github.io/writings/computational-complexity/" data-id="ck4lktc13000gywox17h4l1gw" 
+         class="leave-reply bdsharebuttonbox" data-cmd="more">[分享]
+      </a>
+      
+    </aside><!-- .comments-link -->
+
+    <footer class="entry-meta">
+      <a href="/writings/computational-complexity/">
+  <time datetime="2019-12-20T12:00:49.000Z" class="entry-date">
+    2019-12-20
+  </time>
+</a>
+      
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/砂时计/">砂时计</a>
+  </div>
+
+      
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算理论/">计算理论</a></li></ul>
+
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-automata" class="post-automata post type-post status-publish format-standard hentry">
+    <!---->
+
+    <header class="entry-header">
+      
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/writings/automata/">自动机理论-笔记</a>
+    </h1>
+  
+
+
+      
+    </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        前言
+这是形式语言与自动机的课程笔记，推荐读物是: 
+
+ * Michael Sisper. Introduction to the Theory of Computation.
+ * Peter Linz. An Introduction to Formal Languages and Automata.
+ * Arindama Singh. Elements of Computation Theory.
+
+有穷自动机FA &amp; 正则语言REG
+确定性有穷自动机PDA
+确定性有穷自动机DFA可以用五元组、状态转移框图、状态转移表等形式表示
+
+1
+2
+3
+4
+5
+6
+7
+8
+
+
+DFA = (Q, Σ, δ, q0, F)，其中: 
+    Q          状态集
+    Σ      
+        
+          <p class="article-more-link">
+            <a href="/writings/automata/#more" class="more-link">更多 <span class="meta-nav">→</span></a>
+          </p>
+        
+      
+    </div><!-- .entry-content -->
+    
+    <aside class="comments-link" style="float: right">
+      <a href="javascript:void(0);" data-url="https://kahsolt.github.io/writings/automata/" data-id="ck4lktc14000hywox6i135njh" 
+         class="leave-reply bdsharebuttonbox" data-cmd="more">[分享]
+      </a>
+      
+    </aside><!-- .comments-link -->
+
+    <footer class="entry-meta">
+      <a href="/writings/automata/">
+  <time datetime="2019-12-20T11:55:34.000Z" class="entry-date">
+    2019-12-20
+  </time>
+</a>
+      
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/砂时计/">砂时计</a>
+  </div>
+
+      
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算模型/">计算模型</a></li></ul>
+
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-japanese-grammar-with-fun-1" class="post-japanese-grammar-with-fun-1 post type-post status-publish format-standard hentry">
+    <!---->
+
+    <header class="entry-header">
+      
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/writings/japanese-grammar-with-fun-1/">日本語文法ノート(一)</a>
+    </h1>
+  
+
+
+      
+    </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        这里是对王玉英《日语语法原来这么有趣》的笔记，第一章???
+        
+          <p class="article-more-link">
+            <a href="/writings/japanese-grammar-with-fun-1/#more" class="more-link">更多 <span class="meta-nav">→</span></a>
+          </p>
+        
+      
+    </div><!-- .entry-content -->
+    
+    <aside class="comments-link" style="float: right">
+      <a href="javascript:void(0);" data-url="https://kahsolt.github.io/writings/japanese-grammar-with-fun-1/" data-id="ck4lktc0y000aywoxzb4mfdpg" 
+         class="leave-reply bdsharebuttonbox" data-cmd="more">[分享]
+      </a>
+      
+    </aside><!-- .comments-link -->
+
+    <footer class="entry-meta">
+      <a href="/writings/japanese-grammar-with-fun-1/">
+  <time datetime="2019-11-27T04:38:15.000Z" class="entry-date">
+    2019-11-27
+  </time>
+</a>
+      
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/巴别塔/">巴别塔</a>
+  </div>
+
+      
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/日语/">日语</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/语法笔记/">语法笔记</a></li></ul>
+
+    </footer>
+</article>
+
+
+
+
+
+
+  
     <article id="post-quantum-computing-examples" class="post-quantum-computing-examples post type-post status-publish format-standard hentry">
     <!---->
 
@@ -106,7 +532,7 @@
 
     <div class="entry-content">
       
-        这是几个使用projectq写的最最最基础的量子算法例子，用来帮助理解
+        这是几个使用 projectq 写的最最最基础的量子算法例子，用来帮助理解量子计算
 
 随机硬币
 coin.pyview raw1
@@ -146,7 +572,7 @@ def randb(engine):
   H | q
   Measure | q
   engine.flush()
-  retur
+ 
         
           <p class="article-more-link">
             <a href="/writings/quantum-computing-examples/#more" class="more-link">更多 <span class="meta-nav">→</span></a>
@@ -156,7 +582,7 @@ def randb(engine):
     </div><!-- .entry-content -->
     
     <aside class="comments-link" style="float: right">
-      <a href="javascript:void(0);" data-url="https://kahsolt.github.io/writings/quantum-computing-examples/" data-id="ck3d6wtoi0009d0oxkc9v4jn2" 
+      <a href="javascript:void(0);" data-url="https://kahsolt.github.io/writings/quantum-computing-examples/" data-id="ck4lktc10000cywoxoogxi4zt" 
          class="leave-reply bdsharebuttonbox" data-cmd="more">[分享]
       </a>
       
@@ -171,12 +597,12 @@ def randb(engine):
       
   <span class="article-delim">&#8226;</span>
   <div class="article-category">
-    <a class="article-category-link" href="/categories/砂时计/">砂时计</a>
+    <a class="article-category-link" href="/categories/神谕机/">神谕机</a>
   </div>
 
       
   <span class="article-delim">&#8226;</span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算模型/">计算模型</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/量子计算/">量子计算</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/示例代码/">示例代码</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/量子计算/">量子计算</a></li></ul>
 
     </footer>
 </article>
@@ -206,12 +632,12 @@ def randb(engine):
     <div class="entry-content">
       
         前言
-这是量子计算的课程笔记，教材是：
+这是量子计算的课程笔记，教材是: 
 
  * Ronald de Wolf. Quantum Computing: Lecture Notes
  * Michael A. Nielsen, Isaac L. Chuang. Quantum Computation and Quantum Information
 
-推荐入门和实践向的书有：
+推荐入门和实践向的书有: 
 
  * 付鹏, 向宏, 向涛. 量子算法与编程入门. 重庆大学出版社
  * 李承祖等. 量子通信和量子计算. 国防科技大学出版社
@@ -219,7 +645,7 @@ def randb(engine):
  * 陈汉武. 量子信息与量子计算简明教程. 东南大学出版社
  * 张镇九, 张昭理, 李爱民. 量子计算与通信加密. 华东师范大学出版社
 
-以下大概是把那个Le
+以下大概是把那个
         
           <p class="article-more-link">
             <a href="/writings/quantum-computing/#more" class="more-link">更多 <span class="meta-nav">→</span></a>
@@ -229,7 +655,7 @@ def randb(engine):
     </div><!-- .entry-content -->
     
     <aside class="comments-link" style="float: right">
-      <a href="javascript:void(0);" data-url="https://kahsolt.github.io/writings/quantum-computing/" data-id="ck3d6wtob0006d0ox7hlvuesw" 
+      <a href="javascript:void(0);" data-url="https://kahsolt.github.io/writings/quantum-computing/" data-id="ck4lktc0x0008ywox6e8zijwr" 
          class="leave-reply bdsharebuttonbox" data-cmd="more">[分享]
       </a>
       
@@ -279,12 +705,12 @@ def randb(engine):
     <div class="entry-content">
       
         起源
-七段数码管是这样的东西：
+七段数码管是这样的东西:
 
 
 当我们想要显示一位数字的时候，实际就是去点亮七段LED中的某几段，比如数字1就是bc，2就是abged，以此类推……
 
-为了方便写单片机程序，我们需要做个编码(补上一个不使用的比特h)：
+为了方便写单片机程序，我们需要做个编码(补上一个不使用的比特h):
 1
 2
 3
@@ -316,7 +742,7 @@ DIG | a b c d e f g h | HEX
     </div><!-- .entry-content -->
     
     <aside class="comments-link" style="float: right">
-      <a href="javascript:void(0);" data-url="https://kahsolt.github.io/writings/minimal-generator-set-problem/" data-id="ck3d6wtoh0008d0ox4zybmnex" 
+      <a href="javascript:void(0);" data-url="https://kahsolt.github.io/writings/minimal-generator-set-problem/" data-id="ck4lktc0t0004ywoxvtih939y" 
          class="leave-reply bdsharebuttonbox" data-cmd="more">[分享]
       </a>
       
@@ -347,90 +773,6 @@ DIG | a b c d e f g h | HEX
 
 
   
-    <article id="post-2019-10-03-computation-theory" class="post-2019-10-03-computation-theory post type-post status-publish format-standard hentry">
-    <!---->
-
-    <header class="entry-header">
-      
-        
-  
-    <h1 class="entry-title">
-      <a class="article-title" href="/writings/2019-10-03-computation-theory/">计算理论-目录</a>
-    </h1>
-  
-
-
-      
-    </header><!-- .entry-header -->
-
-    <div class="entry-content">
-      
-        这里是如下几门课的笔记整理：
-
- * 形式语言自动机与计算理论入门
- * 编程语言的形式语义
- * 计算复杂性
-
-计算理论的大众领域如下：
-
- * 计算模型 * 代数系统
-    * 自动机
-    * 形式语言与语义
-   
-   
- * 可计算性[*] * 可计算性
-    * 可判定性
-    * 可规约性
-   
-   
- * 算法
- * 计算复杂性[*]
-
-由于内容很多，我们暂且只对标记了星号的部分作展开讨论；详见各子链接。
-
-参考书目
- * 入门（推荐读物） * Peter Linz. An Introduction to Formal Languages and Automata.
-    * Michael Sisper. Introduction to the Theory
-        
-          <p class="article-more-link">
-            <a href="/writings/2019-10-03-computation-theory/#more" class="more-link">更多 <span class="meta-nav">→</span></a>
-          </p>
-        
-      
-    </div><!-- .entry-content -->
-    
-    <aside class="comments-link" style="float: right">
-      <a href="javascript:void(0);" data-url="https://kahsolt.github.io/writings/2019-10-03-computation-theory/" data-id="ck3d6wto30000d0oxf6tmvk9c" 
-         class="leave-reply bdsharebuttonbox" data-cmd="more">[分享]
-      </a>
-      
-    </aside><!-- .comments-link -->
-
-    <footer class="entry-meta">
-      <a href="/writings/2019-10-03-computation-theory/">
-  <time datetime="2019-10-03T06:32:01.000Z" class="entry-date">
-    2019-10-03
-  </time>
-</a>
-      
-  <span class="article-delim">&#8226;</span>
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/砂时计/">砂时计</a>
-  </div>
-
-      
-  <span class="article-delim">&#8226;</span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算理论/">计算理论</a></li></ul>
-
-    </footer>
-</article>
-
-
-
-
-
-
-  
     <article id="post-2019-10-03-computability" class="post-2019-10-03-computability post type-post status-publish format-standard hentry">
     <!---->
 
@@ -439,7 +781,7 @@ DIG | a b c d e f g h | HEX
         
   
     <h1 class="entry-title">
-      <a class="article-title" href="/writings/2019-10-03-computability/">可计算性</a>
+      <a class="article-title" href="/writings/2019-10-03-computability/">可计算性入门</a>
     </h1>
   
 
@@ -451,7 +793,7 @@ DIG | a b c d e f g h | HEX
       
         从函数起步
 早在小学时代我们就学会了加法，会在演草纸上化简形如114 + 514 = ?的算式以求得答案。
-却要等到很久以后的某一天，才会恍然大悟——“原来加法运算就是个二元函数啊”——于是刷刷刷地写下一些相互等价的表述：
+却要等到很久以后的某一天，才会恍然大悟——“原来加法运算就是个二元函数啊”——于是刷刷刷地写下一些相互等价的表述: 
 
  1. f(x, y) = x + y
  2. Definition f (x, y : Nat) -&gt; Nat := x + y.
@@ -459,7 +801,7 @@ DIG | a b c d e f g h | HEX
 
 数学老师教会我们如何用第一种写法高效处理成堆的模拟卷；
 某些从太古代幸存下来的编程语言则在数据类型约束上十分严格，正如在第二种写法中，要求进一步指明输入的参数、返回的结果都是来自然数集Nat的元素；
-第三种写法是最抽象而危险的，它仅仅告诉我们这个函数的名字叫add、它接受两个参数，我们只能根据这两条岌岌可危的信息去揣
+第三种写法是最抽象而危险的，它仅仅告诉我们这个函数的名字叫add、它接受两个参数，我们只能根据这两条岌岌可危的信息去
         
           <p class="article-more-link">
             <a href="/writings/2019-10-03-computability/#more" class="more-link">更多 <span class="meta-nav">→</span></a>
@@ -469,7 +811,7 @@ DIG | a b c d e f g h | HEX
     </div><!-- .entry-content -->
     
     <aside class="comments-link" style="float: right">
-      <a href="javascript:void(0);" data-url="https://kahsolt.github.io/writings/2019-10-03-computability/" data-id="ck3d6wto70002d0oxy9tkn92t" 
+      <a href="javascript:void(0);" data-url="https://kahsolt.github.io/writings/2019-10-03-computability/" data-id="ck4lktc0s0002ywoxuadve5pl" 
          class="leave-reply bdsharebuttonbox" data-cmd="more">[分享]
       </a>
       
@@ -489,7 +831,7 @@ DIG | a b c d e f g h | HEX
 
       
   <span class="article-delim">&#8226;</span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/可计算性/">可计算性</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算理论/">计算理论</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算理论/">计算理论</a></li></ul>
 
     </footer>
 </article>
@@ -539,23 +881,23 @@ DIG | a b c d e f g h | HEX
       <ul>
         
           <li>
-            <a href="/writings/quantum-computing-examples/">量子计算-示例代码</a>
+            <a href="/writings/natural-language-process/">自然语言处理-笔记</a>
           </li>
         
           <li>
-            <a href="/writings/quantum-computing/">量子计算-笔记</a>
+            <a href="/writings/hadoop-technology-stack/">Mapreduce大数据处理-笔记</a>
           </li>
         
           <li>
-            <a href="/writings/minimal-generator-set-problem/">最小生成集问题</a>
+            <a href="/writings/program-formal-semantics/">计算机程序形式语义-笔记</a>
           </li>
         
           <li>
-            <a href="/writings/2019-10-03-computation-theory/">计算理论-目录</a>
+            <a href="/writings/computational-complexity/">计算复杂性-笔记</a>
           </li>
         
           <li>
-            <a href="/writings/2019-10-03-computability/">可计算性</a>
+            <a href="/writings/automata/">自动机理论-笔记</a>
           </li>
         
       </ul>
@@ -567,7 +909,7 @@ DIG | a b c d e f g h | HEX
   <aside class="widget">
     <h3 class="widget-title">猫論</h3>
     <div class="widget-content">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/砂时计/">砂时计</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解命题/">解命题</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/巴别塔/">巴别塔</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/砂时计/">砂时计</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/神谕机/">神谕机</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解命题/">解命题</a><span class="category-list-count">1</span></li></ul>
     </div>
   </aside>
 
@@ -576,7 +918,7 @@ DIG | a b c d e f g h | HEX
   <aside class="widget">
     <h3 class="widget-title">格価値</h3>
     <div class="widget-content">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/代数结构/">代数结构</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/可计算性/">可计算性</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算模型/">计算模型</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算理论/">计算理论</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/量子计算/">量子计算</a><span class="tag-list-count">2</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/hadoop技术栈/">Hadoop技术栈</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nlp/">NLP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/代数结构/">代数结构</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/日语/">日语</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/示例代码/">示例代码</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算模型/">计算模型</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算理论/">计算理论</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/语法笔记/">语法笔记</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/量子计算/">量子计算</a><span class="tag-list-count">2</span></li></ul>
     </div>
   </aside>
 
@@ -585,7 +927,7 @@ DIG | a b c d e f g h | HEX
   <aside class="widget">
     <h3 class="widget-title">格価クラウド</h3>
     <div class="widget-content tagcloud">
-      <a href="/tags/代数结构/" style="font-size: 10px;">代数结构</a> <a href="/tags/可计算性/" style="font-size: 10px;">可计算性</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/计算模型/" style="font-size: 20px;">计算模型</a> <a href="/tags/计算理论/" style="font-size: 20px;">计算理论</a> <a href="/tags/量子计算/" style="font-size: 20px;">量子计算</a>
+      <a href="/tags/hadoop技术栈/" style="font-size: 10px;">Hadoop技术栈</a> <a href="/tags/nlp/" style="font-size: 10px;">NLP</a> <a href="/tags/代数结构/" style="font-size: 10px;">代数结构</a> <a href="/tags/日语/" style="font-size: 10px;">日语</a> <a href="/tags/示例代码/" style="font-size: 10px;">示例代码</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/计算模型/" style="font-size: 20px;">计算模型</a> <a href="/tags/计算理论/" style="font-size: 15px;">计算理论</a> <a href="/tags/语法笔记/" style="font-size: 10px;">语法笔记</a> <a href="/tags/量子计算/" style="font-size: 15px;">量子计算</a>
     </div>
   </aside>
 

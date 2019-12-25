@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+    <meta name="description" content="我々は皆真理の名前を忘れだから……">
+  
+
+  
+    <meta name="keywords" content="blog,ACG,技术博客,计算机,二次元">
+  
+  
+  
+  
+  
+  
+  <title> 自然语言处理-笔记 |  虚仮威し全てを。</title>
+  
+  <meta name="description" content="前言 这是自然语言处理的课程笔记，推荐读物是: 网课、其他外国大学的NLP讲义 (感觉我系NLP真的有些弱)  自然语言处理的基本实现方法流派:    * 理性方法 (基于规则/知识工程) * 基于字典和规则的形态还原、词性标注、分词     * 基于CFG/扩展CFG的语法分析     * 基于逻辑形式和格语法的语义分析     * 基于规则的机器翻译          * 统计方法 (基于统计">
+<meta name="keywords" content="NLP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自然语言处理-笔记">
+<meta property="og:url" content="https://kahsolt.github.io/writings/natural-language-process/index.html">
+<meta property="og:site_name" content="虚仮威し全てを。">
+<meta property="og:description" content="前言 这是自然语言处理的课程笔记，推荐读物是: 网课、其他外国大学的NLP讲义 (感觉我系NLP真的有些弱)  自然语言处理的基本实现方法流派:    * 理性方法 (基于规则/知识工程) * 基于字典和规则的形态还原、词性标注、分词     * 基于CFG/扩展CFG的语法分析     * 基于逻辑形式和格语法的语义分析     * 基于规则的机器翻译          * 统计方法 (基于统计">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-12-24T16:00:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="自然语言处理-笔记">
+<meta name="twitter:description" content="前言 这是自然语言处理的课程笔记，推荐读物是: 网课、其他外国大学的NLP讲义 (感觉我系NLP真的有些弱)  自然语言处理的基本实现方法流派:    * 理性方法 (基于规则/知识工程) * 基于字典和规则的形态还原、词性标注、分词     * 基于CFG/扩展CFG的语法分析     * 基于逻辑形式和格语法的语义分析     * 基于规则的机器翻译          * 统计方法 (基于统计">
+  
+  
+    <link rel="icon" href="/assets/img/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head></html>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="bg"></div>
+  <div id="page" class="hfeed site">
+    <header id="masthead" class="site-header" role="banner">
+  <hgroup>
+    <h1 class="site-title">
+      <a href="/" title="虚仮威し全てを。" rel="home">虚仮威し全てを。</a>
+    </h1>
+    
+      <h2 class="site-description">
+        <a href="/" id="subtitle">——若し雨が降ったら</a>
+      </h2>
+    
+  </hgroup>
+
+  <nav id="site-navigation" class="main-navigation" role="navigation">
+    <div class="menu-main-container">
+      <ul id="menu-main" class="nav-menu">
+      
+        <li class="menu-item menu-item-type-post_type menu-item-object-page">
+          <a href="/">例えば、</a>
+        </li>
+      
+        <li class="menu-item menu-item-type-post_type menu-item-object-page">
+          <a href="/kokoro">愛を叫けたら</a>
+        </li>
+      
+        <li class="menu-item menu-item-type-post_type menu-item-object-page">
+          <a href="/vhaktyr">隠り世界論</a>
+        </li>
+      
+        <li class="menu-item menu-item-type-post_type menu-item-object-page">
+          <a href="/kotoba">道断</a>
+        </li>
+      
+        <li class="menu-item menu-item-type-post_type menu-item-object-page">
+          <a href="/archives">記憶の砂数</a>
+        </li>
+      
+        <li class="menu-item menu-item-type-post_type menu-item-object-page">
+          <a href="/whoami">アルミットは。</a>
+        </li>
+      
+      </ul>
+    </div>
+  </nav>
+</header>
+
+    <div id="main" class="wrapper">
+      <div id="primary" class="site-content">
+        <div id="content" role="main">
+          <article id="post-natural-language-process" class="post-natural-language-process post type-post status-publish format-standard hentry">
+    <!---->
+
+    <header class="entry-header">
+      
+        
+  
+    <h1 class="entry-title article-title">自然语言处理-笔记</h1>
+  
+
+
+      
+    </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <div class=".article-gallery" <p=""><br><p></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这是<strong>自然语言处理</strong>的课程笔记，推荐读物是: 网课、其他外国大学的NLP讲义 (感觉我系NLP真的有些弱)</p>
+<p>自然语言处理的基本实现方法流派: </p>
+<ul>
+<li>理性方法 (基于规则/知识工程)<ul>
+<li>基于字典和规则的形态还原、词性标注、分词</li>
+<li>基于CFG/扩展CFG的语法分析</li>
+<li>基于逻辑形式和格语法的语义分析</li>
+<li>基于规则的机器翻译</li>
+</ul>
+</li>
+<li>统计方法 (基于统计/语料库)<ul>
+<li>语言模型: n-gram</li>
+<li>分词、词性标注: 序列化标注</li>
+<li>语法分析: 概率上下文无关</li>
+<li>文本分类: 朴素贝叶斯、最大熵</li>
+<li>机器翻译: IBM模型</li>
+<li>…: 基于神经网络的深度学习方法</li>
+</ul>
+</li>
+</ul>
+<p>自然语言处理NLP的临近领域: 自然语言理解NLU(强调对语言含义和意图的深层理解)，计算语言学CL(强调可计算的语言理论)</p>
+<p>自然语言处理的应用: </p>
+<ul>
+<li>机器翻译MT/机器辅助翻译MAT: 文本、语音</li>
+<li>自动摘要: 单文档、多文档 (应对信息过载)</li>
+<li>文本分类: 网页、图书、信息过滤</li>
+<li>信息检索: 搜索引擎</li>
+<li>自动问答: QA机器人</li>
+<li>情感分析: 舆情分析、市场决策</li>
+<li>信息抽取: 实体、关系、事件等 (非结构/半结构化数据中抽取结构化信息)</li>
+</ul>
+<p>自然语言分类(基于形态结构): </p>
+<ul>
+<li>分析语: 没有/较少词形变化，没有表示词的语法功能的附加成分，由词序和虚词表示语法关系</li>
+<li>黏着语: 有词形变化(-~)，词的语法意义/功能由附加成分来表示</li>
+<li>屈折语: 有词形变化(-~-)，词的语法意义由形态变化来表示</li>
+</ul>
+<p>自然语言处理的难点: </p>
+<ul>
+<li>歧义</li>
+<li>语言知识的表示、获取和运用</li>
+<li>成语和惯用型</li>
+<li>对语言的灵活性和动态性的处理<ul>
+<li>灵活性: 同一个意图的不同表达，甚至包含错误的语法</li>
+<li>动态性: 语言在不断的变化，新词</li>
+</ul>
+</li>
+<li>上下文和常识(语言无关)的利用</li>
+</ul>
+<p>汉语处理的难点: </p>
+<ul>
+<li>缺乏计算语言学的句法/语义理论，大都借用基于西方语言理论</li>
+<li>语料库缺乏</li>
+<li>词法分析<ul>
+<li>分词、词性标注难</li>
+</ul>
+</li>
+<li>句法分析<ul>
+<li>主动词识别难 (特别对于流水句)</li>
+<li>词法分类与句法功能对应差 (例如: 他喜欢走)</li>
+</ul>
+</li>
+<li>语义分析<ul>
+<li>句法结构与句义对应差 (例: 老头晒太阳)</li>
+<li>时体态确定难 (独立语)</li>
+</ul>
+</li>
+</ul>
+<h1 id="基于规则的自然语言处理-理性方法-传统方法"><a href="#基于规则的自然语言处理-理性方法-传统方法" class="headerlink" title="基于规则的自然语言处理/理性方法/传统方法"></a>基于规则的自然语言处理/理性方法/传统方法</h1><h2 id="词法分析"><a href="#词法分析" class="headerlink" title="词法分析"></a>词法分析</h2><p>任务: </p>
+<ul>
+<li>分词Tokenize: 识别出句子中的词<ul>
+<li>消歧义<ul>
+<li>交集型: ABC = A/BC or AB/C </li>
+<li>组合型: AB = AB or A/B</li>
+<li>混合型: ABC = A/BC or AB/C or A/B/C (交集+组合)</li>
+<li>伪歧义: 根据自己的语义能确认如何最大熵切分，挨批评 = 挨/批评</li>
+<li>真歧义: 根据上下文的语义才能确认如何最大熵切分，从小学 = 从/小学 or 从小/学</li>
+</ul>
+</li>
+<li>方法<ul>
+<li>正向最大匹配(FMM)/逆向最大匹配(RMM)</li>
+<li>双向最大匹配(FMM+RMM): 冲突时按交集型歧义处理</li>
+<li>正向最大、逆向最小匹配: 冲突时按组合型歧义处理</li>
+<li>逐词遍历匹配: 每次去掉全句最长的词</li>
+<li>设立切分标记: 收集词首字和词尾字作为界符，适合日语或文言文</li>
+<li>全切分: 获得所有可能的切分，选择最大可能(比如最大熵)的切分</li>
+</ul>
+</li>
+<li>*难点: 语素vs单字词，词vs短语/词组 的界定</li>
+<li>*问题: 丢失信息、分词错误、不同的分词规范</li>
+</ul>
+</li>
+<li>形态还原Lemmatize: 把句子中的词还原成它们的基本词形<ul>
+<li>根据语言学家给出的变形规则还原</li>
+<li>不规则情况特殊处理</li>
+</ul>
+</li>
+<li>词性标注POS: 为句子中的词标上预定义类别集合中的类<ul>
+<li>词类/品词<ul>
+<li>开放类: Noun/Verb/Adjective/Adverb</li>
+<li>封闭类: Determiner/Pronoun/Preposition/Conjunction/Auxiliary Verb/Particle/Numeral</li>
+</ul>
+</li>
+<li>查字典定词类，对于兼类词使用上下文消歧义</li>
+<li>*难点: 英语中10.4%是兼类词</li>
+</ul>
+</li>
+<li>命名实体识别NER: 识别出句子中的人名、地名、机构名等</li>
+</ul>
+<h2 id="语法分析"><a href="#语法分析" class="headerlink" title="语法分析"></a>语法分析</h2><p>任务: </p>
+<ul>
+<li>组块分析(浅层句法分析、部分句法分析): 基本短语(非递归的核心成分)识别</li>
+<li>组成分分析(结构分析，完全句法分析): 词如何构成短语、短语如何构成句子<ul>
+<li>基于CFG表示，解析成AST</li>
+<li>算法: 递归下降、CYK/ChartParsing</li>
+</ul>
+</li>
+<li>依存分析: 词之间的依赖/支配关系</li>
+</ul>
+<p>基于特征的CFG: </p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">[regular-cfg]</span><br><span class="line">S -&gt; NP VP</span><br><span class="line">NP -&gt; ART N</span><br><span class="line">NP -&gt; ART ADJ N</span><br><span class="line">VP -&gt; V</span><br><span class="line">VP -&gt; V NP</span><br><span class="line"></span><br><span class="line">朴素的CFG会产生不合语法的句子: 主谓不一致、不及物动词带宾语</span><br><span class="line">*解决: 增加句法符号，或给句法符号带上一系列属性参数</span><br><span class="line"></span><br><span class="line">[feature-based-cfg]</span><br><span class="line">扩展后每个句法符号形如: </span><br><span class="line">NP(PER 3, NUM s)            // 第三人称单数</span><br><span class="line">VP(PER 3, NUM p)            // 第三人称复数</span><br><span class="line">NP(AGR (PER 3, NUM s))      // 特征值可以是一个特征结构，此例亦可或简写为 NP(AGR 3s)</span><br><span class="line">N(ROOT fish, AGR {3s,3p})   // 特征值可以有多个</span><br><span class="line">NP(AGR ?a)                  // 特征值可以是变量</span><br><span class="line">NP(AGR ?a{3s,3p})           // 受限变量，约束变量取值范围</span><br><span class="line">S -&gt; NP(AGR ?a) VP(AGR ?a)  // 同名变量值相同，实现主谓一致约束</span><br><span class="line"></span><br><span class="line">上例改进后的扩展文法为: </span><br><span class="line">S -&gt; NP(AGR ?a) VP(AGR ?a)</span><br><span class="line">NP(AGR ?a) -&gt; ART N(AGR ?a)</span><br><span class="line">NP(AGR ?a) -&gt; ART ADJ N(AGR ?a)</span><br><span class="line">VP(AGR ?a) -&gt; V(AGR ?a, VAL itr)</span><br><span class="line">VP(AGR ?a) -&gt; V(AGR ?a, VAL tr) NP</span><br><span class="line"></span><br><span class="line">[Unification Grammar]</span><br><span class="line">一个文法可以表示成一系列特征结构间的约束关系所组成的集合，这样的文法称为合一文法(Unification Grammar, UG)，它为基于特征的CFG文法提供了形式描述基础</span><br><span class="line">合一运算: 特征结构相容的并集(直觉上即递归地将特征键值对取并集，但交集部分的键值对**必须一致**)</span><br><span class="line"></span><br><span class="line">(CAT V, AGR 3s) 与 (CAT V, AGR 3p) 不相容</span><br><span class="line">(CAT V, ROOT cry) ∪ (CAT V, VFORM pres) = (CAT V, ROOT cry, VFORM pres)</span><br><span class="line">(CAT N, ROOT fish, AGR {3s,3p}) ∪ (CAT N, AGR 3s) = (CAT N, ROOT fish, AGR 3s)</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="语义分析"><a href="#语义分析" class="headerlink" title="语义分析"></a>语义分析</h2><p>任务: </p>
+<ul>
+<li>词义计算: 词义表示、多义词消歧等<ul>
+<li>词义表示<ul>
+<li>义项/义位: 词典里的一条解释</li>
+<li>语义类: 泛化、近义义项归类，{走, 跑, 跳, 爬} -&gt; 移动</li>
+<li>义素/义原组合: 义项再拆解，哥哥 -&gt; {人, 亲属, 同胞, 年长, 男性}</li>
+</ul>
+</li>
+<li>词义关系<ul>
+<li>上下位/抽象-具体: 动物-狮子</li>
+<li>整体-部分: 身体-手</li>
+<li>同义: 美丽-漂亮</li>
+<li>反义: 高-矮</li>
+<li>包含: 兄弟-哥哥</li>
+<li>语义场: 师傅-徒弟，上-下-左-右</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>句义计算: 逻辑形式与组合理论、语义角色标注等<ul>
+<li>分类: 上下文无关意义/上下文有关意义</li>
+<li>分析方式<ul>
+<li>先句法后语义</li>
+<li>句法语义一体化</li>
+<li>完全语义分析(无句法分析)</li>
+</ul>
+</li>
+<li>句义表示<ul>
+<li>逻辑形式LF: 对一阶谓词演算FOPC的扩展</li>
+<li>论旨角色或格角色</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>篇章语义计算: 指代、实体关系等</li>
+</ul>
+<p>语义的逻辑形式LF表示(近似Prolog): </p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Fido is a dog.</span><br><span class="line">(DOG1 FIDO1)</span><br><span class="line">Sue loves jack.</span><br><span class="line">(LOVES1 SUE1 JACK1)</span><br><span class="line">Sue does not love jack.</span><br><span class="line">(NOT (LOVES1 SUE1 JACK1))</span><br><span class="line">Most dogs bark.</span><br><span class="line">(MOST1 d1:(DOG1 d1)(BARKS1 d1))</span><br><span class="line">John sees Fido.</span><br><span class="line">(PRES(SEES1 JOHN1 FIDO1))</span><br><span class="line"></span><br><span class="line">Every boy loves a dog.</span><br><span class="line">(EVERY b1:(BOY1 b1)(A d1:(DOG1 d1)(LOVES b1 d1)))  // forall boy, exists dog, st. love(boy, dog)</span><br><span class="line">(A d1:(DOG1 d1)(EVERY b1:(BOY1 b1) (LOVES b1 d1))) // exists dog, forall boy, st. love(boy, dog)</span><br><span class="line">(LOVES1 &lt;EVERY b1(BOY1 b1)&gt; &lt;A d1(DOG1 d1)&gt;)       // 歧义表示</span><br></pre></td></tr></tbody></table></figure>
+<p>语义的论旨角色或格角色表示: </p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">以动词为中心，给出句子中其它成分与它的浅层语义关系</span><br><span class="line">The boy opened the door with a key.</span><br><span class="line">  the boy: AGENT 施事格</span><br><span class="line">  the door: OBJECT 客体格</span><br><span class="line">  a key: INSTUMENT 工具格</span><br><span class="line"></span><br><span class="line">深层格的种类: </span><br><span class="line">  施事格(Agentive): **He** laughed.</span><br><span class="line">  工具格(Instrumental): He cut the rope **with a knife**.</span><br><span class="line">  与格(Dative): He gives me **a ball**.</span><br><span class="line">  使成格(Factitive): John dreamed a dream **about Mary**.</span><br><span class="line">  方位格(Locative): He is **in the house**.</span><br><span class="line">  客体格(Objective): He bought **a book**.</span><br><span class="line">  受益格(Benefective): He sang a song **for Mary**.</span><br><span class="line">  源点格(Source): I bought a book **from Mary**.</span><br><span class="line">  终点格(Goal): I sold a car **to Mary**.</span><br><span class="line">  伴随格(Comitative): He sang a song **with Mary**.</span><br><span class="line">  ...</span><br><span class="line"></span><br><span class="line">动词格框架，词典中对每个动词需给出: </span><br><span class="line">  它所允许的格，包括它们的模态性质 (必需、禁止、自由)</span><br><span class="line">  这些格的特征 (附属词、中心词语义信息等)</span><br><span class="line"></span><br><span class="line">格语法分析</span><br><span class="line">In the room, he broke a window with a hammer.</span><br><span class="line">[BREAK</span><br><span class="line">  [case-frame</span><br><span class="line">    agentive: HE</span><br><span class="line">    objective: WINDOW</span><br><span class="line">    instrumental: HAMMER</span><br><span class="line">    locative: ROOM]</span><br><span class="line">  [modals</span><br><span class="line">    time: past</span><br><span class="line">    voice: active]]</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="机器翻译"><a href="#机器翻译" class="headerlink" title="机器翻译"></a>机器翻译</h2><p>基本策略: </p>
+<ul>
+<li>直译(Direct): 从原文句子的表层(词、词组或短语)出发，直接转换成译文(必要的词序调整)</li>
+<li>转换(Transfer): 对源语言进行分析，得到一个<strong>基于源语言的中间表示</strong>；然后，把这个中间表示转换成基于目标语言的中间表示；从基于目标语言的中间表示生成目标语言</li>
+<li>中间语(Interlingua): 对源语言进行分析，得到一个独立于源语言和目标语言的、<strong>基于概念的中间表示</strong>；从这个中间表示生成目标语言</li>
+</ul>
+<p>实现方法: </p>
+<ul>
+<li>理性方法<ul>
+<li>Rule-based MT: 解析-推理-转换<ul>
+<li>基于词: 字对字翻译、词序调整、形态顺变</li>
+<li>基于语法结构: 解析AST，树到树映射</li>
+<li>基于语义: 解析出谓词形式或格语法框架，然后作映射</li>
+<li>基于中间语言: 解析到一个基于概念的中间语言 (universal ontology是否存在?)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>经验方法<ul>
+<li>Statistical MT: 抽取一些统计特征</li>
+<li>Example-based MT: 从大语料库出发、相似度计算找最近、局部魔改</li>
+<li>Neural MT: 自动特征学习</li>
+</ul>
+</li>
+</ul>
+<h1 id="基于统计的自然语言处理-经验方法"><a href="#基于统计的自然语言处理-经验方法" class="headerlink" title="基于统计的自然语言处理/经验方法"></a>基于统计的自然语言处理/经验方法</h1><h2 id="Language-Model"><a href="#Language-Model" class="headerlink" title="Language Model"></a>Language Model</h2><p>大多数语言都不是平坦的: 随意拼凑的一串字词大多数情况下都不在该语言中，如何计算一串词是一句话的概率<br>P(W) = P(w1w2..wn) = ?   // 如何定义/计算此概率  </p>
+<p>有限视野假设(Limited Horizon): 当前词出现的概率只和它前面的k个词相关 (k阶马尔可夫链/k-MC)<br>*N-Gram模型 即 (N-1)阶马尔可夫链；适合意群密集、插入语少的句子</p>
+<ul>
+<li>2-gram/1-MC: P(W) = P(w1) * Πi[2,n]P(wi|w[i-1])</li>
+<li>3-gram/2-MC: P(W) = P(w1) <em> P(w2|w1) </em> Πi[3,n]P(wi|w[i-1]|w[i-2])</li>
+<li>n-gram/(n-1)-MC: P(W) = P(w1) <em> P(w2|w1) </em> P(w3|w1w2) <em> … </em> P(wn|w1w2..w[n-1])</li>
+</ul>
+<p>模型参数: </p>
+<ul>
+<li>假设词汇量为m，则2-gram参数量m^2、3-gram参数量m^3</li>
+<li>2-gram参数估计: <code>P(wi|w[i-1]) = P(w[i-1]wi) / P(w[i-1]) = Count(w[i-1]wi) / Count(w[i-1])</code></li>
+<li>相对频率/最大似然估计 (??)</li>
+</ul>
+<p>Zipf Law: 若以词频排序，词频与排位的乘积拟合一个常数</p>
+<p>稀疏/零概率问题: 未观测到数据出现零概</p>
+<ul>
+<li>构造等价类</li>
+<li>参数平滑: 高概率者调低，小概率或者零概率者调高<ul>
+<li>Add Counts<ul>
+<li>P(wi|w[i-1]) = (Count(w[i-1]wi) + δ) / (Count(w[i-1]) + |V| * δ)    // |V|是所有可能不同的n-gram数量，对2-gram就是(总词汇量+1)</li>
+<li>分子分母同时加上一个较小的常数 (效果不好)</li>
+</ul>
+</li>
+<li>Linear Interpolation Smoothing<ul>
+<li>P(wi|w[i-2]w[i-1]) = λ1*P(wi|w[i-2]w[i-1]) + λ2*P(wi|w[i-1]) + λ3*P(wi), λ1+λ2+λ3=1</li>
+<li>对于3-gram，带权平均其1-gram、2-gram和3-gram</li>
+</ul>
+</li>
+<li>Laplace Smoothing / Dirichlet Prior<ul>
+<li>P(wi|w[i-1]) = (Count(w[i-1]wi) + k*P(wi)) / (Count(w[i-1]) + k)</li>
+<li>是线性插值的特例，权不是常数而是函数</li>
+</ul>
+</li>
+<li>Katz Smoothing</li>
+<li>Kneser-Ney Smoothing</li>
+</ul>
+</li>
+</ul>
+<p>数据集三分: </p>
+<ul>
+<li>训练集 Training Data<ul>
+<li>用来建立模型，获得模型参数</li>
+</ul>
+</li>
+<li>测试集 Test Data<ul>
+<li>从训练集以外独立采样</li>
+<li>反映系统面对真实世界的处理能力</li>
+</ul>
+</li>
+<li>交叉确认集 Cross-Validation Data<ul>
+<li>从训练集和测试集以外独立采样</li>
+<li>主要用来帮助做设计决策和参数设定(hyperparameters)</li>
+</ul>
+</li>
+</ul>
+<p>模型评估: </p>
+<ul>
+<li>测试集: m个句子 <code>s1, s2, ..., sm</code></li>
+<li>困惑度(Perplexity): 对测试集存在的概率评估，越小越好</li>
+<li><code>Perplexity = 2^(-l)</code>, 其中<code>l = logΠi[1,m](P(si))/m = Σi[1,m]logP(si)/m</code>、即所有测试集句子的预测成句概率之积取对数再除以测试集大小以求得平均</li>
+</ul>
+<p>模型评价:</p>
+<ul>
+<li>成功之处<ul>
+<li>Speech Recognition</li>
+<li>Optical Character Recognition, OCR</li>
+<li>Context-sensitive Spelling Corretion</li>
+</ul>
+</li>
+<li>不足<ul>
+<li>依赖分词精度</li>
+<li>丢失远距离依赖的信息</li>
+<li>无结构化的、语法依赖信息</li>
+</ul>
+</li>
+</ul>
+<p>其他语言模型: </p>
+<ul>
+<li>n-gram: 依赖前面一个的窗口序列</li>
+<li>cache: 依赖前面一个窗口集合 (可理解为无序n-gram)</li>
+<li>grammar: 解析为语法树AST</li>
+<li>NN-method: word2vec, sentence2vec, text2vec<ul>
+<li>skip-gram: 从给定词/词组预测上下文语境</li>
+<li>CBOW: 从上下文预警推知词义不明的词</li>
+<li>*处理长距离依赖(如从句插入): 使用RNN/LSTM</li>
+</ul>
+</li>
+</ul>
+<h2 id="Text-Classification"><a href="#Text-Classification" class="headerlink" title="Text Classification"></a>Text Classification</h2><p>朴素贝叶斯模型: 将文档D放入到最高后验概率的分类ck中</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">argmax[ck]P(ck|D) = argmax[ck]{P(D|ck)*P(ck)/P(D)} = argmax[ck]P(D|ck)P(ck)</span><br><span class="line"></span><br><span class="line">如何表示文档D: </span><br><span class="line">  Bernoulli Document Model: 0-1向量/词袋、编码词典中每个词出现与否</span><br><span class="line">  Multinomial Document Model: tf向量、编码词典中每个词出现的词频</span><br><span class="line"></span><br><span class="line">如何计算 P(D|ck) 和 P(ck): 简单统计</span><br><span class="line">  P(ck) = Count(ck) / N       // ck类的文档数 / 总文档数</span><br><span class="line">  P(D|ck) = ???               // 所有ck类文档的向量求得一个平均文档ck-avg，计算D与ck-avg的相似度/归一化距离</span><br></pre></td></tr></tbody></table></figure>
+<p>模型评估: </p>
+<ul>
+<li>它就是个线性模型，可以考虑ML的线性回归(这是个<strong>分类</strong>算法!)</li>
+<li>训练参数<ul>
+<li>likelihoods of each word given the class P(wt|ck)</li>
+<li>prior probabilities P(ck)</li>
+</ul>
+</li>
+<li>优化<ul>
+<li>去除停用词: P(“the”|ck) -&gt; 1</li>
+</ul>
+</li>
+</ul>
+<p>文本特征:</p>
+<ul>
+<li>Bag of words</li>
+<li>Phrase-based</li>
+<li>N-gram</li>
+<li>Hypernym Representation</li>
+<li>Using some lexicon or thesaurus</li>
+<li>Graph-based Representation</li>
+<li>Distributed Representation: word2vec, sen2vec, doc2vec……</li>
+</ul>
+<p>特征选择: </p>
+<ul>
+<li>High dimensional space</li>
+<li>Eliminating noise features from the representation increases eﬃciency and eﬀectiveness of text classiﬁcation </li>
+<li>Selecting a subset of relevant features for building robust learning models</li>
+<li>Actually feature filtering<ul>
+<li>assign heuristic score to each feature f to filter out the <em>obviously</em> useless ones</li>
+</ul>
+</li>
+</ul>
+<p>Feature utility measures:</p>
+<ul>
+<li>Stop words</li>
+<li>Frequency – select the most frequent terms</li>
+<li>Mutual information – select the terms with the highest mutual information (mutual information is also called information gain in this context)</li>
+<li>Χ2 (Chi-square)</li>
+</ul>
+<p>TF-IDF repretation for word:</p>
+<ul>
+<li>f[i]j = frequency of term-i in document-j </li>
+<li>tf[i][j] = f[i][j] / max[i]{f[i][j]}    // normalize by dividing max frequency in the same document</li>
+<li>df[i] = document frequency of term-i    // number of documents containing term-i</li>
+<li>idf[i] = log2 (N / df[i])               // N is total number of documents</li>
+<li>w[i][j] = tf[i][j] * idf[i]             // w[i] is a vector representing word-i</li>
+</ul>
+<h2 id="POS-amp-HMM"><a href="#POS-amp-HMM" class="headerlink" title="POS &amp; HMM"></a>POS &amp; HMM</h2><p>词性标注: 给某种语言的词标注上其所属的词类</p>
+<ul>
+<li>英例<ul>
+<li>The lead paint is unsafe.</li>
+<li>The/Det lead/N paint/N is/V unsafe/Adj</li>
+</ul>
+</li>
+<li>汉例<ul>
+<li>他有较强的领导才能。</li>
+<li>他/代词 有/动词 较/副词 强/形容词 的/助词 领导/名词 才能/名词</li>
+</ul>
+</li>
+<li>*难点: 兼类词消歧(英语10.4%、汉语22.5%)</li>
+</ul>
+<p>形式化为一个分类问题: </p>
+<ul>
+<li>X: (x1, x2, …) 词串</li>
+<li>Y: (y1, y2, …) 词性串</li>
+<li>训练数据 (xi, yi)</li>
+<li>拟合函数 f: X -&gt; Y</li>
+</ul>
+<p>决定一个词词性的因素: 前后词的词性(基于词性的语法一定程度上确保了这一点)</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[隐马尔科夫模型的直觉]</span><br><span class="line">  名词  -&gt;  动词 -&gt; 名词 -&gt; 名词</span><br><span class="line">        x        x       x            // 随机过程状态转移链</span><br><span class="line"> 动名词 -&gt; 动名词 -&gt; 动词 -&gt; 动词</span><br><span class="line"></span><br><span class="line">    ?   -&gt;   ?   -&gt;   ?   -&gt;   ?      // 隐状态</span><br><span class="line">    |        |        |        |</span><br><span class="line">   教授     喜欢      画       画      // 观测状态</span><br><span class="line"></span><br><span class="line">[隐马尔科夫模型]</span><br><span class="line">对于词串W = [w1]，词性串S = [si]，求P(S, W)？</span><br><span class="line"></span><br><span class="line">s0 -&gt; s1 -&gt; s2 -&gt; ... -&gt; sn</span><br><span class="line">      |     |      |     |</span><br><span class="line">      w1    w2    ...    wn</span><br><span class="line">P(S, W) = Πi P(wi|si) * P(si|s[i-1])   // 从词性串反推词串</span><br></pre></td></tr></tbody></table></figure>
+<p>马尔科夫模型: </p>
+<ul>
+<li>马尔可夫过程<ul>
+<li>一个系统有N个有限状态 S = {sn}</li>
+<li>Q = [qt] 是一个随机变量序列，qt取值于S</li>
+<li>求 P(qt=sj|q[t-1]=si, q[t-2]=sk, …, q1=sh)，即已知前t-1步所处状态，求第t步落在状态sj的概率</li>
+</ul>
+</li>
+<li>两大假设<ul>
+<li>有限视野: 只记得前t步，t是个常数</li>
+<li>时间独立性: 在状态si到sj之间迁移的概率是稳定的、不随时移</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[马尔科夫模型示例: 天气预报]</span><br><span class="line">模型: 1阶马尔科夫链</span><br><span class="line">状态集合S: {雨, 多云, 晴}</span><br><span class="line">初始分布Π: [ 0.33, 0.33, 0.33 ]   // 真实分布不明时，假装初始时是均匀分布</span><br><span class="line">转移矩阵A: [ 0.4 0.3 0.3</span><br><span class="line">            0.2 0.6 0.2</span><br><span class="line">            0.1 0.1 0.8 ]</span><br><span class="line">(根据S和A可画出对应的有限状态自动机DFA)</span><br><span class="line">问题: 预测接下来的天气序列为 Q = 晴-雨-晴-雨-晴-多云-晴 的概率？</span><br><span class="line">P(Q|Model) = P(S3,S1,S3,S1,S3,S2,S3)</span><br><span class="line">           = P(S3|-)*P(S1|S3)*P(S3|S1)*P(S1|S3)*P(S3|S1)*P(S2|S3)*P(S3|S2)</span><br><span class="line">           = Π3*A31*A13*A31*A13*A32*A23</span><br><span class="line">           = ...</span><br></pre></td></tr></tbody></table></figure>
+<p>隐马尔科夫模型: 一阶马尔科夫模型的扩展</p>
+<ul>
+<li>状态序列满足一阶马尔科夫模型</li>
+<li>观测序列与状态序列之间存在一定<strong>概率关系</strong></li>
+<li>输出独立性: <code>P(O1,...Ot|S1,..St) = ΠtP(Ot|St)</code></li>
+<li><strong>隐</strong>: 状态及其转移不可见，可见的是观测序列</li>
+</ul>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[隐马尔科夫模型形式化定义]</span><br><span class="line">λ = (S, V, A, B, Π)</span><br><span class="line">     S       状态集</span><br><span class="line">       Q     状态序列，不可见 (∀q∈Q -&gt; q∈S) </span><br><span class="line">     V       观测值集</span><br><span class="line">       O     观测序列，可见 (∀o∈O -&gt; o∈V)</span><br><span class="line">     A       状态转移概率分布矩阵 A[i][j] = P(qt=sj|q[t-1]=si) // 第t-1步在si态，下一步转移到sj态</span><br><span class="line">     B       观察值生成概率分布矩阵 B[i][k] = P(ot=vk|qt=si)   // 第t步在si态，产生观察值vk</span><br><span class="line">     Π       初始状态概率分布向量 Π[i] = P(q1=si)</span><br><span class="line"></span><br><span class="line">[词性标注HMM]</span><br><span class="line">    S        预定义的词性标注集 pos</span><br><span class="line">    V        文本中的词汇 token</span><br><span class="line">    A        词性之间的转移概率</span><br><span class="line">    B        某个词性产生某个词的概率 eg. P("I"|PRON), P("love"|ADV)</span><br><span class="line">    Π        初始概率</span><br></pre></td></tr></tbody></table></figure>
+<p>Viterbi算法: </p>
+<ul>
+<li>计算观察序列对应某一状态序列的概率</li>
+<li>动态规划思想，O(N^2*T)</li>
+<li>定义变量δt(i): 指在时间t时，HMM沿着某一条路径到达Si、并输出序列为w1w2..wt的最大概率</li>
+<li>δt(i) = max P(…,qt=si, w1…wt) </li>
+</ul>
+<p>模型参数学习:</p>
+<ul>
+<li>给定状态集S和观察集V，学习模型参数A、B、Π</li>
+<li>模型参数学习过程就是构建模型的过程</li>
+<li>学习方法<ul>
+<li>有监督: 最大似然估计</li>
+<li>无监督: Welch-Baum</li>
+</ul>
+</li>
+</ul>
+<p>其他模型对比: </p>
+<ul>
+<li>Naive Bayes</li>
+<li>Logistic Regression</li>
+<li>HMM: 生成式模型(Generative Model)<ul>
+<li>计算联合概率 P(words, tags)</li>
+<li>除了生成tags，还生成words</li>
+<li>实际上，我们只需要预测tags</li>
+<li>Probability of each slice = emission <em> transition = P(w[i]|tag[i]) </em> P(tag[i]|tag[i-1])</li>
+<li>*很难结合更多的特征</li>
+</ul>
+</li>
+<li>HEMM: 判别式模型(Discriminative Model)<ul>
+<li>直接计算条件概率 P(tags|words)</li>
+<li>预测tags，不需要考虑input的分布</li>
+<li>Probability of each slice = P(tag[i]|tag[i-1], w[i]) or P(tag[i]|tag[i-1], [all words])</li>
+<li>*容易引入各种特征</li>
+</ul>
+</li>
+<li>CRF<ul>
+<li>是无向图，不再用概率模型去解释，而是用”团”/“势”来度量节点间的关系</li>
+<li>仍然是条件概率模型，不是对每个状态做归一化，而是对整个串/图做归一化，克服MEMM的标注偏置问题</li>
+</ul>
+</li>
+<li>Linear Chain CRF</li>
+<li>Genral CRF</li>
+</ul>
+<h2 id="Coreference-Resolution"><a href="#Coreference-Resolution" class="headerlink" title="Coreference Resolution"></a>Coreference Resolution</h2><p>Eventually, what does that <strong>pronoun refers</strong> to?</p>
+<p>Terms about ‘refer’:</p>
+<ul>
+<li>referent: the entities or individuals <strong>in the real world</strong> that the text is pointing to</li>
+<li>referring expression: the text that points to the referents</li>
+<li>coreference: a set of referring expression strings that all refer to the same referent</li>
+<li>singleton: if no coreference in the same text</li>
+</ul>
+<p>Terms about similarity between to NP:</p>
+<ul>
+<li>non-identity: not refer to the same referent in the context，even if they somewhat semantically similar without context</li>
+<li>identity: they are almost certainly the same as far as one can tell</li>
+<li>near-identity: one NP describes a subset of another NP (eg. a pronoun appears first, following many NPs describing each aspect of it)</li>
+</ul>
+<p>Algorithms:</p>
+<ul>
+<li>Hobbs algorithm (1978): 试着根据英语语法寻找所指代的NP</li>
+<li>Stanford “Sieve”: 一系列的模式匹配，从所有NP中筛去可能性低的</li>
+</ul>
+<h2 id="Statistical-Parsing"><a href="#Statistical-Parsing" class="headerlink" title="Statistical Parsing"></a>Statistical Parsing</h2><p>Ambiguities: PP Attachment</p>
+<ul>
+<li>The children ate the cake with a spoon</li>
+<li>PP: “with a spoon”<ul>
+<li>attach to “the children”</li>
+<li>attach to “the cake”</li>
+</ul>
+</li>
+</ul>
+<p>Probabilistic/Stochastic context-free grammar (PCFG):</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">G = (T, N, S, R, P)</span><br><span class="line">     T      set of terminals</span><br><span class="line">     N      set of non-terminals</span><br><span class="line">     S      the start symbol (one of the nonterminals)</span><br><span class="line">     R      rules/productions of the form X -&gt; γ</span><br><span class="line">              X   a nonterminal </span><br><span class="line">              γ   sequence of terminals and nonterminals (possibly empty)</span><br><span class="line">     P(R)   gives the probability of each rule</span><br><span class="line"></span><br><span class="line">The grammar G generates a PCFG language model L = L(G)</span><br><span class="line"></span><br><span class="line">[example]</span><br><span class="line">w = "astronomers saw stars with ears"</span><br><span class="line">PP = "with ears"</span><br><span class="line">  - attach to "astronomers"</span><br><span class="line">  - attach to "stars"</span><br><span class="line">P(t) = 生成某棵AST t的概率，将每一步推导所使用规则的附加概率值相乘即可</span><br><span class="line">P(w) = ΣjP(tj) = 句子w能产生的所有(含歧义)的AST tj的概率总和</span><br><span class="line"></span><br><span class="line">构建两棵AST树，但由于PCFG的每一条文法规则都带一个概率值，故可以取P(t)概率较大的那棵树作为解析</span><br></pre></td></tr></tbody></table></figure>
+<p>How to learn the probability of each production rule:</p>
+<ul>
+<li>maximum likelihood estimation</li>
+<li>if we have a treebank: by law of large numbers, probability = relative frequence</li>
+<li>if have not: expectation maximum estimation (EME) – inside &amp; outside probability</li>
+</ul>
+<h2 id="Information-Extraction"><a href="#Information-Extraction" class="headerlink" title="Information Extraction"></a>Information Extraction</h2><p>Named Entity Recognition (NER):</p>
+<ul>
+<li>discover: People(PER), Orgnazition(ORG), Location(LOC), Geo-Political Entity(GPE), Facility(FAC), Vehicles(VEH), …</li>
+<li>BIO notation: B-cat(beginning), I-cat(inbody), O(other) (eg. Tim[B-PER] Cook[I-PER] is[O] from[O] Apple[B-ORG])</li>
+<li>usually non-hierarchical, but nested is also frequent…<ul>
+<li>(√) [The University of California]ORG</li>
+<li>(×) [The University of [California]GPE]ORG</li>
+<li>(√) [[John]PER’s mother]PER</li>
+</ul>
+</li>
+</ul>
+<p>训练模型: MEMM, CRF, RNN, BiLSTM</p>
+<h2 id="Machine-Translation"><a href="#Machine-Translation" class="headerlink" title="Machine Translation"></a>Machine Translation</h2><p>机器翻译的发展: </p>
+<ul>
+<li>机器翻译概念 [Weaver1949]</li>
+<li>规则机器翻译 [1950s]<ul>
+<li>由语言学方面的专家进行规则的制订，一般包含词典和用法等组成部分</li>
+</ul>
+</li>
+<li>实例机器翻译 [Nagao1980s]</li>
+<li>统计机器翻译 [Brown1993 Koehn2003 Chiang2005]<ul>
+<li>从双语平行语料中自动进行翻译规则的学习和应用<ul>
+<li>词对齐Word: 双语间同义语词符号的长度不一定相同、因而需要对齐<ul>
+<li>Easy一对一标记</li>
+<li>Grid矩阵标记</li>
+</ul>
+</li>
+<li>再辅以词同现，即可用诸如EM等方法训练翻译模型P(f|e)</li>
+</ul>
+</li>
+<li>SMT系统: 例从法语到英语<ul>
+<li>从英法双语语料库和英语语料库独立训练一些统计特征形成模型A和B</li>
+<li>输入法语文本通过A变成破碎的英语文本  // Translation Model: P(f|e)</li>
+<li>再通过B变成英语文本                 // Language Model: P(e)</li>
+<li>有噪信道模型串联这两步              // Decoding Algorithm: argmax[e] P(f|e) * P(e)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>神经网络机器翻译 [Cho2014 Bahdanau2015]<ul>
+<li>利用神经网络实现自然语言的映射</li>
+<li>利用递归神经网络实现源语言的编码和目标语言的解码<ul>
+<li>优点: 适合处理变长线性序列 and 理论上能够利用无限长的历史信息</li>
+<li>缺点: 梯度消失 or 梯度爆炸 (解决: 长短时记忆LSTM)</li>
+</ul>
+</li>
+<li>基于注意力的神经机器翻译<ul>
+<li>利用注意力机制动态计算源语言端相关上下文</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="情感分析"><a href="#情感分析" class="headerlink" title="情感分析"></a>情感分析</h2><p>相关近义术语: 情感分类(sentiment classification)、极性分类(polarity classification)、情感计算(affective computing)、倾向性分析、意见挖掘、情绪分析、立场分析、观点抽取、观点摘要、舆情分析、口碑分析<br>广义情感分析: 立场分析(Stance classification)、情绪分类(Emotion classification)、情绪原因抽取(Emotion cause extraction)<br>情感分析的特殊问题: 情感极性转移 and 情感领域适应  </p>
+<p>情感分析任务粒度: </p>
+<ul>
+<li>文档级: 需要概括处理</li>
+<li>句子级: 单一话题</li>
+<li>词语级: 形容词的褒贬、名词实物的评价 (eg. 面包 -&gt; 褒, 真理 -&gt; 贬)</li>
+<li>属性级: 被评论对象的属性 (eg. 外观 -&gt; 好, 耐用性 -&gt; 差, 续航 -&gt; 一般)</li>
+</ul>
+<p>文档/句子级情感分析:</p>
+<ul>
+<li>基于词典和规则的无监督<ul>
+<li>PMI-IR [Turney2002]</li>
+<li>通过对文本中所有短语的情感倾向性累加，根据正负判断文档的情感极性</li>
+</ul>
+</li>
+<li>基于传统机器学习<ul>
+<li>[Pang2002]等等等</li>
+<li>特征工程: 位置信息, 词性信息, 词序及其组合信息, 高阶n元语法, 句法结构特征</li>
+<li>特征权重: TF, TF-IDF, 布尔权重</li>
+</ul>
+</li>
+<li>基于卷积神经网络<ul>
+<li>[Kim2014] [Kalchbrenneret2014] [Zhang2015]</li>
+<li>数据: 词向量作卷积，得到抽象文本</li>
+</ul>
+</li>
+<li>基于递归神经网络的情感分类方法<ul>
+<li>[Socheret2011-2013]</li>
+<li>数据: 句法树库treebank</li>
+</ul>
+</li>
+<li>基于循环神经网络<ul>
+<li>[Shirani-Mehr2014] [Tai2015]</li>
+<li>数据: 词向量 + 注意力机制 -&gt; 词权重</li>
+</ul>
+</li>
+<li>基于层次编码<ul>
+<li>[Tang2015] [Yang2016]</li>
+<li>按照”词-句子-文档”层次化编码</li>
+</ul>
+</li>
+<li>基于层次用户和商品注意力<ul>
+<li>[Wu2018]</li>
+<li>层次编码 + 用户注意力以及商品注意力机制</li>
+</ul>
+</li>
+</ul>
+<p>词语级情感分析:</p>
+<ul>
+<li>基于知识库<ul>
+<li>[Hu,Liu2004] [Blair-Goldensohnet2008]</li>
+<li>思想: 起手一个基本的褒贬种子词集，然后用同近义词、反义词词典、词距离来扩展</li>
+</ul>
+</li>
+<li>基于语料库<ul>
+<li>[Hatzivassiloglouand-McKeown1997] [Wang,Xia2015]</li>
+<li>思想: 分析同现关系(相似模式出现的词情感相似)、联系关系(转折、递进、并列)</li>
+</ul>
+</li>
+<li>基于表示学习<ul>
+<li>[Tang2014] [Vo,Zhang2016] [Wang,Xia2017]</li>
+<li>思想: 通过文档级的情感分析结果作差运算得到词的情感强度</li>
+</ul>
+</li>
+</ul>
+<p>属性级情感分析: </p>
+<ul>
+<li><p>属性抽取方法</p>
+<ul>
+<li>基于传统机器学习</li>
+<li>基于深度学习</li>
+</ul>
+</li>
+<li><p>属性情感分类方法</p>
+<ul>
+<li>基于词典和规则</li>
+<li>基于传统机器学习</li>
+<li>基于深度学习</li>
+</ul>
+</li>
+</ul>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script><script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+      
+    </div><!-- .entry-content -->
+    
+    <aside class="comments-link" style="float: right">
+      <a href="javascript:void(0);" data-url="https://kahsolt.github.io/writings/natural-language-process/" data-id="ck4lktc1e000rywoxn6pk0g3e" 
+         class="leave-reply bdsharebuttonbox" data-cmd="more">[分享]
+      </a>
+      
+    </aside><!-- .comments-link -->
+
+    <footer class="entry-meta">
+      <a href="/writings/natural-language-process/">
+  <time datetime="2019-12-25T00:59:46.000Z" class="entry-date">
+    2019-12-25
+  </time>
+</a>
+      
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/神谕机/">神谕机</a>
+  </div>
+
+      
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nlp/">NLP</a></li></ul>
+
+    </footer>
+</article>
+
+
+  
+  <nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+    
+      <span class="nav-next">
+        <a href="/writings/hadoop-technology-stack/" rel="next">
+          Mapreduce大数据处理-笔记 
+          <span class="meta-nav">→</span>
+        </a>
+      </span>
+    
+  </nav><!-- .nav-single -->
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search">
+  <h3 class="widget-title">探しのみ</h3>
+  <div class="widget-content">
+    <form role="search" method="get" accept-charset="utf-8" target="_blank"
+          id="searchform" class="searchform" action="//www.baidu.com/s">
+        <div>
+            <input type="text" value="" name="wd" id="wd" />
+            <input type="submit" id="searchsubmit" value="検索" />
+        </div>
+    </form>
+  </div>
+</aside>
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">風音</h3>
+    <p style="text-align: center">孤独ノ隠レンボ (鏡音レン/150P)</p>
+    <div class="widget-content">
+      <audio src="https://link.hhtjim.com/163/512489312.mp3" controls="controls">
+        都9102年了您的浏览器还不支持audio标签??!
+      </audio>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">瞬時記憶</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/writings/natural-language-process/">自然语言处理-笔记</a>
+          </li>
+        
+          <li>
+            <a href="/writings/hadoop-technology-stack/">Mapreduce大数据处理-笔记</a>
+          </li>
+        
+          <li>
+            <a href="/writings/program-formal-semantics/">计算机程序形式语义-笔记</a>
+          </li>
+        
+          <li>
+            <a href="/writings/computational-complexity/">计算复杂性-笔记</a>
+          </li>
+        
+          <li>
+            <a href="/writings/automata/">自动机理论-笔记</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">猫論</h3>
+    <div class="widget-content">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/巴别塔/">巴别塔</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/砂时计/">砂时计</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/神谕机/">神谕机</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解命题/">解命题</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">格価値</h3>
+    <div class="widget-content">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/hadoop技术栈/">Hadoop技术栈</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nlp/">NLP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/代数结构/">代数结构</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/日语/">日语</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/示例代码/">示例代码</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算模型/">计算模型</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算理论/">计算理论</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/语法笔记/">语法笔记</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/量子计算/">量子计算</a><span class="tag-list-count">2</span></li></ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">格価クラウド</h3>
+    <div class="widget-content tagcloud">
+      <a href="/tags/hadoop技术栈/" style="font-size: 10px;">Hadoop技术栈</a> <a href="/tags/nlp/" style="font-size: 10px;">NLP</a> <a href="/tags/代数结构/" style="font-size: 10px;">代数结构</a> <a href="/tags/日语/" style="font-size: 10px;">日语</a> <a href="/tags/示例代码/" style="font-size: 10px;">示例代码</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/计算模型/" style="font-size: 20px;">计算模型</a> <a href="/tags/计算理论/" style="font-size: 15px;">计算理论</a> <a href="/tags/语法笔记/" style="font-size: 10px;">语法笔记</a> <a href="/tags/量子计算/" style="font-size: 15px;">量子计算</a>
+    </div>
+  </aside>
+
+  
+</div>
+    </div>
+    <footer id="colophon" role="contentinfo">
+    <p>&copy; 2019 アルミット
+        All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <!-- baidu webmaster push -->
+<script src='//push.zhanzhang.baidu.com/push.js'></script>
+
+
+
+<script>
+  window._bd_share_config = {
+    "common" : {"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},
+    "share": {}
+  };
+  with (document) 0 [
+    (getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/js/share.js'
+  ];
+  </script>
+
+<!-- JQuery -->
+<script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+
+<!-- FancyBox : JQuery -->
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/navigation.js"></script>
+
+<!-- 浏览器搞笑标题 -->
+<script src="/js/FunnyTitle.js"></script>
+<!-- 单击显示文字 -->
+<script src="/js/click_show_text.js"></script>
+<!-- 背景移动线条 -->
+<script src="https://cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+<!-- 看板娘 : JQuery -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css">
+<script src='/assets/live2d-widget/autoload.js'></script>
+
+  </div>
+</body>
+</html>

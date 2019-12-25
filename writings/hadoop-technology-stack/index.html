@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+    <meta name="description" content="我々は皆真理の名前を忘れだから……">
+  
+
+  
+    <meta name="keywords" content="blog,ACG,技术博客,计算机,二次元">
+  
+  
+  
+  
+  
+  
+  <title> Mapreduce大数据处理-笔记 |  虚仮威し全てを。</title>
+  
+  <meta name="description" content="前言 这是Mapreduce大数据处理的课程笔记，推荐读物是: 文档、百度、CSDN  大数据特点5V: Volume规模，Variety多样性，Velocity时效性，Veracity准确性，Value价值 大数据研究基本途径: 算法优化、并行化、近似算法(采样、降低尺度) 存储如何超越SQL: 从面向Data Size到Data Connectness，依次是Disk-based Key-va">
+<meta name="keywords" content="计算模型,Hadoop技术栈">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mapreduce大数据处理-笔记">
+<meta property="og:url" content="https://kahsolt.github.io/writings/hadoop-technology-stack/index.html">
+<meta property="og:site_name" content="虚仮威し全てを。">
+<meta property="og:description" content="前言 这是Mapreduce大数据处理的课程笔记，推荐读物是: 文档、百度、CSDN  大数据特点5V: Volume规模，Variety多样性，Velocity时效性，Veracity准确性，Value价值 大数据研究基本途径: 算法优化、并行化、近似算法(采样、降低尺度) 存储如何超越SQL: 从面向Data Size到Data Connectness，依次是Disk-based Key-va">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-12-23T16:00:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Mapreduce大数据处理-笔记">
+<meta name="twitter:description" content="前言 这是Mapreduce大数据处理的课程笔记，推荐读物是: 文档、百度、CSDN  大数据特点5V: Volume规模，Variety多样性，Velocity时效性，Veracity准确性，Value价值 大数据研究基本途径: 算法优化、并行化、近似算法(采样、降低尺度) 存储如何超越SQL: 从面向Data Size到Data Connectness，依次是Disk-based Key-va">
+  
+  
+    <link rel="icon" href="/assets/img/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head></html>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="bg"></div>
+  <div id="page" class="hfeed site">
+    <header id="masthead" class="site-header" role="banner">
+  <hgroup>
+    <h1 class="site-title">
+      <a href="/" title="虚仮威し全てを。" rel="home">虚仮威し全てを。</a>
+    </h1>
+    
+      <h2 class="site-description">
+        <a href="/" id="subtitle">——若し雨が降ったら</a>
+      </h2>
+    
+  </hgroup>
+
+  <nav id="site-navigation" class="main-navigation" role="navigation">
+    <div class="menu-main-container">
+      <ul id="menu-main" class="nav-menu">
+      
+        <li class="menu-item menu-item-type-post_type menu-item-object-page">
+          <a href="/">例えば、</a>
+        </li>
+      
+        <li class="menu-item menu-item-type-post_type menu-item-object-page">
+          <a href="/kokoro">愛を叫けたら</a>
+        </li>
+      
+        <li class="menu-item menu-item-type-post_type menu-item-object-page">
+          <a href="/vhaktyr">隠り世界論</a>
+        </li>
+      
+        <li class="menu-item menu-item-type-post_type menu-item-object-page">
+          <a href="/kotoba">道断</a>
+        </li>
+      
+        <li class="menu-item menu-item-type-post_type menu-item-object-page">
+          <a href="/archives">記憶の砂数</a>
+        </li>
+      
+        <li class="menu-item menu-item-type-post_type menu-item-object-page">
+          <a href="/whoami">アルミットは。</a>
+        </li>
+      
+      </ul>
+    </div>
+  </nav>
+</header>
+
+    <div id="main" class="wrapper">
+      <div id="primary" class="site-content">
+        <div id="content" role="main">
+          <article id="post-hadoop-technology-stack" class="post-hadoop-technology-stack post type-post status-publish format-standard hentry">
+    <!---->
+
+    <header class="entry-header">
+      
+        
+  
+    <h1 class="entry-title article-title">Mapreduce大数据处理-笔记</h1>
+  
+
+
+      
+    </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <div class=".article-gallery" <p=""><br><p></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这是<strong>Mapreduce大数据处理</strong>的课程笔记，推荐读物是: 文档、百度、CSDN</p>
+<p>大数据特点5V: Volume规模，Variety多样性，Velocity时效性，Veracity准确性，Value价值<br>大数据研究基本途径: 算法优化、并行化、近似算法(采样、降低尺度)<br>存储如何超越SQL: 从面向Data Size到Data Connectness，依次是Disk-based Key-value Store, Column Store, Document Store, Graph DB  </p>
+<p>经验主义: [Banko, Brill 2001] 某个NLP领域的对比实验，随着训练数据的增长，不同算法的分类精度趋于相同，甚至”愚蠢的算法”最终效果好于某些特定的复杂算法——数据比算法更要紧</p>
+<h1 id="MapReduce"><a href="#MapReduce" class="headerlink" title="MapReduce"></a>MapReduce</h1><p>MapReduce是一个:</p>
+<ul>
+<li>基于集群的高性能并行计算平台(Cluster Infrastructure): 指Hadoop的基础系统封装，例如其daemon进程(文件系统抽象hdfs，进程抽象Job)</li>
+<li>并行程序开发与运行框架(Software Framework): 指例如编译时的mapreduce等编程框架和库函数包、运行时的任务分配通信容错等管理</li>
+<li>并行程序设计模型与方法(Programming Model &amp; Methodology): 指函数式编程中map-reduce数据流操作的思想和计算模型</li>
+</ul>
+<p>Map和Reduce的抽象描述: </p>
+<ul>
+<li>map: (k1, v1) -&gt; [(k2, v2)]</li>
+<li>reduce: (k2, [v2]) -&gt; [(k3, v3)]  // 已按k2分组</li>
+</ul>
+<p>基于Map和Reduce的并行计算模型:</p>
+<ol>
+<li>源数据分片存储</li>
+<li>每个输入分片产生一个map任务</li>
+<li>中间结果进行<strong>可选</strong>的combine</li>
+<li>中间结果经过同步障，聚合与排序</li>
+<li>中间结果中每个不同的key产生一个reduce任务</li>
+<li>每个reduce任务产生一个输出分片</li>
+</ol>
+<p>Hadoop MapReduce提供一个统一的计算框架，可完成: </p>
+<ul>
+<li>数据的分布存储和划分: 分布式HDFS，数据/代码互定位、就近原则</li>
+<li>计算任务的划分和调度: 每个Job划分为多个Tasks，每个Job执行3份取最快者</li>
+<li>处理数据与计算任务的同步: 顺序处理数据、避免随机访问，同步障</li>
+<li>结果数据的收集整理(sorting, combining, partitioning)</li>
+<li>系统通信、负载平衡、计算性能优化处理</li>
+<li>处理系统节点出错检测和失效恢复</li>
+</ul>
+<p>Hadoop MapReduce构架、工作原理及特性: </p>
+<ul>
+<li>节点拓扑: 主从模式，一个负责调度的主节点master，和若干个工作节点worker</li>
+<li>失效处理<ul>
+<li>主节点失效: 主节点会周期性地设置<strong>检查点</strong>，因此主节点若挂了就<strong>重启</strong>，重启后会自动检查整个计算  作业的执行情况，一旦有某些任务失效、可以从最近有效的检查点开始重新执行</li>
+<li>工作节点失效: 主节点会周期性地给工作节点发送心跳检测，如果工作节点没有回应、则认为该工作节点失效，  主节点将终止该工作节点的任务并把失效的任务重新调度到其它工作节点上<strong>重新执行</strong></li>
+</ul>
+</li>
+<li>带宽优化: Map产生的数据量太大 =&gt; Map端可选的Combiner</li>
+<li>计算优化: Reduce必须等所有Map完成，因此若有Map节点很慢 =&gt; 多个冗余Map任务，取最快完成者的结果</li>
+<li>数据相关性: Reduce要从多个Map那里拉数据，避免全局排序 =&gt; 在同步障处，引入分区机制Partitioner、使得Reduce分块有序</li>
+</ul>
+<p>Hadoop MapReduce节点架构: </p>
+<ul>
+<li>逻辑视角<ul>
+<li>HDFS<ul>
+<li>NameNode/MasterServer</li>
+<li>DataNode/ChunkServer</li>
+</ul>
+</li>
+<li>MapReduce<ul>
+<li>JobTracker/Master</li>
+<li>TaskTracker/Worker</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>物理视角<ul>
+<li>Master: NameNode + JobTracker</li>
+<li>Worker: DataNode + TaskTracker</li>
+</ul>
+</li>
+</ul>
+<p>Worker Node详细工作过程: </p>
+<ol start="0">
+<li>收到一个jar包(任务Job)</li>
+<li>从HDFS取数据分片，每个分片产生一个Map任务<strong>进程</strong>、读取器按给定输入格式不断产生输入键值对</li>
+<li>map函数不断地拿到输入(k, v)，执行用户代码从而产生输出[(k, v)]</li>
+<li>可选地用combine函数整理[(k, v)]成[(k, [v])]</li>
+<li>partioner将本地结果分区</li>
+<li>与其他节点<strong>通信</strong>，拉取自己的Reduce任务所涉及的分区，拉取时即归并排序</li>
+<li>产生一个Reduce任务进程，reduce函数不断拿到每个key对应的中间结果[(k, [v])]，执行用户代码而产生输出[(k ,v)]</li>
+<li>打印器按给定输出格式不断将输出键值对写入HDFS</li>
+</ol>
+<p>MapReduce任务的主要组件: </p>
+<figure class="highlight"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[InputSplit]</span></span><br><span class="line">  一个分片的数据，默认大小64MB</span><br><span class="line"></span><br><span class="line"><span class="section">[RecordReader]</span></span><br><span class="line">  LineRecordReader: 每次读取一行</span><br><span class="line"></span><br><span class="line"><span class="section">[InputFormat]</span></span><br><span class="line">  TextInputFormat: line -&gt; (byte_offset, line_contents)</span><br><span class="line">  KeyValueTextInputFormat: line -&gt; (string_until_first_tab, rest_of_the_line)</span><br><span class="line"></span><br><span class="line"><span class="section">[Mapper]</span></span><br><span class="line">  每个InputSplit产生一个Mapper对象以处理它，这是个Java进程</span><br><span class="line">  执行用户定义的map函数</span><br><span class="line"></span><br><span class="line"><span class="section">[Combiner]</span></span><br><span class="line">  是一个Reducer对象、也是个Java进程，满足一定的条件才能够执行(**程序员不可控**)</span><br><span class="line">  执行用户定义的reduce函数(可选)</span><br><span class="line"></span><br><span class="line"><span class="section">[Partitioner]</span></span><br><span class="line">  将每个Mapper的结果数据整理分区，传到相应的Reducer所在逻辑节点上(实际是被动地等着拉)</span><br><span class="line">  执行用户定义的partition函数(可选)</span><br><span class="line"></span><br><span class="line"><span class="section">[Shuffle/Sort]</span></span><br><span class="line">  Reducer拉的时候会归并排序</span><br><span class="line"></span><br><span class="line"><span class="section">[Reducer]</span></span><br><span class="line">  是一个Reducer对象、也是个Java进程</span><br><span class="line">  执行用户定义的reduce函数</span><br><span class="line"></span><br><span class="line"><span class="section">[RecordWriter]</span></span><br><span class="line">  LineRecordWriter: 每次写一行，以"%s\t%s" % (k, v)的形式</span><br><span class="line"></span><br><span class="line"><span class="section">[OutputFormat]</span></span><br><span class="line">  TextOutputFormat: (k, v) -&gt; "%s\t%s\n" % (k, v)</span><br><span class="line">  SequenceFileOutputFormat: ???</span><br><span class="line">  NullOutputFormat: 丢弃输出</span><br><span class="line"></span><br><span class="line"><span class="section">[OutputFile]</span></span><br><span class="line">  每个Reducer产生一个输出文件</span><br></pre></td></tr></tbody></table></figure>
+<h1 id="HDFS"><a href="#HDFS" class="headerlink" title="HDFS"></a>HDFS</h1><p>是模仿分布式文件系统 Google GFS 的开源实现</p>
+<p>HDFS基本特征: </p>
+<ul>
+<li>对<strong>顺序读</strong>进行了优化，对于随机的访问负载较高</li>
+<li>一次写入，多次读取；不支持数据更新，但允许在文件末尾追加</li>
+<li>数据<strong>不进行</strong>本地缓存</li>
+<li>基于<strong>块</strong>的文件存储，默认块大小64MB<ul>
+<li>减少元数据</li>
+<li>有利于顺序读写(在磁盘上数据顺序存放)</li>
+</ul>
+</li>
+<li>多副本、以块为单位<strong>随机选择</strong>存储节点，默认副本数是3</li>
+</ul>
+<p>访问HDFS: </p>
+<ol start="0">
+<li>Client向NameNode提供文件名或数据块号</li>
+<li>NameNode给出(数据块号, 数据块所在DataNode)</li>
+<li>Client拿着数据块号向DataNode索要文件分片</li>
+</ol>
+<p>HDFS可靠性与出错恢复: </p>
+<ul>
+<li>DataNode健康监控: 若心跳失败则寻找新的节点替代，将失效节点数据重新分布</li>
+<li>集群负载均衡: 听取DataNode报告，合理安排</li>
+<li>数据一致性: 校验和</li>
+<li>主节点元数据失效<ul>
+<li>Multiple FsImage and EditLog</li>
+<li>Checkpoint</li>
+</ul>
+</li>
+</ul>
+<p>HDFS的初始化和使用: </p>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">[命令行接口]</span><br><span class="line"><span class="meta">$</span><span class="bash"> hdfs namenode -format                 <span class="comment"># 先格式化</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> start-dfs.sh                          <span class="comment"># 再启动</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hdfs dfs -mkdir -p /user/&lt;username&gt;   <span class="comment"># 这是hdfs上用户的家目录</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hdfs dfs -ls                          <span class="comment"># 啥都没有</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hdfs dfs -put data.txt</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hdfs dfs -mv data.txt data            <span class="comment"># HDFS上的移动</span></span></span><br><span class="line">...</span><br><span class="line"><span class="meta">$</span><span class="bash"> hdfs dfs -dus ~</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hdfs dfs -cat result/part-xxxxxxx</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hdfs dfs -tail result/part-xxxxxxx    <span class="comment"># 最后1KB</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hdfs dfs -get result/part-xxxxxxx</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hdfs dfs -getmerge result             <span class="comment"># 合并目标目录下的所有文件，通常就是那些`part-xxxxxxx`</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hdfs dfs -rm -r result</span></span><br><span class="line"></span><br><span class="line">[Java API]</span><br><span class="line">Configuration conf = new Configuration();</span><br><span class="line">FileSystem hdfs = FileSystem.get(conf);    // 获得HDFS句柄</span><br><span class="line">hdfs.create()</span><br><span class="line">    .open()</span><br><span class="line">    .delete()</span><br><span class="line">    .getFileStatus()</span><br><span class="line">    .listStatus()</span><br><span class="line">FSDataInputStream file = ...;              // 反正整一个文件上手</span><br><span class="line">file.read()</span><br><span class="line">    .write()</span><br><span class="line">    .close()</span><br></pre></td></tr></tbody></table></figure>
+<p>HDFS Admin管理: </p>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">hdfs admin --report</span><br><span class="line">hdfs admin -metasave meta.txt</span><br><span class="line">hdfs admin --safemode enter/leave/get/wait</span><br><span class="line">hdfs admin --upgrage/--rollback</span><br><span class="line"></span><br><span class="line">start-balancer.sh -threshold 5   # 开始监视负载均衡</span><br><span class="line">stop-balancer.sh                 # 随时可以停止</span><br></pre></td></tr></tbody></table></figure>
+<h1 id="MapReduce-程序设计"><a href="#MapReduce-程序设计" class="headerlink" title="MapReduce 程序设计"></a>MapReduce 程序设计</h1><p>*打包成jar后，用诸如<code>$ hadoop jar wordcount.jar in out</code>向Hadoop提交MR任务</p>
+<p>MR适合的算法: 全局数据相关性小、适合分块并行</p>
+<ul>
+<li>基本算法<ul>
+<li>排序sort，文本匹配grep</li>
+<li>关系代数操作，矩阵乘法</li>
+<li>词频统计wc，词频分析TF-IDF，单词同现关系分析</li>
+</ul>
+</li>
+<li>复杂应用<ul>
+<li>Web搜索: 爬虫、倒排索引、PageRank、搜索算法</li>
+<li>日志分析: 用户行为特征建模、广告定投、推荐系统</li>
+<li>图论算法: 并行BFS、最小生成树MST、子树搜索、PageRank、垃圾邮件链接分析</li>
+<li>机器学习，聚类、分类，数据挖掘，统计机器翻译</li>
+<li>数据/文本统计分析，最大期望EM统计模型，隐马尔科夫模型HMM</li>
+<li>相似性分析、生物信息处理</li>
+</ul>
+</li>
+</ul>
+<h2 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h2><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">map: (k, *)-&gt; (k, *)</span><br><span class="line">shuffle: TotalOrderPartitioner，设置reducer数量，则采样评估后自动分区(均分)</span><br><span class="line">sort: local sorting (default)</span><br><span class="line">reduce: (k, *)-&gt; (k, *)</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="单词同现分析"><a href="#单词同现分析" class="headerlink" title="单词同现分析"></a>单词同现分析</h2><p>单词同现矩阵 M[i][j] 记录单词 W[i] 和 W[j] 在给定语料库中按<strong>给定窗口</strong>中所同现的次数</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">map: (docid, doc) -&gt; ((w, u), 1) for w in doc for u in window(w)</span><br><span class="line">reduce: ((w, u), [c]) -&gt; ((w, u), sum([c]))</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="倒排索引InvertedIndex"><a href="#倒排索引InvertedIndex" class="headerlink" title="倒排索引InvertedIndex"></a>倒排索引InvertedIndex</h2><p>可以加入词频统计TF、逆文档频率IDF计算等荷载，但基本框架很简单</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">map: (docid, doc) -&gt; (w_docid, payload) for w in doc</span><br><span class="line">sort: split key to (w_docid) to (w, docid) and sort only by w  // shuffle stage trick</span><br><span class="line">reduce: (w_docid, [payload]) -&gt; (w, stat(docid, [payload]))           // stat函数做局部统计</span><br></pre></td></tr></tbody></table></figure>
+<h1 id="HBase-amp-Hive"><a href="#HBase-amp-Hive" class="headerlink" title="HBase &amp; Hive"></a>HBase &amp; Hive</h1><p>关系数据库的理论局限性:</p>
+<ul>
+<li>RDBMS坚持 ACID (原子/一致/隔离/持久) 中优先考虑一致，然后是原子<ul>
+<li>网络分片在分布式系统中不可避免</li>
+<li>系统扩展时性能和可靠性下降</li>
+</ul>
+</li>
+<li>并行数据库的扩展性: (经验定律) 当集群节点数每增加 4~16 台，每个节点的效率下降一半</li>
+<li>真实世界的数据不那么严格结构化</li>
+</ul>
+<p>HBase数据模型: 半结构化</p>
+<ul>
+<li>逻辑数据模型<ul>
+<li>分布式多维表，简单理解为SQL表的列可以在分出子列</li>
+<li>数据通过一个行关键字、一个列关键字、一个时间戳进行索引和查询定位<ul>
+<li>理解为多维映射 {RowKey: {ColumnFamily: {ColumnKey: Timestamp: Value}}}</li>
+<li>时间戳用来版本管理</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>物理存储格式<ul>
+<li>以<strong>列优先存储</strong>为稀疏矩阵，按逻辑模型中的行进行分割、存储为列族</li>
+<li>值为空的列不予存储</li>
+</ul>
+</li>
+</ul>
+<p>HBase的基本构架: </p>
+<ul>
+<li>节点拓扑: 主从模式，一个主服务器MasterServer，和若干个子表数据区服务器RegionServer；底层元数据存于HDFS中</li>
+<li>大表分解: 一个表Table分解为多个数据区Region、分布在多个RegionServer上，每个Region分解为多个存储块Store，每个Store分解为内存中的一个memStore(活跃数据缓冲区)和磁盘上的多个StoreFile(数据块)，每个StoreFile映射到HDFS上的一个分片HFile</li>
+<li>数据访问: 主服务器查根子表得到子表服务器，然后在子表服务器上先查memStore、若没有则再查StoreFile，每个StoreFile有类似B树的结构以快速查找，StoreFile将定时压缩(N个合一)</li>
+<li>数据更新: 向子表提交请求，先写入memStore、当数据量积累到一定大小后，才将其写入StoreFile</li>
+<li>子表分隔合并: 小的子表可以合并、过大的子表会被系统自动分割</li>
+<li>元数据子表: 三级索引结构 <code>根子表 -&gt; 用户表元数据表 -&gt; 用户表</code></li>
+</ul>
+<p>HBase的使用: </p>
+<figure class="highlight"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Student(ID, Descrption:[Name, Height], Courses:[Chinese, Math, Physics], Home:[Province])</span><br><span class="line"></span><br><span class="line">[hbase-shell]</span><br><span class="line">hbase&gt; CREATE 'Student', 'ID', 'Descrption', 'Courses', 'Home'    // 给出列族即可建立表</span><br><span class="line">hbase&gt; PUT 'Student', '1', 'Descrption:Name', 'Armit'             // 使用列必须前缀列族名，若列不存在则会自动创建</span><br><span class="line">hbase&gt; PUT 'Student', '1', 'Descrption:Height', '153'             // 每次都只能改一个单元格的值</span><br><span class="line">hbase&gt; PUT 'Student', '1', 'Courses:Chinese', '75'</span><br><span class="line">...</span><br><span class="line">hbase&gt; DESCRIBE 'Student'                         // 类似于 DESCRIBE &lt;table&gt;;</span><br><span class="line">hbase&gt; SCAN 'Student'                             // 类似于 SELECT * FROM &lt;table&gt;;</span><br><span class="line">hbase&gt; SCAN 'Student', {COLUMNS=&gt;'Courses:'}      // 类似于 SELECT Courses FROM &lt;table&gt;;</span><br></pre></td></tr></tbody></table></figure>
+<p>Hive的应用范围:</p>
+<ul>
+<li>数据仓库: 数据的存储以及查询，数据只读不更新</li>
+<li>日志分析: 用于优化系统、获知用户行为、获知数据的统计信息</li>
+<li>数据挖掘、商业智能信息处理: 智能决策相关</li>
+<li>文档索引: 制作索引、倒排表，或寻找关联信息</li>
+<li>即时查询、数据验证</li>
+</ul>
+<p>Hive的组成模块: </p>
+<ul>
+<li>Driver: 相当于内核，包括会话的处理、查询获取以及执行驱动</li>
+<li>Execution Engine: 在Driver驱动下执行具体的操作，比如MR任务执行、HDFS操作、元数据操作</li>
+<li>HiveQL: Hive的数据查询语言、类似SQL</li>
+<li>Compiler: 将HiveQL编译成中间表示、生成执行计划以及优化</li>
+<li>Metastore: 用以存储元数据</li>
+</ul>
+<p>Hive的数据模型: </p>
+<ul>
+<li>Tables: 类似SQL，列是有类型的、甚至可以是结构体类型如list/map</li>
+<li>Partition: 通过一定规则划分表，通常是日期</li>
+<li>Bucket: 在一定范围内的数据按照Hash进行划分(优化抽样和JOIN)</li>
+<li>*Hive数据存在HDFS上，形成目录树 <code>/home/hive/warehouse/&lt;table&gt;/&lt;partition&gt;/&lt;bucket&gt;</code></li>
+</ul>
+<p>Hive的使用: </p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">[hive-shell]</span><br><span class="line">hive&gt; SHOW tables;</span><br><span class="line">hive&gt; CREATE TABLE Shakespeare (freq INT, word STRING) </span><br><span class="line">  ROW FORMAT</span><br><span class="line">    DELIMITED FIELDS TERMINATED BY '\t' </span><br><span class="line">    STORED AS TEXTFILE;</span><br><span class="line">hive&gt; DESCRIBE Shakespeare;</span><br><span class="line">hive&gt; LOAD DATA INPATH "shakespeare_freq" INTO TABLE Shakespeare;</span><br><span class="line">hive&gt; SELECT * FROM Shakespeare LIMIT 10;</span><br><span class="line">hive&gt; SELECT * FROM Shakespeare WHERE freq &gt; 100 SORT BY freq ASC LIMIT 10;</span><br><span class="line"></span><br><span class="line">hive&gt; SELECT a.foo FROM invites a WHERE a.ds = '2008-08-15';</span><br><span class="line">hive&gt; INSERT OVERWRITE DIRECTORY '/tmp/hdfs_out'</span><br><span class="line">        <span class="keyword">SELECT</span> a.* <span class="keyword">FROM</span> invites a <span class="keyword">WHERE</span> a.ds = <span class="string">'2008-08-15'</span>;</span><br><span class="line">hive&gt; INSERT OVERWRITE LOCAL DIRECTORY '/tmp/local_out'</span><br><span class="line">        <span class="keyword">SELECT</span> a.* <span class="keyword">FROM</span> pokes a;</span><br><span class="line"></span><br><span class="line">hive&gt; INSERT OVERWRITE TABLE events</span><br><span class="line">        <span class="keyword">SELECT</span> a.bar, <span class="keyword">COUNT</span>(*) <span class="keyword">FROM</span> invites a</span><br><span class="line">        <span class="keyword">WHERE</span> a.foo &gt; <span class="number">0</span> <span class="keyword">GROUP</span> <span class="keyword">BY</span> a.bar;</span><br><span class="line">hive&gt; SELECT t1.bar, t1.foo, t2.foo</span><br><span class="line">        FROM pokes t1 JOIN invites t2</span><br><span class="line">          ON t1.bar = t2.bar;</span><br></pre></td></tr></tbody></table></figure>
+<h1 id="MapReduce-程序设计进阶"><a href="#MapReduce-程序设计进阶" class="headerlink" title="MapReduce 程序设计进阶"></a>MapReduce 程序设计进阶</h1><h2 id="高级特性支持"><a href="#高级特性支持" class="headerlink" title="高级特性支持"></a>高级特性支持</h2><p>复合键值对: </p>
+<ul>
+<li>将value的一部分移入key，并重写Partitioner，以节约部分存储、并实现自动排序</li>
+<li>可以考虑map不是发射一组键值对，而是将其编码为为一个HashMap的字符串表示，可以节约数据传送</li>
+</ul>
+<p>用户自定义数据类型: 实现WritableComparable接口</p>
+<ul>
+<li>write(DataOutput out)</li>
+<li>readFields(DataInput in)</li>
+<li>compareTo(T other)</li>
+</ul>
+<p>用户自定义输入输出格式: 用于解析输入分片、格式化输出结果</p>
+<p>用户自定义Partitioner和Combiner: </p>
+<ul>
+<li>定制Partitioner以改变Map中间结果发送到哪个Reduce节点的分区方式</li>
+<li>定制Combiner以在Map端局部reduce、减少数据发送量（注: 不一定被调用，<strong>不可控</strong></li>
+</ul>
+<p>迭代式MapReduce:  如PageRank，反复在同一组输入输出文件上执行同一个MR Job<br>组合式MapReduce: 多个MR Job按依赖关系组成DAG，然后JobContro会根据拓扑排序的顺序执行<br>链式前处理和后处理: ChainMapper、ChainReducer可以让一个Job有多个map和reduce节  </p>
+<p>多数据源连接: </p>
+<ul>
+<li>用DataJoin类实现Reduce端Join: 数据量大的情况</li>
+<li>用DistributedCache机制、直接复制文件实现Map端Join: 数据量小的情况</li>
+</ul>
+<p>全局参数传递: Configuration对象，用起来像个字典 get/setDateType()<br>全局数据文件的传递: </p>
+<ul>
+<li>Job类中: job.addCacheFile(URIuri)将一个文件放到DistributedCache中</li>
+<li>Mapper/Reducer的context对象中: context.getLocalCacheFiles() 获取DistributedCache中的文件</li>
+</ul>
+<p>划分多个输出文件集合: reduce之前会决定这一组数据写入哪个文件</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">SaveByCountryOutputFormat</span> <span class="keyword">extends</span> <span class="title">MultipleTextOutputFormat</span>&lt;<span class="title">NullWritable</span>, <span class="title">Text</span>&gt; </span>{</span><br><span class="line">  <span class="function"><span class="keyword">protected</span> String <span class="title">generateFileNameForKeyValue</span><span class="params">(NullWritable key, Text value, String filename)</span> </span>{</span><br><span class="line">    String[] arr = value.toString().split(<span class="string">","</span>, -<span class="number">1</span>);</span><br><span class="line">    String country = arr[<span class="number">4</span>].substring(<span class="number">1</span>,<span class="number">3</span>);</span><br><span class="line">    <span class="keyword">return</span> country + <span class="string">"/"</span> + filename;</span><br><span class="line">  }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">job.setOutputFormat(SaveByCountryOutputFormat.class);</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="PageRank"><a href="#PageRank" class="headerlink" title="PageRank"></a>PageRank</h2><p>PageRank 是一种在搜索引擎中根据网页之间相互的链接关系计算网页排名的技术，PR值越高说明该网页越受欢迎  </p>
+<p>基本设计思想: 被许多优质网页所链接的网页，多半也是优质网页<br>获得较高PR值条件: 有很多网页链接到它 or 有高质量的网页链接到它  </p>
+<p>计算RP的模型有两个，<strong>图论简化模型</strong>: </p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">互联网上的各个网页之间的链接关系看成一个有向图，对于任意网页 Pi 的PR值为</span><br><span class="line"></span><br><span class="line">R(Pi) = Σ[Pj∈Bi](R(Pj) / Lj)</span><br><span class="line"></span><br><span class="line">  Bi   所有指向Pi的网页    (in)</span><br><span class="line">  Lj   Pi所指向的所有网页  (out)</span><br><span class="line"></span><br><span class="line">定义超链矩阵H: H[i][j] = if Pj ∈ Bi then 1/Lj else 0</span><br><span class="line">           R = [R(Pi)]</span><br><span class="line">则易得 R = HR，即 R 是 H 对应特征值1的特征向量</span><br><span class="line"></span><br><span class="line">该模型面临的问题: </span><br><span class="line">  Rank Leak: 没有出链的网页会使得所有节点的PR逐渐丢失至0</span><br><span class="line">  Rank Sink: 没有入链的网页自己的RP会一步丢失为0</span><br></pre></td></tr></tbody></table></figure>
+<p>或者 <strong>随机浏览模型</strong>: </p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">假定一个上网者从一个随机的网页开始浏览</span><br><span class="line">上网者不断点击当前网页中的任意链接开始下一次浏览</span><br><span class="line">但是，上网者最终厌倦了，开始了一个随机的网页</span><br><span class="line">随机上网者用以上方式访问一个新网页的概率就等于这个网页的 PR 值</span><br><span class="line">*这种随机模型更加接近于用户的浏览行为</span><br><span class="line"></span><br><span class="line">矩阵表示:  H' = d*H + (1-d)*[1/N]_(N×N)</span><br><span class="line">           R = H'R</span><br><span class="line">其中: </span><br><span class="line">    H' 代表转移矩阵</span><br><span class="line">      d      阻尼因子(通常d=0.85), 即按照超链进行浏览的概率</span><br><span class="line">      1-d    随机跳转一个新网页的概率</span><br><span class="line">    R 为列向量，代表 PageRank 值</span><br><span class="line">*由于等式 R=HR 满足马尔可夫链的性质，如果马尔可夫链收敛，则 R 存在唯一解</span><br></pre></td></tr></tbody></table></figure>
+<p>MapReduce实现PageRank，使用随机浏览模型: </p>
+<ol>
+<li>GraphBuilder，建立网页之间的超链接图<ul>
+<li>map: &lt;*, html&gt; -&gt; &lt;\url, (initPR, outLinks)&gt;     // 解析每个html的出链，并随机初始化initPR</li>
+<li>reduce: &lt;<em>, </em>&gt;                                   // 不做任何事</li>
+</ul>
+</li>
+<li>PageRankIter，迭代计算各个网页的 PageRank 值<ul>
+<li>map: &lt;\url, (curPR, outLinks)&gt; -&gt; [&lt;\u, curPR/len(outLinks)&gt; for u in outLinks] and &lt;\url, outLinks&gt;</li>
+<li>reduce: &lt;\url, (newPR, outLinks)&gt;</li>
+<li>*终止条件: PR收敛、排名收敛、固定迭代次数</li>
+</ul>
+</li>
+<li>RankViewer，按PR值从大到小输出<ul>
+<li>map: &lt;\url, (curRP, outLinks)&gt; -&gt; &lt;\url, curRP&gt;  // 提取最后一次的newPR作为curRP</li>
+<li>reduce: &lt;<em>, </em>&gt;</li>
+</ul>
+</li>
+</ol>
+<h2 id="K-Means"><a href="#K-Means" class="headerlink" title="K-Means"></a>K-Means</h2><p>并行化K-Means思路: </p>
+<ul>
+<li>将所有的数据分布到不同的节点上，每个节点只对自己的数据进行计算</li>
+<li>每个 Map 节点能够读取<strong>上一次迭代</strong>生成的 cluster centers，以判断自己的各个数据点应该属于哪一个</li>
+<li>每个 Reduce 节点综合每个属于每个 cluster 的数据点，计算出新的 cluster centers</li>
+</ul>
+<p>需要全局共享的数据: </p>
+<ul>
+<li>当前的迭代计数</li>
+<li>K 个表示不同聚类中心的数据结构: (cluster_id, cluster_center_point, cluster_size)</li>
+</ul>
+<p>MapReduce程序流程(迭代多次直到收敛/指定次数): </p>
+<ul>
+<li>setup: 读取共享文件，获得 centers 数组</li>
+<li>map: &lt;*, point&gt; -&gt; &lt;\cluster_id, (p, 1)&gt;                     // 把p放到其最近中心的簇里</li>
+<li>combine: &lt;\cluster_id, [(p, 1)]&gt; -&gt; &lt;\cluster_id, (p’, n)&gt;   // n = len([(p, 1)]), p’ = avg([p])拟将是新的簇中心</li>
+<li>reduce: &lt;\cluster_id, [(p’, n)]&gt; -&gt; &lt;\cluster_id, (pm, n’)&gt;  // pm是新的簇中心，写入到全局共享的数据中</li>
+</ul>
+<h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><h3 id="kNN"><a href="#kNN" class="headerlink" title="kNN"></a>kNN</h3><p>MapReduce程序流程: </p>
+<ul>
+<li>idea: 简单的分块分治，计算每个测试数据的kNN的分类、取最多投票</li>
+<li>job: 将训练数据文件放在DistributedCache中供每个节点共享访问</li>
+<li>map: &lt;*, (X, y)&gt; -&gt; &lt;\X, y’&gt;      // 对每个测试数据计算其kNN，并确定预测值y’</li>
+<li>reduce: &lt;<em>, </em>&gt;</li>
+</ul>
+<h3 id="Naive-Bayes"><a href="#Naive-Bayes" class="headerlink" title="Naive-Bayes"></a>Naive-Bayes</h3><p>MapReduce程序流程: </p>
+<ul>
+<li>idea: 分治、滤波器模型、两阶段串联，计算每个测试数据落入每个分类的概率、取最大者</li>
+<li>map: &lt;*, (X, y)&gt; -&gt; &lt;\y, 1&gt; and [&lt;(y, x.name, x.val), 1)&gt; for x in X]</li>
+<li>reduce: <ul>
+<li>&lt;\y, 1&gt; -&gt; &lt;\y, n&gt;                                   // 累加得到分类的频数</li>
+<li>&lt;(y, x.name, x.val), 1)&gt; -&gt; &lt;(y, x.name, x.val), n&gt;  // 累加得到属性频数</li>
+</ul>
+</li>
+<li>job: 将上一步所得频数数据放在DistributedCache中供每个节点共享访问</li>
+<li>map: &lt;*, (X, y)&gt; -&gt; &lt;\X, y’&gt;    // 对每条测试数据计算其每个滤波器的概率，以最大者作为预测值y’</li>
+<li>reduce: &lt;<em>, </em>&gt;</li>
+</ul>
+<h3 id="SVM"><a href="#SVM" class="headerlink" title="SVM"></a>SVM</h3><p>MapReduce程序流程: </p>
+<ul>
+<li>idea: 针对多分类问题，并行地为每个分类训练一个二分类器</li>
+<li>map: &lt;*, (X, y)&gt; -&gt; &lt;\y, (true/false, X)&gt;       // 对每条训练数据，产生特征向量</li>
+<li>reduce: &lt;\y, [(true/false, X)]&gt; -&gt; &lt;\y, clf&gt;    // 训练模型</li>
+<li>setup: 所有的clf模型放入DistributedCache</li>
+<li>map: &lt;*, (id, X)&gt; -&gt; [&lt;\id, (y, score)&gt; for x in X] // 对每条测试数据，在每个clf模型上产生预测结果</li>
+<li>reduce: &lt;\id, [(y, score)]&gt; -&gt; &lt;\id, y&gt;         // 选择得分最大者</li>
+</ul>
+<h2 id="Apriori-amp-SON-amp-PSON"><a href="#Apriori-amp-SON-amp-PSON" class="headerlink" title="Apriori &amp; SON &amp; PSON"></a>Apriori &amp; SON &amp; PSON</h2><p>先验规则: 全局频繁必然局部频繁、局部非平凡必然全局非频繁<br>基本思想: 设置候选项集从1-项集开始、删去非频繁项集，余下的两两交叉取并集得到新的候选项集，重复直到候选项集为空，择上一轮中的结果即为极大频繁项集  </p>
+<h1 id="Spark"><a href="#Spark" class="headerlink" title="Spark"></a>Spark</h1><p>Scala语言特性: </p>
+<ul>
+<li>var/val: 可变/不变引用</li>
+<li>class/object: 类/单例类</li>
+<li>方法与函数<ul>
+<li>方法: <code>def add(x: Int): Int = x + 1</code>，这是语法结构</li>
+<li>函数: <code>val add = (x: Int) =&gt; x + 1</code>，这是个对象</li>
+</ul>
+</li>
+<li>下划线符号作为通配符，常用于取代匿名函数的形参</li>
+</ul>
+<p>MapReduce的缺陷: </p>
+<ul>
+<li>设计为高吞吐批处理，因而高延迟、不实时</li>
+<li>Jobs之间数据共享要经过HDFS I/O，对迭代计算不友好</li>
+<li>内存使用不佳，JVM开进程消耗大量系统资源</li>
+<li>MR计算模型对图论计算、迭代计算的表达力不强</li>
+</ul>
+<p>Spark的口号: Speed速度、Ease of Use易用性、Generality广泛性、Runs Everywhere多处运行</p>
+<p>Spark的基本构架和技术特点:</p>
+<ul>
+<li>节点拓扑: 主从模式，一个主节点MasterNode，和若干个工作节点WorkerNode(可以有多组Worker + Executor)</li>
+<li>基于内存计算的弹性分布式数据集(RDD): Transformation/Action实现惰性计算</li>
+<li>灵活的计算流图(DAG): 记录RDD转变的世系关系，当RDD丢失时递归重计算父RDD，容错和鲁棒性更好</li>
+<li>多种计算模式: 查询分析，批处理，流式计算，迭代计算，图计算，内存计算</li>
+<li>事件驱动的调度方式: 采用事件驱动的Scala库类Akka来完成任务的启动，复用线程池以取代MapReduce进程或者线程开销</li>
+<li>*综上，是一种基于内存的迭代式分布式计算框架</li>
+</ul>
+<p>Spark的数据抽象: 弹性分布式数据集 Resilient Distributed Dataset (RDD)</p>
+<ul>
+<li>能横跨集群所有节点进行并行计算的分区元素集合</li>
+<li>可从 HDFS 中的文件中创建而来，或者从一个已有的 Scala 集合转换得到</li>
+<li>使用对应的 Transform/Action 等操作算子执行分布式计算</li>
+<li>基于 RDD 之间的依赖关系组成 <strong>世系</strong>(即计算谱图) + 重计算, 检查点 等机制来保证容错性</li>
+<li>只读、可分区，全部或部分可以缓存在内存中、以多次重用</li>
+<li>弹性是指内存不够时可以自动与磁盘进行交换</li>
+</ul>
+<p>RDD的容错实现: </p>
+<ul>
+<li>Lineage 世系/依赖: Lineage记录了计算图，而不需要存储太多实际的数据，就可以通过重计算完成数据的恢复，使得 Spark 具有高效的容错性</li>
+<li>CheckPoint 检查点: 对于 lineage 很长的 RDD 来说、通过 lineage 恢复耗时较长，因此在对包含宽依赖的长世系的 RDD 设置检查点操作非常有必要 (RDD的只读性使得checkpoint容易完成)</li>
+</ul>
+<p>RDD依赖关系: </p>
+<ul>
+<li>窄依赖: 父 RDD 中的一个 Partition 最多被子 RDD 中的一个 Partition 所依赖</li>
+<li>宽依赖: 父 RDD 中的一个 Partition 被子 RDD 中的多个 Partition 所依赖，比如有join/union</li>
+</ul>
+<p>RDD持久化: </p>
+<ul>
+<li>未序列化的 Java 对象，存于内存中</li>
+<li>序列化的数据，存于内存中 (适度压缩)</li>
+<li>磁盘存储</li>
+</ul>
+<p>Spark语法入门例子: </p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">lines = spark.textFile(<span class="string">"hdfs://.."</span>)           <span class="comment">// Base RDD</span></span><br><span class="line">errors = lines.filter(lambda s: s.startswith(<span class="string">"ERROR"</span>))  <span class="comment">// Transform</span></span><br><span class="line">messages = errors.map(lambda s: s.split(<span class="string">'\t'</span>))[<span class="number">2</span>])      <span class="comment">// Transform</span></span><br><span class="line">messages.cache                                <span class="comment">// cache it!</span></span><br><span class="line">messages.filter(lambda s: <span class="string">"foo"</span> in s.count)   <span class="comment">// Action</span></span><br><span class="line">messages.filter(lambda s: <span class="string">"bar"</span> in s.count)   <span class="comment">// Action</span></span><br></pre></td></tr></tbody></table></figure>
+<p>Spark程序结构和基本概念: </p>
+<ul>
+<li>主节点: <ul>
+<li>Application = 1 <em> Driver Program + n </em> Executor</li>
+<li>Driver Program: 执行用户代码的 main() 函数，并创建SparkContext</li>
+<li>Cluster Manager: 集群当中的资源调度服务选取，如standalone manager, Mesos, YARN</li>
+<li>Job: 由某个 RDD 的 多个Transformation算子 + 一个Action算子 生成或者提交的调度阶段，每执行一次Action操作就会提交一个Job</li>
+<li>SparkContext: spark集群逻辑上在用户程序中作为一个单例对象存在，它负责与主节点通信<ul>
+<li>创建 SparkConf 类的实例</li>
+<li>创建 SparkEnv 类的实例</li>
+<li>创建 TaskScheduler 和 DAGScheduler 类的实例</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>从节点: <ul>
+<li>Executor: 负责在子节点上执行 Spark 任务</li>
+<li>Stage/Taskset = n * Task，每个Action操作产生一个Final Stage、每个Shuffle操作会产生一个Shuffle Stage (Shuffle只在宽依赖时才发生)</li>
+<li>Task: 基本执行单元、在一个Executor上完成；作用的单位是Partition，针对同一个Stage会分发到不同的 Partition 上执行 (??)</li>
+</ul>
+</li>
+</ul>
+<p>Spark程序的执行过程: </p>
+<ol>
+<li>用户编写 的 Spark 程序提交到相应的 Spark 运行框架中</li>
+<li>Spark 创建 SparkContext 作为本次程序的运行环境</li>
+<li>SparkContext 连接相应的集群配置 Mesos/YARN 来确定程序的资源配置使用情况</li>
+<li>连接集群资源成功后， Spark 获取当前集群上存在 Executor 的节点，准备运行程序并且确定数据存储</li>
+<li>Spark分发程序代码到各个节点</li>
+<li>SparkContext 发送 Tasks 到各个运行节点来执行</li>
+</ol>
+<p>Spark编程示例: </p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">def <span class="title">main</span><span class="params">( args : Array[String])</span> </span>{</span><br><span class="line">  val conf = <span class="keyword">new</span> SparkConf.setAppName (<span class="string">"Spark Pi"</span>)</span><br><span class="line">  val sc = <span class="keyword">new</span> SparkContext(conf)</span><br><span class="line">  val fileRDD = sc.textFile(<span class="string">"hdfs://root/Log"</span>) <span class="comment">// RDD[String]</span></span><br><span class="line">  val filterRDD = fileRDD.filter(line =&gt; line.contains(<span class="string">"ERROR"</span>))</span><br><span class="line">  result = filterRDD.count</span><br><span class="line">  println(result)</span><br><span class="line">  sc.stop</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">[RDD的创建]</span><br><span class="line">sc.textFile(<span class="string">"..."</span>)           <span class="comment">// 从HDFS</span></span><br><span class="line">sc.parallelize(<span class="number">1</span> to <span class="number">100</span>, <span class="number">2</span>)  <span class="comment">// scala集合</span></span><br><span class="line">rdd.file.filter(...)         <span class="comment">// 从现有rdd上Transform</span></span><br><span class="line"></span><br><span class="line">[RDD的操作: Transform/Action]</span><br><span class="line">rdd.map</span><br><span class="line">   .flatMap</span><br><span class="line">   .filter</span><br><span class="line">   .sample</span><br><span class="line">   .union</span><br><span class="line">   .intersection</span><br><span class="line">   .distinct</span><br><span class="line">   .join</span><br><span class="line">   .cartesian</span><br><span class="line">   .groupByKey</span><br><span class="line">   .reduceByKey</span><br><span class="line">   .aggregateByKey</span><br><span class="line">   .sortByKey</span><br><span class="line">rdd.reduce</span><br><span class="line">   .foreach</span><br><span class="line">   .collect</span><br><span class="line">   .count</span><br><span class="line">   .countByKey        <span class="comment">// collect(key).distinct.count</span></span><br><span class="line">   .first             <span class="comment">// take(1)</span></span><br><span class="line">   .take</span><br><span class="line">   .takeSample        <span class="comment">// sample(n).take(n)</span></span><br><span class="line">   .saveAsTextFile/saveAsSequenceFile/saveAsObjectFile</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="wordcount"><a href="#wordcount" class="headerlink" title="wordcount"></a>wordcount</h2><figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">val file = spark.textFile(<span class="string">"hdfs://in"</span>)</span><br><span class="line">val counts = file.flatMap(<span class="function"><span class="params">line</span> =&gt;</span> line.split(<span class="string">" "</span>))</span><br><span class="line">                 .map(<span class="function"><span class="params">word</span> =&gt;</span> (word, <span class="number">1</span>))</span><br><span class="line">                 .reduceByKey(_ + _)</span><br><span class="line">counts.saveAsTextFile(<span class="string">"hdfs://out"</span>)</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="k-means"><a href="#k-means" class="headerlink" title="k-means"></a>k-means</h2><figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> spark.util.Vector</span><br><span class="line"></span><br><span class="line">val lines = sc.textFile(<span class="string">"..."</span>)</span><br><span class="line">val data = lines.map(<span class="function"><span class="params">s</span> =&gt;</span> s.split(<span class="string">" "</span>).map(_.toDouble)).cache</span><br><span class="line">val kPoints = data.takeSample(<span class="literal">false</span>, K, <span class="number">42</span>).map(<span class="function"><span class="params">s</span> =&gt;</span> Vector(s))</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (i &lt;- <span class="number">0</span> until <span class="number">100</span>) {</span><br><span class="line">  <span class="keyword">var</span> closest = data.map(<span class="function"><span class="params">p</span> =&gt;</span> (closestPoint(Vector(p), kPoints), (p, <span class="number">1</span>)))</span><br><span class="line">  <span class="keyword">var</span> pointStats = closest.reduceByKey { <span class="keyword">case</span> <span class="function">(<span class="params">(x1, y1</span>), (<span class="params">x2, y2</span>)) =&gt;</span> (x1 + x2, y1 + y2) }</span><br><span class="line">  <span class="keyword">var</span> newPoints = pointStats.map { pair =&gt; (pair._1, pair._2._1 / pair._2._2).collectAsMap }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">println(newPoints)</span><br></pre></td></tr></tbody></table></figure>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script><script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+      
+    </div><!-- .entry-content -->
+    
+    <aside class="comments-link" style="float: right">
+      <a href="javascript:void(0);" data-url="https://kahsolt.github.io/writings/hadoop-technology-stack/" data-id="ck4lktc17000nywoxenvwdh52" 
+         class="leave-reply bdsharebuttonbox" data-cmd="more">[分享]
+      </a>
+      
+    </aside><!-- .comments-link -->
+
+    <footer class="entry-meta">
+      <a href="/writings/hadoop-technology-stack/">
+  <time datetime="2019-12-24T08:24:25.000Z" class="entry-date">
+    2019-12-24
+  </time>
+</a>
+      
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/神谕机/">神谕机</a>
+  </div>
+
+      
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hadoop技术栈/">Hadoop技术栈</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算模型/">计算模型</a></li></ul>
+
+    </footer>
+</article>
+
+
+  
+  <nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+      <span class="nav-previous">
+        <a href="/writings/natural-language-process/" rel="prev">
+          <span class="meta-nav">←</span>
+          自然语言处理-笔记
+        </a>
+      </span>
+    
+    
+      <span class="nav-next">
+        <a href="/writings/program-formal-semantics/" rel="next">
+          计算机程序形式语义-笔记 
+          <span class="meta-nav">→</span>
+        </a>
+      </span>
+    
+  </nav><!-- .nav-single -->
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search">
+  <h3 class="widget-title">探しのみ</h3>
+  <div class="widget-content">
+    <form role="search" method="get" accept-charset="utf-8" target="_blank"
+          id="searchform" class="searchform" action="//www.baidu.com/s">
+        <div>
+            <input type="text" value="" name="wd" id="wd" />
+            <input type="submit" id="searchsubmit" value="検索" />
+        </div>
+    </form>
+  </div>
+</aside>
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">風音</h3>
+    <p style="text-align: center">孤独ノ隠レンボ (鏡音レン/150P)</p>
+    <div class="widget-content">
+      <audio src="https://link.hhtjim.com/163/512489312.mp3" controls="controls">
+        都9102年了您的浏览器还不支持audio标签??!
+      </audio>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">瞬時記憶</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/writings/natural-language-process/">自然语言处理-笔记</a>
+          </li>
+        
+          <li>
+            <a href="/writings/hadoop-technology-stack/">Mapreduce大数据处理-笔记</a>
+          </li>
+        
+          <li>
+            <a href="/writings/program-formal-semantics/">计算机程序形式语义-笔记</a>
+          </li>
+        
+          <li>
+            <a href="/writings/computational-complexity/">计算复杂性-笔记</a>
+          </li>
+        
+          <li>
+            <a href="/writings/automata/">自动机理论-笔记</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">猫論</h3>
+    <div class="widget-content">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/巴别塔/">巴别塔</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/砂时计/">砂时计</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/神谕机/">神谕机</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解命题/">解命题</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">格価値</h3>
+    <div class="widget-content">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/hadoop技术栈/">Hadoop技术栈</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nlp/">NLP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/代数结构/">代数结构</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/日语/">日语</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/示例代码/">示例代码</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算模型/">计算模型</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算理论/">计算理论</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/语法笔记/">语法笔记</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/量子计算/">量子计算</a><span class="tag-list-count">2</span></li></ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">格価クラウド</h3>
+    <div class="widget-content tagcloud">
+      <a href="/tags/hadoop技术栈/" style="font-size: 10px;">Hadoop技术栈</a> <a href="/tags/nlp/" style="font-size: 10px;">NLP</a> <a href="/tags/代数结构/" style="font-size: 10px;">代数结构</a> <a href="/tags/日语/" style="font-size: 10px;">日语</a> <a href="/tags/示例代码/" style="font-size: 10px;">示例代码</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/计算模型/" style="font-size: 20px;">计算模型</a> <a href="/tags/计算理论/" style="font-size: 15px;">计算理论</a> <a href="/tags/语法笔记/" style="font-size: 10px;">语法笔记</a> <a href="/tags/量子计算/" style="font-size: 15px;">量子计算</a>
+    </div>
+  </aside>
+
+  
+</div>
+    </div>
+    <footer id="colophon" role="contentinfo">
+    <p>&copy; 2019 アルミット
+        All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <!-- baidu webmaster push -->
+<script src='//push.zhanzhang.baidu.com/push.js'></script>
+
+
+
+<script>
+  window._bd_share_config = {
+    "common" : {"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},
+    "share": {}
+  };
+  with (document) 0 [
+    (getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/js/share.js'
+  ];
+  </script>
+
+<!-- JQuery -->
+<script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+
+<!-- FancyBox : JQuery -->
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/navigation.js"></script>
+
+<!-- 浏览器搞笑标题 -->
+<script src="/js/FunnyTitle.js"></script>
+<!-- 单击显示文字 -->
+<script src="/js/click_show_text.js"></script>
+<!-- 背景移动线条 -->
+<script src="https://cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+<!-- 看板娘 : JQuery -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css">
+<script src='/assets/live2d-widget/autoload.js'></script>
+
+  </div>
+</body>
+</html>

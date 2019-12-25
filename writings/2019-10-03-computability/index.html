@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   
-    <meta name="description" content="我们都忘了真理的名字……">
+    <meta name="description" content="我々は皆真理の名前を忘れだから……">
   
 
   
@@ -16,20 +16,20 @@
   
   
   
-  <title> 可计算性 |  虚仮威し全てを。</title>
+  <title> 可计算性入门 |  虚仮威し全てを。</title>
   
-  <meta name="description" content="从函数起步 早在小学时代我们就学会了加法，会在演草纸上化简形如114 + 514 = ?的算式以求得答案。 却要等到很久以后的某一天，才会恍然大悟——“原来加法运算就是个二元函数啊”——于是刷刷刷地写下一些相互等价的表述：   1. f(x, y) = x + y  2. Definition f (x, y : Nat) -&amp;gt; Nat := x + y.  3. add/2  数学老师教会">
-<meta name="keywords" content="计算理论,可计算性">
+  <meta name="description" content="从函数起步 早在小学时代我们就学会了加法，会在演草纸上化简形如114 + 514 = ?的算式以求得答案。 却要等到很久以后的某一天，才会恍然大悟——“原来加法运算就是个二元函数啊”——于是刷刷刷地写下一些相互等价的表述:    1. f(x, y) = x + y  2. Definition f (x, y : Nat) -&amp;gt; Nat := x + y.  3. add/2  数学老师教">
+<meta name="keywords" content="计算理论">
 <meta property="og:type" content="article">
-<meta property="og:title" content="可计算性">
+<meta property="og:title" content="可计算性入门">
 <meta property="og:url" content="https://kahsolt.github.io/writings/2019-10-03-computability/index.html">
 <meta property="og:site_name" content="虚仮威し全てを。">
-<meta property="og:description" content="从函数起步 早在小学时代我们就学会了加法，会在演草纸上化简形如114 + 514 = ?的算式以求得答案。 却要等到很久以后的某一天，才会恍然大悟——“原来加法运算就是个二元函数啊”——于是刷刷刷地写下一些相互等价的表述：   1. f(x, y) = x + y  2. Definition f (x, y : Nat) -&amp;gt; Nat := x + y.  3. add/2  数学老师教会">
+<meta property="og:description" content="从函数起步 早在小学时代我们就学会了加法，会在演草纸上化简形如114 + 514 = ?的算式以求得答案。 却要等到很久以后的某一天，才会恍然大悟——“原来加法运算就是个二元函数啊”——于是刷刷刷地写下一些相互等价的表述:    1. f(x, y) = x + y  2. Definition f (x, y : Nat) -&amp;gt; Nat := x + y.  3. add/2  数学老师教">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-11T15:08:11.287Z">
+<meta property="og:updated_time" content="2019-10-02T16:00:00.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="可计算性">
-<meta name="twitter:description" content="从函数起步 早在小学时代我们就学会了加法，会在演草纸上化简形如114 + 514 = ?的算式以求得答案。 却要等到很久以后的某一天，才会恍然大悟——“原来加法运算就是个二元函数啊”——于是刷刷刷地写下一些相互等价的表述：   1. f(x, y) = x + y  2. Definition f (x, y : Nat) -&amp;gt; Nat := x + y.  3. add/2  数学老师教会">
+<meta name="twitter:title" content="可计算性入门">
+<meta name="twitter:description" content="从函数起步 早在小学时代我们就学会了加法，会在演草纸上化简形如114 + 514 = ?的算式以求得答案。 却要等到很久以后的某一天，才会恍然大悟——“原来加法运算就是个二元函数啊”——于是刷刷刷地写下一些相互等价的表述:    1. f(x, y) = x + y  2. Definition f (x, y : Nat) -&amp;gt; Nat := x + y.  3. add/2  数学老师教">
   
   
     <link rel="icon" href="/assets/img/favicon.ico">
@@ -94,7 +94,7 @@
       
         
   
-    <h1 class="entry-title article-title">可计算性</h1>
+    <h1 class="entry-title article-title">可计算性入门</h1>
   
 
 
@@ -104,14 +104,14 @@
     <div class="entry-content">
       
         <div class=".article-gallery" <p=""><br><p></p>
-<h1 id="从函数起步"><a href="#从函数起步" class="headerlink" title="从函数起步"></a>从函数起步</h1><p>早在小学时代我们就学会了加法，会在演草纸上化简形如<code>114 + 514 = ?</code>的算式以求得答案。<br>却要等到很久以后的某一天，才会恍然大悟——“原来加法运算就是个二元函数啊”——于是刷刷刷地写下一些相互等价的表述：</p>
+<h1 id="从函数起步"><a href="#从函数起步" class="headerlink" title="从函数起步"></a>从函数起步</h1><p>早在小学时代我们就学会了加法，会在演草纸上化简形如<code>114 + 514 = ?</code>的算式以求得答案。<br>却要等到很久以后的某一天，才会恍然大悟——“原来加法运算就是个二元函数啊”——于是刷刷刷地写下一些相互等价的表述: </p>
 <ol>
 <li><code>f(x, y) = x + y</code></li>
 <li><code>Definition f (x, y : Nat) -&gt; Nat := x + y.</code></li>
 <li><code>add/2</code></li>
 </ol>
 <p>数学老师教会我们如何用第一种写法高效处理成堆的模拟卷；<br>某些从太古代幸存下来的编程语言则在数据类型约束上十分严格，正如在第二种写法中，要求进一步指明输入的参数、返回的结果都是来自然数集<code>Nat</code>的元素；<br>第三种写法是最抽象而危险的，它仅仅告诉我们这个函数的名字叫add、它接受两个参数，我们只能根据这两条岌岌可危的信息去揣测更多细节。</p>
-<p>让我们在这里回忆一下函数的三要素吧：</p>
+<p>让我们在这里回忆一下函数的三要素吧: </p>
 <ol>
 <li>定义域<code>D</code>，一个非空数集</li>
 <li>值域<code>R</code>，另一个非空数集</li>
@@ -120,29 +120,29 @@
 <p>由此确乎可见，写法二彰显了学究派锱铢必较的严格精神，而宛若草稿的第三种写法几乎完全没有给我们提供构成这个函数的任何一项有效信息——它只适合于速记——但我们仍然相信<strong>它是一个函数</strong>，可这又是什么意思呢？</p>
 <blockquote><p>函数是一个吃东西吐东西的黑箱子。</p>
 </blockquote>
-<p>也就是说我们相信，只要给这个<code>add</code>喂两个东西，作为等价交换原则的忠实信徒，它就一定会吐出些什么结果来。<br>这是一个随处可见的比喻，其实在说：非空数集上的映射即数的函变，函数的核心就在于那个决定把特定的某数变换成另一个特定的某数的法则。</p>
+<p>也就是说我们相信，只要给这个<code>add</code>喂两个东西，作为等价交换原则的忠实信徒，它就一定会吐出些什么结果来。<br>这是一个随处可见的比喻，其实在说: 非空数集上的映射即数的函变，函数的核心就在于那个决定把特定的某数变换成另一个特定的某数的法则。</p>
 <p>我们对做任意的加法都很有自信，而不仅仅局限于<code>114 + 514 = ?</code>。<br>这里显然指的是，我们<strong>能够</strong>对任意的合法数字x和y，求得函数<code>add/2</code>的返回值——只因为我们深谙加法运算的法则——即使结果非常大、写下来要花很长的时间；但我们凭空确信，那也一定是<strong>唯一确定的结果、有限可数的步骤、可计量的时间</strong>。</p>
-<p>——这个直觉式的信念被总结为这样一句话：<strong>函数<code>add/2</code>是可计算的。</strong><br>（需要稍加注意的是，“可计算性”这个词根本上仅仅是用来描述<strong>函数</strong>的，它是函数的一个属性。）</p>
-<p>难道还有不可计算的函数吗？<br>——很遗憾，有，大量的递归函数都是不可计算的，随手就是举一把栗子：</p>
+<p>——这个直觉式的信念被总结为这样一句话: <strong>函数<code>add/2</code>是可计算的。</strong><br>（需要稍加注意的是，“可计算性”这个词根本上仅仅是用来描述<strong>函数</strong>的，它是函数的一个属性。）</p>
+<p>难道还有不可计算的函数吗？<br>——很遗憾，有，大量的递归函数都是不可计算的，随手就是举一把栗子: </p>
 <ul>
 <li>f(x) = f(2 * x)</li>
 <li>g(x) = if x == 1 then 1 else if x % 2 == 0 then 1 + g(x / 2) else 1 + g(3 * x - 1)</li>
 <li>h(x) = if x == 1 then 1 else if x % 2 == 0 then 1 + h(x / 2) else 1 + h(3 * x + 1)</li>
 </ul>
 <p>第一个例子中，除了<code>f(0) = 0</code>以外我们一无所知，在其他点上（比如x=2），计算式序列看起来“发散”了；<br>第二个例子是3N+1猜想的变种，函数g在某些点上可计算（比如x=3），在另一些点上计算式序列会产生循环圈（比如x=5）<br>第三个例子就是著名的<strong>3N+1猜想</strong>，它<strong>看起来</strong>对于任意x都可以有一个会终止的计算式序列，但我们目前却无法证明。</p>
-<p>我们可能会开始疑惑了，这些鬼东西真的是函数吗？让我们检验一下三要素：</p>
+<p>我们可能会开始疑惑了，这些鬼东西真的是函数吗？让我们检验一下三要素: </p>
 <ol>
 <li>定义域都是自然数集<code>N</code></li>
 <li>根据加法和乘法的封闭性可知，值域也应该是<code>N</code>的子集</li>
 <li>法则都以递归的方式隐含了</li>
 </ol>
 <p>仿佛没有太多问题，暂且让我们相信它们的确是函数吧 :)</p>
-<h1 id="可计算性"><a href="#可计算性" class="headerlink" title="可计算性"></a>可计算性</h1><p>现在让我们试着形式化地定义<strong>可计算性</strong>的概念：</p>
+<h1 id="可计算性"><a href="#可计算性" class="headerlink" title="可计算性"></a>可计算性</h1><p>现在让我们试着形式化地定义<strong>可计算性</strong>的概念: </p>
 <p><strong>称函数f: D -&gt; R是可计算的，当且仅当存在一个图灵机TM，使得对于任意x∈D，TM以x为输入，总在有限步骤内停机并打印出结果f(x)；同时也称该图灵机TM计算了函数f。</strong></p>
-<p><strong>有限步骤内停机</strong>的一个等价描述是：把图灵机在计算过程中每一步的格局用一个关系连接起来称之为<strong>计算历史</strong>，则计算历史的长度是有限的，或者说计算历史是一个有穷集合。</p>
+<p><strong>有限步骤内停机</strong>的一个等价描述是: 把图灵机在计算过程中每一步的格局用一个关系连接起来称之为<strong>计算历史</strong>，则计算历史的长度是有限的，或者说计算历史是一个有穷集合。</p>
 <p>从定义上就可以直接看出，可计算的函数和图灵机是一一对应的，且它们都等势于可数无穷集<code>N</code>（因为每个图灵机都可以编码为一个对应的有限长01串，而有限长01串的集合将之视作自然数集的二进制表示，也就是说等势于自然数集<code>N</code>）。</p>
 <p>对于不可计算的函数，我们也能构造相应的图灵机去尝试计算它，但它不总在所有合法输入上停机，此时称它进入了“循环”——可能像上例中f(2)那样发散，也可能像g(5)那样产生一个状态循环。</p>
-<h2 id="不可计算的函数NC"><a href="#不可计算的函数NC" class="headerlink" title="不可计算的函数NC"></a>不可计算的函数NC</h2><p>这些病态函数的存在让我们稍稍警觉了起来，自然地，我们会有一个直观的想法：如果不允许递归定义，是不是就可以把所有不可计算的函数都干掉了？<br>——很遗憾，不行。<br>让我们使用著名的对角线方法来构造一下这个著名的<strong>不可计算函数NC (Not Computable)</strong>。</p>
+<h2 id="不可计算的函数NC"><a href="#不可计算的函数NC" class="headerlink" title="不可计算的函数NC"></a>不可计算的函数NC</h2><p>这些病态函数的存在让我们稍稍警觉了起来，自然地，我们会有一个直观的想法: 如果不允许递归定义，是不是就可以把所有不可计算的函数都干掉了？<br>——很遗憾，不行。<br>让我们使用著名的对角线方法来构造一下这个著名的<strong>不可计算函数NC (Not Computable)</strong>。</p>
 <table>
 <thead>
 <tr>
@@ -233,13 +233,13 @@
 <p>留意到<strong>函数NC的定义不是递归的</strong>。</p>
 <p>一个可能的疑惑是，这不都有NC的定义了什么还不能计算，比如<code>NC(0) = F_0(0) + 1</code>，我们不是知道<code>F_0(0)</code>吗？<br>——这是两种意义上的知道，我们只知道所有可计算的函数可以列成一行，其中的第一个被命名为<code>F_0</code>、且在<code>x=0</code>处一定有定义也即有值；但我们并不知道<code>F_0</code>究竟是哪个函数、不知道它的具体定义，所以仍旧无从计算。</p>
 <h2 id="停机问题"><a href="#停机问题" class="headerlink" title="停机问题"></a>停机问题</h2><p>考虑到函数定义是否是递归的并不是造成其不可计算病态的必要条件，我们又可以心安理得地使用递归函数了。这样一来，斐波那契数列的递推公式可以用了、错排公式也可以用了，生活又恢复了几分色彩。<br>——但是我们仍然还得适度提防那些不可计算的函数。</p>
-<p>可是要怎么做呢，另一个想法应运而生：我们能不能找到一种方法，有效判定一个函数是否可计算？<br>——很遗憾，也不行。<br>我们就遇到了图灵停机问题的变形。</p>
-<p>先简化改写一下这个问题，用函数和图灵机两种等价表述方式：</p>
+<p>可是要怎么做呢，另一个想法应运而生: 我们能不能找到一种方法，有效判定一个函数是否可计算？<br>——很遗憾，也不行。<br>我们就遇到了图灵停机问题的变形。</p>
+<p>先简化改写一下这个问题，用函数和图灵机两种等价表述方式: </p>
 <ul>
 <li>是否存在一个接受一个函数和一个数为输入的可计算的高阶函数JUDGE(f : Function, x : Nat) -&gt; Nat，定义为对于给定参数，如果<code>f(x) = 1</code>则返回1，否则返回0。（这种值域只有两个元素的函数叫做也谓词，对应的自然语言所描述的问题称为判定性问题。）</li>
 <li>是否存在一个图灵机TM，输入某个函数f和输入值x的字符串编码，如果<code>f(x) = 1</code>则打印1并停机，否则打印0并停机。（这种对于任意输入必定停机、且打印结果只有两种可能选项的图灵机也称为判定器/接受器，使得其打印1并停机的所有字符串组成一个语言，称该图灵机判定了该语言。）</li>
 </ul>
-<p>我们从第一种即函数表述入手，假设存在这样的JUDGE，现在来构造另一个函数<br>  <code>REBEL(x) = 1 - JUDGE(F_x, x)</code><br>注意到这里的<code>F_x</code>就是上面表格中编号为<code>x</code>的那个可计算函数。<br>简单地来说<code>REBEL</code>就是在<code>JUDGE</code>某个可计算函数<code>F_x</code>作用于自己的编号<code>x</code>之后的结果上再进行一次布尔取反；并且我们知道，既然<code>JUDGE</code>可计算，那么<code>REBEL</code>自然也是可计算的。那好，让我们尝试用REBEL计算自己的编号：<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">JUDGE(f, x) = if f(x) = 1 then 1 else 0 ; 根据定义</span><br><span class="line">REBEL(x) = 1 - JUDGE(F_x, x)            ; 根据定义</span><br><span class="line"></span><br><span class="line">(代入 x = _REBEL_，因为REBEL可计算的某个F_i，记其编号i为_REBEL_)</span><br><span class="line">REBEL(_REBEL_) = 1 - JUDGE(REBEL, _REBEL_)    ; F_[_REBEL_]就是REBEL函数自己</span><br><span class="line">               = 1 - (if REBEL(_REBEL_) = 1 then 1 else 0)</span><br><span class="line">               = if REBEL(_REBEL_) = 1 then 0 else 1</span><br><span class="line"></span><br><span class="line">因此，如果条件式中 REBEL(_REBEL_) = 1， 就会使得等式左右两边化简为 REBEL(_REBEL_) = 0</span><br><span class="line">反之同理，矛盾。</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>我们从第一种即函数表述入手，假设存在这样的JUDGE，现在来构造另一个函数<br>  <code>REBEL(x) = 1 - JUDGE(F_x, x)</code><br>注意到这里的<code>F_x</code>就是上面表格中编号为<code>x</code>的那个可计算函数。<br>简单地来说<code>REBEL</code>就是在<code>JUDGE</code>某个可计算函数<code>F_x</code>作用于自己的编号<code>x</code>之后的结果上再进行一次布尔取反；并且我们知道，既然<code>JUDGE</code>可计算，那么<code>REBEL</code>自然也是可计算的。那好，让我们尝试用REBEL计算自己的编号:<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">JUDGE(f, x) = if f(x) = 1 then 1 else 0 ; 根据定义</span><br><span class="line">REBEL(x) = 1 - JUDGE(F_x, x)            ; 根据定义</span><br><span class="line"></span><br><span class="line">(代入 x = _REBEL_，因为REBEL可计算的某个F_i，记其编号i为_REBEL_)</span><br><span class="line">REBEL(_REBEL_) = 1 - JUDGE(REBEL, _REBEL_)    ; F_[_REBEL_]就是REBEL函数自己</span><br><span class="line">               = 1 - (if REBEL(_REBEL_) = 1 then 1 else 0)</span><br><span class="line">               = if REBEL(_REBEL_) = 1 then 0 else 1</span><br><span class="line"></span><br><span class="line">因此，如果条件式中 REBEL(_REBEL_) = 1， 就会使得等式左右两边化简为 REBEL(_REBEL_) = 0</span><br><span class="line">反之同理，矛盾。</span><br></pre></td></tr></tbody></table></figure><p></p>
 <p>因此<code>REBEL</code>不可计算，<code>REBEL</code>的子函数<code>JUDGE</code>也不可计算。<br>就是是说，并不存在理想中能判定任意给定函数在某定义域上某处是否可计算的可计算函数<code>JUDGE</code>，就更别说判定任意给定函数在其定义域上各处都可计算的可计算函数了。</p>
 <h1 id="不必过敏"><a href="#不必过敏" class="headerlink" title="不必过敏"></a>不必过敏</h1><p>……那么，圆周率<code>π</code>可计算吗？<br>——可以！不要谨慎过头了w</p>
 <p>由于我们只对函数使用可计算这个词，因此需要稍作变通，一个常数π可计算指的是这样一个特定函数<code>PI(n : Nat) -&gt; Digit</code>可计算，即打印无理数<code>PI</code>在某进制表示下的第<code>n</code>位有效数字。</p>
@@ -278,7 +278,7 @@
     </div><!-- .entry-content -->
     
     <aside class="comments-link" style="float: right">
-      <a href="javascript:void(0);" data-url="https://kahsolt.github.io/writings/2019-10-03-computability/" data-id="ck3d6wto70002d0oxy9tkn92t" 
+      <a href="javascript:void(0);" data-url="https://kahsolt.github.io/writings/2019-10-03-computability/" data-id="ck4lktc0s0002ywoxuadve5pl" 
          class="leave-reply bdsharebuttonbox" data-cmd="more">[分享]
       </a>
       
@@ -298,7 +298,7 @@
 
       
   <span class="article-delim">&#8226;</span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/可计算性/">可计算性</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算理论/">计算理论</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算理论/">计算理论</a></li></ul>
 
     </footer>
 </article>
@@ -309,9 +309,9 @@
     <h3 class="assistive-text">文章导航</h3>
     
       <span class="nav-previous">
-        <a href="/writings/2019-10-03-computation-theory/" rel="prev">
+        <a href="/writings/minimal-generator-set-problem/" rel="prev">
           <span class="meta-nav">←</span>
-          计算理论-目录
+          最小生成集问题
         </a>
       </span>
     
@@ -360,23 +360,23 @@
       <ul>
         
           <li>
-            <a href="/writings/quantum-computing-examples/">量子计算-示例代码</a>
+            <a href="/writings/natural-language-process/">自然语言处理-笔记</a>
           </li>
         
           <li>
-            <a href="/writings/quantum-computing/">量子计算-笔记</a>
+            <a href="/writings/hadoop-technology-stack/">Mapreduce大数据处理-笔记</a>
           </li>
         
           <li>
-            <a href="/writings/minimal-generator-set-problem/">最小生成集问题</a>
+            <a href="/writings/program-formal-semantics/">计算机程序形式语义-笔记</a>
           </li>
         
           <li>
-            <a href="/writings/2019-10-03-computation-theory/">计算理论-目录</a>
+            <a href="/writings/computational-complexity/">计算复杂性-笔记</a>
           </li>
         
           <li>
-            <a href="/writings/2019-10-03-computability/">可计算性</a>
+            <a href="/writings/automata/">自动机理论-笔记</a>
           </li>
         
       </ul>
@@ -388,7 +388,7 @@
   <aside class="widget">
     <h3 class="widget-title">猫論</h3>
     <div class="widget-content">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/砂时计/">砂时计</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解命题/">解命题</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/巴别塔/">巴别塔</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/砂时计/">砂时计</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/神谕机/">神谕机</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解命题/">解命题</a><span class="category-list-count">1</span></li></ul>
     </div>
   </aside>
 
@@ -397,7 +397,7 @@
   <aside class="widget">
     <h3 class="widget-title">格価値</h3>
     <div class="widget-content">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/代数结构/">代数结构</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/可计算性/">可计算性</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算模型/">计算模型</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算理论/">计算理论</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/量子计算/">量子计算</a><span class="tag-list-count">2</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/hadoop技术栈/">Hadoop技术栈</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nlp/">NLP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/代数结构/">代数结构</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/日语/">日语</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/示例代码/">示例代码</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算模型/">计算模型</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算理论/">计算理论</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/语法笔记/">语法笔记</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/量子计算/">量子计算</a><span class="tag-list-count">2</span></li></ul>
     </div>
   </aside>
 
@@ -406,7 +406,7 @@
   <aside class="widget">
     <h3 class="widget-title">格価クラウド</h3>
     <div class="widget-content tagcloud">
-      <a href="/tags/代数结构/" style="font-size: 10px;">代数结构</a> <a href="/tags/可计算性/" style="font-size: 10px;">可计算性</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/计算模型/" style="font-size: 20px;">计算模型</a> <a href="/tags/计算理论/" style="font-size: 20px;">计算理论</a> <a href="/tags/量子计算/" style="font-size: 20px;">量子计算</a>
+      <a href="/tags/hadoop技术栈/" style="font-size: 10px;">Hadoop技术栈</a> <a href="/tags/nlp/" style="font-size: 10px;">NLP</a> <a href="/tags/代数结构/" style="font-size: 10px;">代数结构</a> <a href="/tags/日语/" style="font-size: 10px;">日语</a> <a href="/tags/示例代码/" style="font-size: 10px;">示例代码</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/计算模型/" style="font-size: 20px;">计算模型</a> <a href="/tags/计算理论/" style="font-size: 15px;">计算理论</a> <a href="/tags/语法笔记/" style="font-size: 10px;">语法笔记</a> <a href="/tags/量子计算/" style="font-size: 15px;">量子计算</a>
     </div>
   </aside>
 

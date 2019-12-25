@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+    <meta name="description" content="我々は皆真理の名前を忘れだから……">
+  
+
+  
+    <meta name="keywords" content="blog,ACG,技术博客,计算机,二次元">
+  
+  
+  
+  
+  
+  
+  <title> 计算机程序形式语义-笔记 |  虚仮威し全てを。</title>
+  
+  <meta name="description" content="前言 这是计算机程序形式语义的课程笔记，推荐读物是:    * John C. Reynolds. Theories of Programming Languages  * Lecture Notes on the Lambda Calculus - Peter Selinger  * Separation Logic - copenhagen08  Lambda calculus Invente">
+<meta name="keywords" content="计算模型">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机程序形式语义-笔记">
+<meta property="og:url" content="https://kahsolt.github.io/writings/program-formal-semantics/index.html">
+<meta property="og:site_name" content="虚仮威し全てを。">
+<meta property="og:description" content="前言 这是计算机程序形式语义的课程笔记，推荐读物是:    * John C. Reynolds. Theories of Programming Languages  * Lecture Notes on the Lambda Calculus - Peter Selinger  * Separation Logic - copenhagen08  Lambda calculus Invente">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-12-23T16:00:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="计算机程序形式语义-笔记">
+<meta name="twitter:description" content="前言 这是计算机程序形式语义的课程笔记，推荐读物是:    * John C. Reynolds. Theories of Programming Languages  * Lecture Notes on the Lambda Calculus - Peter Selinger  * Separation Logic - copenhagen08  Lambda calculus Invente">
+  
+  
+    <link rel="icon" href="/assets/img/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head></html>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="bg"></div>
+  <div id="page" class="hfeed site">
+    <header id="masthead" class="site-header" role="banner">
+  <hgroup>
+    <h1 class="site-title">
+      <a href="/" title="虚仮威し全てを。" rel="home">虚仮威し全てを。</a>
+    </h1>
+    
+      <h2 class="site-description">
+        <a href="/" id="subtitle">——若し雨が降ったら</a>
+      </h2>
+    
+  </hgroup>
+
+  <nav id="site-navigation" class="main-navigation" role="navigation">
+    <div class="menu-main-container">
+      <ul id="menu-main" class="nav-menu">
+      
+        <li class="menu-item menu-item-type-post_type menu-item-object-page">
+          <a href="/">例えば、</a>
+        </li>
+      
+        <li class="menu-item menu-item-type-post_type menu-item-object-page">
+          <a href="/kokoro">愛を叫けたら</a>
+        </li>
+      
+        <li class="menu-item menu-item-type-post_type menu-item-object-page">
+          <a href="/vhaktyr">隠り世界論</a>
+        </li>
+      
+        <li class="menu-item menu-item-type-post_type menu-item-object-page">
+          <a href="/kotoba">道断</a>
+        </li>
+      
+        <li class="menu-item menu-item-type-post_type menu-item-object-page">
+          <a href="/archives">記憶の砂数</a>
+        </li>
+      
+        <li class="menu-item menu-item-type-post_type menu-item-object-page">
+          <a href="/whoami">アルミットは。</a>
+        </li>
+      
+      </ul>
+    </div>
+  </nav>
+</header>
+
+    <div id="main" class="wrapper">
+      <div id="primary" class="site-content">
+        <div id="content" role="main">
+          <article id="post-program-formal-semantics" class="post-program-formal-semantics post type-post status-publish format-standard hentry">
+    <!---->
+
+    <header class="entry-header">
+      
+        
+  
+    <h1 class="entry-title article-title">计算机程序形式语义-笔记</h1>
+  
+
+
+      
+    </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <div class=".article-gallery" <p=""><br><p></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这是<strong>计算机程序形式语义</strong>的课程笔记，推荐读物是: </p>
+<ul>
+<li>John C. Reynolds. Theories of Programming Languages</li>
+<li><a href="/downloads/pdf/Lecture Notes on the Lambda Calculus - Peter Selinger.pdf">Lecture Notes on the Lambda Calculus - Peter Selinger</a></li>
+<li><a href="/downloads/pdf/Separation Logic - copenhagen08.pdf">Separation Logic - copenhagen08</a></li>
+</ul>
+<h1 id="Lambda-calculus"><a href="#Lambda-calculus" class="headerlink" title="Lambda calculus"></a>Lambda calculus</h1><p>Invented in 1930s, by Alonzo Church and Stephen Cole Kleene</p>
+<p>Alan Turing, 1937: Turing machines equal λ-calculus in expressiveness</p>
+<h2 id="Pure-LC"><a href="#Pure-LC" class="headerlink" title="Pure LC"></a>Pure LC</h2><h3 id="Syntax"><a href="#Syntax" class="headerlink" title="Syntax"></a>Syntax</h3><p>Syntax for pure λ-calculus terms/expressions:</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(Terms) M, N ::= x | λx. M | M N</span><br><span class="line">    x         lexical atomic literal stands for a variable</span><br><span class="line">    λx. M     lambda abstraction, i.e. anonymous function</span><br><span class="line">    M N       lambda application, i.e. function call</span><br><span class="line">and brackets `()` to adjust priority</span><br></pre></td></tr></tbody></table></figure>
+<p>Conventions to omit brackets:</p>
+<ul>
+<li>body of lambda abstraction extends as far to right as possible: <code>λx. M N</code> means <code>λx. (M N)</code>,  not <code>(λx. M) N</code></li>
+<li>lambda application is left-associative: <code>M N P</code> means <code>(M N) P</code>,  not <code>M (N P)</code></li>
+</ul>
+<p>Often we also add symbols for extra operations and native data types support, so that we could also write these and take them as valid terms:</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">λz. (x+2*y+z)</span><br><span class="line">(λx. (x+1)) 3</span><br><span class="line">(λz. (x+2*y+z)) (λx. (x+1))</span><br></pre></td></tr></tbody></table></figure>
+<p>Higher-order function is natural:</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  (λf. λx. f (f x)) (λy. y+1) 5</span><br><span class="line">= (λx. (λy. y+1) ((λy. y+1) x)) 5</span><br><span class="line">= (λx. (λy. y+1) (x+1)) 5</span><br><span class="line">= (λx. (x+1)+1) 5</span><br><span class="line">= 5+1+1</span><br></pre></td></tr></tbody></table></figure>
+<p>Free and bound variables: in <code>(λz. λx. x + y - z) (z+1)</code>, x is bounded, y is free, z is both bounded and free; recursively define a function <code>fv(M)</code> to get the free variables:</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">recall that: M, N ::= x | λx. M | M N</span><br><span class="line">thus:</span><br><span class="line">    fv(x) = {x}</span><br><span class="line">    fv(λx. M) = fv(M) \ {x}</span><br><span class="line">    fv(M N) = fv(M) ∪ fv(N)</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="Semantics"><a href="#Semantics" class="headerlink" title="Semantics"></a>Semantics</h3><p>Reduction rules:</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(λx. M) N -&gt; M[N/x]                ; most basic, namely β-reduction, replace x by N in M</span><br><span class="line">if M -&gt; M', then M N -&gt; M' N       ; simplify compounded function</span><br><span class="line">if N -&gt; N', then M N -&gt; M N'       ; simplify argument</span><br><span class="line">if M -&gt; M', then λx. M -&gt; λx. M'   ; simplify function body</span><br></pre></td></tr></tbody></table></figure>
+<p>But consciously avoid name capture, e.g:</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">  (λx. x-y)[x/y]    ; could NOT directly reduce to `λx. x - x`</span><br><span class="line">= (λz. z-y)[x/y]    ; so, always rename bound variables before substitution</span><br><span class="line">= λz. z-x</span><br><span class="line"></span><br><span class="line">  (λx. f (f x))[(λy. y+x)/f] </span><br><span class="line">= (λz. f (f z))[(λy. y+x)/f]     ; always rename</span><br><span class="line">= λz. (λy. y+x) ((λy. y+x) z)</span><br></pre></td></tr></tbody></table></figure>
+<p>Normal form:</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">β-redex: a term of the form (λx.M) N</span><br><span class="line">β-normal form: a term containing no β-redex, thus could no more simplify by β-reduction</span><br><span class="line"></span><br><span class="line">Church-Rosser property: terms can be evaluated in any order, but final result (if there is one) is uniquely determined - the β-normal form. (You can visualize it as a diamond graph)</span><br><span class="line">*collary: with α-equivalence(differs only in variable names), every term has at most one normal form</span><br></pre></td></tr></tbody></table></figure>
+<p>Non-terminating reduction, terms which have no normal forms:</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">  (λx. x x) (λx. x x)</span><br><span class="line">= (λx. x x) (λx. x x) </span><br><span class="line">= ...</span><br><span class="line"></span><br><span class="line">  (λx. x x y) (λx. x x y) </span><br><span class="line">= (λx. x x y) (λx. x x y) y </span><br><span class="line">= ...</span><br><span class="line"></span><br><span class="line">  (λx. f (x x)) (λx. f (x x)) </span><br><span class="line">= f ((λx. f (x x)) (λx. f (x x))) </span><br><span class="line">= ...</span><br></pre></td></tr></tbody></table></figure>
+<p>Term may have both terminating and non-terminating reduction sequences:</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">  (λu. λv. v) ((λx. x x)(λx. x x))    ; normal-order, simplify function first</span><br><span class="line">= λv. v</span><br><span class="line"></span><br><span class="line">  (λu. λv. v) ((λx. x x)(λx. x x))    ; applicative-order, simplify argument first</span><br><span class="line">= (λu. λv. v) ((λx. x x)(λx. x x)) </span><br><span class="line">= ...</span><br></pre></td></tr></tbody></table></figure>
+<p>Reduction strategy:</p>
+<ul>
+<li>normal-order: simplify function first, will eventually find a normal form if exists</li>
+<li>applicative-order: simplify argument first, in most cases could avoid evaluating reduplicated terms</li>
+</ul>
+<p>Evaluation is just like a half-redcution, it:</p>
+<ul>
+<li>only evaluate closed terms (i.e. no free variables)</li>
+<li>does not reduce under lambda, (ie. not simplify function body, <strong>might</strong> avoid ill cases that does not terminate), therefore it stops once meet a <strong>canonical form</strong> (ie. a lambda abstraction, a function)</li>
+</ul>
+<p>Normal-order evaluation rules (corresponding to normal-order reduction):</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[big step]</span><br><span class="line">λx. M =&gt; λx. M                       ; not simplify function body</span><br><span class="line">if (M =&gt; λx. M') and (M'[N/x] =&gt; P)  ; funtion simplifiable</span><br><span class="line">    then M N =&gt; P                    ; β-reduction for application term</span><br><span class="line"></span><br><span class="line">[small step]</span><br><span class="line">(λx. M) N -&gt; M[N/x]                  ; β-reduction</span><br><span class="line">if M -&gt; M', then M N -&gt; M' N         ; simplify compounded function</span><br></pre></td></tr></tbody></table></figure>
+<p>Eager evaluation rules (corresponding to applicative-order reduction):</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[big step]</span><br><span class="line">λx. M =&gt;E λx. M                       ; still, not simplify function body</span><br><span class="line">if (M =&gt;E λx. M') and (N =&gt;E N') and (M'[N'/x] =&gt;E P)  ; both funtion and argument simplifiable</span><br><span class="line">     then M N =&gt;E P                   ; β-reduction for application term</span><br><span class="line"></span><br><span class="line">[small step]</span><br><span class="line">(λx. M) (λy. N) -&gt; M[(λy. N)/x]           ; β-reduction</span><br><span class="line">if M -&gt; M', then M N -&gt; M' N              ; simplify compounded function</span><br><span class="line">if N -&gt; N', then (λx. M) N -&gt; (λx. M) N'  ; simplify argument</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="Programming"><a href="#Programming" class="headerlink" title="Programming"></a>Programming</h3><p>这是部分基础LC的python代码实现: <a href="/downloads/src/lambda_calculus.py">lambda_calculus.py</a></p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">[Logical]</span><br><span class="line">True  ::= λx. λy. x</span><br><span class="line">False ::= λx. λy. y</span><br><span class="line">not   ::= λb. b False True</span><br><span class="line">not'  ::= λb. λx. λy. b y x</span><br><span class="line">and   ::= λb. λb'. b b' False</span><br><span class="line">or    ::= λb. λb'. b True b'</span><br><span class="line">if b then M else N ::= b M N </span><br><span class="line"></span><br><span class="line">[Number]</span><br><span class="line">0 ::= λf. λx. x   </span><br><span class="line">1 ::= λf. λx. f x</span><br><span class="line">2 ::= λf. λx. f (f x)</span><br><span class="line">...</span><br><span class="line">n ::= λf. λx. f^n x</span><br><span class="line"></span><br><span class="line">succ   ::= λn. λf. λx. f (n f x) </span><br><span class="line">succ'  ::= λn. λf. λx. n f (f x)</span><br><span class="line">iszero ::= λn. λx. λy. n (λz. y) x</span><br><span class="line">add    ::= λn. λm. λf. λx. n f (m f x)</span><br><span class="line">mult   ::= λn. λm. λf. λx. (n (m f)) x</span><br><span class="line"></span><br><span class="line">[Pair/Tuple]</span><br><span class="line">(M, N) ::= λf. f M N</span><br><span class="line">π0     ::= λp. p (λx. λy. x)</span><br><span class="line">π1     ::= λp. p (λx. λy. y)</span><br><span class="line"></span><br><span class="line">[Fixpoint combinator]</span><br><span class="line">Turing’s fixpoint combinator Θ:</span><br><span class="line">  A ::= λx. λy. y (x x y)</span><br><span class="line">  Θ = A A</span><br><span class="line">Church’s fixpoint combinator Y:</span><br><span class="line">  Y ::= λf. (λx. f (x x)) (λx. f (x x))</span><br><span class="line"></span><br><span class="line">*in λ-calculus, every term has a fixpoint</span><br><span class="line">fixpoint combinator is a higher-order function h satisfying:</span><br><span class="line">  forall f, st. h f = f (h f), i.e. (h f) is a fixpoint of f</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="Simply-typed-LC"><a href="#Simply-typed-LC" class="headerlink" title="Simply-typed LC"></a>Simply-typed LC</h2><p>Idea: try kicking out those non-terminating terms by adding a type system</p>
+<ul>
+<li>type check would catch simple mistakes early in compile time</li>
+<li>type-safety: well-typed programs never stuck into meaningless state (out of semantic specification)</li>
+<li>typed programs are easier to analyze and optimize</li>
+<li>but impose constraints on programmers, and some valid programs <strong>might</strong> be rejected</li>
+</ul>
+<h3 id="Syntax-amp-Semantics"><a href="#Syntax-amp-Semantics" class="headerlink" title="Syntax &amp; Semantics"></a>Syntax &amp; Semantics</h3><p>Syntax for simply-typed λ-calculus (STLC):</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(Types) σ, τ ::= T | σ→τ     ; T is some base type, eg. int/bool</span><br><span class="line">(Terms) M, N ::= x | λx:τ. M | M N</span><br></pre></td></tr></tbody></table></figure>
+<p>Reduction rules are much like those in pure LC:</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">(λx:τ. M) N -&gt; M[N/x]</span><br><span class="line">if M -&gt; M', then M N -&gt; M' N</span><br><span class="line">if N -&gt; N', then M N -&gt; M N'</span><br><span class="line">if M -&gt; M', then λx:τ. M -&gt; λx:τ. M'</span><br><span class="line"></span><br><span class="line">*strong normalization theorem: well-typed terms in STLC always terminate</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="Type-judgment"><a href="#Type-judgment" class="headerlink" title="Type judgment"></a>Type judgment</h3><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Γ |- M:τ            ; type assertion, M is of type τ in contex Γ</span><br><span class="line">Γ ::= ∙ | Γ, x:τ    ; typing contex, ∙ means empty, x is free variable in M</span><br><span class="line"></span><br><span class="line">[typing rules]</span><br><span class="line">Γ, x:τ |- x:τ                 ; var</span><br><span class="line">if (Γ |- M:σ→τ) and (Γ |- N:σ)</span><br><span class="line">    then Γ |- M N:τ           ; app</span><br><span class="line">if (Γ, x:σ |- M:τ)</span><br><span class="line">    then Γ |- (λx:σ. M):σ→τ  ; abs</span><br></pre></td></tr></tbody></table></figure>
+<p>Soundness and Completeness:</p>
+<ul>
+<li>Soundness: never accepts a program that can go wrong<ul>
+<li>no false negatives </li>
+<li>the language is type-safe</li>
+</ul>
+</li>
+<li>Completeness: never rejects a program that can’t go wrong <ul>
+<li>no false positives </li>
+<li>however, for any Turing-complete PL, the set of programs that may go wrong is undecidable</li>
+</ul>
+</li>
+</ul>
+<p>*However, type system cannot be both sound and complete: in practice, we choose soundness, then try to reduce false positives </p>
+<p>Therefore STLC is sound but incomplete:</p>
+<ul>
+<li>Soundness: type-safety theorem<ul>
+<li>preservation (subject reduction): well-typed terms reduce only to well-typed terms of the <strong>same</strong> type</li>
+<li>progress: a well-typed term is either a Value (defined in semantics) or can be reduced (ie. <strong>eventually is a Value</strong>)</li>
+</ul>
+</li>
+<li>Incompleteness: it rejects some valid term, eg. <code>(λx. (x (λy. y)) (x 3)) (λz. z)</code>, since it could not be type-judged, nevertheless it is reducible</li>
+</ul>
+<h3 id="Extensions-amp-Curry-Howard-Isomorphism"><a href="#Extensions-amp-Curry-Howard-Isomorphism" class="headerlink" title="Extensions &amp; Curry-Howard Isomorphism"></a>Extensions &amp; Curry-Howard Isomorphism</h3><p>Syntax and semantics:</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(Types) σ, τ ::= T | σ→τ | σ×τ | σ+τ</span><br><span class="line">(Terms) M, N ::= x | λx:τ. M | M N | &lt;M, N&gt; | proj1 M | proj2 M | left M | right M | case M do M1 M2 | fix M</span><br><span class="line">(Values) V :: &lt;M, N&gt; | proj1 M | proj2 M | left M | right M</span><br><span class="line"></span><br><span class="line">*note: by adding 'fix', strong normalization thereom breaks</span><br></pre></td></tr></tbody></table></figure>
+<p>Reduction rules:</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[prod-type] &amp; [sum-type]</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">[fix]</span><br><span class="line">fix λx:τ. M -&gt; M[fix λx:τ. M/x]   ; one recursive call</span><br><span class="line">if M -&gt; M', then fix M -&gt; fix M'  ; simplify function body</span><br></pre></td></tr></tbody></table></figure>
+<p>Curry-Howard Isomorphism:</p>
+<ul>
+<li>Propositions are Types</li>
+<li>Proofs are Programs</li>
+</ul>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(Prop)   p, q ::= B | p⇒q | p∧q | p∨q</span><br><span class="line">(Types)  σ, τ ::= T | σ→τ | σ×τ | σ+τ</span><br><span class="line"></span><br><span class="line">thus, several well-typed closed term maps to the same one type, then that type identically maps to a formula provable in propositional logic</span><br></pre></td></tr></tbody></table></figure>
+<p>Constructive logic: no <code>law of the excluded middle</code></p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">in classical logic there should be 'Γ |- p∨(p⇒q)'</span><br><span class="line">but in STLC, no closed term has type 'ρ+(ρ→σ)'</span><br><span class="line"></span><br><span class="line">btw, due to support of 'fix', the "logic" behind STLC is inconsistent</span><br><span class="line">since type of 'fix λx:τ. x' is arbitrary 'τ', which means anything is provable</span><br></pre></td></tr></tbody></table></figure>
+<h1 id="Operational-semantics"><a href="#Operational-semantics" class="headerlink" title="Operational semantics"></a>Operational semantics</h1><p>Operational semantics defines program executions as a sequence of steps, formulated as transitions of an abstract machine</p>
+<p>Syntax of a simple imperative language:</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">(IntExp) e ::= n                  ; numerals, n denotes syntax, [n] denotes semantics</span><br><span class="line">             | x                  ; variable names</span><br><span class="line">             | e + e | e - e</span><br><span class="line">(BoolExp) b ::= true | false</span><br><span class="line">              | e = e | e &lt; e | e &gt; e</span><br><span class="line">              | not b | b and b | b or b</span><br><span class="line">(Comm) c ::= skip</span><br><span class="line">           | x := e</span><br><span class="line">           | c ; c</span><br><span class="line">           | if b then c else c</span><br><span class="line">           | while b do c</span><br><span class="line"></span><br><span class="line">(States) σ ∈ Var -&gt; Values        ； Var is x, Values is n</span><br><span class="line">*eg.  σ1 = {(x, 2), (y, 3), (a, 10)} writes as {x~&gt;2, y~&gt;3, a~&gt;10}</span><br><span class="line">      σ1{y~&gt;7} = {x~&gt;2, y~&gt;7, a~&gt;10}   ; value update</span><br><span class="line"></span><br><span class="line">(Configuration) S ::= (e, σ) | (b, σ) | (c, σ)</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="Small-step"><a href="#Small-step" class="headerlink" title="Small-step"></a>Small-step</h2><p>small-step semantics describes each single step of the execution</p>
+<h3 id="Structural-operational-semantics-SOS"><a href="#Structural-operational-semantics-SOS" class="headerlink" title="Structural operational semantics (SOS):"></a>Structural operational semantics (SOS):</h3><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">[expression evaluation - int]</span><br><span class="line">if (e1, σ) -&gt; (e1', σ), then (e1 + e2, σ) -&gt; (e1' + e2, σ)  ; evalue from left to right</span><br><span class="line">if (e2, σ) -&gt; (e2', σ), then (n + e2, σ) -&gt; (n + e2', σ)</span><br><span class="line">if [n1] [+] [n2] = [n], then (n1 + n2, σ) -&gt; (n, σ)         ; substrcation is alike</span><br><span class="line"></span><br><span class="line">[variable read]</span><br><span class="line">if σ(x) = [n], then (x, σ) -&gt; (n, σ)</span><br><span class="line"></span><br><span class="line">[expression evaluation - boolean]</span><br><span class="line">if (e1, σ) -&gt; (e1', σ), then (e1 = e2, σ) -&gt; (e1' = e2, σ)  ; evalue from left to right</span><br><span class="line">if (e2, σ) -&gt; (e2', σ), then (n = e2, σ) -&gt; (n = e2', σ)</span><br><span class="line">if [n1] [=] [n2] = [n], then (n1 = n2, σ) -&gt; (true, σ)</span><br><span class="line">if not ([n1] [=] [n2] = [n]), then (n1 = n2, σ) -&gt; (false, σ)  ; other comparations are alike</span><br><span class="line"></span><br><span class="line">if (b, σ) -&gt; (b', σ), then (not b, σ) -&gt; (not b', σ)</span><br><span class="line">(not true, σ) -&gt; (false, σ)</span><br><span class="line">(not false, σ) -&gt; (true, σ)</span><br><span class="line"></span><br><span class="line">if (b1, σ) -&gt; (b1', σ), then (b1 and b2, σ) -&gt; (b1' and b2, σ) ; evalue from left to right</span><br><span class="line">(false and b2, σ) -&gt; (false, σ)                                ; short-circuit feature</span><br><span class="line">(true and b2, σ) -&gt; (b2, σ)</span><br><span class="line"></span><br><span class="line">[statement]</span><br><span class="line">(skip, σ) -&gt; σ</span><br><span class="line"></span><br><span class="line">if (e, σ) -&gt; (e', σ), then (x := e, σ) -&gt; (x := e', σ)</span><br><span class="line">(x := n, σ) -&gt; σ{x~-&gt;[n]}</span><br><span class="line"></span><br><span class="line">if (c0, σ) -&gt; (c0', σ'), then (c0 ; c1, σ) -&gt; (c0' ; c1, σ')</span><br><span class="line">if (c0, σ) -&gt; σ', then (c0 ; c1, σ) -&gt; (c1, σ')</span><br><span class="line"></span><br><span class="line">if (b, σ) -&gt; (b', σ), then (if b then c0 else c1, σ) -&gt; (if b' then c0 else c1, σ)</span><br><span class="line">(if true then c0 else c1, σ) -&gt; (c0, σ)</span><br><span class="line">(if false then c0 else c1, σ) -&gt; (c1, σ)</span><br><span class="line"></span><br><span class="line">(while b do c, σ) -&gt; (if b then (c; while b do c) else skip, σ) ; just expand once</span><br></pre></td></tr></tbody></table></figure>
+<p>Some facts about ‘-&gt;’:</p>
+<ul>
+<li>cound be extended to multiple steps ‘-&gt;*’</li>
+<li>Determinism: if (c, σ) -&gt; (c’, σ’) and (c, σ) -&gt; (c’’, σ’’), then (c’, σ’) = (c’’, σ’’) (i.e. rule to apply on each step is unambiguously unique)</li>
+<li>Confluence: think of a diamond graph</li>
+<li>Normalization: transition relations on (e, σ) and (b, σ) are normalizing, but NOT on (c, σ)<ul>
+<li>normal form for expressions: (n, σ) for all numeral n</li>
+<li>normal form for booleans: (true, σ) and (false, σ)</li>
+</ul>
+</li>
+</ul>
+<p>Once we defined ‘-&gt;*’, we could fold up evaluation sequence:</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[variation-1]</span><br><span class="line">if [[e]](intexpr)σ = n, then (x := e, σ) -&gt; σ{x~&gt;n}</span><br><span class="line">*here '[[e]](intexpr)σ = n' iff '(e, σ) -&gt;* (n, σ) and n = [n]'</span><br><span class="line"></span><br><span class="line">if [[b]](boolexpr) = true, then (if b then c0 else c1, σ) -&gt; (c0, σ)</span><br><span class="line">if [[b]](boolexpr) = false, then (if b then c0 else c1, σ) -&gt; (c1, σ)</span><br><span class="line"></span><br><span class="line">if [[b]](boolexpr) = true, then (while b do c, σ) -&gt; (c; while b do c, σ)</span><br><span class="line">if [[b]](boolexpr) = false, then (while b do c, σ) -&gt; σ</span><br><span class="line"></span><br><span class="line">[variation-2]</span><br><span class="line">if [[e]](intexpr)σ = n, then (x := e, σ) -&gt; (skip, σ{x~&gt;n})   ; this is an alternative for above one, if we want to keep configurations always tuples</span><br><span class="line">; and other rules whose configuraion is a single 'σ' are also modified to '(skip, σ)'</span><br></pre></td></tr></tbody></table></figure>
+<p>We then extend the [variation-2] with abortion, local-var, dynamic-alloc:</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">[abortion]</span><br><span class="line">(IntExp) e ::= ... | e1 / e2</span><br><span class="line"></span><br><span class="line">if n2 != 0 and [n1] [/] [n2] = [n], the (n1 / n2, σ) -&gt; (n, σ)</span><br><span class="line">(n1 / 0, σ) -&gt; abort</span><br><span class="line"></span><br><span class="line">if [[e]](intexpr)σ = n, then (x := e, σ) -&gt; (skip, σ{x~&gt;n})</span><br><span class="line">if [[e]](intexpr)σ = -, then (x := e, σ) -&gt; abort</span><br><span class="line">*here '[[e]](intexpr)σ = -' iff '(e, σ) -&gt;* abort', thus we could not assign</span><br><span class="line">; also cascadingly modify other rules</span><br><span class="line"></span><br><span class="line">[local-var]</span><br><span class="line">(Comm) c :: = ... | newvar x := e in c</span><br><span class="line"></span><br><span class="line">if [[e]](intexpr)σ = n and (c, σ{x~&gt;n}) -&gt;(c', σ') and σ'(x) = [n'],</span><br><span class="line">    then (newvar x := e in c, σ) -&gt; (newvar x := n' in c', σ'{x~&gt;σ(x)})</span><br><span class="line">(newvar x := e in skip, σ) -&gt; (skip, σ)</span><br><span class="line">; could also add abortion</span><br><span class="line"></span><br><span class="line">[dynamic-alloc]</span><br><span class="line">(State) σ ∈ (s, h)</span><br><span class="line">(Store) s ∈ Var -&gt; Values</span><br><span class="line">(Heap)  h ∈ Loc -&gt;fin Values</span><br><span class="line">(Value) v ∈ Int ∪ Bool ∪ Loc</span><br><span class="line">(Comm) c :: = ... | x := alloc(e)  ; allocation, x is a Loc</span><br><span class="line">                  | y := [x]       ; lookup, y is a Var</span><br><span class="line">                  | [x] := e       ; mutation</span><br><span class="line">                  | free(x)        ; deallocation</span><br><span class="line">(Configuration) S ::= (c, (s, h))</span><br><span class="line"></span><br><span class="line">if l ∉ dom(h) and [[e]](intexpr)s = n, then (x := alloc(e), (s, h)) -&gt; (skip, (s{x~&gt;l}, h{l~&gt;n}))</span><br><span class="line">if s(x) = l and l ∈ dom(h), then (free(x), (s, h)) -&gt; (skip, (s, h\{l}))</span><br><span class="line">if s(x) = l and h(l) = n, then (y := [x], (s, h)) -&gt; (skip, s{y~&gt;n}, h)</span><br><span class="line">if s(x) = l and l ∈ dom(h) and [[e]](intexpr)s = n, then ([x] := e, (s, h)) -&gt; (skip, s, h{l~&gt;n})</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="Contextual-semantics-aka-reduction-semantics-is-more-systematical"><a href="#Contextual-semantics-aka-reduction-semantics-is-more-systematical" class="headerlink" title="Contextual semantics (aka. reduction semantics) is more systematical:"></a>Contextual semantics (aka. reduction semantics) is more systematical:</h3><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">if (r, σ) -&gt; (e', σ), then (E[r], σ) -&gt; (E[e'], σ)</span><br><span class="line">  r ::= x | n + n | n - n | ...                    ; redex</span><br><span class="line">  E ::= [] | E + e | E - e | n + E | n - E | ...   ; evaluation context (big ε in handwriting)</span><br><span class="line"></span><br><span class="line">here is overall definition for redex and context of our simple imperative language:</span><br><span class="line">(Redex) r ::= x</span><br><span class="line">            | n + n | n - n | ...    ; constant expressions</span><br><span class="line">            | x := n</span><br><span class="line">            | skip ; c</span><br><span class="line">            | if true then c else c</span><br><span class="line">            | if false then c else c</span><br><span class="line">            | while b do c</span><br><span class="line">(Ctxt) E ::= []                      ; the hole containing current redex</span><br><span class="line">            | E + e | E - e | ...</span><br><span class="line">            | n + E | n - E | ...</span><br><span class="line">            | x := E</span><br><span class="line">            | E ; c</span><br><span class="line">            | if E then c else c</span><br><span class="line">then every program is in the form of 'E[r]' (recursively a tree), each step we evalute the current redex in the nearest context, e.g:</span><br><span class="line"></span><br><span class="line">x := 1 + (2 + 8)</span><br><span class="line">  r = (2 + 8)</span><br><span class="line">  E = (x := 1 + [])</span><br><span class="line">  E[r] = (x := 1 + (2 + 8))</span><br><span class="line">by local reduction rule, (2 + 8, σ) -&gt; (10, σ)</span><br><span class="line">by global reduction rule, (E[2 + 8], σ) -&gt; (E[10], σ), ie. (x := 1 + (2 + 8), σ) -&gt; ((x := 1 + 10), σ)</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="Big-step"><a href="#Big-step" class="headerlink" title="Big-step"></a>Big-step</h2><p>big-step semantics (a.k.a. natural semantics) describes the overall result of the execution</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">(n, σ) ⇓ [n]</span><br><span class="line">if σ(x) = n, then (x, σ) ⇓ [n]</span><br><span class="line">if (e1, σ) ⇓ n1 and (e2, σ) ⇓ n2, then (e1 op e2, σ) ⇓ n1 [op] n2</span><br><span class="line"></span><br><span class="line">(true, σ) ⇓ true</span><br><span class="line">(false, σ) ⇓ false</span><br><span class="line">if (b1, σ) ⇓ false, then (b1 and b2, σ) ⇓ false  ; short-circuit</span><br><span class="line">if (b1, σ) ⇓ false and (b2, σ) ⇓ true, then (b1 and b2, σ) ⇓ false  ; non-short-circuit, other rules alike</span><br><span class="line"></span><br><span class="line">if (e, σ) ⇓ [n], then (x := e, σ) ⇓ σ{x~&gt;n}</span><br><span class="line"></span><br><span class="line">(skip, σ) ⇓ σ</span><br><span class="line"></span><br><span class="line">if (c0, σ) ⇓ σ' and (c1, σ') ⇓ σ'', then (c0 ; c1, σ) ⇓ σ''</span><br><span class="line"></span><br><span class="line">if (b, σ) ⇓ true and (c0, σ) ⇓ σ', then (if b then c0 else c1, σ) ⇓ σ'</span><br><span class="line">if (b, σ) ⇓ false and (c1, σ) ⇓ σ', then (if b then c0 else c1, σ) ⇓ σ'</span><br><span class="line"></span><br><span class="line">if (b, σ) ⇓ false, then (while b do c, σ) ⇓ σ</span><br><span class="line">if (b, σ) ⇓ true and (c, σ) ⇓ σ' and (while b do c, σ') ⇓ σ'', then (while b do c, σ) ⇓ σ''</span><br><span class="line"></span><br><span class="line">if (e, σ) ⇓ [n] and (c, σ{x~&gt;n}) ⇓ σ', then (newvar x := e in c, σ) ⇓ σ'{x~&gt;σ(x))}</span><br></pre></td></tr></tbody></table></figure>
+<p>Some facts about ‘⇓’:</p>
+<ul>
+<li>Determinism: if (e, σ) ⇓ n and (e, σ) ⇓ n’, then n = n’</li>
+<li>Totality: forall e σ, exists n, st. (e, σ) ⇓ [n]  (ie. no exception or dead loop)</li>
+<li>Equivalence to small-step semantics: (e, σ) ⇓ [n] <em>iff</em> (e, σ) -&gt;* (n, σ)</li>
+</ul>
+<h2 id="Apllication-on-pure-LC"><a href="#Apllication-on-pure-LC" class="headerlink" title="Apllication on pure LC"></a>Apllication on pure LC</h2><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">[Small-step SOS]</span><br><span class="line">(Terms) M, N ::= x | λx. M | M N</span><br><span class="line"></span><br><span class="line">(λx. M) N -&gt; M[N/x]</span><br><span class="line">if M -&gt; M', then M N -&gt; M' N</span><br><span class="line">if N -&gt; N', then M N -&gt; M N'</span><br><span class="line">if M -&gt; M', then λx. M -&gt; λx. M'</span><br><span class="line"></span><br><span class="line">[Small-step Context]</span><br><span class="line">(Terms) M, N ::= x | λx. M | M N</span><br><span class="line">(Redex) r ::= (λx. M) N</span><br><span class="line">(Context) E ::= [] | λx. E | E N | M E</span><br><span class="line"></span><br><span class="line">(λx. M) N -&gt; M[N/x]           ; local reduction rule</span><br><span class="line">if r -&gt; M, then E[r] -&gt; E[M]  ; global reduction rule</span><br><span class="line"></span><br><span class="line">[Big-step]</span><br><span class="line">(Terms) M, N ::= x | λx. M | M N</span><br><span class="line"></span><br><span class="line">x ⇓ x</span><br><span class="line">if M ⇓ M', then λx. M ⇓ λx. M'</span><br><span class="line">if M ⇓ λx. M' and N ⇓ N' and M'[N'/x] ⇓ P, then M N ⇓ P</span><br></pre></td></tr></tbody></table></figure>
+<h1 id="Hoare-logic"><a href="#Hoare-logic" class="headerlink" title="Hoare logic"></a>Hoare logic</h1><p>Floyd-Hoare Logic is a method of reasoning mathematically about <strong>imperative programs</strong></p>
+<h2 id="Hoare-triple-notation"><a href="#Hoare-triple-notation" class="headerlink" title="Hoare triple/notation"></a>Hoare triple/notation</h2><p>So-called Assertion Language to wrap up the programming language:</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">{p}c{q}    ; partial correctness specification</span><br><span class="line">           ;   (initial state satisfying p) -&gt; (c terminates -&gt; final state satisfies q)</span><br><span class="line">[p]c[q]    ; total correctness specification</span><br><span class="line">           ;   (initial state satisfying p) -&gt; (c terminates &amp;&amp; final state satisfies q)</span><br><span class="line"></span><br><span class="line">*p and q are assertions, p is called precondition, and q is called postcondition</span><br><span class="line">  total correctness = termination + partial correctness</span><br><span class="line">*termination is not always straightforward to show:</span><br><span class="line">  while x &gt; 1 do if odd(x) then x := (3 * x) + 1 else x := x / 2</span><br><span class="line"></span><br><span class="line">[example specs]</span><br><span class="line">{x = 1} x := x + 1 {x = 2}                      ; valid</span><br><span class="line">{x = 1} x := x + 1 {x = 3}                      ; invalid</span><br><span class="line">{x - y &gt; 3} x := x - y {x &gt; 2}                  ; valid</span><br><span class="line">[x - y &gt; 3] x := x - y [x &gt; 2]                  ; valid</span><br><span class="line">{x &lt;= 10} while x != 10 do x := x + 1 {x = 10}  ; valid</span><br><span class="line">[x &lt;= 10] while x != 10 do x := x + 1 [x = 10]  ; valid</span><br><span class="line">{true} while x != 10 do x := x + 1 {x = 10}     ; valid</span><br><span class="line">[true] while x != 10 do x := x + 1 [x = 10]     ; invalid</span><br><span class="line">{x = 1} while true do skip {x = 2}              ; valid</span><br><span class="line"></span><br><span class="line">[logical/ghost variables]</span><br><span class="line">{x = x0 ^ y = y0} r := x ; x := y ; y := r {x = y0 ^ y = x0}</span><br><span class="line">*here 'x0' and 'y0' holds constant value and not occurs in program, is called ghost variable, often used to memorize initial constant values</span><br><span class="line"></span><br><span class="line">[some very special specs]</span><br><span class="line">{true}c{q}  ; whenever c terminates, q always holds</span><br><span class="line">[true]c[q]  ; c always terminates, more over it ends in a state where q holds</span><br><span class="line">{p}c{true}  ; says nothing, valid for any (p, c)</span><br><span class="line">[p]c[true]  ; if p holds, then c must terminate</span><br></pre></td></tr></tbody></table></figure>
+<p>Specifications rules for our simple imperative language:</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">{p[e/x]} x := e {p}                    ; AS</span><br><span class="line">{p} x := e {∃v. x = e[v/x] ∧ p[v/x]}  ; AS-FW, renaming x to v, evalute e then assign it to x</span><br><span class="line"></span><br><span class="line">if p =&gt; r and {r}c{q}, then {p}c{q}    ; SP</span><br><span class="line">if {p}c{r} and r =&gt; q, then {p}c{q}    ; WC</span><br><span class="line">if p =&gt; p' and {p'}c{q'} and q' =&gt; q, then {p}c{q}  ; CONSEQ</span><br><span class="line"></span><br><span class="line">if {p}c1{r} and {r}c2{q}, then {p}c1 ; c2{q}  ; SC</span><br><span class="line"></span><br><span class="line">{p}skip{p}  ; SK</span><br><span class="line"></span><br><span class="line">if {p∧b}c1{q} and {p∧~b}c2{q}, then {p}if b then c1 else c2{q}  ; CD</span><br><span class="line">if {p}c{q} and {p'}c{q'}, then {p∧p'}c{q∧q'}  ; CA</span><br><span class="line">if {p}c{q} and {p'}c{q'}, then {p∨p'}c{q∨q'}  ; DA</span><br><span class="line"></span><br><span class="line">if {i∧b}c{i}, then {i}while b do c{i∧~b}      ; WHP, i is called loop invariant</span><br><span class="line">if [i∧b∧e=x0]c[i∧(e&lt;x0&gt;)] and i∧b =&gt; e&gt;=0, then [i]while b do c[i∧~b]  ; WHT, e is called loop variant which always decreases in each iteration, where its initial value x0 ∉ fv(c) ∪ fv(e) ∪ fv(i) ∪ fv(b)</span><br><span class="line"></span><br><span class="line">if {p}c{q} and [p]c[true], then [p]c[q]</span><br><span class="line">if {p}c{q} and (c contains no while commands), then [p]c[q]</span><br><span class="line">if [p]c[q], then {p}c{q}</span><br><span class="line">if [p]c[q], then [p]c[true]</span><br></pre></td></tr></tbody></table></figure>
+<p>How to find loop invariants is a work of intelligence, be ware of those relations with variables or expressions which:</p>
+<ul>
+<li>holds initailly</li>
+<li>holds while b holds (=true)</li>
+<li>still holds even when b become false, and result is established right on that time</li>
+<li>usually is an equation about what has been done so far together with what remains to be<br>done</li>
+</ul>
+<h2 id="Reasoning-Proving-examples"><a href="#Reasoning-Proving-examples" class="headerlink" title="Reasoning/Proving examples"></a>Reasoning/Proving examples</h2><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">[assignment]</span><br><span class="line">  {x=n} x := x+1 {x=n+1}</span><br><span class="line">1. x=n =&gt; x+1=n+1                     ; predicate logic</span><br><span class="line">2. {x+1=n+1} x := x+1 {x=n+1}       ； AS</span><br><span class="line">3. {x=n} x := x+1 {x=n+1}           ; SP 1,2</span><br><span class="line"></span><br><span class="line">  {r=x} z := 0 {r=x+(y*z)}</span><br><span class="line">1. r=x =&gt; r=x∧0=0                  ; predicate logic</span><br><span class="line">2. {r=x∧0=0} z := 0 {r=x∧z=0}   ; AS</span><br><span class="line">3. {r=x} z := 0 {r=x∧z=0}          ; SP 1,2</span><br><span class="line">4. r=x∧z=0 =&gt; r=x+(y*z)            ; predicate logic</span><br><span class="line">5. {r=x} z := 0 {r=x+(y*z)}           ; WC 3,4</span><br><span class="line"></span><br><span class="line">  {y&gt;3} x := 2*y; x := x-y {x&gt;=4}</span><br><span class="line">1. {x-y&gt;=4} x := x-y {x&gt;=4}           ; AS</span><br><span class="line">2. {2*y-y&gt;=4} x := 2*y {x-y&gt;=4}       ; AS</span><br><span class="line">3. y&gt;3 =&gt; 2*y-y&gt;=4                    ; predicate logic</span><br><span class="line">4. {y&gt;3} x := 2*y {x-y&gt;=4}            ; SP 1,2</span><br><span class="line">5. {y&gt;3} x := 2*y; x := x-y {x&gt;=4}    ; SC 1,4</span><br><span class="line"></span><br><span class="line">[loop]</span><br><span class="line">  {x&lt;=10} while x!=10 do x := x+1 {x=10}    ; notice that i is x&lt;=10, b is x!=10</span><br><span class="line">1. {x+1&lt;=10} x := x+1 {x&lt;=10}               ; AS</span><br><span class="line">2. x&lt;=10∧x!=10 =&gt; x+1&lt;=10                  ; predicate logic</span><br><span class="line">3. {x&lt;=10∧x!=10} x := x+1 {x&lt;=10}          ; SP 1,2</span><br><span class="line">4. {x&lt;=10} while x!=10 do x := x+1 {x&lt;=10∧~(x!=10)}   ; WHP 3</span><br><span class="line">5. x&lt;=10∧~(x!=10) =&gt; x=10                  ; predicate logic</span><br><span class="line">6. {x&lt;=10} while x!=10 do x := x+1 {x=10}   ; WC 4,5</span><br><span class="line"></span><br><span class="line">  {true} while x!=10 do skip {x=10}</span><br><span class="line">1. {true∧x!=10} skip {true∧x!=10}         ; SK</span><br><span class="line">2. true∧x!=10 =&gt; true                      ; predicate logic</span><br><span class="line">3. {true∧x!=10} skip {true}                ; WC 1,2</span><br><span class="line">4. {true} while x!=10 do skip {true∧~(x!=10)}  ; WHP 3</span><br><span class="line">5. true∧~(x!=10) =&gt; x=10                   ; predicate logic</span><br><span class="line">6. {true} while x!=10 do skip {x=10}        ; WC 4,5</span><br><span class="line"></span><br><span class="line">  [x&lt;=10] while x!=10 do x := x+1 [x=10]    ; notice that i is x&lt;=10, b is x!=10, e is 10-x</span><br><span class="line">1. {x+1&lt;=10∧10-(x+1)&lt;z} x := x+1 {x&lt;=10∧10-x&lt;z}     ; AS</span><br><span class="line">2. x&lt;=10∧x!=10∧10-x=z =&gt; x+1&lt;=10∧10-(x+1)&lt;z</span><br><span class="line">3. {x&lt;=10∧x!=10∧10-x=z} x := x+1 {x&lt;=10∧10-x&lt;z}    ; SP 1,2</span><br><span class="line">4. x&lt;=10∧x!=10 =&gt; 10-x&gt;=0</span><br><span class="line">5. [x&lt;=10] while x!=10 do x := x+1 [x&lt;=10∧~(x!=10)]  ; WHT 3,4</span><br><span class="line">6. x&lt;=10∧~(x!=10) =&gt; x=10</span><br><span class="line">7. [x&lt;=10] while x!=10 do x := x+1 [x=10]   ; WC 5,6</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="Annotation-amp-Automated-program-verification"><a href="#Annotation-amp-Automated-program-verification" class="headerlink" title="Annotation &amp; Automated program verification"></a>Annotation &amp; Automated program verification</h2><p>Where to insert annotation:</p>
+<ul>
+<li>before statements except assignments</li>
+<li>before while body</li>
+</ul>
+<h2 id="Soundness-amp-Completeness"><a href="#Soundness-amp-Completeness" class="headerlink" title="Soundness &amp; Completeness"></a>Soundness &amp; Completeness</h2><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">|- {p}c{q} means that there exists a derivation sequence following the rules (ie. provable)</span><br><span class="line">|= {p}c{q} means the semantical meaning of {p}c{q} (ie. meaningful)</span><br><span class="line"></span><br><span class="line">Soundness of the program logic: every provable is meaningly true</span><br><span class="line">  - if |- {p}c{q}, then |= {p}c{q}</span><br><span class="line">  - if |- [p]c[q], then |= [p]c[q]</span><br><span class="line">Completeness of the program logic: every meaningly true is provable</span><br><span class="line">  - if |= {p}c{q}, then |- {p}c{q}</span><br><span class="line">  - if |= [p]c[q], then |- [p]c[q]</span><br><span class="line">  - *sometimes might violate Godel's incompleteness theorem</span><br><span class="line"></span><br><span class="line">Hoare logic is both sound and complete, provided that the underlying logic is!</span><br><span class="line">*BUT often, the underlying logic is sound but incomplete...</span><br><span class="line"> consider '|= {true}c{false} iff c does not halt', but HALT is undecidable</span><br><span class="line"> so the regular hoare logic based on **predicate logic** is incomplete (caused by rule SP and WC), but relative-complete</span><br><span class="line"></span><br><span class="line">[Cook 1978] Hoare logic is relative-complete:</span><br><span class="line">  if |= {p}c{q}, then {p | (|=p)} |- {p}c{q}</span><br></pre></td></tr></tbody></table></figure>
+<h1 id="Separation-logic"><a href="#Separation-logic" class="headerlink" title="Separation logic"></a>Separation logic</h1><p>Separation logic is a hoare logic extension adding support for pointers</p>
+<p>Exented the programming language syntax and corresponding semantics to support pointers:</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">(Comm) c ::= ...</span><br><span class="line">           | x := cons(e1, e2, ..., en)   ; allocation, address is random</span><br><span class="line">           | dispose(e)                   ; deallocation</span><br><span class="line">           | x := [e]                     ; lookup</span><br><span class="line">           | [e] := e                     ; mutation</span><br><span class="line">(Var)   v ∈ Nat</span><br><span class="line">(Loc)   l ∈ Nat</span><br><span class="line">(Store) s ∈ Var -&gt; Nat</span><br><span class="line">(Heap)  h ∈ Loc -&gt;fin Nat</span><br><span class="line">(State) σ ∈ (s, h)</span><br><span class="line"></span><br><span class="line">if [[e]](intexpr)s ∉ dom(h), then (x := [e], (s, h)) -&gt; abort</span><br><span class="line">if h([[e]](intexpr)s) = n, then (x := [e], (s, h)) -&gt; (skip, (s{x~&gt;n}, h))</span><br><span class="line"></span><br><span class="line">if [[e]](intexpr)s ∉ dom(h), then ([e] := e', (s, h)) -&gt; abort</span><br><span class="line">if [[e]](intexpr)s = l and l ∈ dom(h) and [[e']](intexpr)s = n</span><br><span class="line">    then ([e] := e', (s, h)) -&gt; (skip, (s, h{l~&gt;n}))</span><br><span class="line"></span><br><span class="line">if [[e1]](intexpr)s = n1 and [[e2]](intexpr)s = n2 and {l,l+1} ∩ dom(h) = Ø</span><br><span class="line">    then (x := cons(e1, e2), (s, h)) -&gt; (skip, (s{x~&gt;l}, h{l~&gt;e1, l+1~&gt;e2}))</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="Assertion-Syntax-and-Abbreviations"><a href="#Assertion-Syntax-and-Abbreviations" class="headerlink" title="Assertion Syntax and Abbreviations"></a>Assertion Syntax and Abbreviations</h2><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">(Assert) p ::= emp | e1 |-&gt; e2 | p1 * p2 | p1 -* p2</span><br><span class="line">             | b | ~p | p1 ∧ p2 | p1 ∨ p2 | p1 =&gt; p2</span><br><span class="line">             | ∀x. p | ∃x. p</span><br><span class="line"></span><br><span class="line">emp         ; empty heap</span><br><span class="line">e |-&gt; e'    ; singleton heap containing one cell at address e with content e'</span><br><span class="line">p1 * p2     ; separation conjuction, the heap can be split into two disjoint heap p1 and p2</span><br><span class="line">p1 -* p2    ; separation implication, p1 is a subset of p2</span><br><span class="line">e |-&gt; -     ; ∃x. e |-&gt; x, means that heap has exactly one element but we ignore its value</span><br><span class="line">e \-&gt; e'    ; e |-&gt; e' * true, means that heap at least has one element e'</span><br><span class="line">e |-&gt; e1, e2, ..., en  ; means heap continously stores values (e1, e2, ..., en), head address is e</span><br><span class="line">e \-&gt; e1, e2, ..., en  ; means heap at least continously stores these values</span><br><span class="line">h0 |_ h1    ; heap h0 and h1 have disjoint domains, '|_' is the symbol of 'perpendicular to' </span><br><span class="line">h0 · h1     ; the union of heap h0 and h1 with disjoint domains</span><br><span class="line"></span><br><span class="line">[exmaples]</span><br><span class="line">(1) x = { (3,y) }, y = { (3,x) }     ; (val, next)</span><br><span class="line">(2) x = y = { (3,x/y) }</span><br><span class="line">x |-&gt; 3,y * y |-&gt; 3,x    ; (1)</span><br><span class="line">x |-&gt; 3,y ∧ y |-&gt; 3,x   ; (2)</span><br><span class="line">x \-&gt; 3,y ∧ y \-&gt; 3,x   ; (1) or (2), and may contain other cells</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="Semantics-of-Assertions"><a href="#Semantics-of-Assertions" class="headerlink" title="Semantics of Assertions"></a>Semantics of Assertions</h2><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">s, h |= emp iff dom h = {}</span><br><span class="line">s, h |= e |-&gt; e' iff dom h = {[[e]](exp)s} and h([[e]](exp)s) = [[e']](exp)s</span><br><span class="line">s, h |= p0 * p1 iff ∃h0 h1, h0 |_ h1 and h0 · h1 = h and s, h0 |= p0 and s, h1 |= p1</span><br><span class="line">s, h |= p0 -* p1 iff ∀h', (h' |_ h and s, h' |= p0) implies s, h · h' |= p1</span><br><span class="line"></span><br><span class="line">s, h |= b iff [[b]](boolexpr)s = true</span><br><span class="line">s, h |= ~p iff s, h |= p is false</span><br><span class="line">s, h |= p0∧p1 iff s, h |= p0 and s, h |= p1   ; ∨, =&gt;, &lt;=&gt; is alike</span><br><span class="line">s, h |= ∀x. p iff ∀x∈Z. [s | v:x], h |= p</span><br><span class="line">s, h |= ∃x. p iff ∃x∈Z. [s | v:x], h |= p</span><br><span class="line"></span><br><span class="line">valid: if s, h |= p holds for all (s, h)</span><br><span class="line">satisfiable: if s, h |= p holds for some (s, h)</span><br></pre></td></tr></tbody></table></figure>
+<p>Assertion classed by properties:</p>
+<ul>
+<li>Pure assertions: forall s h h’, s, h |= p iff s, h’ |= p (quick check: not contain emp, |-&gt;, -&gt;)</li>
+<li>Strict exact assertions: forall s h h’, s, h |= p and s, h’ |= p implies h = h’</li>
+<li>Precise assertions: forall s h, there is at most one h’ ⊆ h such that s, h’ |= p</li>
+<li>Intuitionstic assertions: forall s h h’, (h ⊆ h’ and s, h |= p) implies s, h’ |= p</li>
+</ul>
+<h2 id="Specifications-and-Inference-Rules"><a href="#Specifications-and-Inference-Rules" class="headerlink" title="Specifications and Inference Rules"></a>Specifications and Inference Rules</h2><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">[examples-valid]</span><br><span class="line">           {emp} x := cons(1,2) {x|-&gt;1,2}</span><br><span class="line">       {x|-&gt;1,2} y := [x]       {x|-&gt;1,2 ∧ y=1}</span><br><span class="line">{x|-&gt;1,2 ∧ y=1} [x + 1] := 3   {x|-&gt;1,3 ∧ y=1}</span><br><span class="line">{x|-&gt;1,3 ∧ y=1} dispose x      {x+1|-&gt;3 ∧ y=1}</span><br><span class="line"></span><br><span class="line">[inference rules]</span><br><span class="line">SP and WC still holds, but Rule of Constancy fails</span><br><span class="line">    "if {p}c{q}, then {p∧r}c{q∧r}, where c doesn't modify fv(r)"</span><br><span class="line">let p = x |-&gt; -</span><br><span class="line">    c = [x] := 4</span><br><span class="line">    q = x |-&gt; 4</span><br><span class="line">    r = y |-&gt; 3</span><br><span class="line">the rule fails when x = y</span><br><span class="line">*thus instead we have frame rule</span><br><span class="line"></span><br><span class="line">[Frame Rule (O'Hearn)]</span><br><span class="line">  FR: "if {p}c{q}, then {p*r}c{q*r}, where c doesn't modify fv(r)"</span><br><span class="line">*this rule is the key to "local reasoning" about heap</span><br><span class="line"></span><br><span class="line">[local reasoning]</span><br><span class="line">  - the set of variables and heap cells that used by a command is called its *footprint*</span><br><span class="line">  - if {p}c{q} is valid, then p asserts that the heap contains all cells in footprint of c (excluding newly allocated by c)</span><br><span class="line">  - if p asserts the heap contains ONLY cells in the footprint of c, then {p}c{q} is a *local specification*</span><br><span class="line">  - if c' contains c, it may have a larger footprint described by p*r, then thr frame rule is needed to move from {p}c{q} to {p*r}c{q*r}</span><br><span class="line"></span><br><span class="line">[example-FR]</span><br><span class="line">            {list a i} rev_list() {list a_rev j}</span><br><span class="line">------------------------------------------------------------</span><br><span class="line"> {list a i * list b k} rev_list() {list a_rev j * list b k}</span><br><span class="line">*suppose rev_list() doesn't modify b or k</span><br><span class="line"></span><br><span class="line">[soundness of FR]</span><br><span class="line">these are equivalent expressions:</span><br><span class="line">  - FR is *sound* for both partial and total correctness</span><br><span class="line">  - the programming language satisfies *safety monotonicity* and *frame property*</span><br><span class="line">  - the programming language satisfies *locality*</span><br><span class="line"></span><br><span class="line">......</span><br><span class="line">(other inference rules omitted: MUL, DISL, CONSL, LKL)</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="List-and-List-Segments"><a href="#List-and-List-Segments" class="headerlink" title="List and List Segments"></a>List and List Segments</h2><p>Notation for a sequence:</p>
+<ul>
+<li>ε: empty seq</li>
+<li>[a]: a single-element seq containg a</li>
+<li>α*β: composition of α followed by β</li>
+<li>α†: reverse</li>
+<li>#α: cardinality/length</li>
+<li>αi: the i-th element</li>
+</ul>
+<p>Single-linked list:</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[notation syntax]</span><br><span class="line">list α i: a list containing a sequence α whose head pointer is i</span><br><span class="line"></span><br><span class="line">[recursive definition]</span><br><span class="line">    list ε i ::= emp ∧ i = nil</span><br><span class="line">list (a*α) i ::= ∃j. [i |-&gt; (a,j)] * [list α j]</span><br></pre></td></tr></tbody></table></figure>
+<p>Single-linked list segments:</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[notation syntax]</span><br><span class="line">lseg α (i,j): a list containing a sequence α whose head pointer is i and tail pointer is j</span><br><span class="line"></span><br><span class="line">[recursive definition]</span><br><span class="line">    lseg ε (i,j) ::= emp ∧ i = j</span><br><span class="line">lseg (a*α) (i,j) ::= ∃k. [i |-&gt; (a,k)] * [lseg α (k,j)]</span><br><span class="line"></span><br><span class="line">[properties]</span><br><span class="line">  lseg a (i,j) == i |-&gt; (a,j)</span><br><span class="line">lseg α*β (i,k) == ∃j. lseg α (i,j) * lseg β (j,k)</span><br><span class="line">lseg α (i,nil) == list α i</span><br></pre></td></tr></tbody></table></figure>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script><script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+      
+    </div><!-- .entry-content -->
+    
+    <aside class="comments-link" style="float: right">
+      <a href="javascript:void(0);" data-url="https://kahsolt.github.io/writings/program-formal-semantics/" data-id="ck4lktc16000mywoxvif9pl9b" 
+         class="leave-reply bdsharebuttonbox" data-cmd="more">[分享]
+      </a>
+      
+    </aside><!-- .comments-link -->
+
+    <footer class="entry-meta">
+      <a href="/writings/program-formal-semantics/">
+  <time datetime="2019-12-20T12:02:49.000Z" class="entry-date">
+    2019-12-20
+  </time>
+</a>
+      
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/砂时计/">砂时计</a>
+  </div>
+
+      
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算模型/">计算模型</a></li></ul>
+
+    </footer>
+</article>
+
+
+  
+  <nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+      <span class="nav-previous">
+        <a href="/writings/hadoop-technology-stack/" rel="prev">
+          <span class="meta-nav">←</span>
+          Mapreduce大数据处理-笔记
+        </a>
+      </span>
+    
+    
+      <span class="nav-next">
+        <a href="/writings/computational-complexity/" rel="next">
+          计算复杂性-笔记 
+          <span class="meta-nav">→</span>
+        </a>
+      </span>
+    
+  </nav><!-- .nav-single -->
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search">
+  <h3 class="widget-title">探しのみ</h3>
+  <div class="widget-content">
+    <form role="search" method="get" accept-charset="utf-8" target="_blank"
+          id="searchform" class="searchform" action="//www.baidu.com/s">
+        <div>
+            <input type="text" value="" name="wd" id="wd" />
+            <input type="submit" id="searchsubmit" value="検索" />
+        </div>
+    </form>
+  </div>
+</aside>
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">風音</h3>
+    <p style="text-align: center">孤独ノ隠レンボ (鏡音レン/150P)</p>
+    <div class="widget-content">
+      <audio src="https://link.hhtjim.com/163/512489312.mp3" controls="controls">
+        都9102年了您的浏览器还不支持audio标签??!
+      </audio>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">瞬時記憶</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/writings/natural-language-process/">自然语言处理-笔记</a>
+          </li>
+        
+          <li>
+            <a href="/writings/hadoop-technology-stack/">Mapreduce大数据处理-笔记</a>
+          </li>
+        
+          <li>
+            <a href="/writings/program-formal-semantics/">计算机程序形式语义-笔记</a>
+          </li>
+        
+          <li>
+            <a href="/writings/computational-complexity/">计算复杂性-笔记</a>
+          </li>
+        
+          <li>
+            <a href="/writings/automata/">自动机理论-笔记</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">猫論</h3>
+    <div class="widget-content">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/巴别塔/">巴别塔</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/砂时计/">砂时计</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/神谕机/">神谕机</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解命题/">解命题</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">格価値</h3>
+    <div class="widget-content">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/hadoop技术栈/">Hadoop技术栈</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nlp/">NLP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/代数结构/">代数结构</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/日语/">日语</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/示例代码/">示例代码</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算模型/">计算模型</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算理论/">计算理论</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/语法笔记/">语法笔记</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/量子计算/">量子计算</a><span class="tag-list-count">2</span></li></ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">格価クラウド</h3>
+    <div class="widget-content tagcloud">
+      <a href="/tags/hadoop技术栈/" style="font-size: 10px;">Hadoop技术栈</a> <a href="/tags/nlp/" style="font-size: 10px;">NLP</a> <a href="/tags/代数结构/" style="font-size: 10px;">代数结构</a> <a href="/tags/日语/" style="font-size: 10px;">日语</a> <a href="/tags/示例代码/" style="font-size: 10px;">示例代码</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/计算模型/" style="font-size: 20px;">计算模型</a> <a href="/tags/计算理论/" style="font-size: 15px;">计算理论</a> <a href="/tags/语法笔记/" style="font-size: 10px;">语法笔记</a> <a href="/tags/量子计算/" style="font-size: 15px;">量子计算</a>
+    </div>
+  </aside>
+
+  
+</div>
+    </div>
+    <footer id="colophon" role="contentinfo">
+    <p>&copy; 2019 アルミット
+        All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <!-- baidu webmaster push -->
+<script src='//push.zhanzhang.baidu.com/push.js'></script>
+
+
+
+<script>
+  window._bd_share_config = {
+    "common" : {"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},
+    "share": {}
+  };
+  with (document) 0 [
+    (getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/js/share.js'
+  ];
+  </script>
+
+<!-- JQuery -->
+<script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+
+<!-- FancyBox : JQuery -->
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/navigation.js"></script>
+
+<!-- 浏览器搞笑标题 -->
+<script src="/js/FunnyTitle.js"></script>
+<!-- 单击显示文字 -->
+<script src="/js/click_show_text.js"></script>
+<!-- 背景移动线条 -->
+<script src="https://cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+<!-- 看板娘 : JQuery -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css">
+<script src='/assets/live2d-widget/autoload.js'></script>
+
+  </div>
+</body>
+</html>

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   
-    <meta name="description" content="我们都忘了真理的名字……">
+    <meta name="description" content="我々は皆真理の名前を忘れだから……">
   
 
   
@@ -18,20 +18,18 @@
   
   <title> 最小生成集问题 |  虚仮威し全てを。</title>
   
-  <meta name="description" content="起源 七段数码管是这样的东西：   当我们想要显示一位数字的时候，实际就是去点亮七段LED中的某几段，比如数字1就是bc，2就是abged，以此类推……  为了方便写单片机程序，我们需要做个编码(补上一个不使用的比特h)： 1 2 3 4 5 6 7 8 9 10 11 12   DIG | a b c d e f g h | HEX ----|-----------------|------ &apos;">
+  <meta name="description" content="起源 七段数码管是这样的东西:   当我们想要显示一位数字的时候，实际就是去点亮七段LED中的某几段，比如数字1就是bc，2就是abged，以此类推……  为了方便写单片机程序，我们需要做个编码(补上一个不使用的比特h): 1 2 3 4 5 6 7 8 9 10 11 12   DIG | a b c d e f g h | HEX ----|-----------------|------ &apos;">
 <meta name="keywords" content="算法,代数结构">
 <meta property="og:type" content="article">
 <meta property="og:title" content="最小生成集问题">
 <meta property="og:url" content="https://kahsolt.github.io/writings/minimal-generator-set-problem/index.html">
 <meta property="og:site_name" content="虚仮威し全てを。">
-<meta property="og:description" content="起源 七段数码管是这样的东西：   当我们想要显示一位数字的时候，实际就是去点亮七段LED中的某几段，比如数字1就是bc，2就是abged，以此类推……  为了方便写单片机程序，我们需要做个编码(补上一个不使用的比特h)： 1 2 3 4 5 6 7 8 9 10 11 12   DIG | a b c d e f g h | HEX ----|-----------------|------ &apos;">
+<meta property="og:description" content="起源 七段数码管是这样的东西:   当我们想要显示一位数字的时候，实际就是去点亮七段LED中的某几段，比如数字1就是bc，2就是abged，以此类推……  为了方便写单片机程序，我们需要做个编码(补上一个不使用的比特h): 1 2 3 4 5 6 7 8 9 10 11 12   DIG | a b c d e f g h | HEX ----|-----------------|------ &apos;">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://kahsolt.github.io/source/assets/img/QQ图片20190908091726.jpg">
-<meta property="og:updated_time" content="2019-11-24T15:11:06.912Z">
+<meta property="og:updated_time" content="2019-10-04T16:00:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="最小生成集问题">
-<meta name="twitter:description" content="起源 七段数码管是这样的东西：   当我们想要显示一位数字的时候，实际就是去点亮七段LED中的某几段，比如数字1就是bc，2就是abged，以此类推……  为了方便写单片机程序，我们需要做个编码(补上一个不使用的比特h)： 1 2 3 4 5 6 7 8 9 10 11 12   DIG | a b c d e f g h | HEX ----|-----------------|------ &apos;">
-<meta name="twitter:image" content="https://kahsolt.github.io/source/assets/img/QQ图片20190908091726.jpg">
+<meta name="twitter:description" content="起源 七段数码管是这样的东西:   当我们想要显示一位数字的时候，实际就是去点亮七段LED中的某几段，比如数字1就是bc，2就是abged，以此类推……  为了方便写单片机程序，我们需要做个编码(补上一个不使用的比特h): 1 2 3 4 5 6 7 8 9 10 11 12   DIG | a b c d e f g h | HEX ----|-----------------|------ &apos;">
   
   
     <link rel="icon" href="/assets/img/favicon.ico">
@@ -106,14 +104,14 @@
     <div class="entry-content">
       
         <div class=".article-gallery" <p=""><br><p></p>
-<h1 id="起源"><a href="#起源" class="headerlink" title="起源"></a>起源</h1><p>七段数码管是这样的东西：<br><a href="/source/assets/img/QQ图片20190908091726.jpg" title="七段数码管" class="gallery-item"><img src="/source/assets/img/QQ图片20190908091726.jpg" data-src="https://ss0.bdstatic.com/6Ox1bjeh1BF3odCf/it/u=2686736431,1813808410&amp;fm=74&amp;app=80&amp;f=JPEG&amp;size=f121,140?sec=1880279984&amp;t=70d12f4062c45b1ef0340dc8a7db39e4" alt="七段数码管"></a></p>
+<h1 id="起源"><a href="#起源" class="headerlink" title="起源"></a>起源</h1><p>七段数码管是这样的东西:<br><a href="" data-echo=" title=" 七段数码管"="" class="gallery-item"><img src="" data-echo="https://ss0.bdstatic.com/6Ox1bjeh1BF3odCf/it/u=2686736431,1813808410&amp;fm=74&amp;app=80&amp;f=JPEG&amp;size=f121,140?sec=1880279984&amp;t=70d12f4062c45b1ef0340dc8a7db39e4" alt="七段数码管"></a></p>
 <p>当我们想要显示一位数字的时候，实际就是去点亮七段LED中的某几段，比如数字1就是bc，2就是abged，以此类推……</p>
-<p>为了方便写单片机程序，我们需要做个编码(补上一个不使用的比特h)：<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">DIG | a b c d e f g h | HEX</span><br><span class="line">----|-----------------|------</span><br><span class="line">'0' | 1 1 1 1 1 1 0 0 | 0xFC</span><br><span class="line">'1' | 0 1 1 0 0 0 0 0 | 0x60</span><br><span class="line">'2' | 1 1 0 1 1 0 1 0 | 0xDA</span><br><span class="line">'3' | 1 1 1 1 0 0 1 0 | 0xF2</span><br><span class="line">'4' | 0 1 1 0 0 1 1 0 | 0x66</span><br><span class="line">'5' | 1 0 1 1 0 1 1 0 | 0xB6</span><br><span class="line">'6' | 1 0 1 1 1 1 1 0 | 0xBE</span><br><span class="line">'7' | 1 1 1 0 0 0 0 0 | 0xE0</span><br><span class="line">'8' | 1 1 1 1 1 1 1 0 | 0xFE</span><br><span class="line">'9' | 1 1 1 1 0 1 1 0 | 0xF6</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>为了方便写单片机程序，我们需要做个编码(补上一个不使用的比特h):<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">DIG | a b c d e f g h | HEX</span><br><span class="line">----|-----------------|------</span><br><span class="line">'0' | 1 1 1 1 1 1 0 0 | 0xFC</span><br><span class="line">'1' | 0 1 1 0 0 0 0 0 | 0x60</span><br><span class="line">'2' | 1 1 0 1 1 0 1 0 | 0xDA</span><br><span class="line">'3' | 1 1 1 1 0 0 1 0 | 0xF2</span><br><span class="line">'4' | 0 1 1 0 0 1 1 0 | 0x66</span><br><span class="line">'5' | 1 0 1 1 0 1 1 0 | 0xB6</span><br><span class="line">'6' | 1 0 1 1 1 1 1 0 | 0xBE</span><br><span class="line">'7' | 1 1 1 0 0 0 0 0 | 0xE0</span><br><span class="line">'8' | 1 1 1 1 1 1 1 0 | 0xFE</span><br><span class="line">'9' | 1 1 1 1 0 1 1 0 | 0xF6</span><br></pre></td></tr></tbody></table></figure><p></p>
 <p>如此之后我们可以发现，其实并不用对每个需要显示的图案都去<strong>逐位列举</strong>以计算编码，如果我们知道’2’和’5’的编码，我们就可以直接通过按位或运算得到’8’的编码，ie. 0xDA | 0xB6 == 0xFE</p>
 <p>于是现在的问题就是，我们<strong>最少选择几个、选择哪几个基本编码，就可以通过常用的位运算得到其他的编码</strong>，下面进一步抽象并给出这个问题的数学描述</p>
 <h1 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h1><p>给定数字0~9的二进制表示集合<code>N</code>，给定算子集合<code>OP = { NOT, OR, AND, XOR }</code>，求<code>N</code>在<code>OP</code>下的最小生成集</p>
-<p>一般化扩展：给定一个二进制数的集合<code>N = {N1, N2, ..., Nn}</code>，给定一个<code>N</code>上算子的集合<code>OP = {OP1, OP2, ..., OPk}</code>，求<code>N</code>在<code>OP</code>下的最小生成集</p>
-<h1 id="解"><a href="#解" class="headerlink" title="解"></a>解</h1><p>目前没有想到合理的多项式时间算法，暂时先放个暴力解：</p>
+<p>一般化扩展: 给定一个二进制数的集合<code>N = {N1, N2, ..., Nn}</code>，给定一个<code>N</code>上算子的集合<code>OP = {OP1, OP2, ..., OPk}</code>，求<code>N</code>在<code>OP</code>下的最小生成集</p>
+<h1 id="解"><a href="#解" class="headerlink" title="解"></a>解</h1><p>目前没有想到合理的多项式时间算法，暂时先放个暴力解: </p>
 <figure class="highlight python"><figcaption><span>MGS_bf.py</span><a href="/downloads/src/MGS_bf.py">view raw</a></figcaption><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3</span></span><br><span class="line"><span class="comment"># Author: Armit</span></span><br><span class="line"><span class="comment"># Create Time: 2019/10/05 </span></span><br><span class="line"></span><br><span class="line"><span class="comment"># minimal generator set - brute force</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">NUMBERS = np.array([ <span class="comment"># '0' ~ '9'</span></span><br><span class="line">  <span class="number">0x3F</span>, <span class="number">0x06</span>, <span class="number">0x5B</span>, <span class="number">0x4F</span>, <span class="number">0x66</span>, </span><br><span class="line">  <span class="number">0x6D</span>, <span class="number">0x7D</span>, <span class="number">0x07</span>, <span class="number">0x7F</span>, <span class="number">0x6F</span>,</span><br><span class="line">], dtype=np.uint8)</span><br><span class="line">NOT = <span class="keyword">lambda</span> x, y: ~x</span><br><span class="line">AND = <span class="keyword">lambda</span> x, y: x &amp; y</span><br><span class="line">OR  = <span class="keyword">lambda</span> x, y: x | y</span><br><span class="line">XOR = <span class="keyword">lambda</span> x, y: x ^ y</span><br><span class="line">OPS = [ NOT, AND, OR, XOR ]</span><br><span class="line"></span><br><span class="line">to_bin = <span class="keyword">lambda</span> x, w=<span class="number">8</span>: bin(x)[<span class="number">2</span>:].rjust(w, <span class="string">'0'</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">timer</span><span class="params">(fn)</span>:</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">wrapper</span><span class="params">(*args, **kwargs)</span>:</span></span><br><span class="line">    s = time.time()</span><br><span class="line">    ret = fn(*args, **kwargs)</span><br><span class="line">    t = time.time()</span><br><span class="line">    print(<span class="string">'[Timer] %.4fs'</span> % (t - s))</span><br><span class="line">    <span class="keyword">return</span> ret</span><br><span class="line">  <span class="keyword">return</span> wrapper</span><br><span class="line"></span><br><span class="line"><span class="meta">@timer</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">MGS_bf</span><span class="params">(N=NUMBERS, OP=OPS)</span>:</span></span><br><span class="line">  target, solutions = set(N), [ ]</span><br><span class="line">  nlen = len(N)</span><br><span class="line">  <span class="keyword">for</span> sel <span class="keyword">in</span> range(<span class="number">2</span>**nlen):</span><br><span class="line">    sel_bin = to_bin(sel, nlen)</span><br><span class="line">    partial = { N[i] <span class="keyword">for</span> i <span class="keyword">in</span> range(len(sel_bin)) <span class="keyword">if</span> sel_bin[i] == <span class="string">'1'</span> }</span><br><span class="line">    partial_orig = partial.copy() <span class="comment"># save orig for ans</span></span><br><span class="line">    </span><br><span class="line">    size = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> size != len(partial): <span class="comment"># search result extended</span></span><br><span class="line">      size = len(partial)</span><br><span class="line">      new_partial = { op(x, y) <span class="keyword">for</span> op <span class="keyword">in</span> OP <span class="keyword">for</span> x <span class="keyword">in</span> partial <span class="keyword">for</span> y <span class="keyword">in</span> partial }</span><br><span class="line">      partial.update(new_partial)</span><br><span class="line">      </span><br><span class="line">      <span class="keyword">if</span> partial.issuperset(target):</span><br><span class="line">        solutions.append(partial_orig)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">  print(<span class="string">'&gt;&gt; %d solutions found in total'</span> % len(solutions))</span><br><span class="line">  groups = { }</span><br><span class="line">  <span class="keyword">for</span> sol <span class="keyword">in</span> solutions:</span><br><span class="line">    sz = len(sol)</span><br><span class="line">    <span class="keyword">if</span> sz <span class="keyword">in</span> groups: groups[sz].append(sol)</span><br><span class="line">    <span class="keyword">else</span>: groups[sz] = [ sol ]</span><br><span class="line"></span><br><span class="line">  min_sols = groups.get(sorted(groups)[<span class="number">0</span>])  <span class="comment"># just need the shortest groups</span></span><br><span class="line">  <span class="keyword">return</span> [sorted([np.where(NUMBERS == g)[<span class="number">0</span>][<span class="number">0</span>] <span class="keyword">for</span> g <span class="keyword">in</span> sol]) <span class="keyword">for</span> sol <span class="keyword">in</span> min_sols]</span><br><span class="line">  </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">  print(<span class="string">'over {OR, AND, XOR, NOT}'</span>)</span><br><span class="line">  <span class="keyword">for</span> sol <span class="keyword">in</span> MGS_bf():</span><br><span class="line">    print(sol)</span><br><span class="line">  print()</span><br><span class="line"></span><br><span class="line">  print(<span class="string">'over {OR, AND}'</span>)</span><br><span class="line">  <span class="keyword">for</span> sol <span class="keyword">in</span> MGS_bf(NUMBERS, [OR, AND]):</span><br><span class="line">    print(sol)</span><br><span class="line">  print()</span><br><span class="line">  </span><br><span class="line">  print(<span class="string">'over {OR, NOT}'</span>)</span><br><span class="line">  <span class="keyword">for</span> sol <span class="keyword">in</span> MGS_bf(NUMBERS, [OR, NOT]):</span><br><span class="line">    print(sol)</span><br><span class="line">  print()</span><br><span class="line">    </span><br><span class="line">  print(<span class="string">'over {AND, NOT}'</span>)</span><br><span class="line">  <span class="keyword">for</span> sol <span class="keyword">in</span> MGS_bf(NUMBERS, [AND, NOT]):</span><br><span class="line">    print(sol)</span><br><span class="line">  print()</span><br></pre></td></tr></tbody></table></figure>
 </div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
@@ -143,7 +141,7 @@
     </div><!-- .entry-content -->
     
     <aside class="comments-link" style="float: right">
-      <a href="javascript:void(0);" data-url="https://kahsolt.github.io/writings/minimal-generator-set-problem/" data-id="ck3d6wtoh0008d0ox4zybmnex" 
+      <a href="javascript:void(0);" data-url="https://kahsolt.github.io/writings/minimal-generator-set-problem/" data-id="ck4lktc0t0004ywoxvtih939y" 
          class="leave-reply bdsharebuttonbox" data-cmd="more">[分享]
       </a>
       
@@ -182,8 +180,8 @@
     
     
       <span class="nav-next">
-        <a href="/writings/2019-10-03-computation-theory/" rel="next">
-          计算理论-目录 
+        <a href="/writings/2019-10-03-computability/" rel="next">
+          可计算性入门 
           <span class="meta-nav">→</span>
         </a>
       </span>
@@ -232,23 +230,23 @@
       <ul>
         
           <li>
-            <a href="/writings/quantum-computing-examples/">量子计算-示例代码</a>
+            <a href="/writings/natural-language-process/">自然语言处理-笔记</a>
           </li>
         
           <li>
-            <a href="/writings/quantum-computing/">量子计算-笔记</a>
+            <a href="/writings/hadoop-technology-stack/">Mapreduce大数据处理-笔记</a>
           </li>
         
           <li>
-            <a href="/writings/minimal-generator-set-problem/">最小生成集问题</a>
+            <a href="/writings/program-formal-semantics/">计算机程序形式语义-笔记</a>
           </li>
         
           <li>
-            <a href="/writings/2019-10-03-computation-theory/">计算理论-目录</a>
+            <a href="/writings/computational-complexity/">计算复杂性-笔记</a>
           </li>
         
           <li>
-            <a href="/writings/2019-10-03-computability/">可计算性</a>
+            <a href="/writings/automata/">自动机理论-笔记</a>
           </li>
         
       </ul>
@@ -260,7 +258,7 @@
   <aside class="widget">
     <h3 class="widget-title">猫論</h3>
     <div class="widget-content">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/砂时计/">砂时计</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解命题/">解命题</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/巴别塔/">巴别塔</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/砂时计/">砂时计</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/神谕机/">神谕机</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解命题/">解命题</a><span class="category-list-count">1</span></li></ul>
     </div>
   </aside>
 
@@ -269,7 +267,7 @@
   <aside class="widget">
     <h3 class="widget-title">格価値</h3>
     <div class="widget-content">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/代数结构/">代数结构</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/可计算性/">可计算性</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算模型/">计算模型</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算理论/">计算理论</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/量子计算/">量子计算</a><span class="tag-list-count">2</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/hadoop技术栈/">Hadoop技术栈</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nlp/">NLP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/代数结构/">代数结构</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/日语/">日语</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/示例代码/">示例代码</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算模型/">计算模型</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算理论/">计算理论</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/语法笔记/">语法笔记</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/量子计算/">量子计算</a><span class="tag-list-count">2</span></li></ul>
     </div>
   </aside>
 
@@ -278,7 +276,7 @@
   <aside class="widget">
     <h3 class="widget-title">格価クラウド</h3>
     <div class="widget-content tagcloud">
-      <a href="/tags/代数结构/" style="font-size: 10px;">代数结构</a> <a href="/tags/可计算性/" style="font-size: 10px;">可计算性</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/计算模型/" style="font-size: 20px;">计算模型</a> <a href="/tags/计算理论/" style="font-size: 20px;">计算理论</a> <a href="/tags/量子计算/" style="font-size: 20px;">量子计算</a>
+      <a href="/tags/hadoop技术栈/" style="font-size: 10px;">Hadoop技术栈</a> <a href="/tags/nlp/" style="font-size: 10px;">NLP</a> <a href="/tags/代数结构/" style="font-size: 10px;">代数结构</a> <a href="/tags/日语/" style="font-size: 10px;">日语</a> <a href="/tags/示例代码/" style="font-size: 10px;">示例代码</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/计算模型/" style="font-size: 20px;">计算模型</a> <a href="/tags/计算理论/" style="font-size: 15px;">计算理论</a> <a href="/tags/语法笔记/" style="font-size: 10px;">语法笔记</a> <a href="/tags/量子计算/" style="font-size: 15px;">量子计算</a>
     </div>
   </aside>
 
