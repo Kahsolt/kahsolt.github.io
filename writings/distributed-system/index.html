@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+    <meta name="description" content="我々は皆真理の名前を忘れだから……">
+  
+
+  
+    <meta name="keywords" content="blog,ACG,技术博客,计算机,二次元">
+  
+  
+  
+  
+  
+  
+  <title> 分布式系统 - 笔记 |  虚仮威し全てを。</title>
+  
+  <meta name="description" content="前言 这是分布式系统的课程笔记，推荐读物是:    * Anthony, Richard John. System programming: design and developing distributed applications.  * Andrew S. Tanenbaum, Maarten van Steen. Distributed Systems: Principles and Pa">
+<meta name="keywords" content="分布式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="分布式系统 - 笔记">
+<meta property="og:url" content="https://kahsolt.github.io/writings/distributed-system/index.html">
+<meta property="og:site_name" content="虚仮威し全てを。">
+<meta property="og:description" content="前言 这是分布式系统的课程笔记，推荐读物是:    * Anthony, Richard John. System programming: design and developing distributed applications.  * Andrew S. Tanenbaum, Maarten van Steen. Distributed Systems: Principles and Pa">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-01-03T05:05:52.948Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="分布式系统 - 笔记">
+<meta name="twitter:description" content="前言 这是分布式系统的课程笔记，推荐读物是:    * Anthony, Richard John. System programming: design and developing distributed applications.  * Andrew S. Tanenbaum, Maarten van Steen. Distributed Systems: Principles and Pa">
+  
+  
+    <link rel="icon" href="/assets/img/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head></html>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="bg"></div>
+  <div id="page" class="hfeed site">
+    <header id="masthead" class="site-header" role="banner">
+  <hgroup>
+    <h1 class="site-title">
+      <a href="/" title="虚仮威し全てを。" rel="home">虚仮威し全てを。</a>
+    </h1>
+    
+      <h2 class="site-description">
+        <a href="/" id="subtitle">——若し雨が降ったら</a>
+      </h2>
+    
+  </hgroup>
+
+  <nav id="site-navigation" class="main-navigation" role="navigation">
+    <div class="menu-main-container">
+      <ul id="menu-main" class="nav-menu">
+      
+        <li class="menu-item menu-item-type-post_type menu-item-object-page">
+          <a href="/">例えば、</a>
+        </li>
+      
+        <li class="menu-item menu-item-type-post_type menu-item-object-page">
+          <a href="/kokoro">愛を叫けたら</a>
+        </li>
+      
+        <li class="menu-item menu-item-type-post_type menu-item-object-page">
+          <a href="/vhaktyr">隠り世界論</a>
+        </li>
+      
+        <li class="menu-item menu-item-type-post_type menu-item-object-page">
+          <a href="/kotoba">道断</a>
+        </li>
+      
+        <li class="menu-item menu-item-type-post_type menu-item-object-page">
+          <a href="/archives">記憶の砂数</a>
+        </li>
+      
+        <li class="menu-item menu-item-type-post_type menu-item-object-page">
+          <a href="/whoami">アルミットは。</a>
+        </li>
+      
+      </ul>
+    </div>
+  </nav>
+</header>
+
+    <div id="main" class="wrapper">
+      <div id="primary" class="site-content">
+        <div id="content" role="main">
+          <article id="post-distributed-system" class="post-distributed-system post type-post status-publish format-standard hentry">
+    <!---->
+
+    <header class="entry-header">
+      
+        
+  
+    <h1 class="entry-title article-title">分布式系统 - 笔记</h1>
+  
+
+
+      
+    </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <div class=".article-gallery" <p=""><br><p></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这是<strong>分布式系统</strong>的课程笔记，推荐读物是: </p>
+<ul>
+<li>Anthony, Richard John. System programming: design and developing distributed applications.</li>
+<li>Andrew S. Tanenbaum, Maarten van Steen. Distributed Systems: Principles and Paradigms (2nd edition).</li>
+<li>George Coulouris. Distributed Systems: Concepts and Design (4th edition).</li>
+</ul>
+<p>分布式系统: 一组自治计算单元向用户呈现为单一凝聚的系统<br>分布式优点: 向外扩展的经济性、并行化速度优势、应用需求内在分布式、可靠性、增量扩展</p>
+<p>分布式系统目标ATOS: </p>
+<ul>
+<li>资源可用性Availability</li>
+<li>分布透明性Transparency<ul>
+<li>访问透明: 隐藏数据表示差异，以及资源访问方式</li>
+<li>位置透明: 隐藏资源所在位置</li>
+<li>迁移透明: 资源发生位置迁移</li>
+<li>重定位透明: 正在使用中的资源发生位置迁移</li>
+<li>复制透明: 资源有多个副本备份</li>
+<li>并发透明: 资源被多个用户竞争式共享</li>
+<li>错误透明: 隐藏错误处理<ul>
+<li>通常不能完全透明: 无法区分一个慢节点和宕机节点、无法确信命令在宕机前得到了执行</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>开放性Openness: 至少做到独立于异构环境<ul>
+<li>良定义的接口，以支持系统间交互操作</li>
+<li>应用可移植性</li>
+</ul>
+</li>
+<li>可扩展性Scalability<ul>
+<li>数量可扩展: 用户数、进程数</li>
+<li>地理可扩展: 节点间最大距离</li>
+<li>管理可扩展: 管理域数量</li>
+</ul>
+</li>
+</ul>
+<p>分布式系统分类: </p>
+<ul>
+<li>分布式计算系统<ul>
+<li>集群计算Cluster: 同构节点、高端软硬系统、局域网连接、单一管理节点</li>
+<li>网格计算Grid: 易购节点、散布多个组织、广域网</li>
+<li>云计算Cloud: IaaS(数据中心/AmazonEC2)、PaaS(MS-Azure/AmazonS2)、SaaS(GoogleApps/YouTube/Flickr)</li>
+</ul>
+</li>
+<li>分布式信息系统<ul>
+<li>事务处理系统(A原子/C一致/I隔离/D持久化)</li>
+</ul>
+</li>
+<li>分布式普适系统<ul>
+<li>普适计算系统</li>
+<li>移动计算系统</li>
+<li>传感器网络</li>
+</ul>
+</li>
+</ul>
+<h1 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h1><p>架构风格: </p>
+<ul>
+<li>中心化架构<ul>
+<li>层次化风格: Client-Server系统 (request-response flow)<ul>
+<li>单Server系统问题: Server成为瓶颈、单点故障源，扩展难</li>
+<li>传统三层模型: 用户接口层、处理层、数据层</li>
+<li>瘦客户端: 表示层放在用户侧，例如X11server、移动应用</li>
+</ul>
+</li>
+<li>基于对象的风格: 分布式对象系统 (object-method_call)</li>
+<li>发布订阅模式: 空间解耦/匿名化 (publisher-event_bus-notification_delivery-subscriber)</li>
+<li>共享数据空间: 时间空间解耦/异步化 (publisher-public_data_storage-subscriber)</li>
+</ul>
+</li>
+<li>去中心化架构<ul>
+<li>结构化P2P: 节点按某个规范的数据结构来组织，如逻辑环、超立方，找数据靠哈希</li>
+<li>无结构P2P: 节点邻居是随机选择的，找数据需要泛洪、随机游走</li>
+<li>混合P2P: 一些超级对等体(superpeer)节点被指派了特殊功能，存储数据索引、监视网络状态、为新入节点提供setup配置</li>
+</ul>
+</li>
+<li>混合架构<ul>
+<li>C-S混合P2P</li>
+<li>Edge-Server结构，用于内容分发网络CDN (Content Delivery Network)</li>
+<li>BitTorrent: 下载同一个文件的用户组成一个临时小群</li>
+<li>中间件Middleware: 用于协调适配，自配置、自管理、自恢复、自优化(自主计算)，反馈控制模型</li>
+</ul>
+</li>
+</ul>
+<h1 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h1><p>进程: 在进程状态上下文中的一个执行流</p>
+<ul>
+<li>执行流: 指令执行流(步骤)、运行着的代码片段、连续的指令序列、线程的控制</li>
+<li>进程状态: 格局/快照、任何运行代码能影响和受影响的东西</li>
+</ul>
+<p>进程与程序: 一个进程基本上是一组程序的运行时<br>进程状态: 创建、等待、运行、阻塞、销毁<br>进程低效原因: 创建进程时资源拷贝、调度时上下文切换、交互操作IPC等待/加解锁  </p>
+<p>线程: 最小调度单位和局部上下文资源</p>
+<p>上下文切换: </p>
+<ul>
+<li>处理器上下文: 寄存器文件(PC/SP等)</li>
+<li>线程上下文: 处理器上下文 + 局部代码块状态(少量内存值)</li>
+<li>进程上下文: 线程上下文 + 线程状态(含MMU寄存器值)</li>
+<li>*线程共享同一个地址空间</li>
+</ul>
+<p>用户级线程: </p>
+<ol>
+<li>在用户进程地址空间被创建</li>
+<li>优点: 一个进程覆盖所有操作，实现数据共享简单</li>
+<li>缺点: 缺乏操作系统支持，难以灵活阻塞</li>
+</ol>
+<p>系统级线程: </p>
+<ol>
+<li>作为系统调用使用，效率有所下降</li>
+<li>不存在阻塞问题，处理外部事件简单</li>
+</ol>
+<p>分布式系统中线程的应用: 多线程并行RPC、隐藏网络延迟、提高性能、更优的结构</p>
+<p>虚拟化: 进程虚拟机(JVM)，虚拟机监视器(VMware/KVM/XEN)</p>
+<p>服务器: </p>
+<ul>
+<li>超级服务器: 监听多个端口，提供多项服务</li>
+<li>迭代/并行处理服务器: 一个处理一个请求/可同时处理多个请求</li>
+<li>有状态的/无状态的: 是否记录客户端访问、以及客户端个体识别</li>
+</ul>
+<p>代码迁移: 迁移代码段+数据段、然后重启计算，或迁移整个对象状态、从断点继续计算</p>
+<h1 id="通信"><a href="#通信" class="headerlink" title="通信"></a>通信</h1><p>通信方式分类: </p>
+<ul>
+<li>易失通信: 发送/转发失败则丢弃，如UDP</li>
+<li>持久化通信: 发送/转发失败则暂存重试，如mail</li>
+<li>同步通信: 请求提交时同步/请求发送时同步/请求处理后同步，如TCP</li>
+<li>异步通信: 中断机制<ul>
+<li>单向通信: client甚至不用等server的接受响应(类似UDP)</li>
+</ul>
+</li>
+</ul>
+<p>基本RPC操作: </p>
+<ul>
+<li>Client过程调用client存根(stub)，存根构造消息、调用本地OS接口</li>
+<li>本地OS发送消息给远程OS</li>
+<li>远程OS收取消息给远程存根，远程存根解包消息、根据参数调用服务</li>
+<li>服务进行本地调用并返回结果，远程存根构造消息、调用远程OS接口</li>
+<li>远程OS回复消息给本地OS</li>
+<li>本地OS收取消息给存根，存根解包消息、返回结果给Client</li>
+</ul>
+<p>RPC错误: </p>
+<ul>
+<li>client找不到server/server挂了/stub版本不匹配: 特殊返回值(如-1)、抛异常、发信号</li>
+<li>request丢失: 内核开计时器超时重发</li>
+<li>reply丢失: 内核开计时器超时重发、请求附加序列号防止多次执行</li>
+<li>server收到request后崩溃: 等server重启后重发请求(至少一次执行)、直接放弃报错(至多一次执行)、随机行为(啥也不担保)</li>
+<li>client收到reply后崩溃: client发RPC之前记录日志以便崩溃重启后通知server清理孤儿、日志也可改用任期号来分代、server限制任务保留时间超时kill</li>
+</ul>
+<p>client如何找server: </p>
+<ul>
+<li>硬编码写死</li>
+<li>动态绑定: 需要有一个binder<ul>
+<li>register: (name,version,handle,uuid) -&gt; null</li>
+<li>deregister: (name,version,uuid) -&gt; null</li>
+<li>lookup: (name,version) -&gt; (handle,uuid)</li>
+</ul>
+</li>
+</ul>
+<p>基于消息的通信: </p>
+<ul>
+<li>抽象原语: send/receive<ul>
+<li>属性: synchronous/asynchronous, persistent/transient</li>
+<li>易失消息通信选项: 易失异步通信、基于收据的易失同步通信(记下日志就返回)、基于交付的易失同步通信(开始处理就返回)、基于回复的易失同步通信(处理完才返回)</li>
+<li>持久消息通信选项: 持久异步通信、持久同步通信</li>
+</ul>
+</li>
+<li>实例: TCP/IP Socket<ul>
+<li>原语: socket,bind,listen,accept,connect,send,receive,close (下面|p|表示同步点)</li>
+<li>server: socket -&gt; bind -&gt; listen -&gt; |accept| -&gt; |(read/write)*| -&gt; close</li>
+<li>client: socket ——————&gt; |connect| -&gt; |(write/read)*| -&gt; close</li>
+</ul>
+</li>
+</ul>
+<p>基于消息的中间件原语: PUT,GET,POLL,NOTIFY</p>
+<p>面向流的通信: </p>
+<ul>
+<li>数据值是时间依赖的: 多媒体数据、传感器采样数据<ul>
+<li>流数据: 等时性、单向性</li>
+</ul>
+</li>
+<li>QoS: 比特率、最大会话启动延迟(setup)、最大端到端延迟(transfer)、最大抖动延迟(类似方差，用buffer解决)、最大往返延迟(round-trip)、丢包率(用交错分帧解决)、流同步(multiplex流整合后交给设备multiplex)</li>
+<li>多播: <ul>
+<li>Application-level multicasting</li>
+<li>Gossip-based data dissemination<ul>
+<li>Anti-entropy: each replica sync with exactly one another randomly chosen, O(logn)<ul>
+<li>更新方法: push(p发更新给q)/pull(q去拉p的更新)/push-pull(p和q互换更新)</li>
+</ul>
+</li>
+<li>Gossip: a replca inform a number of k others of its update changes, with probability 1/k to stop</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="命名"><a href="#命名" class="headerlink" title="命名"></a>命名</h1><p>可命名实体: </p>
+<ul>
+<li>命名方式<ul>
+<li>人类友好名字: 易不经意重名</li>
+<li>地址: 可能会移动，一个实体可能有多个地址</li>
+<li>标识符: 标识符最多指向一个实体、实体最多被一个标识符所指向</li>
+</ul>
+</li>
+<li>名字解析</li>
+<li>名字空间</li>
+</ul>
+<p>根据名字找访问点: </p>
+<ul>
+<li>简单方法: 广播(不超过局域网)、前递指针(留存引用)、基于家的方法(代理转发，如蜂窝网络)</li>
+<li>分布式哈希表: 节点形成逻辑环，每个节点用m位命名、每个资源用m位命名、名字为k的资源落在最小的节点id&gt;=k上，然后在环上顺着找</li>
+<li>分层位置服务: 考虑IPv6、SNMP协议</li>
+</ul>
+<p>命名空间: 参考DNS协议、Linux文件系统</p>
+<h1 id="同步"><a href="#同步" class="headerlink" title="同步"></a>同步</h1><p>同步纵览: </p>
+<ul>
+<li>时钟: 物理时钟、逻辑时钟</li>
+<li>共享同步: 互斥锁</li>
+<li>选举: 决定分布式系统的协调者</li>
+</ul>
+<p>目前的原子时: 来自世界50多个实验室的铯原子钟报时的统计平均</p>
+<p>关系”发生在之前”: 反自反、反对称、传递<br>Lamport算法: 每个进程Pi拥有一个计时器Ci</p>
+<ol>
+<li>对于Pi上接续发生的两个事件，Ci加一</li>
+<li>Pi所发送的每个消息m都带上时间戳<code>ts(m) = Ci</code></li>
+<li>当Pj收到任何消息m之后，总是调节自己的时钟为<code>max{Cj, ts(m)}</code></li>
+</ol>
+<p>并发条件下保证事件发生顺序: 用消息队列中间件去做排序</p>
+<p>分布式互斥锁: </p>
+<ul>
+<li>仲裁: 有一个仲裁者去决定是否可以进临界区(自己就是个mutex)  </li>
+<li>令牌: 令牌在环上轮转，谁拿到谁就可以进  </li>
+<li>投票: <ol>
+<li>想要进入临界区的Pi构造消息<code>m = {critical_area_id,proc_id,cur_timestamp}</code></li>
+<li>Pi广播m以征求意见，其他的Pj做如下操作: </li>
+<li>如果Pj不在临界区、也不想进临界区，回复同意</li>
+<li>如果Pj在临界区，将m入队列</li>
+<li>如果Pj不在临界区、但想进临界区，就比较时间戳，对方小则同意并自己入队，否则对方入队</li>
+</ol>
+</li>
+</ul>
+<p>分布式互斥锁对比: </p>
+<table>
+<thead>
+<tr>
+<th>算法</th>
+<th>消息数</th>
+<th>时延</th>
+<th>难题</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>仲裁中心</td>
+<td>3</td>
+<td>2</td>
+<td>单点故障</td>
+</tr>
+<tr>
+<td>分布投票</td>
+<td>2(n-1)</td>
+<td>2(n-1)</td>
+<td>任何进程崩溃</td>
+</tr>
+<tr>
+<td>令牌环</td>
+<td>1 ~ ∞</td>
+<td>0 ~ (n-1)</td>
+<td>进程崩溃令牌丢失</td>
+</tr>
+</tbody>
+</table>
+<p>领导者选举: </p>
+<ul>
+<li>欺负算法: 多播、比较谁编号大</li>
+<li>环算法: 发起者发一个问卷、每人轮流填，最后发起者检查谁应该称为领导人并通知它</li>
+</ul>
+<h1 id="一致与复制"><a href="#一致与复制" class="headerlink" title="一致与复制"></a>一致与复制</h1><p>为啥要做复制: 可靠性(容错)、性能(并行化)</p>
+<p>一致性模型: </p>
+<ul>
+<li>数据中心一致性: <ul>
+<li>严格一致性: 任何read(x)总返回最近的write(x)结果，任何write(x)立马被所有process察觉，<strong>分布式系统无法实现</strong></li>
+<li>序列一致性: 事件是全序的；进程内、对同一个变量的<strong>读写保持顺序</strong>；进程间、看到的变量的<strong>变更顺序</strong>是一致的，<strong>任何顺序执行结果都是相同的</strong>，read不一定按时间顺序</li>
+<li>线性一致性: 进程内外看到对同一变量的操作都是严格地完全相同的顺序(进程串行?)，用于程序形式化验证</li>
+<li>因果一致性: 序列一致性的弱化，单进程的连续读写必须被其他进程按此顺序看到、但多进程间的并发写可以被其他进程看到不同的顺序(只要拓扑序存在即可?)</li>
+<li>FIFO一致性: 单进程的<strong>写</strong>必须被其他进程看到一样的顺序，但多进程并发写可以被看到不同顺序</li>
+<li>弱一致性: 显式同步数据以后，共享数据才被认为是一致的</li>
+<li>释放一致性: 使用锁，先加锁后解锁、退出临界区时共享数据得到同步</li>
+<li>入口一致性: 使用锁，进入临界区时共享数据得到同步</li>
+</ul>
+</li>
+<li>客户中心一致性: <ul>
+<li>最终一致性</li>
+<li>单调读: 读过一次之后，重复读不会得到更老的值</li>
+<li>单调写: 写是确定顺序的增量更新、不能跳着或逆序写</li>
+<li>写后读Read your write/读写一致性: 写过了，后续就会读到这个写的值</li>
+<li>读后写Write after read/写读一致性: ？</li>
+</ul>
+</li>
+</ul>
+<p>更新传播: 基于push/基于pull  </p>
+<p>复制协议: </p>
+<ul>
+<li>Linearizability<ul>
+<li>Primary-Backup</li>
+<li>Chain Replication</li>
+</ul>
+</li>
+<li>Sequential consistency<ul>
+<li>Primary-based<ul>
+<li>Remote-Write: 读任何节点、直接返回(2步)；写任何节点、转发到主、广播更新、承认更新、回复写确认(5步)</li>
+<li>Local-Write: 读写时会把目前项目迁移到访问节点再处理</li>
+</ul>
+</li>
+<li>Replicated Write<ul>
+<li>Active replication</li>
+<li>Quorum-based</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="容错"><a href="#容错" class="headerlink" title="容错"></a>容错</h1><p>可信任性Dependability: </p>
+<ul>
+<li>可用性: 系统达到了给定的权威规范、在给定时间内无故障的概率</li>
+<li>可靠性: 正常工作时间占比、在任何时点给出正常工作的概率</li>
+<li>安全性: 系统暂时失效时不会有灾难发生</li>
+<li>可维护性: 修复系统的难易度</li>
+</ul>
+<p>关于错误: </p>
+<ul>
+<li>Failure: 系统规范说明里描述了的系统偏差</li>
+<li>Erroneous State: 进入错误状态就会导致Failure而非Fault</li>
+<li>Error: 系统总状态中出错/不期望的局部</li>
+<li>Fault: 系统设计故障，错误原因</li>
+<li>*Fault causes Error, Error results in Failure</li>
+</ul>
+<p>增进可信任性: 信息冗余、时间冗余、软硬件冗余(三份冗余、进程组)</p>
+<p>K-容错: </p>
+<ul>
+<li>安静失效错误: 需要<code>K+1</code>个节点(至少一个存活)</li>
+<li>拜占庭错误: 需要<code>2K+1</code>个节点(从众选举)</li>
+</ul>
+<p>拜占庭问题: 通信是完美的，但处理器不诚实</p>
+<ul>
+<li>口头协议: 有<code>m</code>个叛徒，则系统总共需要至少<code>3m+1</code>个节点</li>
+<li>书面协议: 有<code>m</code>个叛徒，则系统总共需要至少<code>m+2</code>个节点</li>
+</ul>
+<p>分布式提交: </p>
+<ul>
+<li>两阶段提交<ul>
+<li>cli给所有srv发选举请求，srv回应commit或abort</li>
+<li>cli收集统计投票，若全部commit则发送global_commit给所有srv、否则发送global_abort，每个srv相应处理</li>
+</ul>
+</li>
+<li>三阶段提交<ul>
+<li>pre_commit</li>
+<li>ready_commit</li>
+<li>global_commit</li>
+</ul>
+</li>
+</ul>
+<p>恢复: 利用checkpoint</p>
+<ul>
+<li>全部进程先恢复到最后一次保存点</li>
+<li>检查此间丢失的消息(发送撤回)<ul>
+<li>若发送被撤回，则消息的接收者应该重新接受这些消息</li>
+<li>因此回退到对应的发送前保存点</li>
+</ul>
+</li>
+<li>递归此过程</li>
+<li>*只要所有已经记录了接收的信息都确实历史上发送过</li>
+</ul>
+<h1 id="专题"><a href="#专题" class="headerlink" title="专题*"></a>专题*</h1><h2 id="云计算"><a href="#云计算" class="headerlink" title="云计算"></a>云计算</h2><p>云: 网络+资源池<br>相关技术: 并行计算、分布式计算、网格计算<br>云服务分类: IaaS,PaaS,SaaS<br>虚拟化: 封装、隔离、多实例、硬件无关、特权(入侵/病毒检测)、资源动态调整  </p>
+<p>流调度: 按包、按流；B4协议(区分背景流量与紧急流量，优先安排紧急、插空安排背景)<br>带宽保证: 扩展频率带宽、网络结构优化、网络虚拟化  </p>
+<p>云计算(Cloud Computing)</p>
+<ul>
+<li>网格计算(Grid Computing)</li>
+<li>分布式计算(Distributed Computing)</li>
+<li>并行计算(Parallel Computing)</li>
+<li>效用计算(Utility Computing)</li>
+<li>联机存储技术(Network Storage Technology)</li>
+<li>虚拟化(Virtualization)</li>
+<li>负载均衡(Load Balance)</li>
+</ul>
+<p>OpenStack主要的服务成员:</p>
+<ul>
+<li>计算(Nova)</li>
+<li>存储(Swift对象/Cinder块)</li>
+<li>镜像(Glance)</li>
+<li>网络(Neutron)  </li>
+</ul>
+<h2 id="边缘计算"><a href="#边缘计算" class="headerlink" title="边缘计算"></a>边缘计算</h2><p>边缘计算: 利用靠近数据源的边缘地带计算资源来完成任务<br>边缘设备: 各种嵌入式智能设备<br>针对低端设备的的优化: 有效采样、优化带宽、仔细考虑缓存、多级算法(先用粗糙算法筛去一些数据)  </p>
+<h2 id="物联网"><a href="#物联网" class="headerlink" title="物联网"></a>物联网</h2><p>物联网四层模型: </p>
+<ul>
+<li>感知识别层: RFID、无线传感器</li>
+<li>网络构建层: 3G/4G网络、WiFi、蓝牙、NFC</li>
+<li>管理服务层: 数据管理、Web服务、目录服务、权限管理</li>
+<li>综合应用层: 各种应用系统</li>
+</ul>
+<p>RFID中的标签识别算法: 基于帧的分时隙ALOHA防冲突算法、基于二进制树的防冲突算法<br>举了个例子: 摄像头识别纸键盘输入</p>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script><script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+      
+    </div><!-- .entry-content -->
+    
+    <aside class="comments-link" style="float: right">
+      <a href="javascript:void(0);" data-url="https://kahsolt.github.io/writings/distributed-system/" data-id="ck5mefe9l000qxsoxzdo2547e" 
+         class="leave-reply bdsharebuttonbox" data-cmd="more">[分享]
+      </a>
+      
+    </aside><!-- .comments-link -->
+
+    <footer class="entry-meta">
+      <a href="/writings/distributed-system/">
+  <time datetime="2019-12-31T03:07:46.000Z" class="entry-date">
+    2019-12-31
+  </time>
+</a>
+      
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/神谕机/">神谕机</a>
+  </div>
+
+      
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/分布式/">分布式</a></li></ul>
+
+    </footer>
+</article>
+
+
+  
+  <nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+      <span class="nav-previous">
+        <a href="/writings/advanced-machine-learning/" rel="prev">
+          <span class="meta-nav">←</span>
+          高级机器学习-笔记
+        </a>
+      </span>
+    
+    
+      <span class="nav-next">
+        <a href="/writings/natural-language-process/" rel="next">
+          自然语言处理-笔记 
+          <span class="meta-nav">→</span>
+        </a>
+      </span>
+    
+  </nav><!-- .nav-single -->
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search">
+  <h3 class="widget-title">探しのみ</h3>
+  <div class="widget-content">
+    <form role="search" method="get" accept-charset="utf-8" target="_blank"
+          id="searchform" class="searchform" action="//www.baidu.com/s">
+        <div>
+            <input type="text" value="" name="wd" id="wd" />
+            <input type="submit" id="searchsubmit" value="検索" />
+        </div>
+    </form>
+  </div>
+</aside>
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">風音</h3>
+    <p style="text-align: center">孤独ノ隠レンボ (鏡音レン/150P)</p>
+    <div class="widget-content">
+      <audio src="https://link.hhtjim.com/163/512489312.mp3" controls="controls">
+        都9102年了您的浏览器还不支持audio标签??!
+      </audio>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">瞬時記憶</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/writings/home-fs-layout/">home-fs-layout</a>
+          </li>
+        
+          <li>
+            <a href="/writings/system-fs-layout/">system-fs-layout</a>
+          </li>
+        
+          <li>
+            <a href="/writings/the-decline-of-the-west/">西方的没落</a>
+          </li>
+        
+          <li>
+            <a href="/writings/le-theatre-et-son-double/">戏剧及其重影</a>
+          </li>
+        
+          <li>
+            <a href="/writings/advanced-machine-learning/">高级机器学习-笔记</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">猫論</h3>
+    <div class="widget-content">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/巴别塔/">巴别塔</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/拟剧论/">拟剧论</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/砂时计/">砂时计</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/神谕机/">神谕机</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解命题/">解命题</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">格価値</h3>
+    <div class="widget-content">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/hadoop技术栈/">Hadoop技术栈</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nlp/">NLP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/what/">what</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/代数结构/">代数结构</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分布式/">分布式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/戏剧理论/">戏剧理论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文明史/">文明史</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/斯宾格勒/">斯宾格勒</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/日语/">日语</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/示例代码/">示例代码</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算模型/">计算模型</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算理论/">计算理论</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/语法笔记/">语法笔记</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/量子计算/">量子计算</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/阿托尔/">阿托尔</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">格価クラウド</h3>
+    <div class="widget-content tagcloud">
+      <a href="/tags/hadoop技术栈/" style="font-size: 10px;">Hadoop技术栈</a> <a href="/tags/nlp/" style="font-size: 10px;">NLP</a> <a href="/tags/what/" style="font-size: 15px;">what</a> <a href="/tags/代数结构/" style="font-size: 10px;">代数结构</a> <a href="/tags/分布式/" style="font-size: 10px;">分布式</a> <a href="/tags/戏剧理论/" style="font-size: 10px;">戏剧理论</a> <a href="/tags/文明史/" style="font-size: 10px;">文明史</a> <a href="/tags/斯宾格勒/" style="font-size: 10px;">斯宾格勒</a> <a href="/tags/日语/" style="font-size: 10px;">日语</a> <a href="/tags/机器学习/" style="font-size: 10px;">机器学习</a> <a href="/tags/示例代码/" style="font-size: 10px;">示例代码</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/计算模型/" style="font-size: 20px;">计算模型</a> <a href="/tags/计算理论/" style="font-size: 15px;">计算理论</a> <a href="/tags/语法笔记/" style="font-size: 10px;">语法笔记</a> <a href="/tags/量子计算/" style="font-size: 15px;">量子计算</a> <a href="/tags/阿托尔/" style="font-size: 10px;">阿托尔</a>
+    </div>
+  </aside>
+
+  
+</div>
+    </div>
+    <footer id="colophon" role="contentinfo">
+    <p>&copy; 2020 アルミット
+        All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <!-- baidu webmaster push -->
+<script src='//push.zhanzhang.baidu.com/push.js'></script>
+
+
+
+<script>
+  window._bd_share_config = {
+    "common" : {"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},
+    "share": {}
+  };
+  with (document) 0 [
+    (getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/js/share.js'
+  ];
+  </script>
+
+<!-- JQuery -->
+<script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+
+<!-- FancyBox : JQuery -->
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/navigation.js"></script>
+
+<!-- 浏览器搞笑标题 -->
+<script src="/js/FunnyTitle.js"></script>
+<!-- 单击显示文字 -->
+<script src="/js/click_show_text.js"></script>
+<!-- 背景移动线条 -->
+<script src="https://cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+<!-- 看板娘 : JQuery -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css">
+<script src='/assets/live2d-widget/autoload.js'></script>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+    <meta name="description" content="我々は皆真理の名前を忘れだから……">
+  
+
+  
+    <meta name="keywords" content="blog,ACG,技术博客,计算机,二次元">
+  
+  
+  
+  
+  
+  
+  <title> 高级机器学习-笔记 |  虚仮威し全てを。</title>
+  
+  <meta name="description" content="前言 这是高级机器学习的课程笔记，推荐读物是:    * 周志华. 机器学习(西瓜书).  * Peter Harrington. Machine Learning in Action (机器学习实战).  绪论 基本术语:    * 数据集dataset: 一组对象记录，每一条一个称为示例instance/样本sample  * 属性attribute/特征feature: 对象某方面的性质xi">
+<meta name="keywords" content="机器学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="高级机器学习-笔记">
+<meta property="og:url" content="https://kahsolt.github.io/writings/advanced-machine-learning/index.html">
+<meta property="og:site_name" content="虚仮威し全てを。">
+<meta property="og:description" content="前言 这是高级机器学习的课程笔记，推荐读物是:    * 周志华. 机器学习(西瓜书).  * Peter Harrington. Machine Learning in Action (机器学习实战).  绪论 基本术语:    * 数据集dataset: 一组对象记录，每一条一个称为示例instance/样本sample  * 属性attribute/特征feature: 对象某方面的性质xi">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-01-09T01:27:22.466Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="高级机器学习-笔记">
+<meta name="twitter:description" content="前言 这是高级机器学习的课程笔记，推荐读物是:    * 周志华. 机器学习(西瓜书).  * Peter Harrington. Machine Learning in Action (机器学习实战).  绪论 基本术语:    * 数据集dataset: 一组对象记录，每一条一个称为示例instance/样本sample  * 属性attribute/特征feature: 对象某方面的性质xi">
+  
+  
+    <link rel="icon" href="/assets/img/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head></html>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="bg"></div>
+  <div id="page" class="hfeed site">
+    <header id="masthead" class="site-header" role="banner">
+  <hgroup>
+    <h1 class="site-title">
+      <a href="/" title="虚仮威し全てを。" rel="home">虚仮威し全てを。</a>
+    </h1>
+    
+      <h2 class="site-description">
+        <a href="/" id="subtitle">——若し雨が降ったら</a>
+      </h2>
+    
+  </hgroup>
+
+  <nav id="site-navigation" class="main-navigation" role="navigation">
+    <div class="menu-main-container">
+      <ul id="menu-main" class="nav-menu">
+      
+        <li class="menu-item menu-item-type-post_type menu-item-object-page">
+          <a href="/">例えば、</a>
+        </li>
+      
+        <li class="menu-item menu-item-type-post_type menu-item-object-page">
+          <a href="/kokoro">愛を叫けたら</a>
+        </li>
+      
+        <li class="menu-item menu-item-type-post_type menu-item-object-page">
+          <a href="/vhaktyr">隠り世界論</a>
+        </li>
+      
+        <li class="menu-item menu-item-type-post_type menu-item-object-page">
+          <a href="/kotoba">道断</a>
+        </li>
+      
+        <li class="menu-item menu-item-type-post_type menu-item-object-page">
+          <a href="/archives">記憶の砂数</a>
+        </li>
+      
+        <li class="menu-item menu-item-type-post_type menu-item-object-page">
+          <a href="/whoami">アルミットは。</a>
+        </li>
+      
+      </ul>
+    </div>
+  </nav>
+</header>
+
+    <div id="main" class="wrapper">
+      <div id="primary" class="site-content">
+        <div id="content" role="main">
+          <article id="post-advanced-machine-learning" class="post-advanced-machine-learning post type-post status-publish format-standard hentry">
+    <!---->
+
+    <header class="entry-header">
+      
+        
+  
+    <h1 class="entry-title article-title">高级机器学习-笔记</h1>
+  
+
+
+      
+    </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <div class=".article-gallery" <p=""><br><p></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这是<strong>高级机器学习</strong>的课程笔记，推荐读物是: </p>
+<ul>
+<li>周志华. 机器学习(<strong>西瓜书</strong>).</li>
+<li>Peter Harrington. Machine Learning in Action (机器学习实战).</li>
+</ul>
+<h1 id="绪论"><a href="#绪论" class="headerlink" title="绪论"></a>绪论</h1><p>基本术语: </p>
+<ul>
+<li>数据集dataset: 一组对象记录，每一条一个称为示例instance/样本sample</li>
+<li>属性attribute/特征feature: 对象某方面的性质<code>xi</code></li>
+<li>属性值value: 性质的量化取值<code>xi = vi</code></li>
+<li>属性/样本/输入空间: 属性值的合法取值空间</li>
+<li>特征向量featvec: 一个样本的所有特征因此可以组成样本空间空间里的一个向量</li>
+<li>维数: 每个对象的特征数量</li>
+<li>标记label: 样本的定性/定量判断结果，<code>yi</code></li>
+<li>标记/输出空间: 标记的合法取值空间</li>
+<li>*因此每个样本通常形如<code>(X, y)</code>，<code>X</code>是对象的特征向量，<code>y</code>是其标记</li>
+<li>分类classification: 预测值是离散值</li>
+<li>回归regression: 预测值是连续值</li>
+<li>泛化能力generalization: 模型对未训练数据也适用/表现良好</li>
+<li>归纳偏置: 机器学习算法在学习过程中对某些假设的偏好/坚持(即合理的选项有很多，却最终不得不选一个、按偏好选择)</li>
+</ul>
+<p>No Free Lunch/NFL定理: 所有机器学习算法的期望性能(误差)是一样的，假设所有问题等概率出现(但应用上、真实数据的形态并不是平坦的)</p>
+<p>人工智能历程: </p>
+<ul>
+<li>推理期: “逻辑理论家”、”通用问题求解”程序</li>
+<li>知识期: 知识工程(抽取/表示)</li>
+<li>学习期<ul>
+<li>联结主义connectionism: 感知机、神经网络/深度学习</li>
+<li>符号主义symbolism: 结构学习、归纳学习、概念学习、统计学习/核方法</li>
+<li>行为主义: 强化学习</li>
+</ul>
+</li>
+</ul>
+<h1 id="模型评估与选择"><a href="#模型评估与选择" class="headerlink" title="模型评估与选择"></a>模型评估与选择</h1><p>基本概念: </p>
+<ul>
+<li>错误率: <code>E = α/m</code>，其中m个样本中有<code>α</code>个分类错误；准确率/精度即<code>1 - α/m</code></li>
+<li>误差: 预测值与真实值的差异，在训练集上的误差叫训练误差/经验误差、新样本上的误差叫泛化误差</li>
+<li>泛化能力: 越强，泛化误差越小</li>
+<li>过拟合/欠拟合: 泛化能力因为模型过于精细/粗糙而降低；只要<code>P != NP</code>则过拟合不可避免</li>
+</ul>
+<p>评估方法: </p>
+<ul>
+<li>留出leave-out: 将数据集<code>D</code>划分为互斥的训练集<code>S</code>和测试集<code>T</code>，在<code>S</code>上训练、在<code>T</code>上评估泛化误差；注意两个集合数据分布要基本一致、分层采样</li>
+<li>交叉验证cross-validation: 将数据集<code>D</code>划分为互斥的<code>k</code>个数据分布一致的子集<code>Dk</code>，然后重复k次每次将其中一份作测试集、其余做训练集，最终评估均值</li>
+<li>自助法bootstrapping(小数据集): 从数据集<code>D</code>中有放回地抽取<code>m</code>个做训练集<code>D'</code>、余下的做测试集(可计算得数据集D中有占比约<code>1/e</code>的部分不出现在训练集<code>D'</code>中)；但该方法改变了数据分布</li>
+<li>调参: 网格化搜索最优结果的模型参数</li>
+</ul>
+<p>性能度量: </p>
+<ul>
+<li>错误率: <code>E(f;D) = Σi[m](f(xi)!=yi) / m</code></li>
+<li>精度: <code>acc(f;D) = 1 - E(f;D)</code></li>
+<li>查准率precision: <code>P = TP / (TP + FP)</code>，正确正例对正例的占比；查准率低意味着模型误判太多，不可信</li>
+<li>查全率recall: <code>R = TP / (TP + FN)</code>，正确正例对正确判断的占比；查全率低意味着正例不足，我们对<code>A是什么</code>仍然一无所知(只知道<code>A不是什么</code>)</li>
+<li>平衡点break-even point/BEP: P-R图上<code>P = R</code>的点(曲线越方越好)</li>
+<li>F1值: <code>F1 = ((1 + β^2) * P * R / (β^2 * P + R))</code>，平衡因子<code>β&gt;1</code>时查全率重要、<code>β&lt;1</code>时查准率重要</li>
+<li>受试者工作特征ROC: 正判正率<code>TPR = TP / (TP + FN)</code>, 误判正率<code>FPR = FP / (TN + FP)</code>，画TPR-FPR曲线、图形面积衡量质量</li>
+<li>代价敏感错误率: 在混淆矩阵上加权、随后类似地计算查准P/查全R</li>
+</ul>
+<h1 id="线性模型"><a href="#线性模型" class="headerlink" title="线性模型"></a>线性模型</h1><p><strong>线性模型</strong>认为对象的标签是其特征向量各个分量的线性函数: <code>f(X) = Σi[d](wi*xi) + b</code>，或向量写法<code>f(x) = w'*x + b</code>，要训练的参数即<code>w'/wi</code>和<code>b</code>、使得<code>f(xi) ~= yi</code><br>最小二乘法/优化均方误差: <code>(w*, b*) = argmax[w,b] Σi[m](f(xi)-yi)^2</code>  </p>
+<ul>
+<li>回归模型<ul>
+<li>线性回归: 建模认为<code>y = w'x + b</code></li>
+<li>对数回归: 建模认为<code>ln(y) = w'x + b</code>  </li>
+<li>广义线性回归模型: 建模认为<code>g(y) = w'x + b</code>，其中<code>g</code>单调可微  </li>
+</ul>
+</li>
+<li>分类模型<ul>
+<li>对数几率回归logistic regression/LR: 建模认为<code>ln(y/(1-y)) = w'x + b</code>，由于二分类标签y取值范围为{0,1}，<code>ln(y/(1-y))</code>解释为该对象是正例相对于它是负例的几率(odds)的对数值，得到的预测值y是其属于正例的几率</li>
+<li>线性判别法linear discriminant analysis/LDA: 将训练集投影到一条直线上，使得正例负例的投影点相对集中于各自的中心点、而两个中心相对较远</li>
+<li>*多分类: 拆分成若干个二分类，拆分方案有一对一OvO、一对其余OvR、多对多MvM</li>
+<li>*类别不平衡问题: 训练数据中每个类别的记录数不平衡，使用相对值、比较训练集中正负比例，若<code>y/(1-y) &gt; m+/m-</code>则认为是正例</li>
+</ul>
+</li>
+</ul>
+<h1 id="决策树"><a href="#决策树" class="headerlink" title="决策树"></a>决策树</h1><p><strong>决策树模型</strong>反复考虑每个属性并划分条件，将一个级联的蕴含式作为分类规则(cond1-&gt;cond2-&gt;cond3-&gt;…-&gt;res)，因此分类边界必定是折线<br>划分选择: 希望不断划分后每个子树的叶子尽可能属于同一类别，即纯度越来越高<br>信息熵: 离散聚集<code>D</code>的熵<code>Ent(D) = -Σi[k]p(i)*log2(p(i))</code>，p(i)表示i号元素的数量占比，熵越小纯度越高<br>信息增益: 若属性<code>α</code>有<code>V</code>种取值，则<code>Gain(D,α) = Ent(D) - Σv[V](Ent(Dv)*|Dv|/|D|)</code>，增益越大纯度提升越大  </p>
+<p>优化目标: </p>
+<ul>
+<li>ID3: <code>α* = argmax[α](Gain(D,α))</code>，最大增益</li>
+<li>C4.5: <code>α* = argmax[α](Gain(D,α)/IV(α))</code>, <code>IV(α) = -Σv[V](|Dv|/|D|)*log2(|Dv|/|D|)</code>，最大增益率(会偏好取值数目少的属性)</li>
+<li>Gini指数: Gini(D)反映从D种随机抽取两个样本、其标记不一致的概率，Gini越小越纯</li>
+</ul>
+<p>一些处理技巧: </p>
+<ul>
+<li>过拟合: <ul>
+<li>预减枝: 用训练集划分子树、随即用测试集考察该划分是否能提高精度</li>
+<li>后剪枝: 先完全建好树，然后从叶子节点开始考察合并是否能带来测试集上的精度提升</li>
+</ul>
+</li>
+<li>连续值: 离散化、二值均化</li>
+<li>缺失值: 对于有缺失值的分叉，每个子树分配一个概率(根节点概率为1)，概率大小反比于某种意义上的数据缺失率</li>
+</ul>
+<h1 id="神经网络"><a href="#神经网络" class="headerlink" title="神经网络"></a>神经网络</h1><p>神经元模型: 输入是向量<code>X</code>、输出是标称值<code>y</code>、自己拥有一个阈值<code>b</code>；操作是先对<code>X</code>做聚合<code>g</code>、再用<code>f</code>决定是否激活，即<code>y = f(g(xi),b)</code>，通常取<code>g</code>为加权和、取<code>f</code>为阶跃，即有线性模型<code>y = (Σi(wi*xi) - b) &gt; 0</code>，参数为<code>wi</code>和<code>b</code><br>线性可分问题: 存在一个(d-1)维超平面可以完美分隔d维空间里的给定数据点<br>感知机: 两层神经元模型<br>*隐层神经元个数?: 试错法、调参<br>神经网络: 更多层神经元模型<br>多层前馈神经网络: 没有同层连接、没有跨层连接、相邻两层全连接<br>误差逆传播算法BP: 基于可微函数、符号计算、链式法则、梯度下降  </p>
+<ul>
+<li>经常会过拟合: 早停止、正则化</li>
+<li>局部最优: 多次随机选择初始点、模拟退火</li>
+</ul>
+<p>常见神经网络形态: </p>
+<ul>
+<li>径向基函数网络RBF</li>
+<li>自适应谐振理论网络ART</li>
+<li>自组织映射网络SOM</li>
+<li>级联相关网络</li>
+<li>Elman网络(递归神经网络之一)</li>
+<li>Boltzmann机(基于能量的模型)</li>
+</ul>
+<h1 id="支持向量机"><a href="#支持向量机" class="headerlink" title="支持向量机"></a>支持向量机</h1><p>线性模型中用于分割正负例的超平面可以有一定自由度，选择”中间位置”的超平面做最终模型<br>边界: </p>
+<ul>
+<li>正例边界: <code>w'x + b = +1</code></li>
+<li>负例边界: <code>w'x + b = -1</code></li>
+<li>最终模型超平面: <code>w'x + b = 0</code><br>支持向量: 距离超平面最近的几个正负例样本点<br>间隔margin: 两个异类支持向量到超平面的距离之和，即<code>γ = 2 / |w|</code><br>优化目标：<code>min[w,b] |w|^2, st. yi(w'xi+b) ≥ 1</code></li>
+</ul>
+<p>数据集并非完全线性可分的时候: </p>
+<ul>
+<li>软间隔: 允许正负例边界存在一定的交叉</li>
+<li>核方法: 若原始空间是有限维，则必能映射到一个高维空间使其线性可分<ul>
+<li>线性核: <code>xi' * xj</code></li>
+<li>多项式核: <code>(xi' * xj)^d</code></li>
+<li>高斯核: <code>exp(-|xi-xj|^2 / (2σ^2))</code></li>
+<li>拉普拉斯核: <code>exp(-|xi-xj| / σ)</code></li>
+</ul>
+</li>
+</ul>
+<p>支持向量回归: 拟合<code>f(x) = w'x + b</code>，然后取上下宽<code>ε</code>的带状区域<code>f(x) ± ε</code>认为都<strong>是</strong>目标函数，因此仅对落出的点计算loss、优化error；预测时仍然返回<code>f(xi)</code>即可</p>
+<h1 id="贝叶斯分类器"><a href="#贝叶斯分类器" class="headerlink" title="贝叶斯分类器"></a>贝叶斯分类器</h1><p>贝叶斯决策论：</p>
+<ul>
+<li>给定N个类别，令λij代表将第j类样本误分类为第i类所产生的损失，则基于后验概率将样本x分到第i类的条件风险为：<code>R(ci|x) = Σj[N] λij*P(cj|x)</code></li>
+<li>贝叶斯判定准则：<code>h*(x) = argmin[c∈Y] R(c|x)</code></li>
+<li>h*称为贝叶斯最优分类器，其总体风险称为贝叶斯风险</li>
+<li>反映了学习性能的<strong>理论上限</strong></li>
+</ul>
+<h1 id="集成学习"><a href="#集成学习" class="headerlink" title="集成学习"></a>集成学习</h1><h1 id="聚类"><a href="#聚类" class="headerlink" title="聚类"></a>聚类</h1><h1 id="降维与度量学习"><a href="#降维与度量学习" class="headerlink" title="降维与度量学习"></a>降维与度量学习</h1><p>引入: kNN算法简单粗暴，但其分类器泛化错误率不超过贝叶斯最优分类器错误率的<strong>两倍</strong><br>但这基于一个假设，即任意测试样本的任意足够小邻域内都能找到另一个样本，但现实问题中备选特征的维度通常很大，若要满足此<strong>密采样</strong>则训练数据量根本不够，因此必须<strong>特征降维</strong>、过滤无用特征<br>低维嵌入: 原始高维空间坍缩掉一些维度得到低维空间、寻找流形  </p>
+<p>多维缩放算法MDS: </p>
+<ol start="0">
+<li>要求原始空间样本之间得距离得到<strong>保持</strong>，特别地，新空间中的欧式距离等于原距离<code>||z1-zj||2 = dist[i][j]</code> (原距离定义是任意的)</li>
+<li>考察降维后样本的内积矩阵<code>B = Z'Z, 其中b(i,j) = zi'zj</code></li>
+<li>对<code>B</code>进行特征值分解，取特征值最大的<code>d'</code>个组成对角阵<code>λ</code>、对应的特征向量组成<code>V</code></li>
+<li>输出<code>V*λ^(1/2)</code>，每一行是一个样本在<code>d'</code>维的低维空间里的坐标</li>
+</ol>
+<p><a href="/downloads/src/pca.py">主成分分析PCA</a>: </p>
+<ol start="0">
+<li>最近重构性: 样本点到超平面的距离足够近，最大可分性: 样本点在超平面上的投影尽可能分开<ul>
+<li>优化目标: <code>max[W](tr(W'XX'W)) st. W'W = I</code></li>
+</ul>
+</li>
+<li>对数据进行中心化: xi = xi - mean(x)</li>
+<li>计算样本属性的协方差矩阵XX’，对其特征值分解</li>
+<li>取最大的<code>d'</code>个特征值所对应的特征向量<code>w1,w2,..,wd'</code></li>
+<li>得到投影矩阵<code>W* = (w1, w2, .., wd')</code></li>
+<li>每个样例的乘上投影矩阵即得低维空间里的对应向量</li>
+</ol>
+<p>非线性降维: </p>
+<ul>
+<li>核化线性降维: KPCA, KLDA</li>
+<li>流形学习: 测地线距离(保距)<ul>
+<li>ISOMAP<ol>
+<li>构造近邻图</li>
+<li>基于最短路求/近似任意两点间测地线距离</li>
+<li>基于距离矩阵通过MDS获得低维嵌入</li>
+</ol>
+</li>
+<li>LLE</li>
+</ul>
+</li>
+</ul>
+<p>距离度量学习: 学出一个半正定对称距离矩阵<code>M</code></p>
+<ul>
+<li>NCA</li>
+<li>LMNN</li>
+</ul>
+<h1 id="特征选择与稀疏学习"><a href="#特征选择与稀疏学习" class="headerlink" title="特征选择与稀疏学习"></a>特征选择与稀疏学习</h1><p>特征选择: 滤去无关特征、顺便降维</p>
+<p>子集搜索</p>
+<ul>
+<li>前向搜索: 从空集开始逐渐加入特征</li>
+<li>后向搜索: 从全集开始逐渐删特征</li>
+<li>双向搜索: 混合上述二者</li>
+</ul>
+<p>子集评价</p>
+<ul>
+<li>特征子集<code>A</code>确定了对数据集<code>D</code>的一个划分<ul>
+<li><code>A</code>上的取值(组合)将数据集<code>D</code>划分成<code>V</code>份，每一份记作<code>Dv</code></li>
+<li><code>Ent(Dv)</code>为子集<code>Dv</code>的信息熵</li>
+</ul>
+</li>
+<li>样本标记Y对应了数据集D的真实划分<ul>
+<li><code>Ent(D)</code>表示<code>D</code>上的信息熵</li>
+</ul>
+</li>
+<li>特征子集<code>A</code>的信息增益越大越好<ul>
+<li><code>Gain(A) = Ent(D) - Σv[V](Ent(Dv)*|Dv|/|D|)</code></li>
+</ul>
+</li>
+</ul>
+<p>选择方式</p>
+<ul>
+<li>过滤式: 特征选择与后续训练无关而串联<ul>
+<li>Relief方法: 特征加权以度量重要性，对特征j对每个样本xi寻找其同类的猜中近邻和异类的猜错近邻、计算这两个距离dist_h和dist_m(dist_h越小越好、dist_m越大越好)，则特征j的权为<code>δj = Σi(-dist_h(xi)^2 + dist_m(xi)^2)</code></li>
+</ul>
+</li>
+<li>包裹式: 以训练结果的评估作为特征选择的评估、因此需要多次训练反馈<ul>
+<li>LasVegasWrapper/LVW方法: 随机选一个特征子集、训练评估，反复多次后取评估最优的最小特征子集</li>
+</ul>
+</li>
+<li>嵌入式: 融入学习训练过程，在同一个优化过程内自动完成特征选择<ul>
+<li>考虑简单线性模型，以平方误差为损失，引入一个正则化项防止过拟合<ul>
+<li>岭回归: <code>min[w]Σi[m](yi-w'*xi)^2 + λ*|w|2^2</code>，此处<code>|w|2</code>即<code>w</code>的L2范数(欧几里得距离)</li>
+<li>LASSO: <code>min[w]Σi[m](yi-w'*xi)^2 + λ*|w|1</code>，替换为L1范数(曼哈顿距离)能获得更多稀疏解(但若误差等值线在与坐标轴相交前就与L1范数等值线相交、则得不到稀疏解)</li>
+<li>稀疏化: <code>min[w]Σi[m](yi-w'*xi)^2 + λ*|w|0</code>，但L0范数(向量中非零元素的个数)不连续、非凸、且是NP问题因此不好用</li>
+<li>*由于<code>w</code>是模型参数，使得w稀疏即可限制模型复杂度、防止过拟合</li>
+<li>*加入L1范数即在原目标函数中增加约束条件<code>|w|1 ≤ C</code>、<code>C</code>为某常数，岭回归同理</li>
+</ul>
+</li>
+<li>工作流程: 选取使L1范数最小化的参数λ -&gt; 调用PGD等训练算法 -&gt; 获取模型稀疏系数w -&gt; 在测试集上预测输出 -&gt; 预测输出 + 输出中<strong>非零系数</strong>即选择的特征集</li>
+</ul>
+</li>
+</ul>
+<p>稀疏表示与字典学习: 为普通稠密表达的稀疏数据样本找到合适的字典，将样本转化为基于该字典的稀疏表示，从而可以比如提升SVM性能</p>
+<p>压缩感知: 能否利用部分数据恢复全部数据？——只要数据内部确实高度相关、直接抓住正确的生成式模型即可。<br>若A满足<strong>k限定等距性</strong>，则可近乎完美地从y中恢复出稀疏信号s，进而恢复出x<br>应用: 矩阵补全(将非缺失项数据作为部分信号，利用压缩感知的思想恢复出完整信号)  </p>
+<h1 id="计算学习理论"><a href="#计算学习理论" class="headerlink" title="计算学习理论"></a>计算学习理论</h1><p>概念(concept): 是从样本空间<code>X</code>到标记空间<code>Y</code>的映射, 它决定示例<code>x</code>的真实标记<code>y</code></p>
+<ul>
+<li>目标概念: 对任何样例<code>(x,y)</code>均有<code>c(x) = y</code>成⽴，则<code>c</code>为目标概念(实际上就是一个可能模型)</li>
+<li>概念类: 一组目标概念的集合<code>C</code>(一组可用的可能模型)</li>
+<li>假设空间(hypothesis space): 给定学习算法<code>L</code>它所考虑的所有可能概念集合<code>H</code>(通常<code>H != C</code>)</li>
+<li>可分性<ul>
+<li>可分/一致的: 若存在目标概念<code>c∈H</code>，称该问题对学习算法<code>L</code>是可分的</li>
+<li>不可分/不一致的: 若否</li>
+</ul>
+</li>
+</ul>
+<p>概率近似正确(Probably Approximately Correct)</p>
+<ul>
+<li>PAC识别Identify: 若<code>对0 &lt; ε,δ &lt; 1, 任意c∈C和分布D，存在学习算法L, 其输出的h∈H，满足P(E(h) ≤ ε) ≥ 1-δ</code>，则称学习算法<code>L</code>能从假设空间<code>H</code>中PAC辨识概念类<code>C</code></li>
+<li>PAC可学习: 若存在学习算法<code>L</code>在多项式时间<code>poly(1/ε,1/δ,size(x),size(c))</code>内PAC识别概念类C，则<code>概念类C</code>是PAC可学习的<ul>
+<li>样本复杂度: 满足PAC学习算法L所需的<code>m ≥ poly(.)</code>的最小m称为样本复杂度</li>
+<li>假设空间复杂性<ul>
+<li>有限假设空间</li>
+<li>⽆无限假设空间: VC维</li>
+<li>⽆无限假设空间: Rademacher复杂度</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>VC维: </p>
+<ul>
+<li>增⻓长函数(growth function): <code>ΠH(m) = max |{h(xi),...|h∈H}|</code>，即假设空间里的所有h对m个样例所能做出最多分类的分类数；反映出假设空间的复杂度</li>
+<li>对分(dichotomy): 对二分类问题而言，H中的假设h对D中样例赋予标记的每种可能结果称为对D的一种<strong>对分</strong></li>
+<li>打散(shattering): 若假设空间H能实现在样例集D上的所有对分，即<code>ΠH(m) = 2^m</code>，则称样例集D能被假设空间H<strong>打散</strong></li>
+<li>VC维: 假设空间H的VC维是能被H打散的最⼤示例集的⼤小，即<code>VC(H) = max{m | ΠH(m) = 2^m}</code><ul>
+<li>*n维实空间的VC维是<code>n+1</code> </li>
+<li>*任何VC维有限的假设空间H都是不可知PAC可学习的</li>
+</ul>
+</li>
+</ul>
+<p>稳定性: 经验⻛险最小化(Empirical Risk Minimization)原则</p>
+<h1 id="半监督学习"><a href="#半监督学习" class="headerlink" title="半监督学习"></a>半监督学习</h1><p>主动学习active learning: 先根据少量已标记样本训练一个小模型，随后即可对无标记样本作预测，若拿不准(置信度低)就去问专家得到正解，后加入训练集重新训练得到更新模型；目标是尽可能减少专家查询次数</p>
+<p>未标记样本分布假设: 聚类假设、流形假设</p>
+<p>半监督学习分类: </p>
+<ul>
+<li>纯半监督学习pure: 假定训练数据中未标记样本不一定是待预测数据(基于开放世界假设)</li>
+<li>直推学习transductive: 假定未标记样本<strong>恰好</strong>就是待预测数据(基于封闭世界假设)</li>
+</ul>
+<p>生成式方法: 假设数据(无论有没有标记)都是同一个<strong>潜在模型</strong>生成出来的(这模型是什么得靠采样估计去猜)，从而可以将无标记数据视作模型的参数缺失、从而基于EM算法进行极大似然估计求解参数</p>
+<p>半监督SVM/S3VM:</p>
+<ul>
+<li>基本假设: 低密度分隔，即穿过低密度数据区域得划分超平面</li>
+<li>直推支持向量机TSVM算法<ol>
+<li>用已标记数据训练一个小模型SVMl</li>
+<li>用SVMl预测所有未标记数据，得到伪标记</li>
+<li>全部数据当作已标记数据，训练大模型SVM找到超平面</li>
+<li>交换两个异类的、可能预测错误的点的伪标记，不断重新训练以调整超平面</li>
+<li>重复步骤4直到满足某个给定折中参数条件</li>
+</ol>
+</li>
+</ul>
+<p>图半监督学习: 给定数据集将其映射为一个图，每个样本为一个节点、相关度很高的样本间存在一条边(边权正比于相关性)，随后将有标记样本对应节点染色，于是半监督学习过程即染色在图上的扩散</p>
+<p>基于分歧的方法: 数据有多个视图，可以互补兼容协同训练(类似于多语翻译过程)</p>
+<p>半监督聚类: </p>
+<ul>
+<li>约束k均值: 当已知某些点必须同簇或者不必同簇时</li>
+<li>约束种子k均值: 当已知少量有标记样本时，直接作为聚类中心</li>
+</ul>
+<h1 id="概率图模型"><a href="#概率图模型" class="headerlink" title="概率图模型"></a>概率图模型</h1><p>概率模型: </p>
+<ul>
+<li>生成式: 对联合分布<code>P(Y,R,O)</code>进行建模</li>
+<li>判别式: 对条件分布<code>P(Y,R|O)</code>进行建模</li>
+<li>*符号约定: <code>Y</code>为预测变量集合，<code>O</code>为可观测变量集合，<code>R</code>为其他变量集合</li>
+</ul>
+<p>概率图模型: </p>
+<ul>
+<li>用图来表达变量相关关系的概率模型<ul>
+<li>节点: 随机变量(集合)，亦即特征集</li>
+<li>边: 变量间依赖关系</li>
+</ul>
+</li>
+<li>分类<ul>
+<li>有向无环图: 贝叶斯网</li>
+<li>无向图: 马尔可夫网</li>
+</ul>
+</li>
+</ul>
+<p>隐马尔可夫模型HMM/动态贝叶斯网: </p>
+<ul>
+<li>组成<ul>
+<li>隐状态变量序列<code>Y = [y1,y2,...,yn]</code>，状态常量集<code>S = {s1,s2,...}</code></li>
+<li>观测变量序列<code>X = [x1,x2,...,xm]</code>，观测常量集<code>O = {o1,o2,...}</code></li>
+</ul>
+</li>
+<li>一步状态依赖假设: 时刻<code>t</code>的状态<code>yi</code>仅依赖<code>t-1</code>时的状态，即下一时刻状态只依赖当前状态<ul>
+<li>联合概率: <code>P([y1];[xm]) = P(y1)P(x1|y1)*Πi[2,n]P(yi|y[i-1])P(xi|yi)</code></li>
+</ul>
+</li>
+<li>参数<code>λ = (π,A,B)</code>决定了一个HMM模型<ul>
+<li>初始状态概率<code>π</code>: 向量<code>π=(π1,π2,...,πn), πi=P(y1=si)</code>，若未给出则一般认为是均匀分布</li>
+<li>状态转移概率<code>A</code>: 矩阵<code>A_nn[i][j] = P(y(t+1)=sj|yt=si)</code></li>
+<li>状态输出观测概率<code>B</code>: 矩阵<code>B_nm[i][j] = P(xt=oj|yt=si)</code></li>
+</ul>
+</li>
+<li>生成观察序列的每步密度: <code>x1=Bπ, x2=BAπ, x3=B(A^2)π, ..., xn=B(A^(n-1))π</code></li>
+<li><strong>HMM的基本问题</strong>: 对于给定模型<code>λ</code>和观察序列<code>X</code><ul>
+<li>评估模型和观测序列之间的匹配程度: 即有效计算<code>P(X|λ)</code></li>
+<li>根据观测序列推测隐状态序列<code>Y</code></li>
+<li>参数学习: 如何调整<code>λ</code>以使得该序列<code>X</code>出现<code>P(X|λ)</code>的概率最大</li>
+<li>*应用: 预测(根据以往观测值预测下一步最有可能的观测值)、语音识别(根据观测语音信号序列预测最有可能对应的文字序列)</li>
+</ul>
+</li>
+</ul>
+<p>马尔可夫随机场MRF: </p>
+<ul>
+<li>使用图模型表示，外加一组定义在变量子集上的非负实函数称势函数(“因子”)、用于定义概率分布函数</li>
+<li>使用基于极大团(max-clique)的势函数<ul>
+<li>每个节点/变量至少出现在一个极大团中</li>
+<li>多个变量之间的连续分布可基于团分解为多个因子的乘积，每个因<br>子只与一个团相关</li>
+<li>对于<code>n</code>个变量<code>x={x1,x2,...,xn}</code>，所有极大团构成的集合为<code>C</code>、每个团<code>q</code>所含变量(即节点)的集合记为<code>xq</code>，则联合概率定义为: <code>P(x) = Πq[C](ψq(xq)) / Z</code>，其中<code>ψq</code>是团<code>q</code>的势函数/因子、<code>Z</code>为很难精确计算的概率规范化因子</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">[马尔可夫随机场MRF-实例]</span><br><span class="line">图模型: </span><br><span class="line">  x1 - x3 - x5</span><br><span class="line">    \     / |</span><br><span class="line">       x2 - x6</span><br><span class="line">       |</span><br><span class="line">       x4</span><br><span class="line">则联合概率分布建模为: </span><br><span class="line">  P(x) = (ψ12 * ψ13 * ψ35 * ψ256 * ψ24) / Z</span><br><span class="line">  *其中ψ12即ψ12(x1,x2)，其他可类比</span><br><span class="line"></span><br><span class="line">分离集: </span><br><span class="line">  若从结点集A(不必是团)中的结点到B中的结点都必须经过结点集C中的结点</span><br><span class="line">  则称结点集A、B被结点集C分离，称C为分离集</span><br><span class="line">全局马尔可夫性(global Markov property): </span><br><span class="line">  在给定分离集的条件下，两个变量子集条件独立</span><br><span class="line">  若令A,B,C对应的变量集分别为xa,xb,xc, 则xa和xb在xc给定的条件下独立，记为 xa⊥xb | xc</span><br><span class="line">  可验证 P(xa,xb|xc) = P(xa|xc) * P(xb|xc)</span><br><span class="line">则图模型可以简化，每个独立结点集作为一个超节点，重新建模联合概率分布</span><br></pre></td></tr></tbody></table></figure>
+<p>条件随机场CRF: </p>
+<ul>
+<li><strong>判别式</strong>无向图模型(可看作给定观测值的MRF)，对多个变量给定相应观测值后的条件概率进行建模<ul>
+<li>令<code>x = [x1,x2,..,xn]</code>为观测序列，<code>y = [y1,y2,..,yn]</code>为对应的标记序列</li>
+<li>目标是构建条件概率模型<code>P(y|x)</code></li>
+<li>*标记变量<code>yi</code>也可以是结构型变量，只要它的各个分量之间有某种相关性</li>
+</ul>
+</li>
+<li>链式条件随机场cs-CRF<ul>
+<li>条件概率建模为<code>P(y|x) = exp(ΣjΣi[n-1]λj*tj(y(i+1),yi,x,i) + ΣkΣi[n](μk*sk(yi,x,i))) / Z</code><ul>
+<li><code>tj(y(i+1),yi,x,i)</code>定义在观测序列的两个相邻标记位置上的转移特征函数，刻画相邻标记变量之间的<br>相关关系、以及观测序列对它们的影响</li>
+<li><code>sk(yi,x,i)</code>定义在观测序列标记位置i上状态特征函数，刻画观测序列对标记变量的影响</li>
+<li><code>λj</code>和<code>μk</code>为参数、<code>Z</code>为规范化因子</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>模型推断: 基于概率图模型定义的分布，能对目标变量的边际分布或某些可观测变量为条件的条件分布进行推断</p>
+<ul>
+<li>精确推断<ul>
+<li>变量消去(见下例)</li>
+</ul>
+</li>
+<li>近似推断<ul>
+<li>随机化方法: MCMC采样(构造平稳分布为<code>p</code>的马尔可夫链来产生样本)<ul>
+<li>Metropolis-Hastings: 基于”拒绝采样”来逼近平稳分布</li>
+<li>Gibbs-sampling</li>
+</ul>
+</li>
+<li>确定性方法: 变分推断<ul>
+<li>使用EM算法最大化对数似然……</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">[精确推断-实例]</span><br><span class="line">贝叶斯网络结构: </span><br><span class="line">  x1 -&gt; x2 -&gt; x3 -&gt; x4</span><br><span class="line">               \--&gt; x5</span><br><span class="line">计算边缘概率p(x5): </span><br><span class="line">  p(x5) = Σx4Σx3Σx2Σx1 p(x1,x2,x3,x4,x5)                        // 想办法消去x1,x2,x3,x4</span><br><span class="line">        = Σx4Σx3Σx2Σx1 p(x1)p(x2|x1)p(x3|x2)p(x4|x3)p(x5|x3)    // 根据图模型依赖得到，但这个p(x4|x3)是不是应该是p(x3|x4)啊</span><br><span class="line">        = Σx3 p(x5|x3) Σx4 p(x4|x3) Σx2 p(x3|x2) Σx1 p(x1)p(x2|x1) // 按x1,x2,x4,x3的顺序求和</span><br><span class="line">        = Σx3 p(x5|x3) Σx4 p(x4|x3) Σx2 p(x3|x2) m2(x2)   // 对x1边缘求和消去，剩下关于x2的函数</span><br><span class="line">        = Σx3 p(x5|x3) Σx4 p(x4|x3) m3(x3)</span><br><span class="line">        = Σx3 p(x5|x3) m3(x3) Σx4 p(x4|x3)   // 无关变量移出，为什么？</span><br><span class="line">        = Σx3 p(x5|x3) m3(x3) m3'(x3)        // m3'是另一个关于x3的函数</span><br><span class="line">        = m5(x5)                             // 最终剩下仅关于x5的函数</span><br><span class="line"></span><br><span class="line">信念传播: 将变量消去求和过程视作消息传播</span><br><span class="line">消息传播过程: </span><br><span class="line">  x1 -[m12(x2)]-&gt; x2 -[m23(x3)]-&gt; x3 &lt;-[m43(x3)]- x4    // 注意x4到x3箭头方向</span><br><span class="line">                                    \-[m35(x5)]-&gt; x5</span><br><span class="line">两步即可完成所有变量上的边际分布计算: </span><br><span class="line">  1. 指定一个根节点，从所有叶节点开始向根节点传递消息、直到根节点收到所有叶节点的消息</span><br><span class="line">  2. 从根节点向叶节点传递回复，直到所有叶节点都收到回复    </span><br><span class="line">  3. *基于每条边上相反的两则信息即可算出节点边际分布、这正比于它所接收消息的乘积(有点像一轮PageRank?)</span><br></pre></td></tr></tbody></table></figure>
+<p>话题模型: </p>
+<ul>
+<li>非监督生成式有向图模型</li>
+<li>典型代表: 隐狄里克雷分配模型(Latent Dirichlet Allocation/LDA)</li>
+<li>基本单元<ul>
+<li>词word: 待处理数据中基本离散单元(语词/图元/音节/…)</li>
+<li>文档document: 待处理数据集，能表示为词袋模型BoW即可</li>
+<li>话题topic: 一些概念，亦即一组相关的词、及它们在该概念下出现的概率(有点像tag/category、组成一个滤波器)</li>
+</ul>
+</li>
+</ul>
+<h1 id="规则学习"><a href="#规则学习" class="headerlink" title="规则学习"></a>规则学习</h1><p>规则: <code>if p then q</code>, <code>q &lt;- p</code></p>
+<p>序贯覆盖: </p>
+<ul>
+<li>问题: 正负例散点图上，用矩形覆盖所有正例、形成正例规则</li>
+<li>策略: 特化(逐步增加约束)、泛化(逐步去除约束)<ul>
+<li>规则评判(增删哪个条件): 准确率、信息增益、Gini系数</li>
+<li>规避局部最优: 集束搜索(每次保留最优的多个候选规则)</li>
+</ul>
+</li>
+</ul>
+<p>剪枝优化:</p>
+<ul>
+<li>预剪枝: 似然率统计量LRS</li>
+<li>后剪枝: 减错剪枝REP(穷举所有可能的剪枝操作、用验证集反复剪枝直到准确率无法提高)</li>
+<li>二者结合: <ul>
+<li>IREP</li>
+<li>IREP*</li>
+<li>RIPPER(将所有规则放在一起优化，通过全局考虑来缓解局部最优)<ol>
+<li>用IREP*生成规则集</li>
+<li>选取一条规则，找到其覆盖的样例，特化原规则再泛化、重新生成规则</li>
+<li>把原规则和新规则分别置入规则集进行评价，留下较好的</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<p>一阶规则学习: FOIL</p>
+<p>归纳逻辑程序设计</p>
+<ul>
+<li>目标: 完备地学习一阶规则（Horn子句）</li>
+<li>方法: 以序贯覆盖方法学习规则集、一般采用<strong>自底向上</strong>策略学习单条规则</li>
+<li>最小一般泛化(LGG)<ul>
+<li>最小: 变换时对原规则的改动尽可能小</li>
+<li>一般: 覆盖率尽可能高</li>
+<li>泛化: 将覆盖率低的规则变换为覆盖率高的规则</li>
+<li>*寻找两条规则LGG的步骤<ol>
+<li>找出两条规则中涉及相同谓词的文字，即相同的谓词函数</li>
+<li>考察谓词的参数，取实参的<strong>并集</strong>抽象出一个变量；递归此过程</li>
+<li>删除没有相同谓词出现的文字，即保留共有的谓词函数项(合一操作)</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="强化学习"><a href="#强化学习" class="headerlink" title="强化学习"></a>强化学习</h1><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">图示: </span><br><span class="line">         -(动作a)-&gt;</span><br><span class="line">  |机器|             |环境|</span><br><span class="line">      &lt;-(状态x/奖赏r)-</span><br><span class="line">要素: &lt;A, X, R, P&gt;</span><br><span class="line">  A   动作空间</span><br><span class="line">  X   状态空间</span><br><span class="line">  R   奖励函数，X × A × X -&gt; R</span><br><span class="line">  P   转移函数，X × A × X -&gt; R</span><br><span class="line">策略: </span><br><span class="line">  a = π(x)</span><br><span class="line">  P(a|x) = π(x,a), st. Σa[A]π(x,a) = 1, ∀a∈A π(x,a) ≥ 0</span><br><span class="line">  *策略的表格/列表表示: [(state, action, probility), ...]</span><br><span class="line">策略评价: 累积回报</span><br><span class="line">  T-step: 1/T * Σt[T](rt)</span><br><span class="line">  discounted: Σt(γ^t * rt)</span><br><span class="line">学习⽬标: 寻找最⼤回报策略，即在每个状态以多大概率做出每个行为</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">马尔可夫过程&lt;X,P&gt;</span><br><span class="line">  无记忆性: P(x(t+1)|xt,...,x0) = P(x(t+1)|xt)</span><br><span class="line">  稳态分布: lim(t-&gt;∞) P(x(t+1)) = P(xt)</span><br><span class="line">马尔可夫回报过程MRP&lt;X,R,P&gt;</span><br><span class="line">  (这tm是个啥玩意儿)</span><br><span class="line">马尔可夫决策过程MDP&lt;A,X,R,P&gt;</span><br><span class="line">  (这tm又是个啥玩意儿)</span><br><span class="line"></span><br><span class="line">Q-function: (Vπ和Qπ是整体符号，π是上标)</span><br><span class="line">  状态值函数: Vπ(x) = E[Σt[T]rt|x]</span><br><span class="line">  状态制作值函数: Qπ(x,a) = E[Σt[T]rt|x,a] = Σx'[X] P(x'|x,a)(R(x,a,x') + Vπ(x'))</span><br><span class="line">  两者关系: Vπ(x) = Σa[A] π(a|x) * Qπ(x,a)</span><br></pre></td></tr></tbody></table></figure>
+<p><strong>唔，这章基本完全不懂</strong></p>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script><script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+      
+    </div><!-- .entry-content -->
+    
+    <aside class="comments-link" style="float: right">
+      <a href="javascript:void(0);" data-url="https://kahsolt.github.io/writings/advanced-machine-learning/" data-id="ck5mefe9n000txsox0dd1vpec" 
+         class="leave-reply bdsharebuttonbox" data-cmd="more">[分享]
+      </a>
+      
+    </aside><!-- .comments-link -->
+
+    <footer class="entry-meta">
+      <a href="/writings/advanced-machine-learning/">
+  <time datetime="2020-01-04T02:03:12.000Z" class="entry-date">
+    2020-01-04
+  </time>
+</a>
+      
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/神谕机/">神谕机</a>
+  </div>
+
+      
+  <span class="article-delim">&#8226;</span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/机器学习/">机器学习</a></li></ul>
+
+    </footer>
+</article>
+
+
+  
+  <nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+      <span class="nav-previous">
+        <a href="/writings/le-theatre-et-son-double/" rel="prev">
+          <span class="meta-nav">←</span>
+          戏剧及其重影
+        </a>
+      </span>
+    
+    
+      <span class="nav-next">
+        <a href="/writings/distributed-system/" rel="next">
+          分布式系统 - 笔记 
+          <span class="meta-nav">→</span>
+        </a>
+      </span>
+    
+  </nav><!-- .nav-single -->
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search">
+  <h3 class="widget-title">探しのみ</h3>
+  <div class="widget-content">
+    <form role="search" method="get" accept-charset="utf-8" target="_blank"
+          id="searchform" class="searchform" action="//www.baidu.com/s">
+        <div>
+            <input type="text" value="" name="wd" id="wd" />
+            <input type="submit" id="searchsubmit" value="検索" />
+        </div>
+    </form>
+  </div>
+</aside>
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">風音</h3>
+    <p style="text-align: center">孤独ノ隠レンボ (鏡音レン/150P)</p>
+    <div class="widget-content">
+      <audio src="https://link.hhtjim.com/163/512489312.mp3" controls="controls">
+        都9102年了您的浏览器还不支持audio标签??!
+      </audio>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">瞬時記憶</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/writings/home-fs-layout/">home-fs-layout</a>
+          </li>
+        
+          <li>
+            <a href="/writings/system-fs-layout/">system-fs-layout</a>
+          </li>
+        
+          <li>
+            <a href="/writings/the-decline-of-the-west/">西方的没落</a>
+          </li>
+        
+          <li>
+            <a href="/writings/le-theatre-et-son-double/">戏剧及其重影</a>
+          </li>
+        
+          <li>
+            <a href="/writings/advanced-machine-learning/">高级机器学习-笔记</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">猫論</h3>
+    <div class="widget-content">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/巴别塔/">巴别塔</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/拟剧论/">拟剧论</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/砂时计/">砂时计</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/神谕机/">神谕机</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解命题/">解命题</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">格価値</h3>
+    <div class="widget-content">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/hadoop技术栈/">Hadoop技术栈</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nlp/">NLP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/what/">what</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/代数结构/">代数结构</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分布式/">分布式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/戏剧理论/">戏剧理论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文明史/">文明史</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/斯宾格勒/">斯宾格勒</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/日语/">日语</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/示例代码/">示例代码</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算模型/">计算模型</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算理论/">计算理论</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/语法笔记/">语法笔记</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/量子计算/">量子计算</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/阿托尔/">阿托尔</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">格価クラウド</h3>
+    <div class="widget-content tagcloud">
+      <a href="/tags/hadoop技术栈/" style="font-size: 10px;">Hadoop技术栈</a> <a href="/tags/nlp/" style="font-size: 10px;">NLP</a> <a href="/tags/what/" style="font-size: 15px;">what</a> <a href="/tags/代数结构/" style="font-size: 10px;">代数结构</a> <a href="/tags/分布式/" style="font-size: 10px;">分布式</a> <a href="/tags/戏剧理论/" style="font-size: 10px;">戏剧理论</a> <a href="/tags/文明史/" style="font-size: 10px;">文明史</a> <a href="/tags/斯宾格勒/" style="font-size: 10px;">斯宾格勒</a> <a href="/tags/日语/" style="font-size: 10px;">日语</a> <a href="/tags/机器学习/" style="font-size: 10px;">机器学习</a> <a href="/tags/示例代码/" style="font-size: 10px;">示例代码</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/计算模型/" style="font-size: 20px;">计算模型</a> <a href="/tags/计算理论/" style="font-size: 15px;">计算理论</a> <a href="/tags/语法笔记/" style="font-size: 10px;">语法笔记</a> <a href="/tags/量子计算/" style="font-size: 15px;">量子计算</a> <a href="/tags/阿托尔/" style="font-size: 10px;">阿托尔</a>
+    </div>
+  </aside>
+
+  
+</div>
+    </div>
+    <footer id="colophon" role="contentinfo">
+    <p>&copy; 2020 アルミット
+        All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <!-- baidu webmaster push -->
+<script src='//push.zhanzhang.baidu.com/push.js'></script>
+
+
+
+<script>
+  window._bd_share_config = {
+    "common" : {"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},
+    "share": {}
+  };
+  with (document) 0 [
+    (getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/js/share.js'
+  ];
+  </script>
+
+<!-- JQuery -->
+<script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+
+<!-- FancyBox : JQuery -->
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/navigation.js"></script>
+
+<!-- 浏览器搞笑标题 -->
+<script src="/js/FunnyTitle.js"></script>
+<!-- 单击显示文字 -->
+<script src="/js/click_show_text.js"></script>
+<!-- 背景移动线条 -->
+<script src="https://cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+<!-- 看板娘 : JQuery -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css">
+<script src='/assets/live2d-widget/autoload.js'></script>
+
+  </div>
+</body>
+</html>
